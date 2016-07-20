@@ -89,8 +89,9 @@ source $ZSH/oh-my-zsh.sh
 . ~/z.sh
 
 # aliases
-alias zshconfig="nano ~/.zshrc"
-alias gitconfig="nano ~/.gitconfig"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias gitconfig="vim ~/.gitconfig"
 
 alias cls="clear"
 
