@@ -91,6 +91,7 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
+alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 
 alias cls="clear"
@@ -104,3 +105,6 @@ alias gbr="git br"
 alias gh="git hist"
 alias gpush="git push"
 alias gpull="git pull"
+
+# settings
+KEYTIMEOUT=1
