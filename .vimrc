@@ -80,6 +80,12 @@ let g:airline_symbols.linenr = ''
 " ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
+" colors
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 if has("syntax")
   syntax on
 endif
