@@ -94,8 +94,6 @@ alias vimrc="vim ~/.vimrc"
 alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 
-alias cls="clear"
-
 alias gs="git st"
 alias ga="git a"
 alias gaa="git a -A"
@@ -108,7 +106,3 @@ alias gpull="git pull"
 
 # settings
 KEYTIMEOUT=1
-
-# Colors
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
