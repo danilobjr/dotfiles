@@ -18,6 +18,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-fugitive' " awesome git commands
+Plugin 'airblade/vim-gitgutter' " show git changes aside line numbers
+Plugin 'vim-scripts/matchit.zip' " jumps to matching close tags in html and other languages
 
 call vundle#end()           
 filetype plugin indent on  
@@ -44,10 +51,9 @@ set incsearch           " Incremental search
 set autoread            " Automatically refresh any unchanged files
 set hidden              " Hide buffers when they are abandoned
 set mouse=a             " Enable mouse usage (all modes)
-set showmatch
-set relativenumber
-set number
-set laststatus=2
+set relativenumber      " relative line numbers to the current focused line
+set number              " show line numbers
+set laststatus=2        " show status bar
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -80,11 +86,16 @@ let g:airline_symbols.linenr = ''
 " ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" colors
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+" nerdtree
+let NERDTreeHijackNetrw=1
+
+" colorscheme
+colorscheme Tomorrow-Night
+
+" emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<Tab>'
 
 if has("syntax")
   syntax on
@@ -100,7 +111,7 @@ endif
 "
 """""""""""""""""""""""""""""
 
-map <F12> :NERDTreeToggle<CR>
+map <F4> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""
 "
