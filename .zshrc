@@ -83,17 +83,34 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#============== MY CUSTOMIZATIONS
+# CUSTOM
+# ======
+
+# runs keyboard mappings
+xmodmap ~/.Xmodmap
+
+export TERM=xterm-256color
 
 # Path to z.sh
 . ~/z.sh
 
-# aliases
+# base16 colors
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# ALIASES
+# =======
+
+# reload zsh config
+alias reload!="source ~/.zshrc"
+
+# open dotfiles
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 
+# git
 alias gs="git st"
 alias ga="git a"
 alias gaa="git a -A"
@@ -104,5 +121,8 @@ alias gh="git hist"
 alias gpush="git push"
 alias gpull="git pull"
 
-# settings
+# SETTINGS
+# ========
+
+# reduce lag to 0.1s when hit ESC
 KEYTIMEOUT=1
