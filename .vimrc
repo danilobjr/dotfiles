@@ -9,22 +9,27 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " core plugin
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim' " plugin manager
 
 " main plugins
-Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline' " fancy statusbar
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mattn/emmet-vim'
-Plugin 'leafgarland/typescript-vim'
+Plugin 'edkolev/tmuxline.vim' " apply same vim-airline theme of vim on tmux statusbar
+Plugin 'ctrlpvim/ctrlp.vim' " fuzzy file finder
+Plugin 'scrooloose/nerdtree' " project drawer / file explorer
+Plugin 'jiangmiao/auto-pairs' " auto close for \", (, {, [ 
+Plugin 'Valloric/YouCompleteMe' " auto completion
 Plugin 'tpope/vim-fugitive' " awesome git commands
 Plugin 'airblade/vim-gitgutter' " show git changes aside line numbers
 Plugin 'vim-scripts/matchit.zip' " jumps to matching close tags in html and other languages
+Plugin 'SirVer/ultisnips' " ultimate solution for snippets
+
+" language specific
+" Plugin 'pangloss/vim-javascript' " javascript syntax
+Plugin 'othree/yajs.vim' " javascript syntax
+Plugin 'leafgarland/typescript-vim' " typescript syntax
+" Plugin 'othree/html5.vim' " html5 syntax
+Plugin 'mattn/emmet-vim' " expand abbreviations for html/css
 
 call vundle#end()           
 filetype plugin indent on  
@@ -34,16 +39,14 @@ filetype plugin indent on
 "set background=dark
 
 """""""""""""""""""""""""""""
-"
-" SETTINGS
-"
+" SETTINGS & KEYBINDINGS
 """""""""""""""""""""""""""""
 
 set tabstop=4           " Show existing tab with 4 spaces width
 set shiftwidth=4        " When indenting with '>', use 4 spaces width
 set expandtab           " On pressing tab, insert 4 spaces
 set showcmd             " Show (partial) command in status line.
-set showmatch           " Show matching brackets.
+"set showmatch           " Show matching brackets.
 set ignorecase          " Do case insensitive matching
 set smartcase           " Do smart case matching
 set incsearch           " Incremental search
@@ -83,19 +86,35 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" ctrlp
+" CtrlP
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" nerdtree
+" NERDTree
 let NERDTreeHijackNetrw=1
+map <F4> :NERDTreeToggle<CR>
 
-" colorscheme
-colorscheme Tomorrow-Night
+" Colorscheme
+"colorscheme Tomorrow-Night
 
-" emmet
+" Emmet
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-let g:user_emmet_leader_key='<Tab>'
+"let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_expandabbr_key = '<Tab>'
+
+" UltiSnips
+" make vim recognizing snippets dir
+set runtimepath+=~/.vim/my-snippets/
+" use different snippets dir
+let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
+let g:UltiSnipsSnippetDirectories=["my-snippets"]
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion=['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion=['<C-k>', '<Up>']
 
 if has("syntax")
   syntax on
@@ -105,13 +124,6 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
-"""""""""""""""""""""""""""""
-"
-" KEYBIDINGS
-"
-"""""""""""""""""""""""""""""
-
-map <F4> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""
 "
