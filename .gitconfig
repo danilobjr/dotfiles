@@ -1,0 +1,14 @@
+[user]
+	email = danilobjr@gmail.com
+	name = Danilo Barros
+
+[alias]
+	st = status
+	a = add
+	aa = add -A
+	cm = commit -m
+	co = checkout
+	br = branch
+	hist = log --pretty --graph --date=short
+[push]
+	default = simple
