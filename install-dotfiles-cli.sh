@@ -1,5 +1,7 @@
-export DOTFILES_DIR=~/.dotfiles
+export DOTFILES=~/.dotfiles
+
+# todo copy bin folder from repo folder to $DOTFILES
 
 # add binaries into the path
-[[ -d $DOTFILES_DIR/bin ]] && PATH=$PATH:$DOTFILES_DIR/bin
+[[ -d $DOTFILES/bin ]] && PATH=$PATH:$DOTFILES/bin
 export PATH
