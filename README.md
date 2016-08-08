@@ -1,5 +1,5 @@
 # dotfiles
-My personal configuration files
+My dotfiles
 
 ## License
 
