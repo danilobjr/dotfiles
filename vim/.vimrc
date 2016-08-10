@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " plugin manager
 
 " main plugins
+Plugin 'chriskempson/base16-vim'
 Plugin 'vim-airline/vim-airline' " fancy statusbar
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim' " apply same vim-airline theme of vim on tmux statusbar
@@ -21,7 +22,7 @@ Plugin 'jiangmiao/auto-pairs' " auto close for \", (, {, [
 Plugin 'Valloric/YouCompleteMe' " auto completion
 Plugin 'tpope/vim-fugitive' " awesome git commands
 Plugin 'airblade/vim-gitgutter' " show git changes aside line numbers
-Plugin 'vim-scripts/matchit.zip' " jumps to matching close tags in html and other languages
+"Plugin 'vim-scripts/matchit.zip' " jumps to matching close tags in html and other languages
 Plugin 'SirVer/ultisnips' " ultimate solution for snippets
 
 " language specific
@@ -93,8 +94,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let NERDTreeHijackNetrw=1
 map <F4> :NERDTreeToggle<CR>
 
-" Colorscheme
-"colorscheme Tomorrow-Night
+" base16-vim
+let base16colorspace=256
+colorscheme base16-default-dark " the base16-shell colors has precedence
 
 " Emmet
 let g:user_emmet_install_global = 0
