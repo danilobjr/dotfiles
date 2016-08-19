@@ -86,9 +86,6 @@ source $ZSH/oh-my-zsh.sh
 # CUSTOM
 # ======
 
-# runs keyboard mappings
-xmodmap ~/.Xmodmap
-
 export TERM=xterm-256color
 
 # Path to z.sh
@@ -118,6 +115,7 @@ alias gcm="git cm"
 alias gco="git co"
 alias gbr="git br"
 alias gh="git hist"
+alias greset="git reset HEAD"
 alias gpush="git push"
 alias gpull="git pull"
 
