@@ -31,6 +31,8 @@ Plugin 'othree/yajs.vim' " javascript syntax
 Plugin 'leafgarland/typescript-vim' " typescript syntax
 " Plugin 'othree/html5.vim' " html5 syntax
 Plugin 'mattn/emmet-vim' " expand abbreviations for html/css
+Plugin 'mxw/vim-jsx' " jsx syntax
+Plugin 'samuelsimoes/vim-jsx-utils' " some utilities for jsx
 
 call vundle#end()           
 filetype plugin indent on  
@@ -99,8 +101,13 @@ let base16colorspace=256
 colorscheme base16-default-dark " the base16-shell colors has precedence
 
 " Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+" let g:user_emmet_install_global = 0
+"autocmd FileType html,css EmmetInstall
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
 "let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_expandabbr_key = '<Tab>'
 
@@ -117,6 +124,13 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " YouCompleteMe
 let g:ycm_key_list_select_completion=['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion=['<C-k>', '<Up>']
+
+" vim-jsx-utils
+nnoremap <leader>jr :call JSXEncloseReturn()<CR>
+nnoremap <leader>jl :call JSXEachAttributeInLine()<CR>
+nnoremap <leader>je :call JSXExtractPartialPrompt()<CR>
+nnoremap <leader>jc :call JSXChangeTagPrompt()<CR>
+nnoremap vat :call JSXSelectTag()<CR>
 
 if has("syntax")
   syntax on
