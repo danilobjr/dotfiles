@@ -1,13 +1,17 @@
 snippet im "Import statement"
-import { $1 } from '${0:module}';
+import { $2 } from '${1:module}';
 endsnippet
 
 snippet imas "Import * as statement"
-import * as $1 from '${0:module}';
+import * as $2 from '${1:module}';
+endsnippet
+
+snippet ex "Export statement"
+export { $2 } from '${1:module}';
 endsnippet
 
 snippet re "Require statement"
-require('${0:module}');
+require('${1:module}')$0
 endsnippet
 
 snippet us "'use strict'; statement"
@@ -15,15 +19,19 @@ snippet us "'use strict'; statement"
 endsnippet
 
 snippet var "Variable statement"
-var ${0:variableName} = ${1:value};
+var ${1:name} = ${2:value}$0
 endsnippet
 
 snippet let "Let variable statement"
-let ${0:variableName} = ${1:value};
+let ${1:name} = ${2:value}$0
 endsnippet
 
 snippet const "Constant statement"
-const ${0:constantName} = ${1:value};
+const ${1:name} = ${2:value}$0
+endsnippet
+
+snippet constcb "Constant statement with curly braces"
+const { ${1:name} } = ${2:value}$0
 endsnippet
 
 snippet fn "Function statement"
@@ -67,7 +75,7 @@ endsnippet
 snippet sw "Switch statement"
 switch (${1:variable}) {
 	case ${2:value}:
-	    $0
+	$0
 	break;
 	default:
 	return $3;
@@ -92,4 +100,27 @@ endsnippet
 
 snippet ce "console.error() statement"
 console.error(${1:value});
+endsnippet
+
+# react.js
+snippet rcc "React component"
+import React, { Component } from 'react';
+
+class ${1:ComponentName} extends Component {
+	render() {
+		return (
+			$0
+		);
+	}
+}
+
+export $1;
+endsnippet
+
+snippet rcsf "React stateless function"
+import React from 'react';
+
+const ${1:ComponentName} = (${2:props}) => $0
+
+export $1;
 endsnippet
