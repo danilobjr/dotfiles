@@ -1,13 +1,23 @@
 snippet im "Import statement"
-import { $2 } from '${1:module}';
+import { $2 } from '${1:module}'$0
 endsnippet
 
 snippet imas "Import * as statement"
-import * as $2 from '${1:module}';
+import * as $2 from '${1:module}'$0
 endsnippet
 
 snippet ex "Export statement"
-export { $2 } from '${1:module}';
+export {
+	$1
+}$0
+endsnippet
+
+snippet exf "Export from ... statement"
+export { $2 } from '${1:module}'$0
+endsnippet
+
+snippet me "module.exports"
+module.exports$0
 endsnippet
 
 snippet re "Require statement"
@@ -32,6 +42,12 @@ endsnippet
 
 snippet constcb "Constant statement with curly braces"
 const { ${1:name} } = ${2:value}$0
+endsnippet
+
+snippet if "if statement"
+if (${1:condition}) {
+	$0
+}
 endsnippet
 
 snippet fn "Function statement"
@@ -60,7 +76,7 @@ endsnippet
 
 snippet cts "Class constructor with super() call"
 constructor(${1:...args}) {
-	super(${1:...args});
+	super($1);
 
 	$0
 }
@@ -87,24 +103,27 @@ debugger;
 endsnippet
 
 snippet cl "console.log() statement"
-console.log(${1:value});
+console.log(${1:value})$0
 endsnippet
 
 snippet ci "console.info() statement"
-console.info(${1:value});
+console.info(${1:value})$0
 endsnippet
 
 snippet cw "console.warn() statement"
-console.warn(${1:value});
+console.warn(${1:value})$0
 endsnippet
 
 snippet ce "console.error() statement"
-console.error(${1:value});
+console.error(${1:value})$0
 endsnippet
 
+##########
 # react.js
+##########
+
 snippet rcc "React component"
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class ${1:ComponentName} extends Component {
 	render() {
@@ -114,13 +133,29 @@ class ${1:ComponentName} extends Component {
 	}
 }
 
-export $1;
+export {
+	$1
+}
 endsnippet
 
 snippet rcsf "React stateless function"
-import React from 'react';
+import React from 'react'
 
 const ${1:ComponentName} = (${2:props}) => $0
 
-export $1;
+export {
+	$1
+}
+endsnippet
+
+snippet rcpt "propTypes"
+${1:ComponentName}.propTypes = {
+	${2:propName}: ${3:type}
+}$0
+endsnippet
+
+snippet rcdp "defaultProps"
+${1:ComponentName}.defaultProps = {
+	${2:propName}: ${3:value}
+}$0
 endsnippet
