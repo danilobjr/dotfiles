@@ -24,6 +24,8 @@ Plugin 'tpope/vim-fugitive' " awesome git commands
 Plugin 'airblade/vim-gitgutter' " show git changes aside line numbers
 "Plugin 'vim-scripts/matchit.zip' " jumps to matching close tags in html and other languages
 Plugin 'SirVer/ultisnips' " ultimate solution for snippets
+Plugin 'tpope/vim-surround' " surround something 
+"Plugin 'terryma/vim-multiple-cursors' " multiple cursors
 
 " language specific
 " Plugin 'pangloss/vim-javascript' " javascript syntax
@@ -33,6 +35,7 @@ Plugin 'leafgarland/typescript-vim' " typescript syntax
 Plugin 'mattn/emmet-vim' " expand abbreviations for html/css
 Plugin 'mxw/vim-jsx' " jsx syntax
 Plugin 'samuelsimoes/vim-jsx-utils' " some utilities for jsx
+Plugin 'gavocanov/vim-js-indent' " javascript indentation
 
 call vundle#end()           
 filetype plugin indent on  
