@@ -32,8 +32,12 @@ snippet var "Variable statement"
 var ${1:name} = ${2:value}$0
 endsnippet
 
-snippet let "Let variable statement"
+snippet let "Let statement"
 let ${1:name} = ${2:value}$0
+endsnippet
+
+snippet letcb "Let statement with curly braces"
+let { ${1:name} } = ${2:value}$0
 endsnippet
 
 snippet const "Constant statement"
