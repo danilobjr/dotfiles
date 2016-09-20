@@ -1,14 +1,20 @@
 [user]
 	email = danilobjr@gmail.com
 	name = Danilo Barros
-
 [alias]
-	st = status
+	st = status -sb
+	dc = diff --cached
 	a = add
+	ap = add .
 	aa = add -A
 	cm = commit -m
 	co = checkout
 	br = branch
-	hist = log --pretty --graph --date=short
+	cl = clone
+	unstage = reset HEAD --
+	last = log -1 --stat
+	hist = log --graph --pretty=format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	# git-flow
+	
 [push]
 	default = simple
