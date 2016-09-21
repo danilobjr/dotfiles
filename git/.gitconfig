@@ -31,4 +31,18 @@
 	rc = rebase --continue
 	last = log -1 --stat
 	hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	# git-flow
+	ffs = flow feature start
+	fff = flow feature finish
+	ffp = flow feature publish
+	fft = flow feature track
 
+	frs = flow release start
+	frf = flow release finish
+	frp = flow release publish
+	frt = flow release track
+
+	fhs = flow hotfix start
+	fhf = flow hotfix finish
+	fhp = flow hotfix publish
+	fht = flow hotfix track
