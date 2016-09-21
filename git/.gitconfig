@@ -34,6 +34,13 @@
 	
 	# git-flow
 	
+	fi = flow init
+	fid = flow init -d
+	
+	ff = flow finish
+	fp = flow publish
+	fd = flow delete
+	
 	ffs = flow feature start
 	fff = flow feature finish
 	ffp = flow feature publish
@@ -48,3 +55,8 @@
 	fhf = flow hotfix finish
 	fhp = flow hotfix publish
 	fht = flow hotfix track
+
+	fbs = flow bugfix start
+	fbf = flow bugfix finish
+	fbp = flow bugfix publish
+	fbt = flow bugfix track
