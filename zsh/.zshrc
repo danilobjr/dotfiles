@@ -109,16 +109,36 @@ alias gitconfig="vim ~/.gitconfig"
 
 # git
 alias gs="git st"
+alias gdc="git dc"
 alias ga="git a"
-alias gaa="git a -A"
+alias gap="git ap"
+alias gaa="git aa"
 alias gcm="git cm"
+alias gu="git unstage"
 alias gco="git co"
-alias gbr="git br"
-alias gh="git hist"
-alias gdiff="git diff"
-alias greset="git reset HEAD"
-alias gpush="git push"
-alias gpull="git pull"
+alias gb="git br"
+alias gcl="git cl"
+alias gm="git m"
+alias gr="git r"
+alias grc="git rc"
+alias glast="git last"
+alias ghist="git hist"
+
+# git-flow
+alias gffs="git ffs"
+alias gfff="git fff"
+alias gffp="git ffp"
+alias gfft="git fft"
+
+alias gfrs="git frs"
+alias gfrf="git frf"
+alias gfrp="git frp"
+alias gfrt="git frt"
+
+alias gfhs="git fhs"
+alias gfhf="git fhf"
+alias gfhp="git fhp"
+alias gfht="git fht"
 
 # SETTINGS
 # ========
