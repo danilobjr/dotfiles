@@ -125,8 +125,13 @@ alias glast="git last"
 alias ghist="git hist"
 
 # git-flow
+
 alias gfi="git fi"
 alias gfid="git fid"
+
+alias gfp="git fp"
+alias gff="git ff"
+alias gfd="git fd"
 
 alias gffs="git ffs"
 alias gfff="git fff"
