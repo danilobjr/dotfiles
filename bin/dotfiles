@@ -19,11 +19,8 @@ cat << EOF
 =========================
 This script installs nice tools for programming on terminal.
 
-First, run this command to install dotfiles CLI.
-./install-dotfiles-cli.sh
-
-Then, check how to use CLI commands.
-dotfiles --help
+Check how to use CLI commands.
+./dotfiles.sh --help
 
 Licensed under the MIT License.
 danilobjr.mit-license.org
