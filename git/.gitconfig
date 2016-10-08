@@ -23,6 +23,7 @@
 	aa = add -A
 	cm = commit -m
 	unstage = reset HEAD --
+    undo = reset HEAD~1
 	co = checkout
 	br = branch
 	cl = clone
