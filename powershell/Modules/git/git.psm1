@@ -88,6 +88,17 @@ function GitFlowFinish { git ff }
 function GitFlowPublish { git fp }
 function GitFlowDelete { git fd }
 
+# functions
+# =========
+
+# git-flow
+function GitFlowInit { git fi }
+function GitFlowInitDefault { git fid }
+
+function GitFlowFinish { git ff }
+function GitFlowPublish { git fp }
+function GitFlowDelete { git fd }
+
 function GitFlowFeatureStart { git ffs $args }
 function GitFlowFeatureFinish { git fff $args }
 function GitFlowFeaturePublish { git ffp $args }
@@ -107,6 +118,65 @@ function GitFlowBugfixStart { git fbs $args }
 function GitFlowBugfixFinish { git fbf $args }
 function GitFlowBugfixPublish { git fbp $args }
 function GitFlowBugfixTrack { git fbp $args }
+
+# git
+function GitDiff { git d $args }
+function GitAdd { git a $args }
+function GitAddAll { git aa }
+function GitCommit { git cm $args }
+function GitPullOrigin { git pull origin $args }
+function GitPushOrigin { git push origin $args }
+function GitUnstage { git reset HEAD -- $args }
+function GitUndo($howManyCommits = 1) { git reset HEAD~$howManyCommits }
+function GitCheckOut { git co $args }
+function GitBranch { git br $args }
+function GitClone { git cl $args }
+function GitMerge { git m $args }
+function GitRebase { git r $args }
+function GitRebaseContinue { git rc }
+function GitLastCommit { git last }
+function GitHist { git hist }
+
+function GitStatus {
+    param (
+        [switch] $Modified = $false,
+        [switch] $Added = $false,
+        [switch] $Deleted = $false,
+        [switch] $Renamed = $false,
+        [switch] $Untracked = $false
+    )
+
+    $statusLetter = ""
+
+    if ($Modified) {
+        $statusLetter = 'M'
+    }
+
+    if ($Added) {
+        $statusLetter = 'A'
+    }
+
+    if ($Deleted) {
+        $statusLetter = 'D'
+    }
+
+    if ($Renamed) {
+        $statusLetter = 'R'
+    }
+
+    if ($Untracked) {
+        $statusLetter = '\?'
+    }
+
+    if ($Modified -or $Added -or $Deleted -or $Renamed -or $Untracked) {
+        git status -s | 
+            Where-Object { $_ -match "(^$statusLetter+)|(^\s$statusLetter)" } |
+            ForEach-Object { $commaSeparated = $_ -replace '(?!^\s+)\s+', ','; $commaSeparated.split(',')[1] }  
+    } else {
+        git status -sb
+    }
+}
+
 
 # custom prompt
 # =============
