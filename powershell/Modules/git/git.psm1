@@ -61,36 +61,6 @@ New-Alias -Name gfbt -Value GitFlowBugfixTrack
 # functions
 # =========
 
-# git
-function GitStatus { git st }
-function GitDiff { git d $args }
-function GitAdd { git a $args }
-function GitAddAll { git aa }
-function GitCommit { git cm $args }
-function GitPullOrigin { git pull origin $args }
-function GitPushOrigin { git push origin $args }
-function GitUnstage { git reset HEAD -- $args }
-function GitUndo($howManyCommits = 1) { git reset HEAD~$howManyCommits }
-function GitCheckOut { git co $args }
-function GitBranch { git br $args }
-function GitClone { git cl $args }
-function GitMerge { git m $args }
-function GitRebase { git r $args }
-function GitRebaseContinue { git rc }
-function GitLastCommit { git last }
-function GitHist { git hist }
-
-# git-flow
-function GitFlowInit { git fi }
-function GitFlowInitDefault { git fid }
-
-function GitFlowFinish { git ff }
-function GitFlowPublish { git fp }
-function GitFlowDelete { git fd }
-
-# functions
-# =========
-
 # git-flow
 function GitFlowInit { git fi }
 function GitFlowInitDefault { git fid }
@@ -176,7 +146,6 @@ function GitStatus {
         git status -sb
     }
 }
-
 
 # custom prompt
 # =============
