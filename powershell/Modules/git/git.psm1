@@ -91,7 +91,7 @@ function GitFlowBugfixTrack { git fbp $args }
 
 # git
 function GitDiff { git d $args }
-function GitAdd { git a $args }
+function GitAdd { git a *$args* }
 function GitAddAll { git aa }
 function GitCommit { git cm $args }
 function GitPullOrigin { git pull origin $args }
