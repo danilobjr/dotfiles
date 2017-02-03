@@ -35,6 +35,10 @@ New-Alias -Name grc -Value GitRebaseContinue
 New-Alias -Name glast -Value GitLastCommit
 New-Alias -Name ghist -Value GitHist
 
+New-Alias -Name gcof -Value GitCheckoutGitFlowBranch
+New-Alias -Name gcod -Value GitCheckoutGitFlowDevelopBranch
+New-Alias -Name grd -Value GitRebaseDevelopBranch
+
 # git-flow
 New-Alias -Name gfi -Value GitFlowInit
 New-Alias -Name gfid -Value GitFlowInitDefault
@@ -146,6 +150,31 @@ function GitStatus {
         git status -sb
     }
 }
+
+function GitRebaseDevelopBranch () {
+    Param(
+        # Feature branch name from GitFlow
+        [Parameter(Mandatory=$true)]
+        [string] $featureBranchName
+    )
+
+    gco develop;
+    gpullo develop;
+    gco $featureBranchName;
+    gr develop;
+}
+
+function GitCheckoutGitFlowBranch() {
+    Param(
+        # Feature branch name from Gitflow
+        [Parameter(Mandatory=$true)]
+        [string] $featureBranchName
+    )
+
+    gco feature/$featureBranchName;
+}
+
+function GitCheckoutGitFlowDevelopBranch() { gco develop; }
 
 # custom prompt
 # =============
