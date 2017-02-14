@@ -152,26 +152,34 @@ function GitStatus {
 }
 
 function GitRebaseDevelopBranch () {
-    Param(
-        # Feature branch name from GitFlow
-        [Parameter(Mandatory=$true)]
-        [string] $featureBranchName
-    )
+    $featureBranchName = Get-GitBranchName;
 
+    Write-Host "Checking out to 'develop' branch" -ForegroundColor Green
     gco develop;
+
+    Write-Host "Pull 'develop' branch" -ForegroundColor Green
     gpullo develop;
+
+    Write-Host "Checking out to '$($featureBranchName)' branch" -ForegroundColor Green
     gco $featureBranchName;
+
+    Write-Host "Rebasing 'develop' branch" -ForegroundColor Green
     gr develop;
 }
 
 function GitCheckoutGitFlowBranch() {
     Param(
-        # Feature branch name from Gitflow
+        # Branch name from Gitflow
         [Parameter(Mandatory=$true)]
         [string] $featureBranchName
     )
 
     gco feature/$featureBranchName;
+}
+
+function Get-GitBranchName() {
+    $branchName = gb | Where-Object { $_ -match '^\*' } | ForEach-Object { $_ -replace '(?!^\s)\s', ',' };
+    $branchName.split(',')[1];
 }
 
 function GitCheckoutGitFlowDevelopBranch() { gco develop; }
