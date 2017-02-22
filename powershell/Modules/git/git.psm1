@@ -22,6 +22,8 @@ New-Alias -Name gd -Value GitDiff
 New-Alias -Name ga -Value GitAdd
 New-Alias -Name gaa -Value GitAddAll
 New-Alias -Name gcm -Value GitCommit
+New-Alias -Name gpull -Value GitPull
+New-Alias -Name gpush -Value GitPush
 New-Alias -Name gpullo -Value GitPullOrigin
 New-Alias -Name gpusho -Value GitPushOrigin
 New-Alias -Name gunstage -Value GitUnstage
@@ -98,6 +100,8 @@ function GitDiff { git d *$args* }
 function GitAdd { git a *$args* }
 function GitAddAll { git aa }
 function GitCommit { git cm $args }
+function GitPull { git pull }
+function GitPush { git push }
 function GitPullOrigin { git pull origin $args }
 function GitPushOrigin { git push origin $args }
 function GitUnstage { git reset HEAD -- $args }
