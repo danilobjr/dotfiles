@@ -192,11 +192,15 @@ function GitCheckoutGitFlowDevelopBranch() { gco develop; }
 # =============
 
 function global:prompt {
+    <#
     $symbolicRef = [string](git symbolic-ref HEAD)
 
     if ($symbolicRef -ne $null) {
         $branch = $symbolicRef.Substring(11)
     }
+    #>
+
+    $branch = Get-GitBranch
 
     Write-Host
 
@@ -256,4 +260,20 @@ function global:prompt {
     write-host
 
     '> '
+}
+
+function Get-GitBranch {
+    $symbolicRef = [string](git symbolic-ref HEAD)
+
+    if ($symbolicRef -ne $null) {
+        return $symbolicRef.Substring(11)
+    }
+
+    if (Test-Path .\.git\rebase-apply\rebasing) {
+        $branch = (Get-Content .\.git\rebase-apply\head-name).Substring(11)
+        $currentStep = Get-Content .\.git\rebase-apply\next
+        $steps = Get-Content .\.git\rebase-apply\last
+
+        return "$branch|REBASE $currentStep/$steps"
+    }
 }
