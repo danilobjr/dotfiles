@@ -1,10 +1,12 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
   export ZSH=/home/danilo/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -51,12 +53,11 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+source $ZSH/oh-my-zsh.sh
+
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -72,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -83,17 +84,16 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# CUSTOM
-# ======
+source ~/dotfiles/z/z.sh
+source ~/dotfiles/brightness.sh
+cd /home/danilo/dev
 
-export TERM=xterm-256color
+# NVM
+# ===
 
-# Path to z.sh
-. ~/z.sh
-
-# base16 colors
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # ALIASES
 # =======
@@ -102,10 +102,23 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 alias reload!="source ~/.zshrc"
 
 # open dotfiles
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-alias tmuxconf="vim ~/.tmux.conf"
-alias gitconfig="vim ~/.gitconfig"
+alias zshrc="code ~/.zshrc"
+#alias vimrc="code ~/.vimrc"
+alias tmuxconf="code ~/.tmux.conf"
+alias gitconfig="code ~/.gitconfig"
+
+# NPM
+
+alias nrb="npm run build"
+alias nrd="npm run dev"
+alias ns="npm start"
+
+# YARN
+
+alias yi="yarn install"
+alias ya="yarn add -E"
+alias yad="yarn add -E -D"
+alias yr="yarn remove"
 
 # git
 
@@ -159,9 +172,3 @@ alias gfbs="git fbs"
 alias gfbf="git fbf"
 alias gfbp="git fbp"
 alias gfbt="git fbt"
-
-# SETTINGS
-# ========
-
-# reduce lag to 0.1s when hit ESC
-KEYTIMEOUT=1
