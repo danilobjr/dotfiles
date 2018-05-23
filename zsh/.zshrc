@@ -112,6 +112,8 @@ alias gitconfig="code ~/.gitconfig"
 alias nrb="npm run build"
 alias nrd="npm run dev"
 alias ns="npm start"
+alias ni="npm install"
+alias nu="npm uninstall"
 
 # YARN
 
