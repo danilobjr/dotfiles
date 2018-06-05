@@ -1,0 +1,156 @@
+{
+  "import": {
+    "prefix": "im",
+    "description": "Import module",
+    "body": "import { $0 } from '${1:module}';"
+  },
+  "import * as": {
+    "prefix": "imas",
+    "description": "Import * as",
+    "body": "import * as $0 from '${1:module}';"
+  },
+  "require": {
+    "prefix": "re",
+    "description": "Require statement",
+    "body": "require('${1:module}')$0"
+  },
+  "use strict": {
+    "prefix": "us",
+    "description": "'use strict'; statement",
+    "body": "'use strict';"
+  },
+  "var": {
+    "prefix": "var",
+    "description": "Variable statement",
+    "body": "var ${name} = ${value}"
+  },
+  "let": {
+    "prefix": "let",
+    "description": "Let variable statement",
+    "body": "let ${name} = ${value}"
+  },
+  "constant": {
+    "prefix": "const",
+    "description": "Constant statement",
+    "body": "const ${name} = ${value}"
+  },
+  "function": {
+    "prefix": "fn",
+    "description": "Function statement",
+    "body": [
+      "function ${1:name}(${2:param})$3 {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "interface": {
+    "prefix": "itf",
+    "description": "Interface",
+    "body": [
+      "interface ${Name} {",
+      "\t${member}: ${type};",
+      "}"
+    ]
+  },
+  "class": {
+    "prefix": "cls",
+    "description": "Class",
+    "body": [
+      "class ${Name} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "class that extends another class": {
+    "prefix": "clsx",
+    "description": "Class that extends another class",
+    "body": [
+      "class ${Name} extends ${AnotherClass} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "class that implements interface": {
+    "prefix": "clsi",
+    "description": "Class that implements an interface",
+    "body": [
+      "class ${Name} implements ${InterfaceName} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "constructor simple": {
+    "prefix": "ct",
+    "description": "Class constructor",
+    "body": [
+      "constructor(${...args}) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "constructor with super()": {
+    "prefix": "cts",
+    "description": "Class constructor with super() call",
+    "body": [
+      "constructor(${...args}) {",
+      "\tsuper(${...args});",
+      "",
+      "\t$0",
+      "}"
+    ]
+  },
+  "method class": {
+    "prefix": "mt",
+    "description": "Class method",
+    "body": [
+      "${1:name}(${2:param})$3 {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "method class using equal sign": {
+    "prefix": "mte",
+    "description": "Class method using equal sign",
+    "body": [
+      "${1:name} = (${2:param})$3 => $0"
+    ]
+  },
+  "switch": {
+    "prefix": "sw",
+    "description": "Switch statement",
+    "body": [
+      "switch (${variable}) {",
+      "\tcase ${value}:",
+      "\t\t$0",
+      "\t\tbreak;",
+      "\tdefault:",
+      "\t\treturn $1;",
+      "}"
+    ]
+  },
+  "debugger": {
+    "prefix": "de",
+    "description": "debugger; statement",
+    "body": "debugger;"
+  },
+  "console log": {
+    "prefix": "cl",
+    "description": "console.log() statement",
+    "body": "console.log(${text});"
+  },
+  "console info": {
+    "prefix": "ci",
+    "description": "console.info() statement",
+    "body": "console.info(${text});"
+  },
+  "console warn": {
+    "prefix": "cw",
+    "description": "console.warn() statement",
+    "body": "console.warn(${text});"
+  },
+  "console error": {
+    "prefix": "ce",
+    "description": "console.error() statement",
+    "body": "console.error(${text});"
+  }
+}
