@@ -1,20 +1,20 @@
+[user]
+	email = danilobjr@gmail.com
+	name = Danilo Barros
 [push]
 	default = matching
 [core]
 	trustctime = false
-	editor = vim
+	editor = code
 	filemode = false
 [color]
 	ui = true
 [credential]
 	helper = cache --timeout=3600
 [merge]
-	tool = vimdiff
-[mergetool]
-	keeptemporaries = false
-	keepbackups = false
-	prompt = false
-	trustexitcode = false
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
 [rerere]
 	enabled = true
 [alias]
