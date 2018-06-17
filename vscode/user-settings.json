@@ -1,0 +1,24 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.tabCompletion": true,
+    "editor.snippetSuggestions": "top",
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "window.zoomLevel": 0,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/*.js": { "when": "$(basename).ts" },
+        "**/**.js": { "when": "$(basename).tsx" }
+    },
+    "vim.disableAnnoyingNeovimMessage": true,
+    "materialTheme.cache.workbench.settings": {
+        "themeColours": "Default"
+    },
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "default"
+}
