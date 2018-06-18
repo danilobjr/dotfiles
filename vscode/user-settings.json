@@ -1,4 +1,3 @@
-// Place your settings in this file to overwrite the default settings
 {
     "editor.tabCompletion": true,
     "editor.snippetSuggestions": "top",
@@ -15,10 +14,10 @@
         "**/*.js": { "when": "$(basename).ts" },
         "**/**.js": { "when": "$(basename).tsx" }
     },
-    "vim.disableAnnoyingNeovimMessage": true,
-    "materialTheme.cache.workbench.settings": {
-        "themeColours": "Default"
-    },
     "editor.minimap.enabled": false,
-    "window.menuBarVisibility": "default"
+    "workbench.colorTheme": "Visual Studio Dark",
+    "materialTheme.fixIconsRunning": false,
+    "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false
 }
