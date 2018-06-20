@@ -1,39 +1,39 @@
 {
-	"import": {
-		"prefix": "im",
-		"description": "Import module",
-		"body": "import { $0 } from '${1:module}';"
-	},
-	"import * as": {
-		"prefix": "imas",
-		"description": "Import * as",
-		"body": "import * as $0 from '${1:module}';"
-	},
-	"require": {
-		"prefix": "re",
-		"description": "Require statement",
-		"body": "require('${1:module}')$0"
-	},
-	"use strict": {
-		"prefix": "us",
-		"description": "'use strict'; statement",
-		"body": "'use strict';"
-	},
-	"var": {
-		"prefix": "var",
-		"description": "Variable statement",
-		"body": "var ${name} = ${value}"
-	},
-	"let": {
-		"prefix": "let",
-		"description": "Let variable statement",
-		"body": "let ${name} = ${value}"
-	},
-	"constant": {
-		"prefix": "const",
-		"description": "Constant statement",
-		"body": "const ${name} = ${value}"
-	},
+  "import": {
+    "prefix": "im",
+    "description": "Import module",
+    "body": "import { $0 } from '${1:module}';"
+  },
+  "import * as": {
+    "prefix": "imas",
+    "description": "Import * as",
+    "body": "import * as $0 from '${1:module}';"
+  },
+  "require": {
+    "prefix": "re",
+    "description": "Require statement",
+    "body": "require('${1:module}')$0"
+  },
+  "use strict": {
+    "prefix": "us",
+    "description": "'use strict'; statement",
+    "body": "'use strict';"
+  },
+  "var": {
+    "prefix": "var",
+    "description": "Variable statement",
+    "body": "var ${name} = ${value}"
+  },
+  "let": {
+    "prefix": "let",
+    "description": "Let variable statement",
+    "body": "let ${name} = ${value}"
+  },
+  "constant": {
+    "prefix": "const",
+    "description": "Constant statement",
+    "body": "const ${name} = ${value}"
+  },
   "function": {
     "prefix": "fn",
     "description": "Function statement",
@@ -43,24 +43,24 @@
       "}"
     ]
   },
-	"class": {
-		"prefix": "cls",
-		"description": "Class",
-		"body": [
-			"class ${Name} {",
-			"\t$0",
-			"}"
-		]
-	},
-	"class that extends another class": {
-		"prefix": "clsx",
-		"description": "Class that extends another class",
-		"body": [
-			"class ${Name} extends ${AnotherClass} {",
-			"\t$0",
-			"}"
-		]
-	},
+  "class": {
+    "prefix": "cls",
+    "description": "Class",
+    "body": [
+      "class ${Name} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "class that extends another class": {
+    "prefix": "clsx",
+    "description": "Class that extends another class",
+    "body": [
+      "class ${Name} extends ${AnotherClass} {",
+      "\t$0",
+      "}"
+    ]
+  },
   "constructor simple": {
     "prefix": "ct",
     "description": "Class constructor",
@@ -90,13 +90,13 @@
       "}"
     ]
   },
-	"method class using equal sign": {
-		"prefix": "mte",
-		"description": "Class method using equal sign",
-		"body": [
-			"${name} = (${param}) => $0"
-		]
-	},
+  "method class using equal sign": {
+    "prefix": "mte",
+    "description": "Class method using equal sign",
+    "body": [
+      "${name} = (${param}) => $0"
+    ]
+  },
   "switch": {
     "prefix": "sw",
     "description": "Switch statement",
@@ -118,21 +118,21 @@
   "console log": {
     "prefix": "cl",
     "description": "console.log() statement",
-    "body": "console.log(${value});"
+    "body": "console.log(${value})"
   },
   "console info": {
     "prefix": "ci",
     "description": "console.info() statement",
-    "body": "console.info(${value});"
+    "body": "console.info(${value})"
   },
   "console warn": {
     "prefix": "cw",
     "description": "console.warn() statement",
-    "body": "console.warn(${value});"
+    "body": "console.warn(${value})"
   },
   "console error": {
     "prefix": "ce",
     "description": "console.error() statement",
-    "body": "console.error(${value});"
+    "body": "console.error(${value})"
   }
 }
