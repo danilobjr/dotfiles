@@ -1,0 +1,25 @@
+[
+  {
+    "key": "f4",
+    "command": "workbench.view.explorer"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.view.explorer"
+  },
+  {
+    "key": "f4",
+    "command": "-search.action.focusNextSearchResult",
+    "when": "hasSearchResult"
+  },
+  {
+    "key": "f4",
+    "command": "-goToNextReference",
+    "when": "referenceSearchVisible"
+  },
+  {
+    "key": "f4",
+    "command": "-goToNextReferenceFromEmbeddedEditor",
+    "when": "inReferenceSearchEditor"
+  }
+]
