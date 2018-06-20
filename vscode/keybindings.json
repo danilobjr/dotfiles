@@ -1,7 +1,11 @@
 [
   {
     "key": "f4",
-    "command": "workbench.view.explorer"
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
   },
   {
     "key": "ctrl+shift+e",
