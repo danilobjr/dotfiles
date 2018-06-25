@@ -5,16 +5,19 @@
 	default = matching
 [core]
 	trustctime = false
-	editor = code
+	editor = vim
 	filemode = false
 [color]
 	ui = true
 [credential]
 	helper = cache --timeout=3600
 [merge]
-	tool = vscode
-[mergetool "vscode"]
-	cmd = code --wait $MERGED
+	tool = vimdiff
+[mergetool]
+	keeptemporaries = false
+	keepbackups = false
+	prompt = false
+	trustexitcode = false
 [rerere]
 	enabled = true
 [alias]
@@ -25,7 +28,7 @@
 	aa = add -A
 	cm = commit -m
 	unstage = reset HEAD --
-    undo = reset HEAD~1
+  undo = reset HEAD~1
 	co = checkout
 	br = branch
 	cl = clone
