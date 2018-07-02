@@ -1,23 +1,44 @@
 {
-    "editor.tabCompletion": true,
-    "editor.snippetSuggestions": "top",
-    "emmet.triggerExpansionOnTab": true,
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
+  "editor.tabCompletion": true,
+  "editor.snippetSuggestions": "top",
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "window.zoomLevel": 0,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/*.js": {
+      "when": "$(basename).ts"
     },
-    "window.zoomLevel": 0,
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/.DS_Store": true,
-        "**/*.js": { "when": "$(basename).ts" },
-        "**/**.js": { "when": "$(basename).tsx" }
-    },
-    "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Visual Studio Dark",
-    "materialTheme.fixIconsRunning": false,
-    "workbench.iconTheme": "eq-material-theme-icons-darker",
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false
+    "**/**.js": {
+      "when": "$(basename).tsx"
+    }
+  },
+  "editor.minimap.enabled": false,
+  "materialTheme.fixIconsRunning": false,
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors": {
+    "normal": "#007ACC",
+    "insert": "#679436",
+    "visual": [
+      "#D5DFE5",
+      "#3C4859B3"
+    ],
+    "visualline": [
+      "#D5DFE5",
+      "#3C4859B3"
+    ],
+    "visualblock": [
+      "#D5DFE5",
+      "#3C4859"
+    ],
+    "replace": "#D05353",
+  }
 }
