@@ -1,11 +1,11 @@
 {
-  "editor.tabCompletion": true,
+  "editor.minimap.enabled": false,
   "editor.snippetSuggestions": "top",
-  "emmet.triggerExpansionOnTab": true,
+  "editor.tabCompletion": true,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "window.zoomLevel": 0,
+  "emmet.triggerExpansionOnTab": true,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -18,12 +18,14 @@
       "when": "$(basename).tsx"
     }
   },
-  "editor.minimap.enabled": false,
   "materialTheme.fixIconsRunning": false,
-  "workbench.iconTheme": "eq-material-theme-icons-darker",
-  "telemetry.enableTelemetry": false,
+  "prettier.javascriptEnable": [],
+  "prettier.tabWidth": 2,
+  "prettier.typescriptEnable": [],
+  "prettier.openOutput": true,
+  "prettier.useTabs": false,
   "telemetry.enableCrashReporter": false,
-  "vim.statusBarColorControl": true,
+  "telemetry.enableTelemetry": false,
   "vim.statusBarColors": {
     "normal": "#007ACC",
     "insert": "#679436",
@@ -40,5 +42,8 @@
       "#3C4859"
     ],
     "replace": "#D05353",
-  }
+  },
+  "vim.statusBarColorControl": true,
+  "window.zoomLevel": 0,
+  "workbench.iconTheme": "eq-material-theme-icons-darker"
 }
