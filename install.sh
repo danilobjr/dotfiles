@@ -1,1 +1,3 @@
-echo "Hello from install.sh"
+echo "Updating apt packages"
+
+apt update
