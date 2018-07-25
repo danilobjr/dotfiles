@@ -23,6 +23,8 @@ no_color="\033[0m"
 
 # locations
 dotfiles="$HOME/zzz/"
+tmp="/tmp/.dotfiles/"
+vscode_tmp="$tmp/vscode.deb"
 
 # functions
 function echoSectionTitle {
@@ -46,7 +48,7 @@ echoSectionTitle "############"
 
 echoSubSectionTitle "Installing Zsh"
 
-sudo apt install zsh
+sudo apt install zsh;
 
 echoSubSectionTitle "Installing Git"
 
@@ -54,7 +56,7 @@ sudo apt install git;
 
 echoSubSectionTitle "Installing Oh-My-Zsh"
 
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
 
 echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
 
@@ -73,23 +75,50 @@ echoSectionTitle "#######################"
 
 echoSubSectionTitle "Installing i3wm"
 
-sudo apt install i3
+sudo apt install i3;
 
 echoSubSectionTitle "Installing i3blocks"
 
-sudo apt install i3blocks
+sudo apt install i3blocks;
 
 echoSubSectionTitle "Installing compton"
 
-sudo apt install compton
+sudo apt install compton;
 
 echoSubSectionTitle "Installing feh"
 
-sudo apt install feh
+sudo apt install feh;
 
 echoSubSectionTitle "Installing ranger"
 
-sudo apt install ranger
+sudo apt install ranger;
+
+echo
+echoSectionTitle "#############"
+echoSectionTitle "# DEV STUFF #"
+echoSectionTitle "#############"
+
+echoSubSectionTitle "Installing nvm"
+
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
+
+echoSubSectionTitle "Installing node"
+
+nvm install node;
+
+echoSubSectionTitle "Installing snapd"
+
+sudo apt install snapd;
+
+echoSubSectionTitle "Installing Visual Studio Code"
+
+# wget -q --show-progress -O ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868;
+# sudo dpkg -i ${vscode_tmp};
+# rm -rf ${tmp};
+
+echoSubSectionTitle "Installing Chromium"
+
+sudo snap install chromium;
 
 # readarray vscode_extensions < ~/dev/dotfiles/vscode/extensions
 
