@@ -36,6 +36,8 @@ My dotfiles
 - Visual Studio Code (snap install vscode)
 - Chromium (snap install chromium)
 
+>TODO: let user choose what code editor and browser.
+
 ### Settings
 
 `cp ~/dotfiles/.bash_profile ~`
@@ -46,6 +48,7 @@ My dotfiles
 `cp ~/dotfiles/vscode/snippets/ ~/.config/Code/User/`
 `code --install-extension $extensions`
 - Change shell to zsh (chsh -s `which zsh`)
+- Set wallpaper
 
 >TODO: create $extensions variable
 >TODO: create symlink instead of `mv`? This should ease when update dotfiles folder and push to git. All things stay updated.
