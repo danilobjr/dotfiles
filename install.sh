@@ -26,22 +26,42 @@ dotfiles="$HOME/zzz/"
 
 # functions
 function echoSectionTitle {
+  echo -e "${light_green}$1${no_color}"
+}
+
+function echoSubSectionTitle {
   echo
   echo -e "${light_green}$1${no_color}"
   echo
 }
 
-echoSectionTitle "Updating packages information"
+echoSubSectionTitle "Updating packages information"
 
 sudo apt update;
 
-echoSectionTitle "Installing Git"
+echoSectionTitle "############"
+echoSectionTitle "# TERMINAL #"
+echoSectionTitle "############"
+
+echoSubSectionTitle "Installing Zsh"
+
+sudo apt install zsh
+
+echoSubSectionTitle "Installing Git"
 
 sudo apt install git;
 
-echoSectionTitle "Cloning dotfiles repo in $dotfiles directory"
+echoSubSectionTitle "Installing Oh-My-Zsh"
 
-git clone https://github.com/danilobjr/dotfiles.git "$dotfiles";
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+
+echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
+
+git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
+
+echoSubSectionTitle "Installing Z.sh"
+
+wget -q -O ${dotfiles}z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh;
 
 # readarray vscode_extensions < ~/dev/dotfiles/vscode/extensions
 
@@ -49,3 +69,5 @@ git clone https://github.com/danilobjr/dotfiles.git "$dotfiles";
 # do
 #   code --install-extension $i
 # done
+
+# ln -sf file_path symlink_path
