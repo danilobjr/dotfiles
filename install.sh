@@ -39,6 +39,7 @@ echoSubSectionTitle "Updating packages information"
 
 sudo apt update;
 
+echo
 echoSectionTitle "############"
 echoSectionTitle "# TERMINAL #"
 echoSectionTitle "############"
@@ -62,6 +63,33 @@ git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
 echoSubSectionTitle "Installing Z.sh"
 
 wget -q -O ${dotfiles}z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh;
+
+echo "z.sh installed in $dotfiles/z.sh"
+
+echo
+echoSectionTitle "#######################"
+echoSectionTitle "# DESKTOP ENVIRONMENT #"
+echoSectionTitle "#######################"
+
+echoSubSectionTitle "Installing i3wm"
+
+sudo apt install i3
+
+echoSubSectionTitle "Installing i3blocks"
+
+sudo apt install i3blocks
+
+echoSubSectionTitle "Installing compton"
+
+sudo apt install compton
+
+echoSubSectionTitle "Installing feh"
+
+sudo apt install feh
+
+echoSubSectionTitle "Installing ranger"
+
+sudo apt install ranger
 
 # readarray vscode_extensions < ~/dev/dotfiles/vscode/extensions
 
