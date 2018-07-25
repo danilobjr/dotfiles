@@ -24,7 +24,13 @@ no_color="\033[0m"
 # locations
 dotfiles="$HOME/zzz"
 tmp="/tmp/dotfiles"
+config="$HOME/.config"
+vscode_user="$config/Code/User"
 vscode_tmp="$tmp/vscode.deb"
+fonts="$HOME/.fonts"
+
+# create tmp folder
+mkdir ${tmp};
 
 # functions
 function echoSectionTitle {
@@ -108,13 +114,19 @@ sudo apt install snapd;
 
 echoSubSectionTitle "Installing Visual Studio Code"
 
-# wget -q --show-progress -O ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868;
-# sudo dpkg -i ${vscode_tmp};
-# rm -rf ${tmp};
+wget -q --show-progress -O ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868;
+sudo dpkg -i ${vscode_tmp};
 
 echoSubSectionTitle "Installing Chromium"
 
 sudo snap install chromium;
+
+echoSubSectionTitle "Installing icon font (Font Awesome)"
+
+wget -q --show-progress -O ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/v4.4.0.zip;
+unzip ${tmp}/font-awesome.zip -d ${tmp};
+mkdir ${fonts};
+mv ${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf ${fonts};
 
 echo
 echoSectionTitle "############"
@@ -127,21 +139,40 @@ git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
 
 echoSubSectionTitle "Creating symbolic links"
 
-folders=($(ls ${dotfiles}/.config/));
+# i3
+ln -sf ${dotfiles}/i3 ${config}/i3
 
-# remove this
-mkdir ~/zlinks;
+# i3blocks
+ln -sf ${dotfiles}/i3blocks ${config}/i3blocks
+sudo rm /usr/share/i3blocks/volume
+sudo ln -s ${dotfiles}/.config/i3blocks/volume /usr/share/i3blocks/volume
 
-for i in ${folders[@]}
+# ranger
+ranger --copy-config=all
+
+# zsh
+rm ${HOME}/.zshrc
+ln -s ${dotfiles}/zsh/.zshrc
+chsh -s `which zsh`
+
+# vscode
+rm ${vscode_user}/keybindings.json
+rm ${vscode_user}/settings.json
+rm -rf ${vscode_user}/snippets/
+ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json
+ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json
+ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets
+
+echoSubSectionTitle "Installing Visual Studio Code extensions"
+
+readarray vscode_extensions < ${dotfiles}/vscode/extensions
+
+for i in ${vscode_extensions[@]}
 do
-  ln -sf ${dotfiles}/.config/${i} ~/zlinks/${i};
+  code --install-extension $i
 done
 
-# readarray vscode_extensions < ~/dev/dotfiles/vscode/extensions
+# remove tmp folder
+rm -rf ${tmp};
 
-# for i in ${vscode_extensions[@]}
-# do
-#   code --install-extension $i
-# done
-
-# ln -sf file_path symlink_path
+echoSubSectionTitle "Done. You should now reboot the system."
