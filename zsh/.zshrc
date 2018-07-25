@@ -51,7 +51,7 @@ alias reload!="source ~/.zshrc"
 
 # open dotfiles
 alias zshrc="vim ~/.zshrc"
-#alias vimrc="vim ~/.vimrc"
+alias vimrc="vim ~/.vimrc"
 alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 
