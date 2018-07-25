@@ -100,6 +100,18 @@ echoSectionTitle "#############"
 echoSectionTitle "# DEV STUFF #"
 echoSectionTitle "#############"
 
+echoSubSectionTitle "Installing Vim"
+
+sudo apt install vim
+
+echoSubSectionTitle "Installing curl"
+
+sudo apt install curl
+
+echoSubSectionTitle "Installing Vundle"
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 echoSubSectionTitle "Installing nvm"
 
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
@@ -155,6 +167,15 @@ rm ${HOME}/.zshrc
 ln -s ${dotfiles}/zsh/.zshrc
 chsh -s `which zsh`
 
+# git
+ln -s ${dotfiles}/git/.gitconfig ${HOME}/.gitconfig
+
+# tmux
+ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf
+
+# vim
+ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc
+
 # vscode
 rm ${vscode_user}/keybindings.json
 rm ${vscode_user}/settings.json
@@ -171,6 +192,10 @@ for i in ${vscode_extensions[@]}
 do
   code --install-extension $i
 done
+
+echoSubSectionTitle "Installing Vim plugins"
+
+vim +PluginInstall +qall
 
 # remove tmp folder
 rm -rf ${tmp};
