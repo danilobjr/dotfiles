@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/dotfiles/z/z.sh
+source ~/dotfiles/z.sh
 source ~/dotfiles/brightness.sh
 cd /home/danilo/dev
 
