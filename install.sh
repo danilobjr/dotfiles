@@ -1,7 +1,7 @@
 wget -P ~/ZZZ/ https://github.com/danilobjr/dotfiles/archive/master.zip
-#mv ~/ZZZ/master.zip ~/ZZZ/dotfiles.zip
-#unzip ~/ZZZ/dotfiles.zip
-#rm ~/ZZZ/dotfiles.zip
+unzip ~/ZZZ/master.zip
+rm ~/ZZZ/master.zip
+mv ~/ZZZ/dotfiles-master/ ~/ZZZ/dotfiles/
 
 #echo "Updating apt packages"
 
