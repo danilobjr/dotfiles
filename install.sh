@@ -1,3 +1,5 @@
+#!/bin/bash
+
 wget -P ~/ZZZ/ https://github.com/danilobjr/dotfiles/archive/master.zip
 unzip ~/ZZZ/master.zip
 rm ~/ZZZ/master.zip
