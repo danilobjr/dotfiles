@@ -52,9 +52,7 @@
     "prefix": "tp",
     "description": "Type",
     "body": [
-      "type ${Name} = {",
-      "\t${member}: ${type};",
-      "}$0"
+      "type ${Name} = $0"
     ]
   },
   "interface": {
@@ -184,7 +182,7 @@
     "prefix": "sfc",
     "description": "Stateless functional react component",
     "body": [
-      "const ${Name} = (${props}) => $0;",
+      "const ${Name} = (${props}) => $0;"
     ]
   },
   "componentDidMount": {

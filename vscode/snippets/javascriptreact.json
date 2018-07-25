@@ -1,23 +1,23 @@
 {
   "import": {
     "prefix": "im",
-    "description": "Import module",
+    "description": "Import statement",
     "body": "import { $0 } from '${1:module}';"
   },
   "import * as": {
     "prefix": "imas",
-    "description": "Import * as",
+    "description": "Import * as statement",
     "body": "import * as $0 from '${1:module}';"
-  },
-  "export * from": {
-    "prefix": "exa",
-    "description": "export * from",
-    "body": "export * from '${1:module}';"
   },
   "require": {
     "prefix": "re",
     "description": "Require statement",
     "body": "require('${1:module}')$0"
+  },
+  "export * from": {
+    "prefix": "exa",
+    "description": "export * from",
+    "body": "export * from '${1:module}';"
   },
   "use strict": {
     "prefix": "us",
@@ -139,5 +139,43 @@
     "prefix": "ce",
     "description": "console.error() statement",
     "body": "console.error(${value})"
+  },
+  "react component": {
+    "prefix": "rc",
+    "description": "React component",
+    "body": [
+      "export class ${ComponentName} extends Component {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t$0",
+      "\t\t);",
+      "\t}",
+      "}"
+    ]
+  },
+  "stateless functional react component": {
+    "prefix": "sfc",
+    "description": "Stateless functional react component",
+    "body": [
+      "const ${Name} = (${props}) => $0;"
+    ]
+  },
+  "componentDidMount": {
+    "prefix": "cdm",
+    "description": "componentDidMount() - React lifecycle method",
+    "body": [
+      "componentDidMount() {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "prop types": {
+    "prefix": "pt",
+    "description": "propTypes for React component",
+    "body": [
+      "${ComponentName}.propTypes = {",
+      "\t${propName}: PropTypes.${type}",
+      "};"
+    ]
   }
 }

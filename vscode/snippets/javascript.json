@@ -9,6 +9,11 @@
     "description": "Import * as",
     "body": "import * as $0 from '${1:module}';"
   },
+  "export * from": {
+    "prefix": "exa",
+    "description": "export * from",
+    "body": "export * from '${1:module}';"
+  },
   "require": {
     "prefix": "re",
     "description": "Require statement",
@@ -22,17 +27,17 @@
   "var": {
     "prefix": "var",
     "description": "Variable statement",
-    "body": "var ${name} = ${value}"
+    "body": "var ${2:name} = ${1:value}$0"
   },
   "let": {
     "prefix": "let",
     "description": "Let variable statement",
-    "body": "let ${name} = ${value}"
+    "body": "let ${2:name} = ${1:value}$0"
   },
   "constant": {
     "prefix": "const",
     "description": "Constant statement",
-    "body": "const ${name} = ${value}"
+    "body": "const ${2:name} = ${1:value}$0"
   },
   "function": {
     "prefix": "fn",
@@ -90,11 +95,11 @@
       "}"
     ]
   },
-  "method class using equal sign": {
-    "prefix": "mte",
-    "description": "Class method using equal sign",
+  "method class using as arrow function": {
+    "prefix": "mta",
+    "description": "Class method as arrow function",
     "body": [
-      "${name} = (${param}) => $0"
+      "${1:name} = (${2:param})$3 => $0"
     ]
   },
   "switch": {
