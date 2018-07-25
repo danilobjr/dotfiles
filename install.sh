@@ -22,8 +22,8 @@ light_green="\033[1;32m"
 no_color="\033[0m"
 
 # locations
-dotfiles="$HOME/zzz"
-tmp="/tmp/dotfiles"
+dotfiles="$HOME/.dotfiles"
+tmp="/tmp/.dotfiles"
 config="$HOME/.config"
 vscode_user="$config/Code/User"
 vscode_tmp="$tmp/vscode.deb"
@@ -102,15 +102,15 @@ echoSectionTitle "#############"
 
 echoSubSectionTitle "Installing Vim"
 
-sudo apt install vim
+sudo apt install vim;
 
 echoSubSectionTitle "Installing curl"
 
-sudo apt install curl
+sudo apt install curl;
 
 echoSubSectionTitle "Installing Vundle"
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim;
 
 echoSubSectionTitle "Installing nvm"
 
@@ -152,50 +152,50 @@ git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
 echoSubSectionTitle "Creating symbolic links"
 
 # i3
-ln -sf ${dotfiles}/i3 ${config}/i3
+ln -sf ${dotfiles}/i3 ${config}/i3;
 
 # i3blocks
-ln -sf ${dotfiles}/i3blocks ${config}/i3blocks
-sudo rm /usr/share/i3blocks/volume
-sudo ln -s ${dotfiles}/.config/i3blocks/volume /usr/share/i3blocks/volume
+ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
+sudo rm /usr/share/i3blocks/volume;
+sudo ln -s ${dotfiles}/.config/i3blocks/volume /usr/share/i3blocks/volume;
 
 # ranger
-ranger --copy-config=all
+ranger --copy-config=all;
 
 # zsh
-rm ${HOME}/.zshrc
-ln -s ${dotfiles}/zsh/.zshrc
-chsh -s `which zsh`
+rm ${HOME}/.zshrc;
+ln -s ${dotfiles}/zsh/.zshrc;
+chsh -s `which zsh`;
 
 # git
-ln -s ${dotfiles}/git/.gitconfig ${HOME}/.gitconfig
+ln -s ${dotfiles}/git/.gitconfig ${HOME}/.gitconfig;
 
 # tmux
-ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf
+ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # vim
-ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc
+ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
 
 # vscode
-rm ${vscode_user}/keybindings.json
-rm ${vscode_user}/settings.json
-rm -rf ${vscode_user}/snippets/
-ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json
-ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json
-ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets
+rm ${vscode_user}/keybindings.json;
+rm ${vscode_user}/settings.json;
+rm -rf ${vscode_user}/snippets/;
+ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
+ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
+ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 
 echoSubSectionTitle "Installing Visual Studio Code extensions"
 
-readarray vscode_extensions < ${dotfiles}/vscode/extensions
+readarray vscode_extensions < ${dotfiles}/vscode/extensions;
 
 for i in ${vscode_extensions[@]}
 do
-  code --install-extension $i
+  code --install-extension $i;
 done
 
 echoSubSectionTitle "Installing Vim plugins"
 
-vim +PluginInstall +qall
+vim +PluginInstall +qall;
 
 # remove tmp folder
 rm -rf ${tmp};
