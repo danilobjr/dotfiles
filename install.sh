@@ -22,8 +22,8 @@ light_green="\033[1;32m"
 no_color="\033[0m"
 
 # locations
-dotfiles="$HOME/zzz/"
-tmp="/tmp/.dotfiles/"
+dotfiles="$HOME/zzz"
+tmp="/tmp/dotfiles"
 vscode_tmp="$tmp/vscode.deb"
 
 # functions
@@ -58,15 +58,11 @@ echoSubSectionTitle "Installing Oh-My-Zsh"
 
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
 
-echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
-
-git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
-
 echoSubSectionTitle "Installing Z.sh"
 
-wget -q -O ${dotfiles}z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh;
+wget -q -O ${HOME}/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh;
 
-echo "z.sh installed in $dotfiles/z.sh"
+echo "z.sh installed in $HOME/z.sh"
 
 echo
 echoSectionTitle "#######################"
@@ -119,6 +115,27 @@ echoSubSectionTitle "Installing Visual Studio Code"
 echoSubSectionTitle "Installing Chromium"
 
 sudo snap install chromium;
+
+echo
+echoSectionTitle "############"
+echoSectionTitle "# SETTINGS #"
+echoSectionTitle "############"
+
+echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
+
+git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
+
+echoSubSectionTitle "Creating symbolic links"
+
+folders=($(ls ${dotfiles}/.config/));
+
+# remove this
+mkdir ~/zlinks;
+
+for i in ${folders[@]}
+do
+  ln -sf ${dotfiles}/.config/${i} ~/zlinks/${i};
+done
 
 # readarray vscode_extensions < ~/dev/dotfiles/vscode/extensions
 
