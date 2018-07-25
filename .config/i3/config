@@ -198,6 +198,7 @@ exec_always compton -f -D 3
 
 # Attach apps to specific workspace
 assign [class="Google-chrome"] $ws1
+assign [class="Chromium"] $ws1
 assign [class="Code"] $ws2
 
 # TODO
