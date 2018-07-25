@@ -1,10 +1,19 @@
 #!/bin/bash
 
-wget -P ~/ZZZ/ https://github.com/danilobjr/dotfiles/archive/master.zip;
-unzip ~/ZZZ/master.zip;
-rm ~/ZZZ/master.zip;
-mv ~/ZZZ/dotfiles-master/ ~/ZZZ/dotfiles/;
+echo
+echo "Updating apt packages"
+echo
 
-#echo "Updating apt packages"
+sudo apt update
 
-#sudo apt update
+echo
+echo "Installing Git"
+echo
+
+sudo apt install git
+
+echo
+echo "Cloning dotfiles repo in /home directory"
+echo
+
+git clone https://github.com/danilobjr/dotfiles.git
