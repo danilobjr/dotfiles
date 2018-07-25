@@ -61,6 +61,15 @@ These utilities should be choosen by user.
 - now - Universal serverless single-command deployment (npm install -g terminal-alarm)
 - terminal-alarm - Countdown in your terminal (npm install -g terminal-alarm)
 
+### What's next
+
+Enable color scheme for Vim by uncomment the lines below.
+
+```
+let base16colorspace=256
+colorscheme base16-default-dark " the base16-shell colors has precedence
+```
+
 ## License
 
 Licensed under [MIT License](https://danilobjr.mit-license.org/).
