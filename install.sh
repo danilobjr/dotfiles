@@ -16,4 +16,4 @@ echo
 echo "Cloning dotfiles repo in /home directory"
 echo
 
-git clone https://github.com/danilobjr/dotfiles.git ZZZ;
+git clone https://github.com/danilobjr/dotfiles.git zzz;
