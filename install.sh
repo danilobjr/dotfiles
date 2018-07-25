@@ -1,3 +1,3 @@
 echo "Updating apt packages"
 
-apt update
+sudo apt update
