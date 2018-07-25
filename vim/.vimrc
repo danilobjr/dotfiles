@@ -1,8 +1,8 @@
 runtime! debian.vim
 
 " start vundler
-set nocompatible              
-filetype off                 
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 " vundler plugin wrapper
@@ -18,13 +18,13 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim' " apply same vim-airline theme of vim on tmux statusbar
 Plugin 'ctrlpvim/ctrlp.vim' " fuzzy file finder
 Plugin 'scrooloose/nerdtree' " project drawer / file explorer
-Plugin 'jiangmiao/auto-pairs' " auto close for \", (, {, [ 
+Plugin 'jiangmiao/auto-pairs' " auto close for \", (, {, [
 Plugin 'Valloric/YouCompleteMe' " auto completion
 Plugin 'tpope/vim-fugitive' " awesome git commands
 Plugin 'airblade/vim-gitgutter' " show git changes aside line numbers
 "Plugin 'vim-scripts/matchit.zip' " jumps to matching close tags in html and other languages
 Plugin 'SirVer/ultisnips' " ultimate solution for snippets
-Plugin 'tpope/vim-surround' " surround something 
+Plugin 'tpope/vim-surround' " surround something
 "Plugin 'terryma/vim-multiple-cursors' " multiple cursors
 
 " language specific
@@ -37,8 +37,8 @@ Plugin 'mxw/vim-jsx' " jsx syntax
 Plugin 'samuelsimoes/vim-jsx-utils' " some utilities for jsx
 Plugin 'gavocanov/vim-js-indent' " javascript indentation
 
-call vundle#end()           
-filetype plugin indent on  
+call vundle#end()
+filetype plugin indent on
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -100,8 +100,8 @@ let NERDTreeHijackNetrw=1
 map <F4> :NERDTreeToggle<CR>
 
 " base16-vim
-let base16colorspace=256
-colorscheme base16-default-dark " the base16-shell colors has precedence
+" let base16colorspace=256
+" colorscheme base16-default-dark " the base16-shell colors has precedence
 
 " Emmet
 " let g:user_emmet_install_global = 0
