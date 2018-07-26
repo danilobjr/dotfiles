@@ -156,13 +156,13 @@ echoSectionTitle "############"
 echoSectionTitle "# SETTINGS #"
 echoSectionTitle "############"
 
-echoSubSectionTitle "Setting wallpaper"
-
-cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
-
 echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
 
 git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
+
+echoSubSectionTitle "Setting wallpaper"
+
+cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
 
 echoSubSectionTitle "Creating symbolic links"
 
