@@ -47,6 +47,10 @@ echoSubSectionTitle "Updating packages information"
 
 sudo apt update;
 
+echoSubSectionTitle "Creating $HOME/dev/ folder"
+
+mkdir $HOME/dev/;
+
 echo
 echoSectionTitle "############"
 echoSectionTitle "# TERMINAL #"
@@ -151,6 +155,10 @@ echo
 echoSectionTitle "############"
 echoSectionTitle "# SETTINGS #"
 echoSectionTitle "############"
+
+echoSubSectionTitle "Setting wallpaper"
+
+cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
 
 echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
 
