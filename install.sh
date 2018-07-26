@@ -54,11 +54,11 @@ echoSectionTitle "############"
 
 echoSubSectionTitle "Installing Zsh"
 
-sudo apt install zsh;
+sudo apt install -y zsh;
 
 echoSubSectionTitle "Installing Git"
 
-sudo apt install git;
+sudo apt install -y git;
 
 echoSubSectionTitle "Installing Oh-My-Zsh"
 
@@ -77,23 +77,29 @@ echoSectionTitle "#######################"
 
 echoSubSectionTitle "Installing i3wm"
 
-sudo apt install i3;
+sudo apt install -y i3;
 
 echoSubSectionTitle "Installing i3blocks"
 
-sudo apt install i3blocks;
+sudo apt install -y i3blocks;
 
 echoSubSectionTitle "Installing compton"
 
-sudo apt install compton;
+sudo apt install -y compton;
 
 echoSubSectionTitle "Installing feh"
 
-sudo apt install feh;
+sudo apt install -y feh;
 
 echoSubSectionTitle "Installing ranger"
 
-sudo apt install ranger;
+sudo apt install -y ranger;
+
+echoSubSectionTitle "Installing Brightness Controller"
+
+sudo add-apt-repository ppa:apandada1/brightness-controller;
+sudo apt update;
+sudo apt install -y brightness-controller;
 
 echo
 echoSectionTitle "#############"
@@ -102,11 +108,11 @@ echoSectionTitle "#############"
 
 echoSubSectionTitle "Installing Vim"
 
-sudo apt install vim;
+sudo apt install -y vim;
 
 echoSubSectionTitle "Installing curl"
 
-sudo apt install curl;
+sudo apt install -y curl;
 
 echoSubSectionTitle "Installing Vundle"
 
@@ -122,7 +128,7 @@ nvm install node;
 
 echoSubSectionTitle "Installing snapd"
 
-sudo apt install snapd;
+sudo apt install -y snapd;
 
 echoSubSectionTitle "Installing Visual Studio Code"
 
@@ -179,13 +185,6 @@ ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
 
 # vscode
-rm ${vscode_user}/keybindings.json;
-rm ${vscode_user}/settings.json;
-rm -rf ${vscode_user}/snippets/;
-ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
-ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
-ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
-
 echoSubSectionTitle "Installing Visual Studio Code extensions"
 
 readarray vscode_extensions < ${dotfiles}/vscode/extensions;
@@ -194,6 +193,13 @@ for i in ${vscode_extensions[@]}
 do
   code --install-extension $i;
 done
+
+# rm ${vscode_user}/keybindings.json;
+# rm ${vscode_user}/settings.json;
+# rm -rf ${vscode_user}/snippets/;
+ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
+ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
+ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 
 echoSubSectionTitle "Installing Vim plugins"
 
