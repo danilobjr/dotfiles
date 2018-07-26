@@ -128,6 +128,7 @@ echoSubSectionTitle "Installing Visual Studio Code"
 
 wget -q --show-progress -O ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868;
 sudo dpkg -i ${vscode_tmp};
+sudo apt -f install;
 
 echoSubSectionTitle "Installing Chromium"
 
