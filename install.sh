@@ -97,9 +97,9 @@ sudo apt install -y ranger;
 
 echoSubSectionTitle "Installing Brightness Controller"
 
-sudo add-apt-repository ppa:apandada1/brightness-controller
-sudo apt update
-sudo apt install -y brightness-controller
+sudo add-apt-repository ppa:apandada1/brightness-controller;
+sudo apt update;
+sudo apt install -y brightness-controller;
 
 echo
 echoSectionTitle "#############"
@@ -185,13 +185,6 @@ ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
 
 # vscode
-rm ${vscode_user}/keybindings.json;
-rm ${vscode_user}/settings.json;
-rm -rf ${vscode_user}/snippets/;
-ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
-ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
-ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
-
 echoSubSectionTitle "Installing Visual Studio Code extensions"
 
 readarray vscode_extensions < ${dotfiles}/vscode/extensions;
@@ -200,6 +193,13 @@ for i in ${vscode_extensions[@]}
 do
   code --install-extension $i;
 done
+
+# rm ${vscode_user}/keybindings.json;
+# rm ${vscode_user}/settings.json;
+# rm -rf ${vscode_user}/snippets/;
+ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
+ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
+ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 
 echoSubSectionTitle "Installing Vim plugins"
 
