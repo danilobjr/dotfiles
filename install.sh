@@ -153,12 +153,13 @@ git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
 echoSubSectionTitle "Creating symbolic links"
 
 # i3
+rm -rf ${config}/i3;
 ln -sf ${dotfiles}/i3 ${config}/i3;
 
 # i3blocks
 ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
 sudo rm /usr/share/i3blocks/volume;
-sudo ln -s ${dotfiles}/.config/i3blocks/volume /usr/share/i3blocks/volume;
+sudo ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
 
 # ranger
 ranger --copy-config=all;
