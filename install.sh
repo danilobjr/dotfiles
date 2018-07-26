@@ -54,11 +54,11 @@ echoSectionTitle "############"
 
 echoSubSectionTitle "Installing Zsh"
 
-sudo apt install zsh;
+sudo apt install zsh </dev/null;
 
 echoSubSectionTitle "Installing Git"
 
-sudo apt install git;
+sudo apt install git </dev/null;
 
 echoSubSectionTitle "Installing Oh-My-Zsh"
 
@@ -77,23 +77,23 @@ echoSectionTitle "#######################"
 
 echoSubSectionTitle "Installing i3wm"
 
-sudo apt install i3;
+sudo apt install i3 </dev/null;
 
 echoSubSectionTitle "Installing i3blocks"
 
-sudo apt install i3blocks;
+sudo apt install i3blocks </dev/null;
 
 echoSubSectionTitle "Installing compton"
 
-sudo apt install compton;
+sudo apt install compton </dev/null;
 
 echoSubSectionTitle "Installing feh"
 
-sudo apt install feh;
+sudo apt install feh </dev/null;
 
 echoSubSectionTitle "Installing ranger"
 
-sudo apt install ranger;
+sudo apt install ranger </dev/null;
 
 echo
 echoSectionTitle "#############"
@@ -102,11 +102,11 @@ echoSectionTitle "#############"
 
 echoSubSectionTitle "Installing Vim"
 
-sudo apt install vim;
+sudo apt install vim </dev/null;
 
 echoSubSectionTitle "Installing curl"
 
-sudo apt install curl;
+sudo apt install curl </dev/null;
 
 echoSubSectionTitle "Installing Vundle"
 
@@ -122,7 +122,7 @@ nvm install node;
 
 echoSubSectionTitle "Installing snapd"
 
-sudo apt install snapd;
+sudo apt install snapd </dev/null;
 
 echoSubSectionTitle "Installing Visual Studio Code"
 
