@@ -4,7 +4,7 @@ My dotfiles
 
 ## Install
 
-`wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh | bash
 
 ### Start
 
