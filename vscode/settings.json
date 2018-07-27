@@ -47,4 +47,7 @@
     "statusBar.debuggingBackground": "#007ACC"
   },
   "typescript.updateImportsOnFileMove.enabled": "never",
+  "banner-comments-plus.favorites": [
+    "ANSI Shadow"
+  ],
 }
