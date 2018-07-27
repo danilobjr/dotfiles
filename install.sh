@@ -35,6 +35,7 @@ if [ -f "$dev" ]; then
   mkdir $HOME/dev/;
 fi
 
+# more functions
 function dialogTerminal() {
   dialog --title "Installation Process" --infobox "Terminal stuff$1
   \nDesktop Environment
@@ -75,8 +76,35 @@ function dialogInstallationDone() {
   \n\nAlmost finishing..." 8 60;
 }
 
+# TODO: fix some symlink
+
 echo
-read -s -p "Enter your password: " password;
+
+wrong=false;
+while : ; do
+if [ "$wrong" = true ]; then
+  IFS= read -sp $'\e[1;31mIncorrect password. \e[0mTry again: ' password
+else
+  IFS= read -sp "Enter you password: " password
+fi
+
+sudo -k
+if sudo -lS &> /dev/null << EOF
+$password
+EOF
+then
+  break;
+else
+  # echo -en "\e[1A";
+  # echo -e "\e[0K\r";
+  echo -en "\r\033[K";
+  wrong=true;
+fi
+done
+
+# echo "Please wait...";
+# echo $password;
+# read -s -p "Enter your password: " password;
 echo -e "${light_green}Pease wait...${no_color}"
 
 logGreen "Updating apt repos";
