@@ -1,219 +1,303 @@
 #!/bin/bash
 
-# variables
-
 # colors
-# black='\033[0;30m'
-# dark_gray='\033[1;30m'
-# red='\033[0;31m'
-# light_red='\033[1;31m'
-# green='\033[0;32m'
 light_green="\033[1;32m"
-# brown='\033[orange 0;33m'
-# yellow='\033[1;33m'
-# blue='\033[0;34m'
-# light_blue='\033[1;34m'
-# purple='\033[0;35m'
-# light_purple='\033[1;35m'
-# cyan='\033[0;36m'
-# light_cyan='\033[1;36m'
-# light_gray='\033[0;37m'
-# white='\033[1;37m'
 no_color="\033[0m"
 
 # locations
 dotfiles="$HOME/.dotfiles"
+dev="$HOME/dev"
 tmp="/tmp/.dotfiles"
+log="$HOME/.dotfiles.log"
 config="$HOME/.config"
 vscode_user="$config/Code/User"
 vscode_tmp="$tmp/vscode.deb"
 fonts="$HOME/.fonts"
-
-# create tmp folder
-mkdir ${tmp};
+fontFile=${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf
 
 # functions
-function echoSectionTitle {
-  echo -e "${light_green}$1${no_color}"
+function logGreen() {
+  echo -e "${light_green}$1${no_color}" >> $log;
 }
 
-function echoSubSectionTitle {
-  echo
-  echo -e "${light_green}$1${no_color}"
-  echo
+function install() {
+  sudo apt install -y $1 2>>$log 1>>$log;
 }
 
-echoSubSectionTitle "Updating packages information"
+# create folders
+if [ -f "$log" ]; then
+  logGreen "Removing $log folder";
+  rm $log;
+fi
 
-sudo apt update;
+if [ -f "$dev" ]; then
+  logGreen "Creating $HOME/dev/ folder";
+  mkdir $HOME/dev/;
+fi
 
-echoSubSectionTitle "Creating $HOME/dev/ folder"
+function dialogTerminal() {
+  dialog --title "Installation Process" --infobox "Terminal stuff$1
+  \nDesktop Environment
+  \nDev stuff
+  \nSettings
+  \n\nPlease wait..." 8 60;
+}
 
-mkdir $HOME/dev/;
+function dialogDesktop() {
+  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  \nDesktop Environment$1
+  \nDev stuff
+  \nSettings
+  \n\nPlease wait..." 8 60;
+}
 
-echo
-echoSectionTitle "############"
-echoSectionTitle "# TERMINAL #"
-echoSectionTitle "############"
+function dialogDev() {
+  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  \nDesktop Environment...................................OK
+  \nDev stuff$1
+  \nSettings
+  \n\nPlease wait..." 8 60;
+}
 
-echoSubSectionTitle "Installing Zsh"
+function dialogSettings() {
+  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  \nDesktop Environment...................................OK
+  \nDev stuff.............................................OK
+  \nSettings$1
+  \n\nPlease wait..." 8 60;
+}
 
-sudo apt install -y zsh;
-
-echoSubSectionTitle "Installing Git"
-
-sudo apt install -y git;
-
-echoSubSectionTitle "Installing Oh-My-Zsh"
-
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
-
-echoSubSectionTitle "Installing Z.sh"
-
-wget -q -O ${HOME}/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh;
-
-echo "z.sh installed in $HOME/z.sh"
-
-echo
-echoSectionTitle "#######################"
-echoSectionTitle "# DESKTOP ENVIRONMENT #"
-echoSectionTitle "#######################"
-
-echoSubSectionTitle "Installing i3wm"
-
-sudo apt install -y i3;
-
-echoSubSectionTitle "Installing i3blocks"
-
-sudo apt install -y i3blocks;
-
-echoSubSectionTitle "Installing compton"
-
-sudo apt install -y compton;
-
-echoSubSectionTitle "Installing feh"
-
-sudo apt install -y feh;
-
-echoSubSectionTitle "Installing ranger"
-
-sudo apt install -y ranger;
-
-echoSubSectionTitle "Installing Brightness Controller"
-
-sudo add-apt-repository -y ppa:apandada1/brightness-controller;
-sudo apt update;
-sudo apt install -y brightness-controller;
+function dialogInstallationDone() {
+  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  \nDesktop Environment...................................OK
+  \nDev stuff.............................................OK
+  \nSettings..............................................OK
+  \n\nAlmost finishing..." 8 60;
+}
 
 echo
-echoSectionTitle "#############"
-echoSectionTitle "# DEV STUFF #"
-echoSectionTitle "#############"
+read -s -p "Enter your password: " password;
+echo -e "${light_green}Pease wait...${no_color}"
 
-echoSubSectionTitle "Installing Vim"
+logGreen "Updating apt repos";
+echo $password | sudo -S apt update 2>>$log 1>>$log;
 
-sudo apt install -y vim;
+logGreen "Installing dialog";
+install dialog;
 
-echoSubSectionTitle "Installing curl"
+dialog --title "Welcome" --ok-label "Next" --msgbox "Welcome to Danilo's dotfiles install script.\n\n
+This script will automatically install an i3wm desktop and some dev and utilities stuff, which I use in my main machine.\n\n
+So sit back and relax. It'll take some time, but when done, you'll have a much more simpler, focused and performant system.\n\n
+-Danilo" 15 60;
 
-sudo apt install -y curl;
+echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     " >> $log;
+echo "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     " >> $log;
+echo "   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     " >> $log;
+echo "   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     " >> $log;
+echo "   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗" >> $log;
+echo "   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝" >> $log;
 
-echoSubSectionTitle "Installing Vundle"
+dialogTerminal ".......................................Zsh";
+logGreen "Installing Zsh";
+# sudo apt install -y zsh 2>>$log 1>>$log;
+install zsh;
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim;
+dialogTerminal ".......................................Git";
+logGreen "Installing Git";
+# sudo apt install -y git 2>>$log 1>>$log;
+install git;
 
-echoSubSectionTitle "Installing nvm"
+dialogTerminal ".................................Oh-My-Zsh";
+logGreen "Installing Oh-My-Zsh";
+(wget -q https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh) 2>>$log 1>>$log;
 
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
+dialogTerminal ".........................................Z";
+logGreen "Installing Z.sh";
+(wget -qO ${HOME}/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>>$log 1>>$log;
 
-echoSubSectionTitle "Installing node"
+echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ " >> $log;
+echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗" >> $log;
+echo "██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝" >> $log;
+echo "██║  ██║██╔══╝  ╚════██║██╔═██╗    ██║   ██║   ██║██╔═══╝ " >> $log;
+echo "██████╔╝███████╗███████║██║  ██╗   ██║   ╚██████╔╝██║     " >> $log;
+echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     " >> $log;
 
-nvm install node;
+dialogDesktop ".................................i3wm";
+logGreen "Installing i3wm";
+# sudo apt install -y i3;
+install i3;
 
-echoSubSectionTitle "Installing snapd"
+dialogDesktop ".............................i3blocks";
+logGreen "Installing i3blocks";
+# sudo apt install -y i3blocks;
+install i3blocks;
 
-sudo apt install -y snapd;
+dialogDesktop "..............................compton";
+logGreen "Installing compton";
+# sudo apt install -y compton;
+install compton;
 
-echoSubSectionTitle "Installing Visual Studio Code"
+dialogDesktop "..................................feh";
+logGreen "Installing feh";
+# sudo apt install -y feh;
+install feh;
 
-wget -q --show-progress -O ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868;
-sudo dpkg -i ${vscode_tmp};
-sudo apt -f -y install;
+dialogDesktop "...............................ranger";
+logGreen "Installing ranger";
+# sudo apt install -y ranger;
+install ranger;
 
-echoSubSectionTitle "Installing Chromium"
+dialogDesktop "................Brightness Controller";
+logGreen "Installing Brightness Controller";
+sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>>$log 1>>$log;
+# sudo apt install -y brightness-controller;
+install brightness-controller;
 
-sudo snap install chromium;
+echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗" >> $log;
+echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝" >> $log;
+echo "██║  ██║█████╗  ██║   ██║    ███████╗   ██║   ██║   ██║█████╗  █████╗  " >> $log;
+echo "██║  ██║██╔══╝  ╚██╗ ██╔╝    ╚════██║   ██║   ██║   ██║██╔══╝  ██╔══╝  " >> $log;
+echo "██████╔╝███████╗ ╚████╔╝     ███████║   ██║   ╚██████╔╝██║     ██║     " >> $log;
+echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     " >> $log;
 
-echoSubSectionTitle "Installing icon font (Font Awesome)"
+dialogDev "............................................Vim";
+logGreen "Installing Vim";
+# sudo apt install -y vim;
+install vim;
 
-wget -q --show-progress -O ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/v4.4.0.zip;
-unzip ${tmp}/font-awesome.zip -d ${tmp};
-mkdir ${fonts};
-mv ${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf ${fonts};
+dialogDev "...........................................curl";
+logGreen "Installing curl";
+# sudo apt install -y curl;
+install curl;
 
-echo
-echoSectionTitle "############"
-echoSectionTitle "# SETTINGS #"
-echoSectionTitle "############"
+dialogDev ".........................................Vundle";
+logGreen "Installing Vundle";
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>>$log 1>>$log;
 
-echoSubSectionTitle "Cloning dotfiles repo in $dotfiles directory"
+dialogDev "............................................nvm";
+logGreen "Installing nvm";
+(wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash) 2>>$log 1>>$log;
 
-git clone https://github.com/danilobjr/dotfiles.git ${dotfiles};
+# logGreen "Installing node";
+# nvm install node;
 
-echoSubSectionTitle "Setting wallpaper"
+dialogDev "..........................................snapd";
+logGreen "Installing snapd";
+# sudo apt install -y snapd;
+install snapd;
 
+dialogDev ".............................Visual Studio Code";
+logGreen "Installing Visual Studio Code";
+wget -qO ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868 2>>$log 1>>$log;
+sudo dpkg -i ${vscode_tmp} 2>>$log 1>>$log;
+sudo apt -f -y install 2>>$log 1>>$log;
+
+dialogDev ".......................................Chromium";
+logGreen "Installing Chromium";
+# sudo snap install chromium;
+install chromium;
+
+dialogDev "...................................Font Awesome";
+logGreen "Installing Font Awesome";
+if [ ! -d "$tmp" ]; then
+  mkdir ${tmp};
+fi
+wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/v4.4.0.zip 2>>$log 1>>$log;
+unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>>$log 1>>$log;
+if [ ! -d "$fonts" ]; then
+  mkdir ${fonts};
+fi
+logGreen "Moving $fontFile to $fonts";
+mv ${fontFile} ${fonts};
+
+echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗" >> $log;
+echo "██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝ ██╔════╝" >> $log;
+echo "███████╗█████╗     ██║      ██║   ██║██╔██╗ ██║██║  ███╗███████╗" >> $log;
+echo "╚════██║██╔══╝     ██║      ██║   ██║██║╚██╗██║██║   ██║╚════██║" >> $log;
+echo "███████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝███████║" >> $log;
+echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" >> $log;
+
+dialogSettings ".......................................Wallpaper";
+logGreen "Setting wallpaper";
 cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
 
-echoSubSectionTitle "Creating symbolic links"
+dialogSettings "................................Cloning dotfiles";
+logGreen "Cloning dotfiles repo in $dotfiles directory";
+git clone https://github.com/danilobjr/dotfiles.git ${dotfiles} 2>>$log 1>>$log;
 
 # i3
+dialogSettings "..............................................i3";
+logGreen "Creating symlink for i3 at $config/i3";
 rm -rf ${config}/i3;
 ln -sf ${dotfiles}/i3 ${config}/i3;
 
 # i3blocks
+dialogSettings "........................................i3blocks";
+logGreen "Creating symlink for i3blocks at $config/i3blocks";
 ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
 sudo rm /usr/share/i3blocks/volume;
 sudo ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
 
 # ranger
-ranger --copy-config=all;
+dialogSettings "..........................................ranger";
+logGreen "Moving ranger settings to $config/ranger";
+ranger --copy-config=all 2>>$log 1>>$log;
 
 # zsh
+dialogSettings ".............................................Zsh";
+logGreen "Creating symlink for Zsh at ~/.zshrc";
 rm ${HOME}/.zshrc;
-ln -s ${dotfiles}/zsh/.zshrc;
-chsh -s `which zsh`;
+ln -s ${dotfiles}/zsh/.zshrc ~/.zshrc;
+echo $password | sudo -S chsh -s `which zsh` 2>>$log 1>>$log;
 
 # git
+dialogSettings ".......................................Gitconfig";
+logGreen "Creating symlink for .gitconfig at ~/.gitconfig";
 ln -s ${dotfiles}/git/.gitconfig ${HOME}/.gitconfig;
 
 # tmux
+dialogSettings "............................................tmux";
+logGreen "Creating symlink for tmux at ~/.tmux.conf";
 ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # vim
+dialogSettings ".............................................Vim";
+logGreen "Creating symlink for Vim at ~/.vimrc";
 ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
 
-# vscode
-echoSubSectionTitle "Installing Visual Studio Code extensions"
+dialogSettings ".....................................Vim Plugins";
+logGreen "Installing Vim plugins";
 
+vim +PluginInstall +qall 2>>$log 1>>$log;
+
+# vscode
+dialogSettings "...................Visual Studio Code Estensions";
+logGreen "Installing Visual Studio Code extensions";
 readarray vscode_extensions < ${dotfiles}/vscode/extensions;
 
 for i in ${vscode_extensions[@]}
 do
-  code --install-extension $i;
+  code --install-extension $i 2>>$log 1>>$log;
 done
 
-# rm ${vscode_user}/keybindings.json;
-# rm ${vscode_user}/settings.json;
-# rm -rf ${vscode_user}/snippets/;
 ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
 ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
 ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 
-echoSubSectionTitle "Installing Vim plugins"
+dialogInstallationDone;
+sleep 2;
 
-vim +PluginInstall +qall;
-
-# remove tmp folder
+logGreen "Removing $tmp folder"
 rm -rf ${tmp};
 
-echoSubSectionTitle "Done. You should now reboot the system."
+logGreen "Done."
+should_reboot=$(dialog --title "Process Completed" --yes-label "Reboot now" --default-button no --yesno "Congratulations!
+Now you have all the environment set in just minutes.
+\n\nRead the docs in https://github.com/danilobjr/dotfiles to know the features and keymappings.
+\n\nYou should now reboot your system. Would you like to do it now?" 13 50 3>&1 1>&2 2>&3 3>&1);
+
+clear;
+
+if [ "$should_reboot" = 0 ]; then
+  reboot;
+fi
