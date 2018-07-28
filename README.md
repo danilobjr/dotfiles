@@ -2,6 +2,8 @@
 
 My dotfiles
 
+<p align="center"><img src="/demo/demo.mp4"></p>
+
 ## Install
 
 bash <(wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh)
