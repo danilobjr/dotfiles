@@ -124,7 +124,7 @@ else
 fi
 done
 
-echo -e "${light_blue}Pease wait...${no_color}"
+echo -e "${light_blue}Please wait...${no_color}"
 
 echoSectionTitle "Updating apt repos";
 echo $password | sudo -S apt update 2>>$log 1>>$log;
