@@ -2,7 +2,7 @@
 
 My dotfiles
 
-<p align="center"><img src="/demo/demo.mp4"></p>
+<p align="center"><img src="/demo/demo.gif"></p>
 
 ## Install
 
