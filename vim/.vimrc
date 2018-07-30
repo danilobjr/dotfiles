@@ -48,7 +48,7 @@ filetype plugin indent on
 " SETTINGS & KEYBINDINGS
 """""""""""""""""""""""""""""
 
-set tabstop=4           " Show existing tab with 4 spaces width
+set tabstop=2           " Show existing tab with 4 spaces width
 set shiftwidth=4        " When indenting with '>', use 4 spaces width
 set expandtab           " On pressing tab, insert 4 spaces
 set showcmd             " Show (partial) command in status line.
