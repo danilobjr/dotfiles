@@ -283,11 +283,6 @@ fi
 
 ln -s ${dotfiles}/.profile ~/.profile;
 
-# wallpaper
-dialogSettings ".......................................Wallpaper";
-echoSectionTitle "Setting wallpaper";
-cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
-
 # i3
 dialogSettings "..............................................i3";
 echoSectionTitle "Creating symlink for i3 at $config/i3";
