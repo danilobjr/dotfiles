@@ -1,49 +1,20 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Env Vars
+# ========
 
-# Path to your oh-my-zsh installation.
-export ZSH=/home/danilo/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Zsh Stuff
+# =========
+
 ZSH_THEME="robbyrussell"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
 source ~/z.sh
+
+# default folder
 cd /home/danilo/dev
 
-# NVM
-# ===
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# ENVVARS
-# =======
-
-export RANGER_LOAD_DEFAULT_RC=FALSE
-# export BROWSER=chromium
-
-# ALIASES
+# Aliases
 # =======
 
 # reload zsh config
@@ -56,23 +27,20 @@ alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 alias i3config="vim ~/.config/i3/config"
 
-# NPM
-
+# npm
 alias nrb="npm run build"
 alias nrd="npm run dev"
 alias ns="npm start"
 alias ni="npm install"
 alias nu="npm uninstall"
 
-# YARN
-
+# yarn
 alias yi="yarn install"
 alias ya="yarn add -E"
 alias yad="yarn add -E -D"
 alias yr="yarn remove"
 
 # git
-
 alias gs="git st"
 alias gdc="git dc"
 alias ga="git a"
@@ -96,7 +64,6 @@ alias glast="git last"
 alias ghist="git hist"
 
 # git-flow
-
 alias gfi="git fi"
 alias gfid="git fid"
 
