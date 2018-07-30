@@ -14,8 +14,12 @@
 # Definitions
 # ===========
 
+#---- variables ----#
+
+# win key
 set $mod Mod4
 
+# colors
 set $inactive-bg-color   #2f343f
 set $inactive-text-color #676e7d
 set $main-color          #e95420
@@ -23,123 +27,29 @@ set $text-color          #f3f4f5
 set $urgent-color        #e53935
 set $lock-bg-color       000000
 
-set $ws1 ""
-set $ws2 ""
-set $ws3 ""
-set $ws4 ""
-set $ws5 ""
-set $ws6 ""
-set $ws7 ""
-set $ws8 ""
-set $ws9 ""
-set $ws10 ""
-
+# default terminal
 set $term --no-startup-id gnome-terminal
 
-# font for window titles
-#font pango:monospace 10
-#font pango:DejaVu Sans Mono 10
+# icons for workspaces
+set $ws1  "1 "
+set $ws2  "2 "
+set $ws3  "3 "
+set $ws4  "4 "
+set $ws5  "5 "
+set $ws6  "6 "
+set $ws7  "7 "
+set $ws8  "8 "
+set $ws9  "9 "
+set $ws10 "10 "
+
+#---- font ----#
+
+# font for window titles and bar
 font pango:Ubuntu Mono 12
 
-# use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+#---- i3bar ----#
 
-# windows
-# class	                border	           bg                 text                 indicator
-client.focused          $main-color        $main-color 	      $text-color          $indicator-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color
-
-# window border
-for_window [class="^.*"] border pixel 3
-
-# Bindings
-# ========
-
-bindsym $mod+Return exec $term -e zsh
-bindsym $mod+q kill
-bindsym $mod+space exec dmenu_run -p Search -fn "Ubuntu Mono:pixelsize=19" -sb "$main-color"
-
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-bindsym $mod+backslash split h
-bindsym $mod+minus split v
-bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+f floating toggle
-# bindsym $mod+tab focus mode_toggle
-bindsym $mod+p focus parent
-bindsym $mod+c focus child
-
-bindsym $mod+e exec $term -e ranger
-
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-bindsym $mod+Escape exec i3lock -c "$lock-bg-color"
-bindsym $mod+Shift+Escape exec confirm "Do you really want to logout?" "i3-msg exit"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize shrink height 10 px or 10 ppt
-  bindsym k resize grow height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
-
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize shrink height 10 px or 10 ppt
-  bindsym Up resize grow height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# main system bar that shows workspaces and some system status
 bar {
   status_command i3blocks
   position top
@@ -148,25 +58,167 @@ bar {
   }
 }
 
-# Pulse audio controls
-bindsym XF86AudioPlay exec i3lock
-bindsym XF86AudioStop exec i3lock
-bindsym XF86AudioPrev exec i3lock
-bindsym XF86AudioNext exec i3lock
-bindsym XF86Tools exec i3lock
-bindsym XF86AudioMute exec amixer -c 1 -D pulse sset Master 1+ toggle
-bindsym XF86AudioLowerVolume exec amixer -c 1 -D pulse sset Master 5%-
-bindsym XF86AudioRaiseVolume exec amixer -c 1 -D pulse sset Master 5%+
+#---- windows ----#
 
-# attach apps to specific workspace
-assign [class="Google-chrome"] $ws1
-assign [class="Chromium"] $ws1
-assign [class="Code"] $ws2
+# class	                border	           bg                 text                 indicator
+client.focused          $main-color        $main-color 	      $text-color          $indicator-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
+client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color
+
+# border
+for_window [class="^.*"] border pixel 3
+
+# Scripts
+# =======
 
 # wallpaper
-exec_always feh --bg-scale /home/danilo/Pictures/wall.jpg
+exec_always feh --bg-scale ${DOTFILES}/wallpapers/wall.jpg
+# fade effects
 exec_always compton -f -D 3
 
-# TODO:
-# bind shutdown/restart
-# use dmenu instead of default i3 when logout (mod+shift+x)
+# Bindings
+# ========
+
+#---- mouse ----#
+
+# use $mod+mouse to drag floating windows
+floating_modifier $mod
+
+#---- special keys ----#
+
+# open terminal
+bindsym $mod+Return exec  $term -e zsh
+
+# show search bar (apps)
+bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -sb '$main-color'"
+
+# prepare to open other app below current focused window
+bindsym $mod+backslash    split h
+# prepare to open other app in the right side current focused window
+bindsym $mod+minus        split v
+
+# lock screen
+bindsym $mod+Escape       exec i3lock -c "$lock-bg-color"
+# logout
+bindsym $mod+shift+Escape exec confirm "Do you really want to logout?" "i3-msg exit"
+
+#---- letters ----#
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+shift+r      restart
+
+# enter resize mode
+bindsym $mod+r            mode "resize"
+
+# close apps
+bindsym $mod+q            kill
+
+# open ranger file manager
+bindsym $mod+e exec $term -e ranger
+
+# change focused window
+bindsym $mod+h            focus left
+bindsym $mod+j            focus down
+bindsym $mod+k            focus up
+bindsym $mod+l            focus right
+
+# move focused window
+bindsym $mod+shift+h      move left
+bindsym $mod+shift+j      move down
+bindsym $mod+shift+k      move up
+bindsym $mod+shift+l      move right
+
+# toggle fullscreen
+bindsym $mod+f            fullscreen toggle
+# toggle floating/tiling window
+bindsym $mod+shift+f      floating toggle
+
+bindsym $mod+p            focus parent
+bindsym $mod+c            focus child
+
+# bindsym $mod+tab focus mode_toggle
+
+#---- arrow keys ----#
+
+# change focused window
+bindsym $mod+Left         focus left
+bindsym $mod+Down         focus down
+bindsym $mod+Up           focus up
+bindsym $mod+Right        focus right
+
+# move focused window
+bindsym $mod+shift+Left   move left
+bindsym $mod+shift+Down   move down
+bindsym $mod+shift+Up     move up
+bindsym $mod+shift+Right  move right
+
+#---- numbers ----#
+
+# change to a workspace
+bindsym $mod+1 workspace  $ws1
+bindsym $mod+2 workspace  $ws2
+bindsym $mod+3 workspace  $ws3
+bindsym $mod+4 workspace  $ws4
+bindsym $mod+5 workspace  $ws5
+bindsym $mod+6 workspace  $ws6
+bindsym $mod+7 workspace  $ws7
+bindsym $mod+8 workspace  $ws8
+bindsym $mod+9 workspace  $ws9
+bindsym $mod+0 workspace  $ws10
+
+# move app to a workspace
+bindsym $mod+shift+1 move container to workspace $ws1
+bindsym $mod+shift+2 move container to workspace $ws2
+bindsym $mod+shift+3 move container to workspace $ws3
+bindsym $mod+shift+4 move container to workspace $ws4
+bindsym $mod+shift+5 move container to workspace $ws5
+bindsym $mod+shift+6 move container to workspace $ws6
+bindsym $mod+shift+7 move container to workspace $ws7
+bindsym $mod+shift+8 move container to workspace $ws8
+bindsym $mod+shift+9 move container to workspace $ws9
+bindsym $mod+shift+0 move container to workspace $ws10
+
+#---- function keys ----#
+
+# poweroff
+bindsym $mod+F4           exec confirm "Do you really want to shutdown?" "poweroff"
+# reboot
+bindsym $mod+F5           exec confirm "Do you really want to reboot?" "sudo reboot"
+
+#---- resize window ----#
+
+mode "resize" {
+  bindsym h               resize shrink width 10 px or 10 ppt
+  bindsym j               resize shrink height 10 px or 10 ppt
+  bindsym k               resize grow height 10 px or 10 ppt
+  bindsym l               resize grow width 10 px or 10 ppt
+
+  bindsym Left            resize shrink width 10 px or 10 ppt
+  bindsym Down            resize shrink height 10 px or 10 ppt
+  bindsym Up              resize grow height 10 px or 10 ppt
+  bindsym Right           resize grow width 10 px or 10 ppt
+
+  bindsym Return          mode "default"
+  bindsym Escape          mode "default"
+}
+
+#---- XF86 keys ----#
+
+# audio controls
+bindsym XF86AudioMute        exec amixer -c 1 -D pulse sset Master 1+ toggle
+bindsym XF86AudioLowerVolume exec amixer -c 1 -D pulse sset Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer -c 1 -D pulse sset Master 5%+
+# bindsym XF86AudioPlay      exec i3lock
+# bindsym XF86AudioStop      exec i3lock
+# bindsym XF86AudioPrev      exec i3lock
+# bindsym XF86AudioNext      exec i3lock
+# bindsym XF86Tools          exec i3lock
+
+# Apps assignments
+# ================
+
+# attach apps to specific workspace
+assign [class="Google-chrome"]  $ws1
+assign [class="Chromium"]       $ws1
+assign [class="Code"]           $ws2
