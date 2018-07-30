@@ -84,7 +84,7 @@ fi
 
 if [ -f "$dev" ]; then
   echoSectionTitle "Creating $HOME/dev/ folder";
-  mkdir $HOME/dev/;
+  mkdir $dev;
 fi
 
 # TODO: fix some symlink
@@ -272,13 +272,21 @@ echo "███████║███████╗   ██║      ██�
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" >> $log;
 echoNoColorEmptyLine;
 
-dialogSettings ".......................................Wallpaper";
-echoSectionTitle "Setting wallpaper";
-cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
-
+# cloning dotfiles repo
 dialogSettings "................................Cloning dotfiles";
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
 git clone https://github.com/danilobjr/dotfiles.git ${dotfiles} 2>>$log 1>>$log;
+
+if [ -f "$HOME/.profile" ]; then
+  rm ~/.profile;
+fi
+
+ln -s ${dotfiles}/.profile ~/.profile;
+
+# wallpaper
+dialogSettings ".......................................Wallpaper";
+echoSectionTitle "Setting wallpaper";
+cp ${dotfiles}/wallpapers/* ${HOME}/Pictures
 
 # i3
 dialogSettings "..............................................i3";
