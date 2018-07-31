@@ -121,6 +121,7 @@ To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfil
 
 ## TODO
 
+- Set wallpaper by other means. For example: ranger keybinding.
 - Put a desktop screenshot and first zsh access message.
 - Install node and npm packages during install: now, terminal-alarm. Then document them here.
 - Use st terminal emulator instead of gnome-terminal.
