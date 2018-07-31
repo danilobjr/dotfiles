@@ -29,7 +29,7 @@ After installation you should reboot your system for all settings take effect.
 
 - [zsh](http://zsh.sourceforge.net/) - Shell designed for interactive use.
 - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) - An open source, community-driven framework for managing your zsh configuration.
-- [z](https://github.com/rupa/z/) - Jump around in your directories.
+- [z](https://github.com/rupa/z/) - Jump around in your directories (command line tool).
 - [git](https://git-scm.com/) - A free and open source distributed version control system.
 - [nvm](https://github.com/creationix/nvm) - Node Version Manager.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined. Free. Open source. Runs everywhere.
