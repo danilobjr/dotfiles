@@ -112,7 +112,7 @@ They are on top of the list.
 
 ### Vim
 
-It comes with a bunch of plugins preinstalled, such as NerdTree, Suround, AirLine etc.
+It comes with a bunch of preinstalled plugins, such as NerdTree, vim-suround, vim-airline etc.
 You can check at `~/.vimrc` file.
 
 ### Wallpapers
@@ -121,8 +121,10 @@ To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfil
 
 ## TODO
 
-- Put a desktop screenshot.
-- Install node packages during install: now, terminal-alarm. Then document them here.
+- Put a desktop screenshot and first zsh access message.
+- Install node and npm packages during install: now, terminal-alarm. Then document them here.
+- Use st terminal emulator instead of gnome-terminal.
+- Remove unused software during installation such as: firefox, nautilus, ubuntu settings, etc.
 
 ## License
 
