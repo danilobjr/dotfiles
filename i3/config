@@ -28,7 +28,7 @@ set $urgent-color        #e53935
 set $lock-bg-color       000000
 
 # default terminal
-set $term --no-startup-id gnome-terminal
+set $term --no-startup-id gnome-terminal #--window-with-profile=NoScrollbar
 
 # icons for workspaces
 set $ws1  "1 "
@@ -93,6 +93,9 @@ bindsym $mod+Return exec  $term -e zsh
 # show search bar (apps)
 bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -sb '$main-color'"
 
+bindsym $mod+Prior        workspace prev
+bindsym $mod+Next         workspace next
+
 # prepare to open other app below current focused window
 bindsym $mod+backslash    split h
 # prepare to open other app in the right side current focused window
@@ -100,8 +103,6 @@ bindsym $mod+minus        split v
 
 # lock screen
 bindsym $mod+Escape       exec i3lock -c "$lock-bg-color"
-# logout
-bindsym $mod+shift+Escape exec confirm "Do you really want to logout?" "i3-msg exit"
 
 #---- letters ----#
 
@@ -115,7 +116,7 @@ bindsym $mod+r            mode "resize"
 bindsym $mod+q            kill
 
 # open ranger file manager
-bindsym $mod+e exec $term -e ranger
+bindsym $mod+e            exec $term -e ranger
 
 # change focused window
 bindsym $mod+h            focus left
@@ -181,10 +182,7 @@ bindsym $mod+shift+0 move container to workspace $ws10
 
 #---- function keys ----#
 
-# poweroff
-bindsym $mod+F4           exec confirm "Do you really want to shutdown?" "poweroff"
-# reboot
-bindsym $mod+F5           exec confirm "Do you really want to reboot?" "sudo reboot"
+bindsym $mod+F4           exec system-off
 
 #---- resize window ----#
 
