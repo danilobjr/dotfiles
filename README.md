@@ -34,7 +34,7 @@ After installation you should reboot your system for all settings take effect.
 - [z](https://github.com/rupa/z/) - Jump around in your directories (command line tool).
 - [git](https://git-scm.com/) - A free and open source distributed version control system.
 - [nvm](https://github.com/creationix/nvm) - Node Version Manager.
-- [node](https://nodejs.org/) - It is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Node.js](https://nodejs.org/) - It is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined. Free. Open source. Runs everywhere.
 - [Vim](https://www.vim.org/) - A highly configurable text editor for efficiently creating and changing any kind of text.
 
