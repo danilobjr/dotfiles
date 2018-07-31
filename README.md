@@ -58,7 +58,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 ### Window
 
 - `Win+Enter` - Open a terminal in a new window.
-- `Win+q` - Close window.
+- `Win+q` - Close focused window.
 - `Win+f` - Toggle fullscreen.
 - `Win+Shift+f` - Toggle floating/tiling mode.
 - `Win+p` - Focus parent window.
@@ -84,7 +84,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ### Programs
 
-- `Win+e` - Open ranger (file manager).
+- `Win+e` - Open ranger in a new window (file manager).
 
 ### Workspaces
 
