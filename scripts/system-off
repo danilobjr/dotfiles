@@ -1,0 +1,10 @@
+#!/bin/bash
+
+option=$(echo -e "Logout\nReboot\nHibernate\nShutdown" | dmenu -i -p "Off options" -fn "Ubuntu Mono:pixelsize=19" -sb "#e95420");
+
+case "$option" in
+  "Logout") i3-msg exit;;
+  "Reboot") systemctl reboot;;
+  "Hibernate") systemctl hibernate;;
+  "Shutdown") systemctl poweroff;;
+esac
