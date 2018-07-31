@@ -101,7 +101,7 @@ A `~/dev/` folder is created in your home directory when Zsh runs at first time.
 
 ### Visual Studio Code
 
-It comes with Vim extension installed by default and some other extensions as well. You can check them by pressing _Ctrl+Shift+X_ inside VSCode.
+It comes with Vim extension preinstalled by default and some other extensions as well. You can check them by pressing _Ctrl+Shift+X_ inside VSCode.
 
 There are some **keybindings** that you can check at _File > Preferences > Keyboard Shortcuts_
 and then search for _@source:user_ in the _Search keybindings_ field.
