@@ -1,69 +1,53 @@
 # dotfiles
 
-My dotfiles
+My dotfiles.
+
+It installs the [i3wm](https://github.com/i3/i3) for a more lightweight and focused windows management, some dev stuff and utilities. Take a look at [Resources](#resources) section to see the whole list.
+
+It was tested in a fresh installation (not minimal) of Ubuntu 18.04.
 
 <p align="center"><img src="/demo/demo.gif"></p>
 
 ## Install
 
-bash <(wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh)
+Run this in your terminal.
 
-### Start
+`bash <(wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh)`
 
-- Update apt (apt update)
-- run install.sh (with sudo)
+After installation you should reboot your system for all settings take effect.
 
-## Install script
-
-### Terminal
-
-- zsh (apt install zsh)
-- git (apt install git)
-- oh-my-zsh (wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh)
-- z (?)
+## Resources
 
 ### Desktop Environment
 
-- i3 - Window manager (apt install i3)
-- i3blocks - System status bar (apt install i3blocks)
-- compton - Blur effects (apt install compton)
-- feh - Wallpaper management (apt install feh)
-- ranger - File management (apt install ranger)
+- [i3wm](https://github.com/i3/i3) - Windows Management.
+- [i3blocks](https://github.com/vivien/i3blocks) - Status line for the i3.
+- [ranger](https://github.com/ranger/ranger) - A VIM-inspired filemanager for the console.
+- [Chromium](https://www.chromium.org/Home) - Open-source browser.
 
-### Dev stuff
+### Dev Stuff
 
-- nvm (wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash)
-- node (nvm install node)
-- snapd (apt install snapd)
-- Visual Studio Code (snap install vscode)
-- Chromium (snap install chromium)
-
->TODO: let user choose what code editor and browser.
-
-### Settings
-
-`cp ~/dotfiles/.bash_profile ~`
-`cp -r ~/dotfiles/.config/ ~`
-`cp ~/dotfiles/.config/i3blocks/volume /usr/share/i3blocks/`
-`cp ~/dotfiles/vscode/settings.json ~/.config/Code/User/`
-`cp ~/dotfiles/vscode/keybindings.json ~/.config/Code/User/`
-`cp ~/dotfiles/vscode/snippets/ ~/.config/Code/User/`
-`code --install-extension $extensions`
-- Change shell to zsh (chsh -s `which zsh`)
-- Set wallpaper
-
->TODO: create $extensions variable
->TODO: create symlink instead of `mv`? This should ease when update dotfiles folder and push to git. All things stay updated.
->TODO: use an envvar for sound card in volume. Put its value in .bash_profile: SOUND_CARD_NUMBER. Value should be: default or hn:1.
+- [zsh](http://zsh.sourceforge.net/) - Shell designed for interactive use.
+- [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) - An open source, community-driven framework for managing your zsh configuration.
+- [z](https://github.com/rupa/z/) - Jump around in your directories.
+- [git](https://git-scm.com/) - A free and open source distributed version control system.
+- [nvm](https://github.com/creationix/nvm) - Node Version Manager.
+- [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined. Free. Open source. Runs everywhere.
+- [Vim](https://www.vim.org/) - A highly configurable text editor for efficiently creating and changing any kind of text.
 
 ### Utilities
 
-These utilities should be choosen by user.
-
-- now - Universal serverless single-command deployment (npm install -g terminal-alarm)
-- terminal-alarm - Countdown in your terminal (npm install -g terminal-alarm)
+- [Brightness Controller](https://github.com/lordamit/Brightness)
+- [feh](https://feh.finalrewind.org/) - An X11 image viewer aimed mostly at console users.
+- [compton](https://wiki.archlinux.org/index.php/Compton) - It's a standalone compositor for Xorg.
 
 ### What's next
+
+Install node.js latest version.
+
+```
+nvm install node
+```
 
 Enable color scheme for Vim by uncomment the lines below.
 
@@ -71,6 +55,77 @@ Enable color scheme for Vim by uncomment the lines below.
 let base16colorspace=256
 colorscheme base16-default-dark " the base16-shell colors has precedence
 ```
+
+## Usage
+
+### Window
+
+- `Win+Enter` - Open terminal.
+- `Win+q` - Close window.
+- `Win+f` - Toggle fullscreen.
+- `Win+Shift+f` - Toggle floating/tiling mode.
+- `Win+p` - Focus parent window.
+- `Win+c` - Focus child window.
+- `Win+-` - Prepare to open window horizontally.
+- `Win+\` - Prepare to open window vertically.
+- `Win+h, j, k or l` - Change focused to adjacent window.
+- `Win+Arrow keys` - Change focused to adjacent window.
+- `Win+Shift+h, j, k or l` - Move focused window.
+- `Win+Shift+Arrow keys` - Move focused window.
+- `Win+r` - Enter resize mode.
+  - `h, j, k or l` - Change size when resize mode is on.
+  - `Arrow keys` - Change size when resize mode is on.
+
+### System
+
+- `Win+Space` - Show app search bar (fuzzy finder).
+- `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
+- `Win+ESC` - Lock screen using [i3lock](https://github.com/i3/i3lock). Enter password to return.
+- `Win+Mute` - Mute master volume.
+- `Win+LowVolume` - Lower master volume.
+- `Win+HighVolume` - Higher master volume.
+
+### Programs
+
+- `Win+e` - Open ranger (file manager).
+
+### Workspaces
+
+- `Win+(Number)` - Go to that number workspace.
+- `Win+Shift+(Number)` - Send focused window to that workspace.
+- `Win+PgUp` - Go to previous workspace.
+- `Win+PgDown` - Go to next workspace.
+
+### Zsh
+
+There is bunch of aliases for npm, yarn, git, git-flow and configuration files. You can modify them at `~/.zshrc`. See the whole [aliases list here](zsh/README.md).
+
+A `~/dev/` folder is created in your home directory when Zsh runs at first time. It is the default folder on Zsh startup. I put all my repos there.
+
+### Visual Studio Code
+
+It comes with Vim extension installed by default and some other extensions as well. You can check them by pressing _Ctrl+Shift+X_ inside VSCode.
+
+There are some **keybindings** that you can check at _File > Preferences > Keyboard Shortcuts_
+and then search for _@source:user_ in the _Search keybindings_ field.
+
+Some **snippets** are defined as well for Javascript and Typescript, including React versions.
+You can see them at _File > Preferences > User Snippets_.
+They are on top of the list.
+
+### Vim
+
+It comes with a bunch of plugins preinstalled, such as NerdTree, Suround, AirLine etc.
+You can check at `~/.vimrc` file.
+
+### Wallpapers
+
+To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfiles/wallpapers/` folder and then reload i3 `Win+Shift+r`.
+
+## TODO
+
+- Put a desktop screenshot.
+- Install node packages during install: now, terminal-alarm. Then document them here.
 
 ## License
 
