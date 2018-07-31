@@ -57,7 +57,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ### Window
 
-- `Win+Enter` - Open terminal.
+- `Win+Enter` - Open a terminal in a new window.
 - `Win+q` - Close window.
 - `Win+f` - Toggle fullscreen.
 - `Win+Shift+f` - Toggle floating/tiling mode.
@@ -75,7 +75,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ### System
 
-- `Win+Space` - Show app search bar (fuzzy finder).
+- `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1. VSCode opens in WS2.
 - `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
 - `Win+ESC` - Lock screen using [i3lock](https://github.com/i3/i3lock). Enter password to return.
 - `Win+Mute` - Mute master volume.
