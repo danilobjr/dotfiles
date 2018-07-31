@@ -12,6 +12,26 @@ source $ZSH/oh-my-zsh.sh
 source ~/z.sh
 
 # default folder
+yellow="\033[1;33m"
+light_cyan="\033[1;36m"
+no_color="\033[0m"
+
+if ! [ -d "$HOME/dev" ]; then
+  mkdir $HOME/dev;
+  echo
+  echo -e "${yellow}  ╭──────────────────────────────────────╮"
+  echo -e "${yellow}  │                                      │"
+  echo -e "${yellow}  │   ${no_color}First time open.                   ${yellow}│"
+  echo -e "${yellow}  │   ${light_cyan}$HOME/dev ${no_color}folder created.   ${yellow}│"
+  echo -e "${yellow}  │   ${no_color}Usually used as repos folder.      ${yellow}│"
+  echo -e "${yellow}  │   ${no_color}Zsh will open it by default.       ${yellow}│"
+  echo -e "${yellow}  │                                      │"
+  echo -e "${yellow}  │   ${light_cyan}-dotfiles                          ${yellow}│"
+  echo -e "${yellow}  │                                      │"
+  echo -e "${yellow}  ╰──────────────────────────────────────╯"
+  echo
+fi
+
 cd /home/danilo/dev
 
 # nvm
