@@ -10,7 +10,6 @@ no_color="\033[0m"
 
 # locations
 dotfiles="$HOME/.dotfiles"
-dev="$HOME/dev"
 tmp="/tmp/.dotfiles"
 log="$HOME/.dotfiles.log"
 config="$HOME/.config"
@@ -82,11 +81,6 @@ if [ -f "$log" ]; then
   rm $log;
 fi
 
-if [ -f "$dev" ]; then
-  echoSectionTitle "Creating $HOME/dev/ folder";
-  mkdir $dev;
-fi
-
 # TODO: fix some symlink
 echo
 echo -e "${light_blue}Hello, fellow dev! Welcome to Danilo's";
@@ -117,8 +111,6 @@ EOF
 then
   break;
 else
-  # echo -en "\e[1A";
-  # echo -e "\e[0K\r";
   echo -en "\r\033[K";
   wrong=true;
 fi
@@ -148,12 +140,10 @@ echoNoColorEmptyLine;
 
 dialogTerminal ".......................................Zsh";
 echoSectionTitle "Installing Zsh";
-# sudo apt install -y zsh 2>>$log 1>>$log;
 install zsh;
 
 dialogTerminal ".......................................Git";
 echoSectionTitle "Installing Git";
-# sudo apt install -y git 2>>$log 1>>$log;
 install git;
 
 dialogTerminal ".................................Oh-My-Zsh";
@@ -175,33 +165,27 @@ echoNoColorEmptyLine;
 
 dialogDesktop ".................................i3wm";
 echoSectionTitle "Installing i3wm";
-# sudo apt install -y i3;
 install i3;
 
 dialogDesktop ".............................i3blocks";
 echoSectionTitle "Installing i3blocks";
-# sudo apt install -y i3blocks;
 install i3blocks;
 
 dialogDesktop "..............................compton";
 echoSectionTitle "Installing compton";
-# sudo apt install -y compton;
 install compton;
 
 dialogDesktop "..................................feh";
 echoSectionTitle "Installing feh";
-# sudo apt install -y feh;
 install feh;
 
 dialogDesktop "...............................ranger";
 echoSectionTitle "Installing ranger";
-# sudo apt install -y ranger;
 install ranger;
 
 dialogDesktop "................Brightness Controller";
 echoSectionTitle "Installing Brightness Controller";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>>$log 1>>$log;
-# sudo apt install -y brightness-controller;
 install brightness-controller;
 
 echoBlueEmptyLine;
@@ -215,12 +199,10 @@ echoNoColorEmptyLine;
 
 dialogDev "............................................Vim";
 echoSectionTitle "Installing Vim";
-# sudo apt install -y vim;
 install vim;
 
 dialogDev "...........................................curl";
 echoSectionTitle "Installing curl";
-# sudo apt install -y curl;
 install curl;
 
 dialogDev ".........................................Vundle";
@@ -231,12 +213,20 @@ dialogDev "............................................nvm";
 echoSectionTitle "Installing nvm";
 (wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash) 2>>$log 1>>$log;
 
-# echoSectionTitle "Installing node";
-# nvm install node;
+dialogDev "........................................Node.js";
+echoSectionTitle "Installing node";
+. ~/.nvm/nvm.sh install node 2>>$log 1>>$log;
+
+dialogDev "............................................now";
+echoSectionTitle "Installing now";
+npm install -g now 2>>$log 1>>$log;
+
+dialogDev ".................................terminal-alarm";
+echoSectionTitle "Installing terminal-alarm";
+npm install -g terminal-alarm 2>>$log 1>>$log;
 
 dialogDev "..........................................snapd";
 echoSectionTitle "Installing snapd";
-# sudo apt install -y snapd;
 install snapd;
 
 dialogDev ".............................Visual Studio Code";
@@ -247,7 +237,6 @@ sudo apt -f -y install 2>>$log 1>>$log;
 
 dialogDev ".......................................Chromium";
 echoSectionTitle "Installing Chromium";
-# sudo snap install chromium;
 install chromium;
 
 dialogDev "...................................Font Awesome";
@@ -271,6 +260,14 @@ echo "╚════██║██╔══╝     ██║      ██║   
 echo "███████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝███████║" >> $log;
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" >> $log;
 echoNoColorEmptyLine;
+
+# gnome-terminal
+dialogSettings "..................................gnome-terminal";
+# hide menubar
+gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+# TODO: not working
+profileId=$(gsettings get org.gnome.Terminal.ProfilesList default)
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${profileId}/ scrollbar-policy 'never'
 
 # cloning dotfiles repo
 dialogSettings "................................Cloning dotfiles";
