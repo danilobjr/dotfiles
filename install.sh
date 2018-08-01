@@ -197,6 +197,10 @@ echo "██████╔╝███████╗ ╚████╔╝    
 echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     " >> $log;
 echoNoColorEmptyLine;
 
+dialogDev "..........................................URxvt";
+echoSectionTitle "Installing URxvt";
+install rxvt-unicode
+
 dialogDev "............................................Vim";
 echoSectionTitle "Installing Vim";
 install vim;
@@ -261,14 +265,10 @@ echo "███████║███████╗   ██║      ██�
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" >> $log;
 echoNoColorEmptyLine;
 
-# TODO: remove this because st will be added
-# gnome-terminal
-dialogSettings "..................................gnome-terminal";
-# hide menubar
-gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
-# TODO: not working
-profileId=$(gsettings get org.gnome.Terminal.ProfilesList default)
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${profileId}/ scrollbar-policy 'never'
+# urxvt
+dialogSettings ".......................................Xdefaults";
+echoSectionTitle "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
+ln -s ${dotfiles}/.Xdefaults ${HOME}/.Xdefaults
 
 # cloning dotfiles repo
 dialogSettings "................................Cloning dotfiles";

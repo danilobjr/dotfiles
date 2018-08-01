@@ -28,8 +28,7 @@ set $urgent-color        #e53935
 set $lock-bg-color       000000
 
 # default terminal
-set $term --no-startup-id gnome-terminal
-# set $term --no-startup-id gnome-terminal --window-with-profile=NoScrollbar
+set $term --no-startup-id urxvt
 
 # icons for workspaces
 set $ws1  "1 "
