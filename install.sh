@@ -261,6 +261,7 @@ echo "███████║███████╗   ██║      ██�
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" >> $log;
 echoNoColorEmptyLine;
 
+# TODO: remove this because st will be added
 # gnome-terminal
 dialogSettings "..................................gnome-terminal";
 # hide menubar
@@ -296,7 +297,8 @@ sudo ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
 # ranger
 dialogSettings "..........................................ranger";
 echoSectionTitle "Moving ranger settings to $config/ranger";
-ranger --copy-config=all 2>>$log 1>>$log;
+# ranger --copy-config=all 2>>$log 1>>$log;
+ln -sf ${dotfiles}/ranger ${config}/ranger;
 
 # zsh
 dialogSettings ".............................................Zsh";
