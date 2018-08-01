@@ -52,6 +52,10 @@ alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 alias i3config="vim ~/.config/i3/config"
 
+# apt-get
+alias sai="sudo apt install"
+alias saar="sudo apt autoremove"
+
 # npm
 alias nrb="npm run build"
 alias nrd="npm run dev"
