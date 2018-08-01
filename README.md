@@ -78,9 +78,9 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 - `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1. VSCode opens in WS2.
 - `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
 - `Win+ESC` - Lock screen using [i3lock](https://github.com/i3/i3lock). Enter password to return.
-- `Win+Mute` - Mute master volume.
-- `Win+LowVolume` - Lower master volume.
-- `Win+HighVolume` - Higher master volume.
+- `Win+Increase Volume (function key)` - Increase master volume.
+- `Win+Decrease Volume (function key)` - Decrease master volume.
+- `Win+Mute Volume (function key)` - Mute master volume.
 
 ### Programs
 
@@ -121,7 +121,6 @@ To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfil
 
 ## TODO
 
-- Set wallpaper by other means. For example: ranger keybinding.
 - Put a desktop screenshot and first zsh access message.
 - Install node and npm packages during install: now, terminal-alarm. Then document them here.
 - Use st terminal emulator instead of gnome-terminal.
