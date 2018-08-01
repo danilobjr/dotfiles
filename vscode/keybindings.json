@@ -25,5 +25,14 @@
     "key": "f4",
     "command": "-goToNextReferenceFromEmbeddedEditor",
     "when": "inReferenceSearchEditor"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.view.explorer"
   }
 ]
