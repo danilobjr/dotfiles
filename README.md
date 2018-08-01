@@ -12,7 +12,9 @@ It was tested in a fresh installation (not minimal) of Ubuntu 18.04.
 
 Run this in your terminal.
 
-`bash <(wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh)`
+```
+bash <(wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/install.sh)
+```
 
 After installation you should reboot your system for all settings take effect.
 
@@ -29,9 +31,10 @@ After installation you should reboot your system for all settings take effect.
 
 - [zsh](http://zsh.sourceforge.net/) - Shell designed for interactive use.
 - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) - An open source, community-driven framework for managing your zsh configuration.
-- [z](https://github.com/rupa/z/) - Jump around in your directories.
+- [z](https://github.com/rupa/z/) - Jump around in your directories (command line tool).
 - [git](https://git-scm.com/) - A free and open source distributed version control system.
 - [nvm](https://github.com/creationix/nvm) - Node Version Manager.
+- [Node.js](https://nodejs.org/) - It is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined. Free. Open source. Runs everywhere.
 - [Vim](https://www.vim.org/) - A highly configurable text editor for efficiently creating and changing any kind of text.
 
@@ -42,12 +45,6 @@ After installation you should reboot your system for all settings take effect.
 - [compton](https://wiki.archlinux.org/index.php/Compton) - It's a standalone compositor for Xorg.
 
 ### What's next
-
-Install node.js latest version.
-
-```
-nvm install node
-```
 
 Enable color scheme for Vim by uncomment the lines below.
 
@@ -60,8 +57,8 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ### Window
 
-- `Win+Enter` - Open terminal.
-- `Win+q` - Close window.
+- `Win+Enter` - Open a terminal in a new window.
+- `Win+q` - Close focused window.
 - `Win+f` - Toggle fullscreen.
 - `Win+Shift+f` - Toggle floating/tiling mode.
 - `Win+p` - Focus parent window.
@@ -78,7 +75,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ### System
 
-- `Win+Space` - Show app search bar (fuzzy finder).
+- `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1. VSCode opens in WS2.
 - `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
 - `Win+ESC` - Lock screen using [i3lock](https://github.com/i3/i3lock). Enter password to return.
 - `Win+Mute` - Mute master volume.
@@ -87,7 +84,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ### Programs
 
-- `Win+e` - Open ranger (file manager).
+- `Win+e` - Open ranger in a new window (file manager).
 
 ### Workspaces
 
@@ -104,7 +101,7 @@ A `~/dev/` folder is created in your home directory when Zsh runs at first time.
 
 ### Visual Studio Code
 
-It comes with Vim extension installed by default and some other extensions as well. You can check them by pressing _Ctrl+Shift+X_ inside VSCode.
+It comes with Vim extension preinstalled by default and some other extensions as well. You can check them by pressing _Ctrl+Shift+X_ inside VSCode.
 
 There are some **keybindings** that you can check at _File > Preferences > Keyboard Shortcuts_
 and then search for _@source:user_ in the _Search keybindings_ field.
@@ -115,7 +112,7 @@ They are on top of the list.
 
 ### Vim
 
-It comes with a bunch of plugins preinstalled, such as NerdTree, Suround, AirLine etc.
+It comes with a bunch of preinstalled plugins, such as NerdTree, vim-suround, vim-airline etc.
 You can check at `~/.vimrc` file.
 
 ### Wallpapers
@@ -124,8 +121,11 @@ To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfil
 
 ## TODO
 
-- Put a desktop screenshot.
-- Install node packages during install: now, terminal-alarm. Then document them here.
+- Set wallpaper by other means. For example: ranger keybinding.
+- Put a desktop screenshot and first zsh access message.
+- Install node and npm packages during install: now, terminal-alarm. Then document them here.
+- Use st terminal emulator instead of gnome-terminal.
+- Remove unused software during installation such as: firefox, nautilus, ubuntu settings, etc.
 
 ## License
 
