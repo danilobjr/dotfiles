@@ -29,6 +29,7 @@ After installation you should reboot your system for all settings take effect.
 
 ### Dev Stuff
 
+- [Rxvt-unicode](https://wiki.archlinux.org/index.php/Rxvt-unicode) - Terminal emulator.
 - [zsh](http://zsh.sourceforge.net/) - Shell designed for interactive use.
 - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) - An open source, community-driven framework for managing your zsh configuration.
 - [z](https://github.com/rupa/z/) - Jump around in your directories (command line tool).
