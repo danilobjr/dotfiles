@@ -132,7 +132,7 @@ Renaming files:
 
 #### Ranger - Smart shortcuts
 
-I've added many folder-specific shortcuts for move fast. , but here's the idea. You type shortcut with this semantic:
+I've added many folder-specific shortcuts for fast move. Here's the idea:
 
 ```
 <Action><Location>
@@ -141,12 +141,14 @@ I've added many folder-specific shortcuts for move fast. , but here's the idea. 
 `<Action>`:
 
 - `g` - Go to.
-- `m` - Move.
-- `t` - Create new tab.
+- `Y` - Copy to.
+- `m` - Move to.
+- `t` - Create new tab at.
+- `X` - Unzip at.
 
 `<Location>`:
 
-- `/` - /
+- `/` - / (except for `X` action)
 - `h` - ~
 - `c` - ~/.config
 - `?` - ~/.config/ranger
@@ -158,7 +160,7 @@ I've added many folder-specific shortcuts for move fast. , but here's the idea. 
 
 Examples:
 
-- `gl` - Go to _~/Downloads folder.
+- `gl` - Go to _~/Downloads_ folder.
 - `mv` - Move selected file/folder to _~/Videos_ folder.
 - `td` - Create a new tab at _~/dev_ folder.
 
@@ -172,10 +174,10 @@ Examples:
 - `C` - Prompt the selected file/folder to open with Visual Studio Code.
 - `V` - Prompt for a new file to open with Vim.
 
-#### Ranger - Zip
+#### Ranger - Zip and Unzip
 
-- `Z` - Zip selected objects to the current folder named as _container.zip_.
-- `X` - Prompt a unzip command with current file name.
+- `ZZ` - Zip selected objects to the current folder named as _container.zip_.
+- `XX` - Prompt a unzip command with current file name (it has [Smart shortcuts](#ranger---smart-shortcuts)).
 
 #### Ranger - System
 
