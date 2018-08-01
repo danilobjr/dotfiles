@@ -1,2 +1,7 @@
-#vim
+# vim
 *.swp
+
+# ranger
+ranger/bookmarks
+ranger/history
+ranger/tagged
