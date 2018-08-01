@@ -55,7 +55,12 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 
 ## Usage
 
-### Window
+### i3
+
+[i3wm](https://github.com/i3/i3) uses a bunch of shortcuts to manage things.
+Here are the main ones separated by category.
+
+#### i3 - Window Management
 
 - `Win+Enter` - Open a terminal in a new window.
 - `Win+q` - Close focused window.
@@ -73,7 +78,7 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
   - `h, j, k or l` - Change size when resize mode is on.
   - `Arrow keys` - Change size when resize mode is on.
 
-### System
+#### i3 - System
 
 - `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1. VSCode opens in WS2.
 - `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
@@ -82,16 +87,99 @@ colorscheme base16-default-dark " the base16-shell colors has precedence
 - `Win+Decrease Volume (function key)` - Decrease master volume.
 - `Win+Mute Volume (function key)` - Mute master volume.
 
-### Programs
+#### i3 - Programs
 
 - `Win+e` - Open ranger in a new window (file manager).
 
-### Workspaces
+#### i3 - Workspaces
 
 - `Win+(Number)` - Go to that number workspace.
 - `Win+Shift+(Number)` - Send focused window to that workspace.
 - `Win+PgUp` - Go to previous workspace.
 - `Win+PgDown` - Go to next workspace.
+
+### Ranger
+
+By using this awesome piece of technology with default settings you already are kicking-ass productive. I just added some more keymaps accordinglly to my preferences.
+
+If you're not familiar with it, you can see this [cheatsheet](https://ranger.github.io/cheatsheet.png) for a basic comprehension.
+I put some very basic shortcuts bellow as well.
+
+Some considerations:
+
+- As mentioned before, you can open ranger with `Win+e`.
+- _Hidden files_ is shown by default.
+- I removed all keymaps for _bookmarks_. I added some smart ones for a fast access to some folders.
+- I removed `q` and `ZZ` for quit. Only `Q` remains. Or simply use `Win+q` from i3.
+
+And you can change all these in [rc.conf](ranger/rc.vonf) file.
+
+#### Ranger - Basics
+
+These are the basic keymaps. Note that they are mostly vim-based.
+
+- `h, j, k or l` - Move left, down, up or right (where left moves up in the directory structure, right moves into a folder or open if is a file).
+- `Space` - Select file.
+- `dd` - Cut selected files.
+- `yy` - Copy selected files.
+- `pp` - Paste/move copied/cut files.
+- `/` - Search. Then use `n`/`N` for next/previous result.
+Renaming files:
+- `cw` - Rename file from scratch.
+- `A` - Rename file appending cursor to the end.
+- `a` - Rename file putting cursor before the extension.
+- `I` - Rename file putting cursor at the beginning.
+
+#### Ranger - Smart shortcuts
+
+I've added many folder-specific shortcuts for move fast. , but here's the idea. You type shortcut with this semantic:
+
+```
+<Action><Location>
+```
+
+`<Action>`:
+
+- `g` - Go to.
+- `m` - Move.
+- `t` - Create new tab.
+
+`<Location>`:
+
+- `/` - /
+- `h` - ~
+- `c` - ~/.config
+- `?` - ~/.config/ranger
+- `.` - ~/.dotfiles
+- `d` - ~/dev
+- `l` - ~/Downloads
+- `p` - ~/Pictures
+- `v` - ~/Videos
+
+Examples:
+
+- `gl` - Go to _~/Downloads folder.
+- `mv` - Move selected file/folder to _~/Videos_ folder.
+- `td` - Create a new tab at _~/dev_ folder.
+
+#### Ranger - General file manipulation
+
+- `mkd` - Create a new directory (it'll ask for you name it).
+- `D` - Delete selected files/folders (it'll prompt you).
+
+#### Ranger - Code editors
+
+- `C` - Prompt the selected file/folder to open with Visual Studio Code.
+- `V` - Prompt for a new file to open with Vim.
+
+#### Ranger - Zip
+
+- `Z` - Zip selected objects to the current folder named as _container.zip_.
+- `X` - Prompt a unzip command with current file name.
+
+#### Ranger - System
+
+- `bg` - Set the selected image as wallpaper.
 
 ### Zsh
 
