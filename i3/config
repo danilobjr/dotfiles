@@ -28,7 +28,8 @@ set $urgent-color        #e53935
 set $lock-bg-color       000000
 
 # default terminal
-set $term --no-startup-id gnome-terminal #--window-with-profile=NoScrollbar
+set $term --no-startup-id gnome-terminal
+# set $term --no-startup-id gnome-terminal --window-with-profile=NoScrollbar
 
 # icons for workspaces
 set $ws1  "1 "
@@ -76,6 +77,8 @@ for_window [class="^.*"] border pixel 3
 exec_always feh --bg-scale ${DOTFILES}/wallpapers/wall.jpg
 # fade effects
 exec_always compton -f -D 3
+# start audio
+exec --no-startup-id start-pulseaudio-x11
 
 # Bindings
 # ========
@@ -187,15 +190,15 @@ bindsym $mod+F4           exec system-off
 #---- resize window ----#
 
 mode "resize" {
-  bindsym h               resize shrink width 10 px or 10 ppt
-  bindsym j               resize shrink height 10 px or 10 ppt
-  bindsym k               resize grow height 10 px or 10 ppt
-  bindsym l               resize grow width 10 px or 10 ppt
+  bindsym h               resize shrink width 5 px or 5 ppt
+  bindsym j               resize shrink height 5 px or 5 ppt
+  bindsym k               resize grow height 5 px or 5 ppt
+  bindsym l               resize grow width 5 px or 5 ppt
 
-  bindsym Left            resize shrink width 10 px or 10 ppt
-  bindsym Down            resize shrink height 10 px or 10 ppt
-  bindsym Up              resize grow height 10 px or 10 ppt
-  bindsym Right           resize grow width 10 px or 10 ppt
+  bindsym Left            resize shrink width 5 px or 5 ppt
+  bindsym Down            resize shrink height 5 px or 5 ppt
+  bindsym Up              resize grow height 5 px or 5 ppt
+  bindsym Right           resize grow width 5 px or 5 ppt
 
   bindsym Return          mode "default"
   bindsym Escape          mode "default"
