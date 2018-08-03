@@ -29,4 +29,5 @@ fi
 export DOTFILES="$HOME/.dotfiles"
 export PATH="$PATH:$DOTFILES/scripts"
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export PATH="$PATH:$HOME/.local/bin"
 # export BROWSER=chromium
