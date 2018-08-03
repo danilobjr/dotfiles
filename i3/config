@@ -20,20 +20,16 @@
 set $mod Mod4
 
 # colors
-# set $inactive-bg-color   #2f343f
-# set $inactive-text-color #676e7d
-# set $main-color          #3e7aca
-set $text-color          #f3f4f5
-# set $urgent-color        #e53935
 set $lock-bg-color       000000
-
-# Set colors from Xresources
-# Change 'color7' and 'color2' to whatever colors you want i3 to use
-# from the generated scheme.
-# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# set colors from Xresources
+# NOTE: The final HEX colors in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
-set_from_resource $fg-color i3wm.color7 #f0f0f0
-set_from_resource $bg-color i3wm.color2 #f0f0f0
+set_from_resource $inactive-bg-color    i3wm.color0 #2f343f
+set_from_resource $inactive-text-color  i3wm.color8 #676e7d
+set_from_resource $selected-text-color  i3wm.color0 #2f343f
+set_from_resource $main-color           i3wm.color4 #3e7aca
+set_from_resource $text-color           i3wm.color7 #f3f4f5
+set_from_resource $urgent-color         i3wm.color1 #e53935
 
 # default terminal
 set $term --no-startup-id urxvt
@@ -66,20 +62,20 @@ bar {
   status_command i3blocks
   position top
   colors {
-    focused_workspace $bg-color $bg-color $fg-color
+    focused_workspace $main-color $main-color $selected-text-color
   }
 }
 
 #---- windows ----#
 
-# class                 border    backgr    text      indicator child_border
-client.focused          $bg-color $bg-color $fg-color $bg-color $bg-color
-client.focused_inactive $bg-color $bg-color $fg-color $bg-color $bg-color
-client.unfocused        $bg-color $bg-color $fg-color $bg-color $bg-color
-client.urgent           $bg-color $bg-color $fg-color $bg-color $bg-color
-client.placeholder      $bg-color $bg-color $fg-color $bg-color $bg-color
+# class                 border              backgr              text                  indicator           child_border
+client.focused          $main-color         $main-color         $text-color           $text-color         $main-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color  $inactive-bg-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color  $inactive-bg-color
+client.urgent           $urgent-color       $urgent-color       $text-color           $urgent-color       $urgent-color
+# client.placeholder      $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color  $inactive-bg-color
 
-client.background       $bg-color
+client.background       $main-color
 
 # border
 for_window [class="^.*"] border pixel 3
@@ -108,7 +104,7 @@ floating_modifier $mod
 bindsym $mod+Return exec  $term -e zsh
 
 # show search bar (apps)
-bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -nb '$fg-color' -nf '$bg-color' -sb '$bg-color' -sf '$fg-color'"
+bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -nb '$inactive-bg-color' -nf '$inactive-text-color' -sb '$main-color' -sf '$selected-text-color'"
 
 bindsym $mod+Prior        workspace prev
 bindsym $mod+Next         workspace next
