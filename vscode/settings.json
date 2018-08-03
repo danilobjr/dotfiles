@@ -39,6 +39,7 @@
     "replace": "#D05353",
   },
   "vim.statusBarColorControl": true,
+  "window.menuBarVisibility": "toggle",
   "window.openFilesInNewWindow": "off",
   "window.zoomLevel": 0,
   "workbench.iconTheme": "eq-material-theme-icons-darker",
