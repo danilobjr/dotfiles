@@ -88,7 +88,7 @@ for_window [class="^.*"] border pixel 3
 # =======
 
 # wallpaper
-exec_always wal -i ${DOTFILES}/wallpapers/wall.png
+exec_always wal -i ${DOTFILES}/wallpapers/wall.jpg
 # fade effects
 exec_always compton -f -D 3
 # start audio
