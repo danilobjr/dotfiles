@@ -22,7 +22,7 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "vim.statusBarColors": {
-    "normal": "#007ACC",
+    "normal": "#3e7aca",
     "insert": "#679436",
     "visual": [
       "#D5DFE5",
@@ -43,9 +43,9 @@
   "window.zoomLevel": 0,
   "workbench.iconTheme": "eq-material-theme-icons-darker",
   "workbench.colorCustomizations": {
-    "statusBar.background": "#007ACC",
-    "statusBar.noFolderBackground": "#007ACC",
-    "statusBar.debuggingBackground": "#007ACC"
+    "statusBar.background": "#3e7aca",
+    "statusBar.noFolderBackground": "#3e7aca",
+    "statusBar.debuggingBackground": "#3e7aca"
   },
   "typescript.updateImportsOnFileMove.enabled": "never",
   "banner-comments-plus.favorites": [
