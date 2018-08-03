@@ -22,7 +22,7 @@ set $mod Mod4
 # colors
 set $inactive-bg-color   #2f343f
 set $inactive-text-color #676e7d
-set $main-color          #e95420
+set $main-color          #3e7aca
 set $text-color          #f3f4f5
 set $urgent-color        #e53935
 set $lock-bg-color       000000
