@@ -16,23 +16,19 @@ yellow="\033[1;33m"
 light_cyan="\033[1;36m"
 no_color="\033[0m"
 
-if ! [ -d "$HOME/dev" ]; then
-  mkdir $HOME/dev;
+if ! [ -d "$HOME/repos" ]; then
+  mkdir $HOME/repos;
   echo
-  echo -e "${yellow}  ╭──────────────────────────────────────╮"
-  echo -e "${yellow}  │                                      │"
-  echo -e "${yellow}  │   ${no_color}First time open.                   ${yellow}│"
-  echo -e "${yellow}  │   ${light_cyan}$HOME/dev ${no_color}folder created.   ${yellow}│"
-  echo -e "${yellow}  │   ${no_color}Usually used as repos folder.      ${yellow}│"
-  echo -e "${yellow}  │   ${no_color}Zsh will open it by default.       ${yellow}│"
-  echo -e "${yellow}  │                                      │"
-  echo -e "${yellow}  │   ${light_cyan}-dotfiles                          ${yellow}│"
-  echo -e "${yellow}  │                                      │"
-  echo -e "${yellow}  ╰──────────────────────────────────────╯"
+  echo -e "${yellow}  ╭────────────────────────────────────────╮"
+  echo -e "${yellow}  │                                        │"
+  echo -e "${yellow}  │   ${no_color}Running Zsh for the First time.      ${yellow}│"
+  echo -e "${yellow}  │   ${light_cyan}$HOME/repos ${no_color}folder created.   ${yellow}│"
+  echo -e "${yellow}  │                                        │"
+  echo -e "${yellow}  │   ${light_cyan}-dotfiles                            ${yellow}│"
+  echo -e "${yellow}  │                                        │"
+  echo -e "${yellow}  ╰────────────────────────────────────────╯"
   echo
 fi
-
-cd /home/danilo/dev
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
