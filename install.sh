@@ -163,6 +163,21 @@ echo "██████╔╝███████╗███████║�
 echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     " >> $log;
 echoNoColorEmptyLine;
 
+dialogDesktop "........Common home directory folders";
+echoSectionTitle "Creating common folders at home directory";
+if [ ! -d "$HOME/Downloads" ]; then
+  mkdir $HOME/Downloads;
+  echoSectionTitle "$HOME/Downloads folder created";
+fi
+if [ ! -d "$HOME/Pictures" ]; then
+  mkdir $HOME/Pictures;
+  echoSectionTitle "$HOME/Pictures folder created";
+fi
+if [ ! -d "$HOME/Videos" ]; then
+  mkdir $HOME/Videos;
+  echoSectionTitle "$HOME/Videos folder created";
+fi
+
 dialogDesktop ".................................i3wm";
 echoSectionTitle "Installing i3wm";
 install i3;
