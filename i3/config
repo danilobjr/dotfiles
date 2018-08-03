@@ -58,13 +58,13 @@ gaps outer 0
 #---- i3bar ----#
 
 # main system bar that shows workspaces and some system status
-bar {
-  status_command i3blocks
-  position top
-  colors {
-    focused_workspace $main-color $main-color $selected-text-color
-  }
-}
+# bar {
+#   status_command i3blocks
+#   position top
+#   colors {
+#     focused_workspace $main-color $main-color $selected-text-color
+#   }
+# }
 
 #---- windows ----#
 
@@ -83,6 +83,8 @@ for_window [class="^.*"] border pixel 3
 # Scripts
 # =======
 
+# polybar
+exec_always --no-startup-id $SHELL $DOTFILES/scripts/launch-polybar
 # wallpaper
 exec_always wal -i ${DOTFILES}/wallpapers/wall.jpg
 # fade effects
