@@ -1,6 +1,9 @@
 #!/bin/bash
 
-option=$(echo -e "Logout\nReboot\nHibernate\nShutdown" | dmenu -i -p "Off options" -fn "Ubuntu Mono:pixelsize=19" -sb "#e95420");
+# import colors from pywal
+. "${HOME}/.cache/wal/colors.sh"
+
+option=$(echo -e "Logout\nReboot\nHibernate\nShutdown" | dmenu -i -p "Off options" -fn "Ubuntu Mono:pixelsize=19" -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15");
 
 case "$option" in
   "Logout") i3-msg exit;;

@@ -20,12 +20,20 @@
 set $mod Mod4
 
 # colors
-set $inactive-bg-color   #2f343f
-set $inactive-text-color #676e7d
-set $main-color          #3e7aca
+# set $inactive-bg-color   #2f343f
+# set $inactive-text-color #676e7d
+# set $main-color          #3e7aca
 set $text-color          #f3f4f5
-set $urgent-color        #e53935
+# set $urgent-color        #e53935
 set $lock-bg-color       000000
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg-color i3wm.color7 #f0f0f0
+set_from_resource $bg-color i3wm.color2 #f0f0f0
 
 # default terminal
 set $term --no-startup-id urxvt
@@ -58,17 +66,20 @@ bar {
   status_command i3blocks
   position top
   colors {
-    focused_workspace $main-color $main-color $text-color
+    focused_workspace $bg-color $bg-color $fg-color
   }
 }
 
 #---- windows ----#
 
-# class	                border	           bg                 text                 indicator
-client.focused          $main-color        $main-color 	      $text-color          $indicator-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color
+# class                 border    backgr    text      indicator child_border
+client.focused          $bg-color $bg-color $fg-color $bg-color $bg-color
+client.focused_inactive $bg-color $bg-color $fg-color $bg-color $bg-color
+client.unfocused        $bg-color $bg-color $fg-color $bg-color $bg-color
+client.urgent           $bg-color $bg-color $fg-color $bg-color $bg-color
+client.placeholder      $bg-color $bg-color $fg-color $bg-color $bg-color
+
+client.background       $bg-color
 
 # border
 for_window [class="^.*"] border pixel 3
@@ -97,7 +108,7 @@ floating_modifier $mod
 bindsym $mod+Return exec  $term -e zsh
 
 # show search bar (apps)
-bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -sb '$main-color'"
+bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -nb '$fg-color' -nf '$bg-color' -sb '$bg-color' -sf '$fg-color'"
 
 bindsym $mod+Prior        workspace prev
 bindsym $mod+Next         workspace next

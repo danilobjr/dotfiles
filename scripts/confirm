@@ -1,3 +1,6 @@
 #!/bin/bash
 
-[ $(echo -e "No\nYes" | dmenu -i -p "$1" -fn "Ubuntu Mono:pixelsize=19" -sb "#e95420") == "Yes" ] && $2
+# import colors from pywal
+. "${HOME}/.cache/wal/colors.sh"
+
+[ $(echo -e "No\nYes" | dmenu -i -p "$1" -fn "Ubuntu Mono:pixelsize=19" -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15") == "Yes" ] && $2
