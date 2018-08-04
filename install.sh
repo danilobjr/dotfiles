@@ -9,6 +9,7 @@ light_purple="\033[1;35m"
 no_color="\033[0m"
 
 # locations
+
 dotfiles="$HOME/.dotfiles"
 tmp="/tmp/.dotfiles"
 log="$HOME/.dotfiles.log"
@@ -83,7 +84,7 @@ fi
 
 # TODO: fix some symlink
 echo
-echo -e "${light_blue}Hello, fellow dev! Welcome to Danilo's";
+echo -e "${light_blue}Hello, fellow programmer! Welcome to Danilo's";
 echo
 
 echo "██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗";
@@ -280,11 +281,6 @@ echo "███████║███████╗   ██║      ██�
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" >> $log;
 echoNoColorEmptyLine;
 
-# urxvt
-dialogSettings ".......................................Xdefaults";
-echoHighlight "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
-ln -s ${dotfiles}/.Xdefaults ${HOME}/.Xdefaults
-
 # cloning dotfiles repo
 dialogSettings "................................Cloning dotfiles";
 echoHighlight "Cloning dotfiles repo in $dotfiles directory";
@@ -295,6 +291,11 @@ if [ -f "$HOME/.profile" ]; then
 fi
 
 ln -s ${dotfiles}/.profile ~/.profile;
+
+# urxvt
+dialogSettings ".......................................Xdefaults";
+echoHighlight "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
+ln -s ${dotfiles}/.Xdefaults ${HOME}/.Xdefaults
 
 # i3
 dialogSettings "..............................................i3";
