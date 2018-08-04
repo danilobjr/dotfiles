@@ -33,7 +33,7 @@ alert          = ${xrdb:color1:#bd2c40}
 ;secondary = #e60053
 ;alert = #bd2c40
 
-[bar/example]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
