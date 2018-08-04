@@ -52,6 +52,8 @@ alias i3config="vim ~/.config/i3/config"
 alias sai="sudo apt install"
 alias sap="sudo apt purge"
 alias saar="sudo apt autoremove"
+alias saud="sudo apt update"
+alias saug="sudo apt upgrade"
 
 # npm
 alias nrb="npm run build"
