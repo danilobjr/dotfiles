@@ -83,10 +83,12 @@ for_window [class="^.*"] border pixel 3
 # Scripts
 # =======
 
+# colorscheme
+exec_always wal -i $DOTFILES/wallpapers/wall.jpg
+# wallpaper
+exec_always betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscreen -w dimblur
 # polybar
 exec_always --no-startup-id $SHELL $DOTFILES/scripts/launch-polybar
-# wallpaper
-exec_always wal -i ${DOTFILES}/wallpapers/wall.jpg && betterlockscreen -u ${DOTFILES}/wallpapers/wall.jpg
 # fade effects
 exec_always compton -f -D 3
 # start audio
