@@ -19,7 +19,7 @@ fonts="$HOME/.fonts"
 fontFile=${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf
 
 # functions
-function echoSectionTitle() {
+function echoHighlight() {
   echo -e "${light_blue}$1${no_color}" >> $log;
 }
 
@@ -77,7 +77,7 @@ function dialogInstallationDone() {
 
 # create folders
 if [ -f "$log" ]; then
-  echoSectionTitle "Removing $log folder";
+  echoHighlight "Removing $log folder";
   rm $log;
 fi
 
@@ -118,10 +118,10 @@ done
 
 echo -e "${light_blue}Please wait...${no_color}"
 
-echoSectionTitle "Updating apt repos";
+echoHighlight "Updating apt repos";
 echo $password | sudo -S apt update 2>>$log 1>>$log;
 
-echoSectionTitle "Installing dialog";
+echoHighlight "Installing dialog";
 install dialog;
 
 dialog --title "Welcome" --ok-label "Next" --msgbox "Welcome to Danilo's dotfiles install script.\n\n
@@ -139,19 +139,19 @@ echo "   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     �
 echoNoColorEmptyLine;
 
 dialogTerminal ".......................................Zsh";
-echoSectionTitle "Installing Zsh";
+echoHighlight "Installing Zsh";
 install zsh;
 
 dialogTerminal ".......................................Git";
-echoSectionTitle "Installing Git";
+echoHighlight "Installing Git";
 install git;
 
 dialogTerminal ".................................Oh-My-Zsh";
-echoSectionTitle "Installing Oh-My-Zsh";
+echoHighlight "Installing Oh-My-Zsh";
 (wget -q https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh) 2>>$log 1>>$log;
 
 dialogTerminal ".........................................Z";
-echoSectionTitle "Installing Z.sh";
+echoHighlight "Installing Z.sh";
 (wget -qO ${HOME}/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>>$log 1>>$log;
 
 echoBlueEmptyLine;
@@ -164,42 +164,42 @@ echo "╚═════╝ ╚══════╝╚══════╝╚�
 echoNoColorEmptyLine;
 
 dialogDesktop "........Common home directory folders";
-echoSectionTitle "Creating common folders at home directory";
+echoHighlight "Creating common folders at home directory";
 if [ ! -d "$HOME/Downloads" ]; then
   mkdir $HOME/Downloads;
-  echoSectionTitle "$HOME/Downloads folder created";
+  echoHighlight "$HOME/Downloads folder created";
 fi
 if [ ! -d "$HOME/Pictures" ]; then
   mkdir $HOME/Pictures;
-  echoSectionTitle "$HOME/Pictures folder created";
+  echoHighlight "$HOME/Pictures folder created";
 fi
 if [ ! -d "$HOME/Videos" ]; then
   mkdir $HOME/Videos;
-  echoSectionTitle "$HOME/Videos folder created";
+  echoHighlight "$HOME/Videos folder created";
 fi
 
 dialogDesktop ".................................i3wm";
-echoSectionTitle "Installing i3wm";
+echoHighlight "Installing i3wm";
 install i3;
 
 dialogDesktop ".............................i3blocks";
-echoSectionTitle "Installing i3blocks";
+echoHighlight "Installing i3blocks";
 install i3blocks;
 
 dialogDesktop "..............................compton";
-echoSectionTitle "Installing compton";
+echoHighlight "Installing compton";
 install compton;
 
 dialogDesktop "..................................feh";
-echoSectionTitle "Installing feh";
+echoHighlight "Installing feh";
 install feh;
 
 dialogDesktop "...............................ranger";
-echoSectionTitle "Installing ranger";
+echoHighlight "Installing ranger";
 install ranger;
 
 dialogDesktop "................Brightness Controller";
-echoSectionTitle "Installing Brightness Controller";
+echoHighlight "Installing Brightness Controller";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>>$log 1>>$log;
 install brightness-controller;
 
@@ -213,53 +213,53 @@ echo "╚═════╝ ╚══════╝  ╚═══╝      ╚�
 echoNoColorEmptyLine;
 
 dialogDev "..........................................URxvt";
-echoSectionTitle "Installing URxvt";
+echoHighlight "Installing URxvt";
 install rxvt-unicode
 
 dialogDev "............................................Vim";
-echoSectionTitle "Installing Vim";
+echoHighlight "Installing Vim";
 install vim;
 
 dialogDev "...........................................curl";
-echoSectionTitle "Installing curl";
+echoHighlight "Installing curl";
 install curl;
 
 dialogDev ".........................................Vundle";
-echoSectionTitle "Installing Vundle";
+echoHighlight "Installing Vundle";
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>>$log 1>>$log;
 
 dialogDev "............................................nvm";
-echoSectionTitle "Installing nvm";
+echoHighlight "Installing nvm";
 (wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash) 2>>$log 1>>$log;
 
 dialogDev "........................................Node.js";
-echoSectionTitle "Installing node";
+echoHighlight "Installing node";
 . ~/.nvm/nvm.sh install node 2>>$log 1>>$log;
 
 dialogDev "............................................now";
-echoSectionTitle "Installing now";
+echoHighlight "Installing now";
 npm install -g now 2>>$log 1>>$log;
 
 dialogDev ".................................terminal-alarm";
-echoSectionTitle "Installing terminal-alarm";
+echoHighlight "Installing terminal-alarm";
 npm install -g terminal-alarm 2>>$log 1>>$log;
 
 dialogDev "..........................................snapd";
-echoSectionTitle "Installing snapd";
+echoHighlight "Installing snapd";
 install snapd;
 
 dialogDev ".............................Visual Studio Code";
-echoSectionTitle "Installing Visual Studio Code";
+echoHighlight "Installing Visual Studio Code";
 wget -qO ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868 2>>$log 1>>$log;
 sudo dpkg -i ${vscode_tmp} 2>>$log 1>>$log;
 sudo apt -f -y install 2>>$log 1>>$log;
 
 dialogDev ".......................................Chromium";
-echoSectionTitle "Installing Chromium";
+echoHighlight "Installing Chromium";
 install chromium;
 
 dialogDev "...................................Font Awesome";
-echoSectionTitle "Installing Font Awesome";
+echoHighlight "Installing Font Awesome";
 if [ ! -d "$tmp" ]; then
   mkdir ${tmp};
 fi
@@ -268,7 +268,7 @@ unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>>$log 1>>$log;
 if [ ! -d "$fonts" ]; then
   mkdir ${fonts};
 fi
-echoSectionTitle "Moving $fontFile to $fonts";
+echoHighlight "Moving $fontFile to $fonts";
 mv ${fontFile} ${fonts};
 
 echoBlueEmptyLine;
@@ -282,12 +282,12 @@ echoNoColorEmptyLine;
 
 # urxvt
 dialogSettings ".......................................Xdefaults";
-echoSectionTitle "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
+echoHighlight "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
 ln -s ${dotfiles}/.Xdefaults ${HOME}/.Xdefaults
 
 # cloning dotfiles repo
 dialogSettings "................................Cloning dotfiles";
-echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
+echoHighlight "Cloning dotfiles repo in $dotfiles directory";
 git clone https://github.com/danilobjr/dotfiles.git ${dotfiles} 2>>$log 1>>$log;
 
 if [ -f "$HOME/.profile" ]; then
@@ -298,53 +298,53 @@ ln -s ${dotfiles}/.profile ~/.profile;
 
 # i3
 dialogSettings "..............................................i3";
-echoSectionTitle "Creating symlink for i3 at $config/i3";
+echoHighlight "Creating symlink for i3 at $config/i3";
 rm -rf ${config}/i3;
 ln -sf ${dotfiles}/i3 ${config}/i3;
 
 # i3blocks
 dialogSettings "........................................i3blocks";
-echoSectionTitle "Creating symlink for i3blocks at $config/i3blocks";
+echoHighlight "Creating symlink for i3blocks at $config/i3blocks";
 ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
 sudo rm /usr/share/i3blocks/volume;
 sudo ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
 
 # ranger
 dialogSettings "..........................................ranger";
-echoSectionTitle "Moving ranger settings to $config/ranger";
+echoHighlight "Moving ranger settings to $config/ranger";
 # ranger --copy-config=all 2>>$log 1>>$log;
 ln -sf ${dotfiles}/ranger ${config}/ranger;
 
 # zsh
 dialogSettings ".............................................Zsh";
-echoSectionTitle "Creating symlink for Zsh at ~/.zshrc";
+echoHighlight "Creating symlink for Zsh at ~/.zshrc";
 rm ${HOME}/.zshrc;
 ln -s ${dotfiles}/zsh/.zshrc ~/.zshrc;
 echo $password | sudo -S chsh -s `which zsh` 2>>$log 1>>$log;
 
 # git
 dialogSettings ".......................................Gitconfig";
-echoSectionTitle "Creating symlink for .gitconfig at ~/.gitconfig";
+echoHighlight "Creating symlink for .gitconfig at ~/.gitconfig";
 ln -s ${dotfiles}/git/.gitconfig ${HOME}/.gitconfig;
 
 # tmux
 dialogSettings "............................................tmux";
-echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
+echoHighlight "Creating symlink for tmux at ~/.tmux.conf";
 ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # vim
 dialogSettings ".............................................Vim";
-echoSectionTitle "Creating symlink for Vim at ~/.vimrc";
+echoHighlight "Creating symlink for Vim at ~/.vimrc";
 ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
 
 dialogSettings ".....................................Vim Plugins";
-echoSectionTitle "Installing Vim plugins";
+echoHighlight "Installing Vim plugins";
 
 vim +PluginInstall +qall 2>>$log 1>>$log;
 
 # vscode
 dialogSettings "...................Visual Studio Code Estensions";
-echoSectionTitle "Installing Visual Studio Code extensions";
+echoHighlight "Installing Visual Studio Code extensions";
 readarray vscode_extensions < ${dotfiles}/vscode/extensions;
 
 for i in ${vscode_extensions[@]}
@@ -359,10 +359,10 @@ ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 dialogInstallationDone;
 sleep 2;
 
-echoSectionTitle "Removing $tmp folder"
+echoHighlight "Removing $tmp folder"
 rm -rf ${tmp};
 
-echoSectionTitle "Done."
+echoHighlight "Done."
 should_reboot=$(dialog --title "Process Completed" --yes-label "Reboot now" --default-button no --yesno "Congratulations!
 Now you have all the environment set in just minutes.
 \n\nRead the docs in https://github.com/danilobjr/dotfiles to know the features and keymappings.
