@@ -36,8 +36,18 @@ function echoNoColorEmptyLine() {
   echo -e "${no_color}\n" >> $log;
 }
 
+function dialogDependencies() {
+  dialog --title "Installation Process" --infobox "Dependencies$1
+  \nTerminal stuff
+  \nDesktop Environment
+  \nDev stuff
+  \nSettings
+  \n\nPlease wait..." 8 60;
+}
+
 function dialogTerminal() {
-  dialog --title "Installation Process" --infobox "Terminal stuff$1
+  dialog --title "Installation Process" --infobox "Dependencies..........................................OK
+  \nTerminal stuff$1
   \nDesktop Environment
   \nDev stuff
   \nSettings
@@ -45,7 +55,8 @@ function dialogTerminal() {
 }
 
 function dialogDesktop() {
-  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  dialog --title "Installation Process" --infobox "Dependencies..........................................OK
+  \nTerminal stuff........................................OK
   \nDesktop Environment$1
   \nDev stuff
   \nSettings
@@ -53,7 +64,8 @@ function dialogDesktop() {
 }
 
 function dialogDev() {
-  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  dialog --title "Installation Process" --infobox "Dependencies..........................................OK
+  \nTerminal stuff........................................OK
   \nDesktop Environment...................................OK
   \nDev stuff$1
   \nSettings
@@ -61,15 +73,17 @@ function dialogDev() {
 }
 
 function dialogSettings() {
-  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+  dialog --title "Installation Process" --infobox "Dependencies..........................................OK
+  \nTerminal stuff........................................OK
   \nDesktop Environment...................................OK
   \nDev stuff.............................................OK
   \nSettings$1
   \n\nPlease wait..." 8 60;
 }
 
-function dialogInstallationDone() {
-  dialog --title "Installation Process" --infobox "Terminal stuff........................................OK
+function dialogInstallationAlmostDone() {
+  dialog --title "Installation Process" --infobox "Dependencies..........................................OK
+  \nTerminal stuff........................................OK
   \nDesktop Environment...................................OK
   \nDev stuff.............................................OK
   \nSettings..............................................OK
@@ -82,7 +96,6 @@ if [ -f "$log" ]; then
   rm $log;
 fi
 
-# TODO: fix some symlink
 echo
 echo -e "${light_blue}Hello, fellow programmer! Welcome to Danilo's";
 echo
@@ -129,6 +142,51 @@ dialog --title "Welcome" --ok-label "Next" --msgbox "Welcome to Danilo's dotfile
 This script will automatically install an i3wm desktop and some dev and utilities stuff, which I use in my main machine.\n\n
 So sit back and relax. It'll take some time, but when done, you'll have a much more simpler, focused and performant system.\n\n
 -Danilo" 15 60;
+
+echoBlueEmptyLine;
+echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗" >> $log;
+echo "██╔══██╗██╔════╝██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔════╝████╗  ██║██╔════╝██║██╔════╝██╔════╝" >> $log;
+echo "██║  ██║█████╗  ██████╔╝█████╗  ██╔██╗ ██║██║  ██║█████╗  ██╔██╗ ██║██║     ██║█████╗  ███████╗" >> $log;
+echo "██║  ██║██╔══╝  ██╔═══╝ ██╔══╝  ██║╚██╗██║██║  ██║██╔══╝  ██║╚██╗██║██║     ██║██╔══╝  ╚════██║" >> $log;
+echo "██████╔╝███████╗██║     ███████╗██║ ╚████║██████╔╝███████╗██║ ╚████║╚██████╗██║███████╗███████║" >> $log;
+echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝" >> $log;
+echoNoColorEmptyLine;
+
+dialogDependencies ".....................................i3-gaps";
+echoHighlight "Installing i3-gaps dependencies";
+install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
+libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
+libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev\
+libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake;
+
+dialogDependencies ".....................................apt-get";
+echoHighlight "Installing apt-get dependencies";
+install software-properties-common;
+
+dialogDependencies ".....................Visual Studio Code";
+echoHighlight "Installing Visual Studio Code dependencies";
+install libgtk2.0-0;
+
+dialogDependencies ".......................................PyWal";
+echoHighlight "Installing PyWal dependencies";
+install python3-pip imagemagick;
+
+dialogDependencies ".....................................Polybar";
+echoHighlight "Installing Polybar dependencies";
+install clang cmake libcairo2-dev libxcb-xkb-dev xcb-proto \
+libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libasound2-dev \
+libpulse-dev libiw-dev libmpdclient-dev libcurl4-openssl-dev python-xcbgen;
+
+dialogDependencies ".......................................Audio";
+echoHighlight "Installing audio dependencies";
+sudo snap install alsa-utils 1>>$log 2>>$log;
+
+dialogDependencies ".......................betterlockscreen";
+echoHighlight "Installing betterlockscreen dependencies";
+install imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
+libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
+libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
+libjpeg-turbo8-dev libpam0g-dev;
 
 echoBlueEmptyLine;
 echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     " >> $log;
@@ -245,10 +303,6 @@ dialogDev ".................................terminal-alarm";
 echoHighlight "Installing terminal-alarm";
 npm install -g terminal-alarm 2>>$log 1>>$log;
 
-dialogDev "..........................................snapd";
-echoHighlight "Installing snapd";
-install snapd;
-
 dialogDev ".............................Visual Studio Code";
 echoHighlight "Installing Visual Studio Code";
 wget -qO ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868 2>>$log 1>>$log;
@@ -357,7 +411,7 @@ ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
 ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
 ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 
-dialogInstallationDone;
+dialogInstallationAlmostDone;
 sleep 2;
 
 echoHighlight "Removing $tmp folder"
