@@ -240,4 +240,4 @@ bindsym XF86AudioRaiseVolume exec amixer -c 1 -D pulse sset Master 5%+
 # attach apps to specific workspace
 assign [class="Google-chrome"]  $ws1
 assign [class="Chromium"]       $ws1
-assign [class="Code"]           $ws2
+# assign [class="Code"]           $ws2
