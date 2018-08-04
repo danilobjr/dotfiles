@@ -50,6 +50,7 @@ alias i3config="vim ~/.config/i3/config"
 
 # apt-get
 alias sai="sudo apt install"
+alias sap="sudo apt purge"
 alias saar="sudo apt autoremove"
 
 # npm
