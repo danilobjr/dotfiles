@@ -32,6 +32,7 @@ You can search for a related issue at [issues tab](https://github.com/danilobjr/
 - [LightDM](https://freedesktop.org/wiki/Software/LightDM/) - Cross-desktop display manager.
 - [Polybar](https://github.com/jaagr/polybar) - A fast and easy-to-use status bar.
 - [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen) - Sweet looking lockscreen for linux system - i3lock.
+- [neofetch](https://github.com/dylanaraps/neofetch) - A command-line system information tool written in bash 3.2+.
 - [pywal](https://github.com/dylanaraps/pywal) - Generate and change color-schemes on the fly.
 - [dmenu](http://tools.suckless.org/dmenu) - A dynamic menu for X.
 - [ranger](https://github.com/ranger/ranger) - A VIM-inspired filemanager for the console.
