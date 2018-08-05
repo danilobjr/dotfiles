@@ -18,14 +18,28 @@ bash <(wget -qO- https://raw.githubusercontent.com/danilobjr/dotfiles/master/ins
 
 After installation you should reboot your system for all settings take effect.
 
+## Troubleshooting
+
+If something goes wrong, take a look at installation log file _.dotfiles.log_ in your home directory.
+
+You can search for a related issue at [issues tab](https://github.com/danilobjr/dotfiles/issues) as well. If there isn't, [create one](https://github.com/danilobjr/dotfiles/issues/new).
+
 ## Resources
 
 ### Desktop Environment
 
-- [i3wm](https://github.com/i3/i3) - Windows Management.
-- [i3blocks](https://github.com/vivien/i3blocks) - Status line for the i3.
+- [i3-gaps](https://github.com/Airblader/i3) - Windows Management.
+- [LightDM](https://freedesktop.org/wiki/Software/LightDM/) - Cross-desktop display manager.
+- [Polybar](https://github.com/jaagr/polybar) - A fast and easy-to-use status bar.
+- [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen) - Sweet looking lockscreen for linux system - i3lock.
+- [pywal](https://github.com/dylanaraps/pywal) - Generate and change color-schemes on the fly.
+- [dmenu](http://tools.suckless.org/dmenu) - A dynamic menu for X.
 - [ranger](https://github.com/ranger/ranger) - A VIM-inspired filemanager for the console.
 - [Chromium](https://www.chromium.org/Home) - Open-source browser.
+- [feh](https://feh.finalrewind.org) - An X11 image viewer aimed mostly at console users.
+- [scrot](http://freshmeat.sourceforge.net/projects/scrot) - A simple commandline screen capture utility.
+- [Brightness Controller](https://github.com/lordamit/Brightness)
+- [compton](https://wiki.archlinux.org/index.php/Compton) - It's a standalone compositor for Xorg.
 
 ### Dev Stuff
 
@@ -36,14 +50,9 @@ After installation you should reboot your system for all settings take effect.
 - [git](https://git-scm.com/) - A free and open source distributed version control system.
 - [nvm](https://github.com/creationix/nvm) - Node Version Manager.
 - [Node.js](https://nodejs.org/) - It is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [now](https://zeit.co/now) - Realtime Global Deployments.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined. Free. Open source. Runs everywhere.
 - [Vim](https://www.vim.org/) - A highly configurable text editor for efficiently creating and changing any kind of text.
-
-### Utilities
-
-- [Brightness Controller](https://github.com/lordamit/Brightness)
-- [feh](https://feh.finalrewind.org/) - An X11 image viewer aimed mostly at console users.
-- [compton](https://wiki.archlinux.org/index.php/Compton) - It's a standalone compositor for Xorg.
 
 ### What's next
 
@@ -83,7 +92,7 @@ Here are the main ones separated by category.
 
 - `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1. VSCode opens in WS2.
 - `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
-- `Win+ESC` - Lock screen using [i3lock](https://github.com/i3/i3lock). Enter password to return.
+- `Win+ESC` - Lock screen using [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen) script. Enter password to return.
 - `Win+Increase Volume (function key)` - Increase master volume.
 - `Win+Decrease Volume (function key)` - Decrease master volume.
 - `Win+Mute Volume (function key)` - Mute master volume.
@@ -98,6 +107,10 @@ Here are the main ones separated by category.
 - `Win+Shift+(Number)` - Send focused window to that workspace.
 - `Win+PgUp` - Go to previous workspace.
 - `Win+PgDown` - Go to next workspace.
+
+#### i3 - Customization
+
+You can customize i3 in the [config](i3/config) file. After changes, just hit `Win+F5` to reload it.
 
 ### Ranger
 
@@ -172,13 +185,24 @@ Examples:
 
 #### Ranger - Code editors
 
-- `C` - Prompt the selected file/folder to open with Visual Studio Code.
-- `V` - Prompt for a new file to open with Vim.
+There's a common pattern for Vim and Visual Studio Code.
+
+Visual Studio Code.
+
+- `CC` - Open selected object in Code.
+- `CN` - Prompt shell command line to type a new file and open it in Code.
+- `CD` - Open current directory in Code.
+
+Vim.
+
+- `VV` - Open selected object in Vim.
+- `VN` - Prompt shell command line to type a new file and open it in Vim.
+- `VD` - Open current directory in Vim.
 
 #### Ranger - Zip and Unzip
 
 - `ZZ` - Zip selected objects to the current folder named as _container.zip_.
-- `XX` - Prompt a unzip command with current file name (it has [Smart shortcuts](#ranger---smart-shortcuts)).
+- `XX` - Prompt a unzip command with current file name (it has [Smart shortcuts](#ranger---smart-shortcuts) to extract at specific directories).
 
 #### Ranger - System
 
@@ -201,21 +225,20 @@ Some **snippets** are defined as well for Javascript and Typescript, including R
 You can see them at _File > Preferences > User Snippets_.
 They are on top of the list.
 
+_**Note:** You can press Alt to toggle menu._
+
 ### Vim
 
-It comes with a bunch of preinstalled plugins, such as NerdTree, vim-suround, vim-airline etc.
+It comes with some preinstalled plugins, such as NerdTree, vim-suround, etc.
 You can check at `~/.vimrc` file.
 
 ### Wallpapers
 
-To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfiles/wallpapers/` folder and then reload i3 `Win+Shift+r`.
+To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfiles/wallpapers/` folder and then reload i3 `Win+F5`.
 
 ## TODO
 
-- Put a desktop screenshot and first zsh access message.
-- Install node and npm packages during install: now, terminal-alarm. Then document them here.
-- Use st terminal emulator instead of gnome-terminal.
-- Remove unused software during installation such as: firefox, nautilus, ubuntu settings, etc.
+- Create a globa `bg` script to set wallpaper.
 
 ## License
 
