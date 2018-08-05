@@ -300,6 +300,10 @@ dialogDesktop "................................dmenu";
 echoHighlight "Installing dmenu";
 install dmenu;
 
+dialogDesktop "...............................ranger";
+echoHighlight "Installing ranger";
+install ranger;
+
 dialogDev ".......................................Chromium";
 echoHighlight "Installing Chromium";
 install chromium;
@@ -311,10 +315,6 @@ install compton;
 dialogDesktop "..................................feh";
 echoHighlight "Installing feh";
 install feh;
-
-dialogDesktop "...............................ranger";
-echoHighlight "Installing ranger";
-install ranger;
 
 dialogDesktop "................................scrot";
 echoHighlight "Installing scrot";
@@ -363,9 +363,9 @@ dialogDev "............................................now";
 echoHighlight "Installing now";
 npm install -g now 2>>$log 1>>$log;
 
-dialogDev ".................................terminal-alarm";
-echoHighlight "Installing terminal-alarm";
-npm install -g terminal-alarm 2>>$log 1>>$log;
+# dialogDev ".................................terminal-alarm";
+# echoHighlight "Installing terminal-alarm";
+# npm install -g terminal-alarm 2>>$log 1>>$log;
 
 dialogDev ".............................Visual Studio Code";
 echoHighlight "Installing Visual Studio Code";
