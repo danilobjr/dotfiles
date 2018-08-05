@@ -11,13 +11,13 @@ no_color="\033[0m"
 # locations
 
 dotfiles="$HOME/.dotfiles"
-tmp="/tmp/.dotfiles"
+# tmp="/tmp/.dotfiles"
 log="$HOME/.dotfiles.log"
 config="$HOME/.config"
 vscode_user="$config/Code/User"
 vscode_tmp="$tmp/vscode.deb"
-fonts="$HOME/.fonts"
-fontFile=${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf
+# fonts="$HOME/.fonts"
+# fontFile=${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf
 
 # functions
 function echoHighlight() {
@@ -188,6 +188,10 @@ libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
 libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
 libjpeg-turbo8-dev libpam0g-dev;
 
+dialogDependencies "...................................curl";
+echoHighlight "Installing curl";
+install curl;
+
 echoBlueEmptyLine;
 echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     " >> $log;
 echo "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     " >> $log;
@@ -213,6 +217,10 @@ dialogTerminal ".........................................Z";
 echoHighlight "Installing Z.sh";
 (wget -qO ${HOME}/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>>$log 1>>$log;
 
+dialogTerminal ".....................................URxvt";
+echoHighlight "Installing URxvt";
+install rxvt-unicode;
+
 echoBlueEmptyLine;
 echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ " >> $log;
 echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗" >> $log;
@@ -222,7 +230,7 @@ echo "██████╔╝███████╗███████║�
 echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     " >> $log;
 echoNoColorEmptyLine;
 
-dialogDesktop "........Common home directory folders";
+dialogDesktop "..............Common home directories";
 echoHighlight "Creating common folders at home directory";
 if [ ! -d "$HOME/Downloads" ]; then
   mkdir $HOME/Downloads;
@@ -237,13 +245,64 @@ if [ ! -d "$HOME/Videos" ]; then
   echoHighlight "$HOME/Videos folder created";
 fi
 
-dialogDesktop ".................................i3wm";
-echoHighlight "Installing i3wm";
-install i3;
+dialogDesktop ".................................Xorg";
+echoHighlight "Installing Xorg";
+install xorg;
 
-dialogDesktop ".............................i3blocks";
-echoHighlight "Installing i3blocks";
-install i3blocks;
+dialogDesktop "..............................LightDM";
+echoHighlight "Installing LightDM";
+install lightdm;
+
+dialogDesktop "..............................i3-gaps";
+echoHighlight "Installing i3-gaps";
+# clone repo
+git clone https://www.github.com/Airblader/i3 .i3-gaps 1>>$log 2>>$log;
+# compile and install
+cd .i3-gaps;
+autoreconf --force --install 1>>$log 2>>$log;
+rm -rf build/;
+mkdir -p build;
+cd build/;
+# Disabling sanitizers is important for release versions!
+# The prefix and sysconfdir are, obviously, dependent on the distribution.
+../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers 1>>$log 2>>$log;
+make -j8 1>>$log 2>>$log;
+sudo make install 1>>$log 2>>$log;
+cd $HOME;
+
+dialogDesktop "..............................Polybar";
+echoHighlight "Installing Polybar";
+# clone repo
+git clone --branch 3.2 --recursive https://github.com/jaagr/polybar ~/.polybar 1>>$log 2>>$log;
+# before running build, replace build.sh file for my own ~/.dotfiles/polybar/build.sh
+cd .polybar;
+./build.sh 1>>$log 2>>$log;
+cd $HOME;
+
+dialogDesktop ".....................betterlockscreen";
+echoHighlight "Installing betterlockscreen";
+git clone https://github.com/PandorasFox/i3lock-color.git $HOME/.i3lock-color;
+cd .i3lock-color;
+autoreconf -i;
+bash configure;
+cd x86_64-pc-linux-gnu;
+make -j8;
+cd $HOME;
+wget https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
+chmod 755 betterlockscreen;
+sudo cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
+
+dialogDesktop "................................pywal";
+echoHighlight "Installing pywal";
+pip3 install pywal;
+
+dialogDesktop "................................dmenu";
+echoHighlight "Installing dmenu";
+install dmenu;
+
+dialogDev ".......................................Chromium";
+echoHighlight "Installing Chromium";
+install chromium;
 
 dialogDesktop "..............................compton";
 echoHighlight "Installing compton";
@@ -257,10 +316,22 @@ dialogDesktop "...............................ranger";
 echoHighlight "Installing ranger";
 install ranger;
 
+dialogDesktop "................................scrot";
+echoHighlight "Installing scrot";
+install scrot;
+
 dialogDesktop "................Brightness Controller";
 echoHighlight "Installing Brightness Controller";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>>$log 1>>$log;
 install brightness-controller;
+
+dialogDesktop "........................zip";
+echoHighlight "Installing zip";
+install zip;
+
+dialogDesktop "......................unzip";
+echoHighlight "Installing unzip";
+install unzip;
 
 echoBlueEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗" >> $log;
@@ -271,17 +342,9 @@ echo "██████╔╝███████╗ ╚████╔╝    
 echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     " >> $log;
 echoNoColorEmptyLine;
 
-dialogDev "..........................................URxvt";
-echoHighlight "Installing URxvt";
-install rxvt-unicode
-
 dialogDev "............................................Vim";
 echoHighlight "Installing Vim";
 install vim;
-
-dialogDev "...........................................curl";
-echoHighlight "Installing curl";
-install curl;
 
 dialogDev ".........................................Vundle";
 echoHighlight "Installing Vundle";
@@ -290,10 +353,11 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2
 dialogDev "............................................nvm";
 echoHighlight "Installing nvm";
 (wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash) 2>>$log 1>>$log;
+chmod 755 ~/.nvm/nvm.sh
 
 dialogDev "........................................Node.js";
 echoHighlight "Installing node";
-. ~/.nvm/nvm.sh install node 2>>$log 1>>$log;
+nvm install node 1>>$log 2>>$log;
 
 dialogDev "............................................now";
 echoHighlight "Installing now";
@@ -309,22 +373,18 @@ wget -qO ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868 2>>$log 1>
 sudo dpkg -i ${vscode_tmp} 2>>$log 1>>$log;
 sudo apt -f -y install 2>>$log 1>>$log;
 
-dialogDev ".......................................Chromium";
-echoHighlight "Installing Chromium";
-install chromium;
-
-dialogDev "...................................Font Awesome";
-echoHighlight "Installing Font Awesome";
-if [ ! -d "$tmp" ]; then
-  mkdir ${tmp};
-fi
-wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/v4.4.0.zip 2>>$log 1>>$log;
-unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>>$log 1>>$log;
-if [ ! -d "$fonts" ]; then
-  mkdir ${fonts};
-fi
-echoHighlight "Moving $fontFile to $fonts";
-mv ${fontFile} ${fonts};
+# dialogDev "...................................Font Awesome";
+# echoHighlight "Installing Font Awesome";
+# if [ ! -d "$tmp" ]; then
+#   mkdir ${tmp};
+# fi
+# wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/v4.4.0.zip 2>>$log 1>>$log;
+# unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>>$log 1>>$log;
+# if [ ! -d "$fonts" ]; then
+#   mkdir ${fonts};
+# fi
+# echoHighlight "Moving $fontFile to $fonts";
+# mv ${fontFile} ${fonts};
 
 echoBlueEmptyLine;
 echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗" >> $log;
@@ -338,54 +398,62 @@ echoNoColorEmptyLine;
 # cloning dotfiles repo
 dialogSettings "................................Cloning dotfiles";
 echoHighlight "Cloning dotfiles repo in $dotfiles directory";
-git clone https://github.com/danilobjr/dotfiles.git ${dotfiles} 2>>$log 1>>$log;
+git clone https://github.com/danilobjr/dotfiles.git $dotfiles 2>>$log 1>>$log;
 
+# .profile
+dialogSettings ".........................................profile";
+echoHighlight "Creating symlink for .profile at $HOME/.profile";
 if [ -f "$HOME/.profile" ]; then
   rm ~/.profile;
 fi
+ln -s $dotfiles/.profile ~/.profile;
 
-ln -s ${dotfiles}/.profile ~/.profile;
-
-# urxvt
+# .Xdefaults
 dialogSettings ".......................................Xdefaults";
 echoHighlight "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
-ln -s ${dotfiles}/.Xdefaults ${HOME}/.Xdefaults
+ln -s $dotfiles/.Xdefaults $HOME/.Xdefaults
 
 # i3
 dialogSettings "..............................................i3";
 echoHighlight "Creating symlink for i3 at $config/i3";
-rm -rf ${config}/i3;
-ln -sf ${dotfiles}/i3 ${config}/i3;
+rm -rf $config/i3;
+ln -sf $dotfiles/i3 $config/i3;
+
+# Polybar
+dialogSettings ".........................................Polybar";
+echoHighlight "Creating symlink for Polybar at $config/polybar/config";
+rm $config/polybar/config;
+ln -s $dotfiles/polybar/config $config/polybar/config 1>>$log 2>>$log;
 
 # i3blocks
-dialogSettings "........................................i3blocks";
-echoHighlight "Creating symlink for i3blocks at $config/i3blocks";
-ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
-sudo rm /usr/share/i3blocks/volume;
-sudo ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
+# dialogSettings "........................................i3blocks";
+# echoHighlight "Creating symlink for i3blocks at $config/i3blocks";
+# ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
+# sudo rm /usr/share/i3blocks/volume;
+# sudo ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
 
 # ranger
 dialogSettings "..........................................ranger";
 echoHighlight "Moving ranger settings to $config/ranger";
 # ranger --copy-config=all 2>>$log 1>>$log;
-ln -sf ${dotfiles}/ranger ${config}/ranger;
+ln -sf $dotfiles/ranger $config/ranger;
 
 # zsh
 dialogSettings ".............................................Zsh";
 echoHighlight "Creating symlink for Zsh at ~/.zshrc";
-rm ${HOME}/.zshrc;
-ln -s ${dotfiles}/zsh/.zshrc ~/.zshrc;
+rm $HOME/.zshrc;
+ln -s $dotfiles/zsh/.zshrc ~/.zshrc;
 echo $password | sudo -S chsh -s `which zsh` 2>>$log 1>>$log;
 
-# git
+# .gitconfig
 dialogSettings ".......................................Gitconfig";
 echoHighlight "Creating symlink for .gitconfig at ~/.gitconfig";
-ln -s ${dotfiles}/git/.gitconfig ${HOME}/.gitconfig;
+ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig;
 
 # tmux
-dialogSettings "............................................tmux";
-echoHighlight "Creating symlink for tmux at ~/.tmux.conf";
-ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
+# dialogSettings "............................................tmux";
+# echoHighlight "Creating symlink for tmux at ~/.tmux.conf";
+# ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # vim
 dialogSettings ".............................................Vim";
@@ -409,6 +477,7 @@ done
 
 ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
 ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
+rm -rf $vscode_user/snippets;
 ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
 
 dialogInstallationAlmostDone;
