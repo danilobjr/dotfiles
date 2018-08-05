@@ -320,6 +320,10 @@ dialogDesktop "................................scrot";
 echoHighlight "Installing scrot";
 install scrot;
 
+dialogDesktop "...................neofetch";
+echoHighlight "Installing neofetch";
+install neofetch;
+
 dialogDesktop "................Brightness Controller";
 echoHighlight "Installing Brightness Controller";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>>$log 1>>$log;
