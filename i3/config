@@ -127,9 +127,6 @@ bindsym --release shift+Print   exec scrot -u "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_
 
 #---- letters ----#
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+shift+r      restart
-
 # enter resize mode
 bindsym $mod+r            mode "resize"
 
@@ -204,6 +201,9 @@ bindsym $mod+shift+0 move container to workspace $ws10
 #---- function keys ----#
 
 bindsym $mod+F4           exec system-off
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+F5           restart
+
 
 #---- resize window ----#
 
