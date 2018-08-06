@@ -68,7 +68,7 @@ echo | tee -a $log;
 echo "-Danilo" | tee -a $log;
 echoNoColorEmptyLine;
 
-read -p "Press any key to continue...";
+read -p "Press Enter to continue...";
 
 echoSectionTitle "Updating apt repos";
 sudo apt update 2>&1 | tee -a $log;
@@ -385,4 +385,4 @@ echo | tee -a $log;
 echo "You have to reboot your system to see the changes." | tee -a $log;
 echoNoColorEmptyLine;
 
-read -p "Press any key to quit..."
+read -p "Press Enter to quit..."
