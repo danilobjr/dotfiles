@@ -17,32 +17,39 @@ log=$HOME/.dotfiles_installation_log
 
 # functions
 function echoSectionTitle() {
-  echo -e "${green}" | tee -a $log;
+  echo -e "${green}";
+  echo >> $log;
   echo "==============================================================" | tee -a $log;
   echo "= $1" | tee -a $log;
   echo "==============================================================" | tee -a $log;
-  echo -e "${no_color}" | tee -a $log;
+  echo -e "${no_color}";
+  echo >> $log;
 }
 
 function echoHightlight() {
-  echo -e "${green}$1${no_color}" | tee -a $log;
+  echo -e "${green}$1${no_color}";
+  echo "$1" >> $log;
 }
 
 function aptInstall() {
-  sudo apt install -y $1 2>&1 | tee -a $log;
+  sudo apt install -y "$@" 2>&1 | tee -a $log;
 }
 
 function snapInstall() {
-  sudo snap install $1 2>&1 | tee -a $log;
+  sudo snap install "$@" 2>&1 | tee -a $log;
 }
 
 function echoColorEmptyLine() {
-  echo -e "${green}\n" | tee -a $log;
+  echo -e "${green}\n";
+  echo >> $log;
 }
 
 function echoNoColorEmptyLine() {
-  echo -e "${no_color}\n" | tee -a $log;
+  echo -e "${no_color}\n";
+  echo >> $log;
 }
+
+rm $log;
 
 echoColorEmptyLine;
 echo "Hello, fellow programmer! Welcome to Danilo's" | tee -a $log;
@@ -85,7 +92,7 @@ echoNoColorEmptyLine;
 echoSectionTitle "Installing i3-gaps dependencies";
 aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
 libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
-libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev\
+libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
 libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake;
 
 echoSectionTitle "Installing apt-get dependencies";
@@ -138,6 +145,7 @@ echoSectionTitle "Installing Oh-My-Zsh";
 echoSectionTitle "Installing Z.sh in ~/.z directory";
 mkdir .z;
 (wget -qO ${HOME}/.z/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>&1 | tee -a $log;
+echoHighlight "z.sh installed";
 
 echoSectionTitle "Installing URxvt";
 aptInstall rxvt-unicode;
@@ -155,14 +163,20 @@ echoSectionTitle "Creating common folders at home directory";
 if [ ! -d "$HOME/Downloads" ]; then
   mkdir $HOME/Downloads;
   echoHighlight "$HOME/Downloads folder created";
+elif
+  echoHighlight "$HOME/Downloads folder already exists";
 fi
 if [ ! -d "$HOME/Pictures" ]; then
   mkdir $HOME/Pictures;
   echoHighlight "$HOME/Pictures folder created";
+elif
+  echoHighlight "$HOME/Pictures folder already exists";
 fi
 if [ ! -d "$HOME/Videos" ]; then
   mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
+elif
+  echoHighlight "$HOME/Videos folder already exists";
 fi
 
 echoSectionTitle "Installing Xorg";
