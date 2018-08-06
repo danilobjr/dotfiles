@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # colors
-light_green="\033[1;32m"
-blue="\033[0;34m"
-light_blue="\033[1;34m"
-purple="\033[0;35m"
-light_purple="\033[1;35m"
+green="\033[0;32m"
 no_color="\033[0m"
 
 # locations
@@ -20,28 +16,30 @@ vscode_tmp="$tmp/vscode.deb"
 
 # functions
 function echoSectionTitle() {
+  echo -e "${green}";
   echo "=============================================================="
-  echo -e "= ${light_blue}$1${no_color}";
+  echo "= $1";
   echo "=============================================================="
+  echo -e "${no_color}";
 }
 
 function echoHightlight() {
-  echo -e "${light_blue}$1${no_color}";
+  echo -e "${green}$1${no_color}";
 }
 
 function install() {
-  apt install -y $1;
+  sudo apt install -y $1;
 }
 
-function echoBlueEmptyLine() {
-  echo -e "${light_blue}\n";
+function echoColorEmptyLine() {
+  echo -e "${green}\n";
 }
 
 function echoNoColorEmptyLine() {
   echo -e "${no_color}\n";
 }
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "Hello, fellow programmer! Welcome to Danilo's";
 echo
 
@@ -68,9 +66,9 @@ echoNoColorEmptyLine;
 read -p "Press any key to continue...";
 
 echoSectionTitle "Updating apt repos";
-apt update;
+sudo apt update;
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗";
 echo "██╔══██╗██╔════╝██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔════╝████╗  ██║██╔════╝██║██╔════╝██╔════╝";
 echo "██║  ██║█████╗  ██████╔╝█████╗  ██╔██╗ ██║██║  ██║█████╗  ██╔██╗ ██║██║     ██║█████╗  ███████╗";
@@ -103,7 +101,7 @@ echoSectionTitle "Installing snapd";
 install snapd;
 
 echoSectionTitle "Installing audio dependencies";
-snap install alsa-utils;
+sudo snap install alsa-utils;
 
 echoSectionTitle "Installing betterlockscreen dependencies";
 install imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
@@ -114,7 +112,7 @@ libjpeg-turbo8-dev libpam0g-dev;
 echoSectionTitle "Installing curl";
 install curl;
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     ";
 echo "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     ";
 echo "   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     ";
@@ -139,7 +137,7 @@ mkdir .z;
 echoSectionTitle "Installing URxvt";
 install rxvt-unicode;
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
 echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗";
 echo "██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝";
@@ -181,7 +179,7 @@ cd build/;
 # The prefix and sysconfdir are, obviously, dependent on the distribution.
 ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers;
 make -j8;
-make install;
+sudo make install;
 cd $HOME;
 
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
@@ -208,7 +206,7 @@ cd $HOME;
 echoSectionTitle "Installing betterlockscreen script";
 wget https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
 chmod 755 betterlockscreen;
-cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
+sudo cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
 rm betterlockscreen;
 
 echoSectionTitle "Installing pywal";
@@ -221,7 +219,7 @@ echoSectionTitle "Installing ranger";
 install ranger;
 
 echoSectionTitle "Installing Chromium";
-snap install chromium;
+sudo snap install chromium;
 
 echoSectionTitle "Installing compton";
 install compton;
@@ -236,7 +234,7 @@ echoSectionTitle "Installing neofetch";
 install neofetch;
 
 echoSectionTitle "Installing Brightness Controller";
-add-apt-repository -y ppa:apandada1/brightness-controller;
+sudo add-apt-repository -y ppa:apandada1/brightness-controller;
 install brightness-controller;
 
 echoSectionTitle "Installing zip";
@@ -245,7 +243,7 @@ install zip;
 echoSectionTitle "Installing unzip";
 install unzip;
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗";
 echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝";
 echo "██║  ██║█████╗  ██║   ██║    ███████╗   ██║   ██║   ██║█████╗  █████╗  ";
@@ -276,7 +274,7 @@ npm install -g now;
 # npm install -g terminal-alarm;
 
 echoSectionTitle "Installing Visual Studio Code";
-snap install vscode --classic;
+sudo snap install vscode --classic;
 
 # dialogDev "...................................Font Awesome";
 # echoSectionTitle "Installing Font Awesome";
@@ -291,7 +289,7 @@ snap install vscode --classic;
 # echoSectionTitle "Moving $fontFile to $fonts";
 # mv ${fontFile} ${fonts};
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗";
 echo "██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝ ██╔════╝";
 echo "███████╗█████╗     ██║      ██║   ██║██╔██╗ ██║██║  ███╗███████╗";
@@ -336,7 +334,7 @@ ln -sf $dotfiles/ranger $config/ranger;
 echoSectionTitle "Creating symlink for Zsh at ~/.zshrc";
 rm $HOME/.zshrc;
 ln -s $dotfiles/zsh/.zshrc $HOME/.zshrc;
-chsh -s `which zsh`;
+sudo chsh -s `which zsh`;
 
 # .gitconfig
 echoSectionTitle "Creating symlink for .gitconfig at ~/.gitconfig";
@@ -372,13 +370,14 @@ vim +PluginInstall +qall;
 # echoHighlight "Removing $tmp folder"
 # rm -rf ${tmp};
 
-echoBlueEmptyLine;
+echoColorEmptyLine;
 echo "Congratulations!"
 echo
-echo "Now you have all the environment set in just minutes."
+echo "Now you have all the environment set in minutes."
 echo "Read the docs in https://github.com/danilobjr/dotfiles to know the features and keymappings."
-echo "Also you can see .dotfiles.log file in you home directory with all outputs from this operation."
-echo "You have to reboot your system to see the changes. Would you like to do it now?"
+# echo "Also you can see .dotfiles.log file in you home directory with all outputs from this operation."
 echo
+echo "You have to reboot your system to see the changes."
+echoNoColorEmptyLine;
 
 read -p "Press any key to quit..."
