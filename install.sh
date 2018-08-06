@@ -191,8 +191,8 @@ echoSectionTitle "Installing Polybar in ~/.polybar directory";
 # clone repo
 git clone --branch 3.2 --recursive https://github.com/jaagr/polybar $HOME/.polybar;
 cd .polybar;
-rm build.sh;
-cp $dotfiles/polybar/build.sh build.sh;
+# rm build.sh;
+# cp $dotfiles/polybar/build.sh build.sh;
 ./build.sh;
 cd $HOME;
 
