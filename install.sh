@@ -49,7 +49,9 @@ function echoNoColorEmptyLine() {
   echo >> $log;
 }
 
-rm $log;
+if [ -f "$log" ]; then
+  rm $log;
+fi
 
 echoColorEmptyLine;
 echo "Hello, fellow programmer! Welcome to Danilo's" | tee -a $log;
@@ -65,7 +67,7 @@ echo "╚═════╝  ╚═════╝    ╚═╝   ╚═╝     
 echo -e "                                              install script." | tee -a $log;
 echo | tee -a $log;
 echo "This script will automatically install an i3 desktop and" | tee -a $log;
-echo "some dev and utilities stuff, which I use in my main machine." | tee -a $log;
+echo "some dev and utility stuff, which I use in my main machine." | tee -a $log;
 echo | tee -a $log;
 echo "It may ask you something in the middle of the proccess." | tee -a $log;
 echo | tee -a $log;
@@ -394,7 +396,7 @@ echo "Congratulations!" | tee -a $log;
 echo | tee -a $log;
 echo "Now you have all the environment set in minutes." | tee -a $log;
 echo "Read the docs in https://github.com/danilobjr/dotfiles to know the features and keymappings." | tee -a $log;
-# echo "Also you can see .dotfiles.log file in you home directory with all outputs from this operation." | tee -a $log;
+echo "Also you can see .dotfiles_installation_log file in you home directory with all outputs from this operation." | tee -a $log;
 echo | tee -a $log;
 echo "You have to reboot your system to see the changes." | tee -a $log;
 echoNoColorEmptyLine;
