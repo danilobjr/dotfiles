@@ -219,7 +219,8 @@ echoHighlight "Installing Oh-My-Zsh";
 
 dialogTerminal ".........................................Z";
 echoHighlight "Installing Z.sh";
-(wget -qO ${HOME}/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>>$log 1>>$log;
+mkdir .z;
+(wget -qO ${HOME}/.z/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>>$log 1>>$log;
 
 dialogTerminal ".....................................URxvt";
 echoHighlight "Installing URxvt";
