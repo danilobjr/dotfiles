@@ -296,6 +296,7 @@ cd $HOME;
 wget https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
 chmod 755 betterlockscreen;
 sudo cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
+rm betterlockscreen;
 
 dialogDesktop "................................pywal";
 echoHighlight "Installing pywal";
