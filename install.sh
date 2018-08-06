@@ -464,16 +464,6 @@ ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig;
 # echoHighlight "Creating symlink for tmux at ~/.tmux.conf";
 # ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
-# vim
-dialogSettings ".............................................Vim";
-echoHighlight "Creating symlink for Vim at ~/.vimrc";
-ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
-
-dialogSettings ".....................................Vim Plugins";
-echoHighlight "Installing Vim plugins";
-
-vim +PluginInstall +qall 2>>$log 1>>$log;
-
 # vscode
 dialogSettings "...................Visual Studio Code Estensions";
 echoHighlight "Installing Visual Studio Code extensions";
@@ -488,6 +478,16 @@ ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
 ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
 rm -rf $vscode_user/snippets;
 ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
+
+# vim
+dialogSettings ".............................................Vim";
+echoHighlight "Creating symlink for Vim at ~/.vimrc";
+ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc;
+
+dialogSettings ".....................................Vim Plugins";
+echoHighlight "Installing Vim plugins";
+
+vim +PluginInstall +qall 2>>$log 1>>$log;
 
 dialogInstallationAlmostDone;
 sleep 2;
