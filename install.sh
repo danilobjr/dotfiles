@@ -177,18 +177,22 @@ install clang cmake libcairo2-dev libxcb-xkb-dev xcb-proto \
 libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libasound2-dev \
 libpulse-dev libiw-dev libmpdclient-dev libcurl4-openssl-dev python-xcbgen;
 
+dialogDependencies ".......................................snapd";
+echoHighlight "Installing snapd";
+install snapd;
+
 dialogDependencies ".......................................Audio";
 echoHighlight "Installing audio dependencies";
 sudo snap install alsa-utils 1>>$log 2>>$log;
 
-dialogDependencies ".......................betterlockscreen";
+dialogDependencies "............................betterlockscreen";
 echoHighlight "Installing betterlockscreen dependencies";
 install imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
 libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
 libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
 libjpeg-turbo8-dev libpam0g-dev;
 
-dialogDependencies "...................................curl";
+dialogDependencies "........................................curl";
 echoHighlight "Installing curl";
 install curl;
 
@@ -373,9 +377,7 @@ npm install -g now 2>>$log 1>>$log;
 
 dialogDev ".............................Visual Studio Code";
 echoHighlight "Installing Visual Studio Code";
-wget -qO ${vscode_tmp} https://go.microsoft.com/fwlink/?LinkID=760868 2>>$log 1>>$log;
-sudo dpkg -i ${vscode_tmp} 2>>$log 1>>$log;
-sudo apt -f -y install 2>>$log 1>>$log;
+sudo snap install vscode --classic 1>>$log 2>>$log;
 
 # dialogDev "...................................Font Awesome";
 # echoHighlight "Installing Font Awesome";
