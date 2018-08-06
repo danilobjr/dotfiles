@@ -163,19 +163,19 @@ echoSectionTitle "Creating common folders at home directory";
 if [ ! -d "$HOME/Downloads" ]; then
   mkdir $HOME/Downloads;
   echoHighlight "$HOME/Downloads folder created";
-elif
+else
   echoHighlight "$HOME/Downloads folder already exists";
 fi
 if [ ! -d "$HOME/Pictures" ]; then
   mkdir $HOME/Pictures;
   echoHighlight "$HOME/Pictures folder created";
-elif
+else
   echoHighlight "$HOME/Pictures folder already exists";
 fi
 if [ ! -d "$HOME/Videos" ]; then
   mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
-elif
+else
   echoHighlight "$HOME/Videos folder already exists";
 fi
 
