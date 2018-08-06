@@ -311,7 +311,7 @@ install ranger;
 
 dialogDev ".......................................Chromium";
 echoHighlight "Installing Chromium";
-install chromium;
+sudo snap install chromium 1>>$log 2>>$log;
 
 dialogDesktop "..............................compton";
 echoHighlight "Installing compton";
