@@ -363,7 +363,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2
 dialogDev "............................................nvm";
 echoHighlight "Installing nvm";
 (wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash) 2>>$log 1>>$log;
-chmod 755 ~/.nvm/nvm.sh
+chmod 755 ~/.nvm/nvm.sh;
+bash $HOME/.nvm/nvm.sh;
 
 dialogDev "........................................Node.js";
 echoHighlight "Installing node";
