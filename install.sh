@@ -144,10 +144,9 @@ aptInstall git;
 echoSectionTitle "Installing Oh-My-Zsh";
 (wget -q https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh) 2>&1 | tee -a $log;
 
-echoSectionTitle "Installing Z.sh in ~/.z directory";
-mkdir .z;
-(wget -qO ${HOME}/.z/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>&1 | tee -a $log;
-echoHighlight "z.sh installed";
+echoSectionTitle "Installing Z.sh in home directory";
+(wget -q https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>&1 | tee -a $log;
+echoHighlight "z.sh installed" | tee -a $log;
 
 echoSectionTitle "Installing URxvt";
 aptInstall rxvt-unicode;
@@ -328,7 +327,7 @@ ln -s $dotfiles/.profile $HOME/.profile 2>&1 | tee -a $log;
 
 # .Xdefaults
 echoSectionTitle "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
-ln -s $dotfiles/.Xdefaults $HOME/.Xdefault 2>&1 | tee -a $log;
+ln -s $dotfiles/.Xdefaults $HOME/.Xdefaults 2>&1 | tee -a $log;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";
@@ -368,21 +367,21 @@ ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig 2>&1 | tee -a $log;
 
 # vscode
 echoSectionTitle "Installing Visual Studio Code extensions";
-readarray vscode_extensions < ${dotfiles}/vscode/extensions;
+readarray vscode_extensions < $dotfiles/vscode/extensions;
 
 for i in ${vscode_extensions[@]}
 do
   code --install-extension $i;
 done
 
-ln -s ${dotfiles}/vscode/keybindings.json ${vscode_user}/keybindings.json;
-ln -s ${dotfiles}/vscode/settings.json ${vscode_user}/settings.json;
+ln -s $dotfiles/vscode/keybindings.json $vscode_user/keybindings.json;
+ln -s $dotfiles/vscode/settings.json $vscode_user/settings.json;
 rm -rf $vscode_user/snippets;
-ln -sf ${dotfiles}/vscode/snippets ${vscode_user}/snippets;
+ln -sf $dotfiles/vscode/snippets $vscode_user/snippets;
 
 # vim
 echoSectionTitle "Creating symlink for Vim at ~/.vimrc";
-ln -s ${dotfiles}/vim/.vimrc ${HOME}/.vimrc 2>&1 | tee -a $log;
+ln -s $dotfiles/vim/.vimrc $HOME/.vimrc 2>&1 | tee -a $log;
 
 echoSectionTitle "Installing Vim plugins";
 

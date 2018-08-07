@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-source ~/.z/z.sh
+source $HOME/z.sh
 
 # default folder
 yellow="\033[1;33m"
