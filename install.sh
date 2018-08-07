@@ -376,7 +376,7 @@ readarray vscode_extensions < $dotfiles/vscode/extensions;
 
 for i in ${vscode_extensions[@]}
 do
-  code --install-extension $i;
+  /snap/bin/code --install-extension $i;
 done
 
 ln -s $dotfiles/vscode/keybindings.json $vscode_user/keybindings.json;
