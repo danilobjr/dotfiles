@@ -367,8 +367,9 @@ ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig 2>&1 | tee -a $log;
 
 # rofi
 echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";
-mkdir $HOME/.config/rofi;
-ln -s $dotfiles/rofi/config $HOME/.config/rofi/config;
+mkdir $config/rofi;
+ln -s $dotfiles/rofi/config $config/rofi/config;
+ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
 
 # vscode
 echoSectionTitle "Installing Visual Studio Code extensions";
