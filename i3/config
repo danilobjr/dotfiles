@@ -108,8 +108,7 @@ floating_modifier $mod
 bindsym $mod+Return exec  $term -e zsh
 
 # show search bar (apps)
-# bindsym $mod+space exec   i3-dmenu-desktop --dmenu="dmenu -i -p Search -fn 'Ubuntu Mono:pixelsize=19' -nb '$inactive-bg-color' -nf '$inactive-text-color' -sb '$main-color' -sf '$selected-text-color'"
-bindsym $mod+space exec   rofi -show drun
+bindsym $mod+space exec   rofi -show drun -lines 5
 
 bindsym $mod+Prior        workspace prev
 bindsym $mod+Next         workspace next

@@ -3,8 +3,7 @@
 # import colors from pywal
 . "${HOME}/.cache/wal/colors.sh"
 
-# option=$(echo -e "Logout\nSuspend\nHibernate\nReboot\nShutdown" | dmenu -i -p "Off options" -fn "Ubuntu Mono:pixelsize=19" -nb "$color0" -nf "$color8" -sb "$color4" -sf "$color0");
-option=$(echo -e "Logout\nSuspend\nHibernate\nReboot\nShutdown" | rofi -dmenu -i -p "Off options");
+option=$(echo -e "Logout\nSuspend\nHibernate\nReboot\nShutdown" | rofi -dmenu -i -p "Off options" -lines 5);
 
 case "$option" in
   "Logout") i3-msg exit;;
