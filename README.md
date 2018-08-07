@@ -97,6 +97,8 @@ Here are the main ones separated by category.
 - `Win+Increase Volume (function key)` - Increase master volume.
 - `Win+Decrease Volume (function key)` - Decrease master volume.
 - `Win+Mute Volume (function key)` - Mute master volume.
+- `PrintScreen` - Take a screenshot of entire display.
+- `Shift+PrintScreen` - Take a screenshot of a focused window.
 
 #### i3 - Programs
 
@@ -237,9 +239,18 @@ You can check at `~/.vimrc` file.
 
 To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfiles/wallpapers/` folder and then reload i3 `Win+F5`.
 
+### Next
+
+- Setup audio.
+
 ## TODO
 
-- Create a globa `bg` script to set wallpaper.
+- Automatic mounting for USB/Dvd.
+- Video recording (gif/mp4).
+- Send email from ranger?
+- Update docs: background script, etc.
+- Instal use rofi instead of dmenu.
+- FAQ setcion: log, audio, print, etc.
 
 ## License
 
