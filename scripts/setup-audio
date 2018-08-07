@@ -1,0 +1,5 @@
+#!/bin/bash
+
+amixer -c 1 sset Master 1+ toggle;
+amixer -c 1 sset Speaker 1+ toggle;
+amixer -c 1 sset 'Internal Mic' 1+ toggle;
