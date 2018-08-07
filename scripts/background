@@ -1,0 +1,8 @@
+#!/bin/bash
+
+wall=$DOTFILES/wallpapers/wall.jpg;
+
+cp "$1" $wall;
+wal -i "$1";
+betterlockscreen -u "$1";
+betterlockscreen -w dimblur;
