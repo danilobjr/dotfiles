@@ -232,8 +232,8 @@ rm betterlockscreen;
 echoSectionTitle "Installing pywal";
 pip3 install pywal 2>&1 | tee -a $log;
 
-echoSectionTitle "Installing dmenu";
-aptInstall dmenu;
+echoSectionTitle "Installing rofi";
+aptInstall rofi;
 
 echoSectionTitle "Installing ranger";
 aptInstall ranger;
@@ -364,6 +364,11 @@ ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig 2>&1 | tee -a $log;
 # dialogSettings "............................................tmux";
 # echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
 # ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
+
+# rofi
+echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";
+mkdir $HOME/.config/rofi;
+ln -s $dotfiles/rofi/config $HOME/.config/rofi/config;
 
 # vscode
 echoSectionTitle "Installing Visual Studio Code extensions";

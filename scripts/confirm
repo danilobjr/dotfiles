@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # import colors from pywal
-. "${HOME}/.cache/wal/colors.sh"
+. "$HOME/.cache/wal/colors.sh"
 
-[ $(echo -e "No\nYes" | dmenu -i -p "$1" -fn "Ubuntu Mono:pixelsize=19" -nb "$color0" -nf "$color8" -sb "$color4" -sf "$color0") == "Yes" ] && $2
+# [ $(echo -e "No\nYes" | dmenu -i -p "$1" -fn "Ubuntu Mono:pixelsize=19" -nb "$color0" -nf "$color8" -sb "$color4" -sf "$color0") == "Yes" ] && $2
+[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") == "Yes" ] && $2
