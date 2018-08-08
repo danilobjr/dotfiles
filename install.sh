@@ -7,12 +7,12 @@ no_color="\033[0m"
 # locations
 
 dotfiles="$HOME/.dotfiles"
-# tmp="/tmp/.dotfiles"
+tmp="/tmp/.dotfiles"
 config="$HOME/.config"
 vscode_user="$config/Code/User"
 vscode_tmp="$tmp/vscode.deb"
-# fonts="$HOME/.fonts"
-# fontFile=${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf
+fonts="$HOME/.local/share/fonts"
+fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
 analogOutputHeadphones=/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf
 log=$HOME/.dotfiles_installation_log
 
@@ -297,18 +297,15 @@ npm install -g now 2>&1 | tee -a $log;
 echoSectionTitle "Installing Visual Studio Code";
 snapInstall vscode --classic;
 
-# dialogDev "...................................Font Awesome";
-# echoSectionTitle "Installing Font Awesome";
-# if [ ! -d "$tmp" ]; then
-#   mkdir ${tmp};
-# fi
-# wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/v4.4.0.zip;
-# unzip -o ${tmp}/font-awesome.zip -d ${tmp};
-# if [ ! -d "$fonts" ]; then
-#   mkdir ${fonts};
-# fi
-# echoSectionTitle "Moving $fontFile to $fonts";
-# mv ${fontFile} ${fonts};
+echoSectionTitle "Installing Font Awesome";
+if [ ! -d "$tmp" ]; then
+  mkdir ${tmp};
+fi
+wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/5.2.0.zip 2>&1 | tee -a $log;;
+unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>&1 | tee -a $log;
+echoSectionTitle "Moving $fontFiles to $fonts";
+cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
+sudo fc-cache -fv 2>&1 | tee -a $log;
 
 echoColorEmptyLine;
 echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗" | tee -a $log;
@@ -399,7 +396,7 @@ echoSectionTitle "Installing Vim plugins";
 vim +PluginInstall +qall 2>&1 | tee -a $log;
 
 # echoHighlight "Removing $tmp folder"
-# rm -rf ${tmp};
+rm -rf ${tmp};
 
 echoColorEmptyLine;
 echo "Congratulations!" | tee -a $log;
