@@ -253,6 +253,9 @@ aptInstall scrot;
 echoSectionTitle "Installing neofetch";
 aptInstall neofetch;
 
+echoSectionTitle "Installing htop";
+aptInstall htop;
+
 echoSectionTitle "Installing Brightness Controller";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
 aptInstall brightness-controller;
