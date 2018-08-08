@@ -4,9 +4,7 @@ My dotfiles.
 
 It installs the [i3wm](https://github.com/i3/i3) for a more lightweight and focused windows management, some dev stuff and utilities. Take a look at [Resources](#resources) section to see the whole list.
 
-It was tested in a fresh installation of Ubuntu 18.04 (desktop and minimal).
-
-<p align="center"><img src="/demo/demo.gif"></p>
+It was tested in a fresh installation of Ubuntu Minimal 18.04.
 
 ## Install
 
