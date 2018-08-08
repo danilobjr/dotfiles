@@ -13,6 +13,7 @@ vscode_user="$config/Code/User"
 vscode_tmp="$tmp/vscode.deb"
 # fonts="$HOME/.fonts"
 # fontFile=${tmp}/Font-Awesome-4.4.0/fonts/fontawesome-webfont.ttf
+analogOutputHeadphones=/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf
 log=$HOME/.dotfiles_installation_log
 
 # functions
@@ -115,7 +116,7 @@ echoSectionTitle "Installing snapd";
 aptInstall snapd;
 
 echoSectionTitle "Installing audio dependencies";
-snapInstall alsa-utils;
+aptInstall alsa-utils;
 
 echoSectionTitle "Installing betterlockscreen dependencies";
 aptInstall imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
@@ -328,6 +329,10 @@ ln -s $dotfiles/.profile $HOME/.profile 2>&1 | tee -a $log;
 # .Xdefaults
 echoSectionTitle "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
 ln -s $dotfiles/.Xdefaults $HOME/.Xdefaults 2>&1 | tee -a $log;
+
+# audio
+echoSectionTitle "Creating symlink for analog-output-headphones.conf at $analogOutputHeadphones";
+sudo ln -s $dotfiles/audio/analog-output-headphones.conf $analogOutputHeadphones 2>&1 | tee -a $log;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";
