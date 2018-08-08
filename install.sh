@@ -328,8 +328,8 @@ echoSectionTitle "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
 ln -s $dotfiles/.Xdefaults $HOME/.Xdefaults 2>&1 | tee -a $log;
 
 # audio
-echoSectionTitle "Creating symlink for analog-output-headphones.conf at $analogOutputHeadphones";
-sudo ln -s $dotfiles/audio/analog-output-headphones.conf $analogOutputHeadphones 2>&1 | tee -a $log;
+echoSectionTitle "Applying patch $dotfiles/audio/analog-output-headphones.diff at $analogOutputHeadphones";
+sudo patch $analogOutputHeadphones < $dotfiles/audio/analog-output-headphones.diff 2>&1 | tee -a $log;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";

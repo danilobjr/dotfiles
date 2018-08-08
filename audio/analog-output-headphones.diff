@@ -1,0 +1,16 @@
+--- /usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf	2018-08-08 12:43:19.375913799 -0300
++++ /home/danilo/.dotfiles/audio/analog-output-headphones.conf	2018-08-08 12:45:38.176663959 -0300
+@@ -104,9 +104,11 @@
+ switch = mute
+ volume = zero
+ 
++; CUSTOM: This fixes headphone problem
++; See diff at $DOTFILES/audio/analog-output-headphones.diff
+ [Element Speaker]
+-switch = off
+-volume = off
++switch = mute
++volume = zero
+ 
+ [Element Desktop Speaker]
+ switch = off
