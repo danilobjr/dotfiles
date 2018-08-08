@@ -105,10 +105,10 @@ floating_modifier $mod
 #---- special keys ----#
 
 # open terminal
-bindsym $mod+Return exec  $term -e zsh
+bindsym $mod+Return       exec $term -e zsh
 
 # show search bar (apps)
-bindsym $mod+space exec   rofi -show drun -lines 5
+bindsym $mod+space        exec rofi -show drun -lines 5 # -fullscreen
 
 bindsym $mod+Prior        workspace prev
 bindsym $mod+Next         workspace next
@@ -120,6 +120,9 @@ bindsym $mod+minus        split v
 
 # lock screen
 bindsym $mod+Escape       exec betterlockscreen -l blur
+
+# settings
+bindsym $mod+Pause        exec $term -e system-details;
 
 # screenshot
 bindsym --release Print         exec scrot "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"
