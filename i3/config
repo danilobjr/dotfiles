@@ -190,6 +190,7 @@ bindsym $mod+shift+0 move container to workspace $ws10
 
 #---- function keys ----#
 
+bindsym $mod+F1           exec $BROWSER http://github.com/danilobjr/dotfiles
 bindsym $mod+F4           exec system-off
 # reload i3
 bindsym $mod+F5           restart
