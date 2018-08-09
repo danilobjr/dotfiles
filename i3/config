@@ -52,19 +52,9 @@ set $ws10 "10 "
 font pango:Ubuntu Mono 12
 
 #---- i3-gaps ----#
+
 gaps inner 15
 gaps outer 0
-
-#---- i3bar ----#
-
-# main system bar that shows workspaces and some system status
-# bar {
-#   status_command i3blocks
-#   position top
-#   colors {
-#     focused_workspace $main-color $main-color $selected-text-color
-#   }
-# }
 
 #---- windows ----#
 
@@ -90,7 +80,7 @@ exec_always betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscree
 # polybar
 exec_always --no-startup-id $SHELL launch-polybar
 # fade effects
-exec_always compton -f -D 3
+exec compton -f -D 3
 # start audio
 exec --no-startup-id start-pulseaudio-x11
 
