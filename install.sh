@@ -27,7 +27,7 @@ function echoSectionTitle() {
   echo >> $log;
 }
 
-function echoHightlight() {
+function echoHighlight() {
   echo -e "${green}$1${no_color}";
   echo "$1" >> $log;
 }
@@ -368,6 +368,11 @@ ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig 2>&1 | tee -a $log;
 # dialogSettings "............................................tmux";
 # echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
 # ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
+
+# neofetch
+echoSectionTitle "Creating symlink for neofetch";
+ln -s $dotfiles/neofetch/config $HOME/.config/neofetch/config;
+echoHighlight "Created at ~/.config/neofetch/config"
 
 # rofi
 echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";
