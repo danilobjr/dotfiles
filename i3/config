@@ -112,8 +112,8 @@ bindsym $mod+minus        split v
 bindsym $mod+Escape       exec betterlockscreen -l blur
 
 # screenshot
-bindsym --release Print         exec scrot "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"
-bindsym --release shift+Print   exec scrot -u "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"
+bindsym --release Print         exec scrot "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
+bindsym --release shift+Print   exec scrot -u "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
 
 #---- letters ----#
 
@@ -219,8 +219,8 @@ mode "resize" {
 
 # audio controls
 bindsym XF86AudioMute        exec amixer -c 1 -D pulse sset Master 1+ toggle
-bindsym XF86AudioLowerVolume exec amixer -c 1 -D pulse sset Master 5%-
-bindsym XF86AudioRaiseVolume exec amixer -c 1 -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -c 1 -D pulse sset Master 5%-; exec play-desktop-sound audio-volume-change
+bindsym XF86AudioRaiseVolume exec amixer -c 1 -D pulse sset Master 5%+; exec play-desktop-sound audio-volume-change
 # bindsym XF86AudioPlay      exec i3lock
 # bindsym XF86AudioStop      exec i3lock
 # bindsym XF86AudioPrev      exec i3lock
