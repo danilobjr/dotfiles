@@ -26,9 +26,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+export BROWSER=chromium
 export DOTFILES="$HOME/.dotfiles"
 export PATH="$PATH:$DOTFILES/scripts"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.i3lock-color/x86_64-pc-linux-gnu"
 export RANGER_LOAD_DEFAULT_RC=FALSE
-# export BROWSER=chromium
