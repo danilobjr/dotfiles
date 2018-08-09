@@ -266,6 +266,9 @@ aptInstall zip;
 echoSectionTitle "Installing unzip";
 aptInstall unzip;
 
+echoSectionTitle "Installing sound-theme-freedesktop";
+aptInstall sound-theme-freedesktop;
+
 echoColorEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗" | tee -a $log;
 echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝" | tee -a $log;
