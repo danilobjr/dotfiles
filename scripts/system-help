@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pandoc -t plain $DOTFILES/README.md | less;
