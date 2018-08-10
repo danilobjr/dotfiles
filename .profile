@@ -32,3 +32,4 @@ export PATH="$PATH:$DOTFILES/scripts"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.i3lock-color/x86_64-pc-linux-gnu"
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export SUDO_ASKPASS=/usr/bin/ssh-askpass

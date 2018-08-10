@@ -127,6 +127,12 @@ libjpeg-turbo8-dev libpam0g-dev;
 echoSectionTitle "Installing curl";
 aptInstall curl;
 
+echoSectionTitle "Installing dunst dependencies";
+aptInstall libnotify-bin libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev;
+
+echoSectionTitle "Installing dependencies for custom scripts";
+aptInstall ssh-askpass-gnome ssh-askpass;
+
 echoColorEmptyLine;
 echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     " | tee -a $log;
 echo "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     " | tee -a $log;
@@ -259,6 +265,9 @@ aptInstall htop;
 echoSectionTitle "Installing pandoc";
 aptInstall pandoc;
 
+echoSectionTitle "Installing dunst";
+aptInstall dunst;
+
 echoSectionTitle "Installing Brightness Controller";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
 aptInstall brightness-controller;
@@ -379,6 +388,10 @@ ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig 2>&1 | tee -a $log;
 echoSectionTitle "Creating symlink for neofetch";
 ln -s $dotfiles/neofetch/config $HOME/.config/neofetch/config;
 echoHighlight "Created at ~/.config/neofetch/config"
+
+# dunst
+echoSectionTitle "Creating symlink for dunst";
+ln -s $dotfiles/dunst/dunstrc $HOME/.config/dunst/dunstrc;
 
 # rofi
 echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";

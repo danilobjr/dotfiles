@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Gives a rofi prompt to mount/unmounted drives.
+# If they're in /etc/fstab, they'll be mounted automatically.
+# Otherwise, you'll be prompted to give a mountpoint from already existsing directories.
+# If you input a novel directory, it will prompt you to create that directory.
+
+pidof rofi && exit
+COLS="kname,type,rm,size,mountpoint,model,label"
+
+drives="$(lsblk -rpo "$COLS" | awk '{ gsub(/ /, "|"); gsub(/\\\x[2][0]/, " "); print }' | awk -F'|' '$2 != "disk" && $3 == 1 && $5 == "" { printf("%s - %s", $1, $4); if ($7 != "") { printf " (%s)", $7; } printf "\n" }')"
+
+[ -z "$drives" ] && exit 1
+
+chosen="$(echo "$drives" | rofi -dmenu -i -p "Choose a drive to mount")"
+
+[ -z "$chosen" ] && exit 1
+
+chosen="$(echo $chosen | awk '{ $2=$3=""; gsub(/(\(|\))/, ""); print }')"
+device="$(echo $chosen | awk '{ printf("%s", $1) }')"
+label="$(echo $chosen | awk '{ $1=""; gsub(/^ /, ""); printf("%s", $0) }')"
+mountPoint=""
+
+if [ "$label" ]; then
+  mountPoint="/media/$label"
+else
+  mountPoint="$(echo $device | awk '{ printf("/media/%s", substr($0, 6)) }')"
+fi
+
+sudo -A mount "$device" && exit 0
+
+# You may want to change the line below for more suggestions for mounting.
+# I.e. you can increase the depth of the search, or add directories.
+# This will increase the load time briefly though.
+
+sudo -A mkdir -p "$mountPoint";
+mountedDevice=$([ "$label" ] && echo "$label" || echo "$device")
+sudo -A mount "$device" "$mountPoint" && pidof dunst && notify-send "$mountedDevice mounted to $mountPoint."
+
