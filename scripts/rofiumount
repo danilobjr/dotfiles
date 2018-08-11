@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# A dmenu prompt to unmount drives.
+# Provides you with mounted partitions, select one to unmount.
+# Drives mounted at /, /boot and /home will not be options to unmount.
+# This can be changed by modifying the awk command in $drives.
+
+pidof rofi && exit
+
+COLS="kname,type,rm,size,mountpoint,model,label"
+
+drives="$(lsblk -rpo "$COLS" | awk '{ gsub(/ /, "|"); gsub(/\\\x[2][0]/, " "); print }' | awk -F'|' '$2 != "disk" && $3 == 1 && $5 != "" { printf("%s - %s", $1, $4); if ($7 != "") { printf " (%s)", $7; } printf "\n" }')"
+
+if [ -z "$drives" ]; then
+  pidof dunst && notify-send "No removable devices to be umounted"
+  exit 1
+fi
+
+chosen="$(echo "$drives" | rofi -dmenu -i -p "Choose a drive to umount")"
+
+[ -z "$chosen" ] && exit 1
+
+chosen="$(echo $chosen | awk '{ $2=$3=""; gsub(/(\(|\))/, ""); print }')"
+device="$(echo $chosen | awk '{ printf("%s", $1) }')"
+label="$(echo $chosen | awk '{ $1=""; gsub(/^ /, ""); printf("%s", $0) }')"
+mountPoint=""
+
+if [ "$label" ]; then
+  mountPoint="/media/$label"
+else
+  mountPoint="$(echo $device | awk '{ printf("/media/%s", substr($0, 6)) }')"
+fi
+
+unmountedDevice=$([ "$label" ] && echo "$label" || echo "$device")
+sudo -A umount "$device" && pidof dunst && notify-send "$unmountedDevice unmounted"
+sudo -A rm -rf "$mountPoint"

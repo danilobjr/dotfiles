@@ -199,7 +199,7 @@ bindsym $mod+F5           restart
 # mount removable device
 bindsym $mod+F9           exec rofimount
 # unmount removable device
-# bindsym $mod+F10          exec rofiumount
+bindsym $mod+F10          exec rofiumount
 # process management
 bindsym $mod+F11          exec $term -e htop
 bindsym $mod+F12          exec $term -e system-details
