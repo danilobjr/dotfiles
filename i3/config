@@ -127,6 +127,7 @@ bindsym $mod+q            kill
 
 # open ranger file manager
 bindsym $mod+e            exec $term -e ranger
+bindsym $mod+shift+e      exec $term -e sudo ranger
 
 # change focused window
 bindsym $mod+h            focus left
