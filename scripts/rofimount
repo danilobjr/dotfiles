@@ -10,7 +10,10 @@ COLS="kname,type,rm,size,mountpoint,model,label"
 
 drives="$(lsblk -rpo "$COLS" | awk '{ gsub(/ /, "|"); gsub(/\\\x[2][0]/, " "); print }' | awk -F'|' '$2 != "disk" && $3 == 1 && $5 == "" { printf("%s - %s", $1, $4); if ($7 != "") { printf " (%s)", $7; } printf "\n" }')"
 
-[ -z "$drives" ] && exit 1
+if [ -z "$drives" ]; then
+  pidof dunst && notify-send "All removable devices already mounted"
+  exit 1
+fi
 
 chosen="$(echo "$drives" | rofi -dmenu -i -p "Choose a drive to mount")"
 
@@ -35,5 +38,4 @@ sudo -A mount "$device" && exit 0
 
 sudo -A mkdir -p "$mountPoint";
 mountedDevice=$([ "$label" ] && echo "$label" || echo "$device")
-sudo -A mount "$device" "$mountPoint" && pidof dunst && notify-send "$mountedDevice mounted to $mountPoint."
-
+sudo -A mount "$device" "$mountPoint" && pidof dunst && notify-send "$mountedDevice mounted to $mountPoint"
