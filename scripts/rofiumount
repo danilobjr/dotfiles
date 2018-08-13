@@ -32,6 +32,4 @@ else
 fi
 
 unmountedDevice=$([ "$label" ] && echo "$label" || echo "$device")
-sudo -A umount "$device" && pidof dunst && notify-send "$unmountedDevice unmounted";
-sleep 1;
-sudo -A rm -rf "$mountPoint";
+sudo -A umount "$device" && sleep 1; sudo -A rm -rf "$mountPoint" && pidof dunst && notify-send "$unmountedDevice unmounted" && play-desktop-sound device-removed

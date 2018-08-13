@@ -38,4 +38,4 @@ sudo -A mount "$device" && exit 0
 
 sudo -A mkdir -p "$mountPoint";
 mountedDevice=$([ "$label" ] && echo "$label" || echo "$device")
-sudo -A mount "$device" "$mountPoint" && pidof dunst && notify-send "$mountedDevice mounted to $mountPoint"
+sudo -A mount "$device" "$mountPoint" && pidof dunst && notify-send "$mountedDevice mounted to $mountPoint" && play-desktop-sound device-added
