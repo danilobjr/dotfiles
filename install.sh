@@ -174,12 +174,21 @@ if [ ! -d "$HOME/Downloads" ]; then
 else
   echoHighlight "$HOME/Downloads folder already exists";
 fi
+
+if [ ! -d "$HOME/Music" ]; then
+  mkdir $HOME/Music;
+  echoHighlight "$HOME/Music folder created";
+else
+  echoHighlight "$HOME/Music folder already exists";
+fi
+
 if [ ! -d "$HOME/Pictures" ]; then
   mkdir $HOME/Pictures;
   echoHighlight "$HOME/Pictures folder created";
 else
   echoHighlight "$HOME/Pictures folder already exists";
 fi
+
 if [ ! -d "$HOME/Videos" ]; then
   mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
