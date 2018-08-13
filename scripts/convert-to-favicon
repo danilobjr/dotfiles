@@ -1,0 +1,16 @@
+#!/bin/bash
+
+convert $1 -resize 16x16 "$1-16x16.png"
+convert $1 -resize 32x32 "$1-32x32.png"
+convert $1 -resize 48x48 "$1-48x48.png"
+
+convert "$1-16x16.png" "$1-32x32.png" "$1-48x48.png" "$1-favicon.ico"
+
+rm "$1-16x16.png"
+rm "$1-32x32.png"
+rm "$1-48x48.png"
+
+identify "$1-favicon.ico"
+
+pidof dunst && notify-send "$1-favicon.ico created"
+
