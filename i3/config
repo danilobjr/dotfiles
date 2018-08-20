@@ -35,16 +35,16 @@ set_from_resource $urgent-color         i3wm.color1 #e53935
 set $term --no-startup-id urxvt
 
 # icons for workspaces
-set $ws1  "1 "
-set $ws2  "2 "
-set $ws3  "3 "
-set $ws4  "4 "
-set $ws5  "5 "
-set $ws6  "6 "
-set $ws7  "7 "
-set $ws8  "8 "
-set $ws9  "9 "
-set $ws10 "10 "
+# set $ws1  "1 "
+# set $ws2  "2 "
+# set $ws3  "3 "
+# set $ws4  "4 "
+# set $ws5  "5 "
+# set $ws6  "6 "
+# set $ws7  "7 "
+# set $ws8  "8 "
+# set $ws9  "9 "
+# set $ws10 "10 "
 
 #---- font ----#
 
@@ -73,14 +73,14 @@ for_window [class="^.*"] border pixel 3
 # Scripts
 # =======
 
-# colorscheme
-exec_always wal -i $DOTFILES/wallpapers/wall.jpg
-# wallpaper
-exec_always betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscreen -w dimblur
 # polybar
 exec_always --no-startup-id $SHELL launch-polybar
+# colorscheme
+exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
+# wallpaper
+exec --no-startup-id betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscreen -w dimblur
 # fade effects
-exec compton -f -D 3
+exec --no-startup-id compton -f -D 3
 # start audio
 exec --no-startup-id start-pulseaudio-x11
 # notification
@@ -136,10 +136,10 @@ bindsym $mod+k            focus up
 bindsym $mod+l            focus right
 
 # move focused window
-bindsym $mod+shift+h      move left
-bindsym $mod+shift+j      move down
-bindsym $mod+shift+k      move up
-bindsym $mod+shift+l      move right
+bindsym $mod+shift+n      move left
+bindsym $mod+shift+e      move down
+bindsym $mod+shift+o      move up
+bindsym $mod+shift+i      move right
 
 # toggle fullscreen
 bindsym $mod+f            fullscreen toggle
