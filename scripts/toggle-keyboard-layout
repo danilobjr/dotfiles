@@ -5,10 +5,10 @@ layout="$(setxkbmap -query | grep layout | awk '{print $2}')"
 if [ $layout = "us" ]; then
   setxkbmap workman;
   xset r 66;
-  pidof dunst && notify-send "Keyboard: workman";
+  pidof dunst && notify-send "Switched to keyboard layout: Workman";
 else
   setxkbmap us;
   xset -r 66;
-  pidof dunst && notify-send "Keyboard: en-us";
+  pidof dunst && notify-send "Switched to keyboard layout: en-US";
 fi
 
