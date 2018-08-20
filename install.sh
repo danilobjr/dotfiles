@@ -290,6 +290,9 @@ aptInstall unzip;
 echoSectionTitle "Installing sound-theme-freedesktop";
 aptInstall sound-theme-freedesktop;
 
+echoSectionTitle "Cloning Workman"
+gcl https://github.com/ojbucao/Workman.git $HOME/.workman;
+
 echoColorEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗" | tee -a $log;
 echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝" | tee -a $log;
@@ -327,7 +330,7 @@ echoSectionTitle "Installing Font Awesome";
 if [ ! -d "$tmp" ]; then
   mkdir ${tmp};
 fi
-wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/5.2.0.zip 2>&1 | tee -a $log;;
+wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/5.2.0.zip 2>&1 | tee -a $log;
 unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>&1 | tee -a $log;
 echoSectionTitle "Moving $fontFiles to $fonts";
 cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
@@ -407,6 +410,12 @@ echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";
 mkdir $config/rofi;
 ln -s $dotfiles/rofi/config $config/rofi/config;
 ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
+
+# workman
+echoSectionTitle "Switching to workman keyboard layoutSet"
+cd $HOME/.workman;
+sudo cp xorg/workman /usr/share/X11/xkb/symbols/workman;
+cd $HOME;
 
 # vscode
 echoSectionTitle "Installing Visual Studio Code extensions";
