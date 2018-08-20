@@ -117,6 +117,9 @@ bindsym $mod+Escape       exec betterlockscreen -l blur
 bindsym --release Print         exec scrot "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
 bindsym --release shift+Print   exec scrot -u "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
 
+# keyboard layout
+bindsym $mod+Tab          exec toggle-keyboard-layout
+
 #---- letters ----#
 
 # enter resize mode
@@ -136,10 +139,10 @@ bindsym $mod+k            focus up
 bindsym $mod+l            focus right
 
 # move focused window
-bindsym $mod+shift+n      move left
-bindsym $mod+shift+e      move down
-bindsym $mod+shift+o      move up
-bindsym $mod+shift+i      move right
+bindsym $mod+shift+h      move left
+bindsym $mod+shift+j      move down
+bindsym $mod+shift+k      move up
+bindsym $mod+shift+l      move right
 
 # toggle fullscreen
 bindsym $mod+f            fullscreen toggle
@@ -148,8 +151,6 @@ bindsym $mod+shift+f      floating toggle
 
 bindsym $mod+p            focus parent
 bindsym $mod+c            focus child
-
-# bindsym $mod+tab focus mode_toggle
 
 #---- arrow keys ----#
 
@@ -168,16 +169,16 @@ bindsym $mod+shift+Right  move right
 #---- numbers ----#
 
 # change to a workspace
-bindsym $mod+1 workspace  $ws1
-bindsym $mod+2 workspace  $ws2
-bindsym $mod+3 workspace  $ws3
-bindsym $mod+4 workspace  $ws4
-bindsym $mod+5 workspace  $ws5
-bindsym $mod+6 workspace  $ws6
-bindsym $mod+7 workspace  $ws7
-bindsym $mod+8 workspace  $ws8
-bindsym $mod+9 workspace  $ws9
-bindsym $mod+0 workspace  $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move app to a workspace
 bindsym $mod+shift+1 move container to workspace $ws1
