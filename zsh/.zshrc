@@ -56,11 +56,12 @@ alias saud="sudo apt update"
 alias saug="sudo apt upgrade"
 
 # npm
-alias nrb="npm run build"
-alias nrd="npm run dev"
 alias ns="npm start"
 alias ni="npm install"
 alias nu="npm uninstall"
+alias nr="npm run"
+alias nrb="npm run build"
+alias nrd="npm run dev"
 
 # yarn
 alias yi="yarn install"
