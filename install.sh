@@ -256,6 +256,9 @@ aptInstall ranger;
 echoSectionTitle "Installing Chromium";
 snapInstall chromium;
 
+echoSectionTitle "Installing mpv";
+snapInstall mpv;
+
 echoSectionTitle "Installing compton";
 aptInstall compton;
 
