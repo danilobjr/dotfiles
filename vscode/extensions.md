@@ -13,8 +13,8 @@
 - [Regex Previewer](https://github.com/chrmarti/vscode-regex)
 - [Sass](https://github.com/robinbentley/vscode-sass-indented) - Sass indented syntax support for VSCode.
 - [TODO Highlight](https://github.com/wayou/vscode-todo-highlight) - A VSCode extension to highlighting TODOs, FIXMEs and any Annotations.
-- [tslint](https://github.com/Microsoft/vscode-tslint) - A tslint integration for VSCode.
+- [tslint](https://github.com/Microsoft/vscode-typescript-tslint-plugin) - A tslint integration for VSCode.
 - [TypeScript Importer Sorter](https://github.com/SoominHan/import-sorter)
 - [Version Lens](https://github.com/vscode-contrib/vscode-versionlens) - Shows version information for each package using code lens.
-- [Vim](https://github.com/VSCodeVim/Vim) - :star: Vim for Visual Studio Code.
+- [NeoVim](https://github.com/asvetliakov/vscode-neovim) - Neovim integration for Visual Studio Code.
 - [vscode-faker](https://github.com/deerawan/vscode-faker) - Generating fake data in VS Code using Faker.
