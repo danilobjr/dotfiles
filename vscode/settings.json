@@ -19,8 +19,6 @@
     }
   },
   "materialTheme.fixIconsRunning": false,
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
   "vim.statusBarColors": {
     "normal": "#3e7aca",
     "insert": "#679436",
