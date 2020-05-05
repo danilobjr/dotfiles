@@ -19,24 +19,25 @@
     }
   },
   "materialTheme.fixIconsRunning": false,
-  "vim.statusBarColors": {
-    "normal": "#3e7aca",
-    "insert": "#679436",
-    "visual": [
-      "#D5DFE5",
-      "#3C4859B3"
-    ],
-    "visualline": [
-      "#D5DFE5",
-      "#3C4859B3"
-    ],
-    "visualblock": [
-      "#D5DFE5",
-      "#3C4859"
-    ],
-    "replace": "#D05353",
-  },
-  "vim.statusBarColorControl": true,
+  "vscode-neovim.neovimPath": "/usr/bin/nvim",
+//  "vim.statusBarColors": {
+//    "normal": "#3e7aca",
+//    "insert": "#679436",
+//    "visual": [
+//      "#D5DFE5",
+//      "#3C4859B3"
+//    ],
+//    "visualline": [
+//      "#D5DFE5",
+//      "#3C4859B3"
+//    ],
+//    "visualblock": [
+//      "#D5DFE5",
+//      "#3C4859"
+//    ],
+//    "replace": "#D05353",
+//  },
+//  "vim.statusBarColorControl": true,
   "window.menuBarVisibility": "toggle",
   "window.openFilesInNewWindow": "off",
   "window.zoomLevel": 0,
