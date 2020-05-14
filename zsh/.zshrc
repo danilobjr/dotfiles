@@ -2,6 +2,7 @@
 # ========
 
 export ZSH="$HOME/.oh-my-zsh"
+export DOTFILES="$HOME/.dotfiles"
 
 # Zsh Stuff
 # =========
@@ -57,17 +58,21 @@ alias saug="sudo apt upgrade"
 
 # npm
 alias ns="npm start"
-alias ni="npm install"
+alias ni="npm install -E"
 alias nu="npm uninstall"
 alias nr="npm run"
 alias nrb="npm run build"
 alias nrd="npm run dev"
+alias nrl="npm run lint"
 
 # yarn
 alias yi="yarn install"
 alias ya="yarn add -E"
 alias yad="yarn add -E -D"
 alias yr="yarn remove"
+alias ys="yarn start"
+alias yb="yarn build"
+alias yl="yarn lint"
 
 # git
 alias gs="git st"
