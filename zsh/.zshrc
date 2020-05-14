@@ -58,7 +58,7 @@ alias saug="sudo apt upgrade"
 
 # npm
 alias ns="npm start"
-alias ni="npm install -E"
+alias ni="npm install -E -S"
 alias nid="npm install -E -D"
 alias nu="npm uninstall"
 alias nr="npm run"
