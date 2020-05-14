@@ -18,3 +18,4 @@
 - [Version Lens](https://github.com/vscode-contrib/vscode-versionlens) - Shows version information for each package using code lens.
 - [NeoVim](https://github.com/asvetliakov/vscode-neovim) - Neovim integration for Visual Studio Code.
 - [vscode-faker](https://github.com/deerawan/vscode-faker) - Generating fake data in VS Code using Faker.
+- [SCSS Formatter](https://github.com/sibiraj-s/vscode-scss-formatter) - A Visual Studio Code Extension to format SCSS.
