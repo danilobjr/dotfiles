@@ -9,8 +9,7 @@ no_color="\033[0m"
 dotfiles="$HOME/.dotfiles"
 tmp="/tmp/.dotfiles"
 config="$HOME/.config"
-vscode_user="$config/Code/User"
-vscode_tmp="$tmp/vscode.deb"
+vscodium_user="$config/VSCodium/User"
 fonts="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
 analogOutputHeadphones=/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf
@@ -101,7 +100,7 @@ libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake;
 echoSectionTitle "Installing apt-get dependencies";
 aptInstall software-properties-common;
 
-echoSectionTitle "Installing Visual Studio Code dependencies";
+echoSectionTitle "Installing Visual Studio Codium dependencies";
 aptInstall libgtk2.0-0;
 
 echoSectionTitle "Installing PyWal dependencies";
@@ -326,8 +325,8 @@ npm install -g now 2>&1 | tee -a $log;
 # echoSectionTitle "Installing terminal-alarm";
 # npm install -g terminal-alarm;
 
-echoSectionTitle "Installing Visual Studio Code";
-snapInstall vscode --classic;
+echoSectionTitle "Installing Visual Studio Codium";
+snapInstall codium --classic;
 
 echoSectionTitle "Installing Font Awesome";
 if [ ! -d "$tmp" ]; then
@@ -420,19 +419,19 @@ cd $HOME/.workman;
 sudo cp xorg/workman /usr/share/X11/xkb/symbols/workman;
 cd $HOME;
 
-# vscode
-echoSectionTitle "Installing Visual Studio Code extensions";
-readarray vscode_extensions < $dotfiles/vscode/extensions;
+# vscodium
+echoSectionTitle "Installing Visual Studio Codium extensions";
+readarray vscodium_extensions < $dotfiles/vscodium/extensions;
 
-for i in ${vscode_extensions[@]}
+for i in ${vscodium_extensions[@]}
 do
-  /snap/bin/code --install-extension $i;
+  /snap/bin/codium --install-extension $i;
 done
 
-ln -s $dotfiles/vscode/keybindings.json $vscode_user/keybindings.json;
-ln -s $dotfiles/vscode/settings.json $vscode_user/settings.json;
-rm -rf $vscode_user/snippets;
-ln -sf $dotfiles/vscode/snippets $vscode_user/snippets;
+ln -s $dotfiles/vscodium/keybindings.json $vscodium_user/keybindings.json;
+ln -s $dotfiles/vscodium/settings.json $vscodium_user/settings.json;
+rm -rf $vscodium_user/snippets;
+ln -sf $dotfiles/vscodium/snippets $vscodium_user/snippets;
 
 # vim
 echoSectionTitle "Creating symlink for Vim at ~/.vimrc";
