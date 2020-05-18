@@ -10,8 +10,13 @@ dotfiles="$HOME/.dotfiles"
 tmp="/tmp/.dotfiles"
 config="$HOME/.config"
 vscodium_user="$config/VSCodium/User"
+# replace this with $fontsFolder?
 fonts="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
+fontConfigFolder="$HOME/.config/fontconfig"
+fontConfFile="fonts.conf"
+fontsFolder="$HOME/.fonts"
+emojiFontUrl="https://noto-website-2.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip"
 analogOutputHeadphones=/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf
 log=$HOME/.dotfiles_installation_log
 
@@ -336,6 +341,14 @@ wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/arc
 unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>&1 | tee -a $log;
 echoSectionTitle "Moving $fontFiles to $fonts";
 cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
+
+echoSectionTitle "Installing Noto Color Emoji font";
+mkdir -p $fontsFolder
+wget $emojiFontUrl -P $fontsFolder
+mkdir -p $fontConfigFolder
+ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile"
+
+echoSectionTitle "Caching fonts";
 sudo fc-cache -fv 2>&1 | tee -a $log;
 
 echoColorEmptyLine;
