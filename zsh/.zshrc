@@ -97,31 +97,3 @@ alias gr="git r"
 alias grc="git rc"
 alias glast="git last"
 alias ghist="git hist"
-
-# git-flow
-alias gfi="git fi"
-alias gfid="git fid"
-
-alias gfp="git fp"
-alias gff="git ff"
-alias gfd="git fd"
-
-alias gffs="git ffs"
-alias gfff="git fff"
-alias gffp="git ffp"
-alias gfft="git fft"
-
-alias gfrs="git frs"
-alias gfrf="git frf"
-alias gfrp="git frp"
-alias gfrt="git frt"
-
-alias gfhs="git fhs"
-alias gfhf="git fhf"
-alias gfhp="git fhp"
-alias gfht="git fht"
-
-alias gfbs="git fbs"
-alias gfbf="git fbf"
-alias gfbp="git fbp"
-alias gfbt="git fbt"
