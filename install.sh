@@ -17,6 +17,9 @@ fontConfigFolder="$HOME/.config/fontconfig"
 fontConfFile="fonts.conf"
 fontsFolder="$HOME/.fonts"
 emojiFontUrl="https://noto-website-2.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip"
+githubCliVersion="0.8.0"
+githubCliDebFile="gh_${githubCliVersion}_linux_386.deb"
+githubCliDebFileUrl="https://github.com/cli/cli/releases/download/v${githubCliVersion}/gh_${githubCliVersion}_linux_386.deb"
 analogOutputHeadphones=/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf
 log=$HOME/.dotfiles_installation_log
 
@@ -333,6 +336,10 @@ npm install -g now 2>&1 | tee -a $log;
 echoSectionTitle "Installing Visual Studio Codium";
 snapInstall codium --classic;
 
+echoSectionTitle "Installing Github CLI";
+wget $githubCliDebFileUrl -P $HOME/Downloads;
+aptInstall $githubCliDebFile;
+
 echoSectionTitle "Installing Font Awesome";
 if [ ! -d "$tmp" ]; then
   mkdir ${tmp};
@@ -343,10 +350,10 @@ echoSectionTitle "Moving $fontFiles to $fonts";
 cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
 
 echoSectionTitle "Installing Noto Color Emoji font";
-mkdir -p $fontsFolder
-wget $emojiFontUrl -P $fontsFolder
-mkdir -p $fontConfigFolder
-ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile"
+mkdir -p $fontsFolder;
+wget $emojiFontUrl -P $fontsFolder;
+mkdir -p $fontConfigFolder;
+ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile";
 
 echoSectionTitle "Caching fonts";
 sudo fc-cache -fv 2>&1 | tee -a $log;
