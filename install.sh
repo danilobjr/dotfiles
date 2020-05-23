@@ -102,19 +102,19 @@ echo "██████╔╝███████╗██║     ████
 echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝" | tee -a $log;
 echoNoColorEmptyLine;
 
-echoSectionTitle "Installing apt-get dependencies";
+echoSectionTitle "Installing apt dependencies";
 aptInstall software-properties-common;
 sudo apt update 2>&1 | tee -a $log;
 
 echoSectionTitle "Adding speed-ricer ppa";
 sudo add-apt-repository ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
 
-echoSectionTitle "Installing i3-gaps dependencies";
+#echoSectionTitle "Installing i3-gaps dependencies";
 #aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
 #libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
 #libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
 #libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
-aptInstall i3-gaps-wm;
+
 
 echoSectionTitle "Installing Visual Studio Codium dependencies";
 aptInstall libgtk2.0-0;
@@ -224,21 +224,24 @@ aptInstall xorg;
 echoSectionTitle "Installing LightDM";
 aptInstall lightdm;
 
-echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
-# clone repo
-git clone https://www.github.com/Airblader/i3 $HOME/.i3-gaps 2>&1 | tee -a $log;
-# compile and install
-cd .i3-gaps;
-autoreconf --force --install 2>&1 | tee -a $log;
-rm -rf build/;
-mkdir -p build;
-cd build/;
-# Disabling sanitizers is important for release versions!
-# The prefix and sysconfdir are, obviously, dependent on the distribution.
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers 2>&1 | tee -a $log;
-make -j8 2>&1 | tee -a $log;
-sudo make install 2>&1 | tee -a $log;
-cd $HOME;
+#echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
+## clone repo
+#git clone https://www.github.com/Airblader/i3 $HOME/.i3-gaps 2>&1 | tee -a $log;
+## compile and install
+#cd .i3-gaps;
+#autoreconf --force --install 2>&1 | tee -a $log;
+#rm -rf build/;
+#mkdir -p build;
+#cd build/;
+## Disabling sanitizers is important for release versions!
+## The prefix and sysconfdir are, obviously, dependent on the distribution.
+#../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers 2>&1 | tee -a $log;
+#make -j8 2>&1 | tee -a $log;
+#sudo make install 2>&1 | tee -a $log;
+#cd $HOME;
+
+echoSectionTitle "Installing i3-gaps";
+aptInstall i3-gaps-wm;
 
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
 git clone https://github.com/danilobjr/dotfiles.git $dotfiles 2>&1 | tee -a $log;
