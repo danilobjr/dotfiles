@@ -146,7 +146,7 @@ echoSectionTitle "Installing betterlockscreen dependencies";
 aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
 libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
 libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
-libjpeg-turbo8-dev libpam0g-dev;
+libjpeg-turbo8-dev libpam0g-dev libxcb-xinerama0-dev;
 
 echoSectionTitle "Installing curl";
 aptInstall curl;
