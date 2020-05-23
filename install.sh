@@ -224,8 +224,11 @@ fi
 echoSectionTitle "Installing Xorg";
 aptInstall xorg;
 
-echoSectionTitle "Installing LightDM";
-aptInstall lightdm;
+#echoSectionTitle "Installing LightDM";
+#aptInstall lightdm;
+
+echoSectionTitle "Installing gdm3";
+aptInstall gdm3;
 
 #echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
 ## clone repo
