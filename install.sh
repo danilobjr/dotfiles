@@ -109,6 +109,9 @@ sudo apt update 2>&1 | tee -a $log;
 echoSectionTitle "Adding speed-ricer ppa";
 sudo add-apt-repository ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
 
+echoSectionTitle "Adding brightness-controller ppa";
+sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
+
 #echoSectionTitle "Installing i3-gaps dependencies";
 #aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
 #libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
@@ -306,7 +309,6 @@ echoSectionTitle "Installing dunst";
 aptInstall dunst;
 
 echoSectionTitle "Installing Brightness Controller";
-sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
 aptInstall brightness-controller;
 
 echoSectionTitle "Installing zip";
