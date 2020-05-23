@@ -320,8 +320,8 @@ aptInstall unzip;
 echoSectionTitle "Installing sound-theme-freedesktop";
 aptInstall sound-theme-freedesktop;
 
-echoSectionTitle "Cloning Workman"
-gcl https://github.com/ojbucao/Workman.git $HOME/.workman;
+##echoSectionTitle "Cloning Workman"
+#gcl https://github.com/ojbucao/Workman.git $HOME/.workman;
 
 echoColorEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗" | tee -a $log;
@@ -453,11 +453,11 @@ mkdir $config/rofi;
 ln -s $dotfiles/rofi/config $config/rofi/config;
 ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
 
-# workman
-echoSectionTitle "Switching to workman keyboard layoutSet"
-cd $HOME/.workman;
-sudo cp xorg/workman /usr/share/X11/xkb/symbols/workman;
-cd $HOME;
+## workman
+#echoSectionTitle "Switching to workman keyboard layoutSet"
+#cd $HOME/.workman;
+#sudo cp xorg/workman /usr/share/X11/xkb/symbols/workman;
+#cd $HOME;
 
 # vscodium
 echoSectionTitle "Installing Visual Studio Codium extensions";
