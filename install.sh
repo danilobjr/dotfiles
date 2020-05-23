@@ -90,6 +90,9 @@ read -p "Press Enter to continue...";
 echoSectionTitle "Updating apt repos";
 sudo apt update 2>&1 | tee -a $log;
 
+echoSectionTitle "Upgrading apt packages";
+sudo apt upgrade 2>&1 | tee -a $log;
+
 echoColorEmptyLine;
 echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗" | tee -a $log;
 echo "██╔══██╗██╔════╝██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔════╝████╗  ██║██╔════╝██║██╔════╝██╔════╝" | tee -a $log;
@@ -99,14 +102,19 @@ echo "██████╔╝███████╗██║     ████
 echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝" | tee -a $log;
 echoNoColorEmptyLine;
 
-echoSectionTitle "Installing i3-gaps dependencies";
-aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
-libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
-libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
-libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
-
 echoSectionTitle "Installing apt-get dependencies";
 aptInstall software-properties-common;
+sudo apt update 2>&1 | tee -a $log;
+
+echoSectionTitle "Adding speed-ricer ppa";
+sudo add-apt-repository ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
+
+echoSectionTitle "Installing i3-gaps dependencies";
+#aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
+#libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
+#libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
+#libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
+aptInstall i3-gaps-wm;
 
 echoSectionTitle "Installing Visual Studio Codium dependencies";
 aptInstall libgtk2.0-0;
