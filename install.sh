@@ -107,7 +107,7 @@ aptInstall software-properties-common;
 sudo apt update 2>&1 | tee -a $log;
 
 echoSectionTitle "Adding speed-ricer ppa";
-sudo add-apt-repository ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
+sudo add-apt-repository -y ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
 
 echoSectionTitle "Adding brightness-controller ppa";
 sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
@@ -117,7 +117,6 @@ sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $lo
 #libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
 #libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
 #libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
-
 
 echoSectionTitle "Installing Visual Studio Codium dependencies";
 aptInstall libgtk2.0-0;
@@ -227,8 +226,8 @@ aptInstall xorg;
 #echoSectionTitle "Installing LightDM";
 #aptInstall lightdm;
 
-echoSectionTitle "Installing gdm3";
-aptInstall gdm3;
+#echoSectionTitle "Installing gdm3";
+#aptInstall gdm3;
 
 #echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
 ## clone repo
