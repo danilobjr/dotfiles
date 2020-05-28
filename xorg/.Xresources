@@ -31,6 +31,6 @@
 URxvt.intensityStyles:  false
 URxvt.background:       [80]#000000
 URxvt.depth:            32
-URxvt.font:             xft:Ubuntu Mono:size=12
+URxvt.font:             xft:Mono:size=12
 URxvt.scrollBar:        false
 URxvt.cursorColor:      white

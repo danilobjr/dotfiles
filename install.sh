@@ -392,14 +392,15 @@ echoNoColorEmptyLine;
 
 # .profile
 echoSectionTitle "Creating symlink for .profile at $HOME/.profile";
-if [ -f "$HOME/.profile" ]; then
-  rm $HOME/.profile;
-fi
-ln -s $dotfiles/.profile $HOME/.profile 2>&1 | tee -a $log;
+ln -sf $dotfiles/.profile $HOME/.profile 2>&1 | tee -a $log;
 
-# .Xdefaults
-echoSectionTitle "Creating symlink for .Xdefaults at $HOME/.Xdefaults";
-ln -s $dotfiles/.Xdefaults $HOME/.Xdefaults 2>&1 | tee -a $log;
+# .xinitrc
+echoSectionTitle "Creating symlink for .xinitrc at $HOME/.xinitrc";
+ln -sf $dotfiles/xorg/.xinitrc $HOME/.xinitrc 2>&1 | tee -a $log;
+
+# .Xresources
+echoSectionTitle "Creating symlink for .Xresources at $HOME/.Xresources";
+ln -sf $dotfiles/xorg/.Xresources $HOME/.Xresources 2>&1 | tee -a $log;
 
 # audio
 echoSectionTitle "Applying patch $dotfiles/audio/analog-output-headphones.diff at $analogOutputHeadphones";
