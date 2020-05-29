@@ -1,14 +1,32 @@
 # Env Vars
 # ========
 
-export ZSH="$HOME/.oh-my-zsh"
+export BROSER=chromium
 export DOTFILES="$HOME/.dotfiles"
+export PATH="$PATH:$DOTFILES/scripts"
+export RANGER_LOAD_DEFAULT_RC=FALSE
+export ZSH="$HOME/.oh-my-zsh"
 
 # Zsh Stuff
 # =========
 
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd extendedglob nomatch notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+# The following lines were added by compinstall
+zstyle :compinstall filename "$HOME/.zshrc"
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
 ZSH_THEME="robbyrussell"
 plugins=(git)
+
 source $ZSH/oh-my-zsh.sh
 source $HOME/z.sh
 
@@ -32,6 +50,7 @@ if ! [ -d "$HOME/repos" ]; then
 fi
 
 # nvm
+# ===
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -49,12 +68,18 @@ alias tmuxconf="vim ~/.tmux.conf"
 alias gitconfig="vim ~/.gitconfig"
 alias i3config="vim ~/.config/i3/config"
 
+# pacman
+alias pms="sudo pacman -S --needed"
+alias pmr="sudo pacman -Rns"
+alias pmu="sudo pacman -Syu"
+alias pmq="sudo pacman -Qs"
+
 # apt-get
-alias sai="sudo apt install"
-alias sap="sudo apt purge"
-alias saar="sudo apt autoremove"
-alias saud="sudo apt update"
-alias saug="sudo apt upgrade"
+#alias sai="sudo apt install"
+#alias sap="sudo apt purge"
+#alias saar="sudo apt autoremove"
+#alias saud="sudo apt update"
+#alias saug="sudo apt upgrade"
 
 # npm
 alias ns="npm start"
