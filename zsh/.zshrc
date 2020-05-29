@@ -72,7 +72,7 @@ alias i3config="vim ~/.config/i3/config"
 alias pms="sudo pacman -S --needed"
 alias pmr="sudo pacman -Rns"
 alias pmu="sudo pacman -Syu"
-alias pmq="sudo pacman -Qs"
+alias pmq="pacman -Qs"
 
 # apt-get
 #alias sai="sudo apt install"
