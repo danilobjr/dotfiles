@@ -217,12 +217,6 @@ fi
 echoSectionTitle "Installing Xorg";
 aptInstall xorg;
 
-#echoSectionTitle "Installing LightDM";
-#aptInstall lightdm;
-
-#echoSectionTitle "Installing gdm3";
-#aptInstall gdm3;
-
 # make has some dependencies in Polybar dependencies. Check which ones
 echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
 # clone repo
@@ -283,6 +277,9 @@ snapInstall chromium;
 
 echoSectionTitle "Installing mpv";
 snapInstall mpv;
+
+echoSectionTitle "Installing mplayer";
+pacmanSynchronize mplayer;
 
 echoSectionTitle "Installing compton";
 aptInstall compton;

@@ -224,9 +224,9 @@ mode "resize" {
 #---- XF86 keys ----#
 
 # audio controls
-bindsym XF86AudioMute        exec amixer -c 1 -D pulse sset Master 1+ toggle
-bindsym XF86AudioLowerVolume exec amixer -c 1 -D pulse sset Master 5%-; exec play-desktop-sound audio-volume-change
-bindsym XF86AudioRaiseVolume exec amixer -c 1 -D pulse sset Master 5%+; exec play-desktop-sound audio-volume-change
+bindsym XF86AudioMute        exec amixer sset Master toggle
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-; exec play-desktop-sound audio-volume-change
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+; exec play-desktop-sound audio-volume-change
 # bindsym XF86AudioPlay      exec i3lock
 # bindsym XF86AudioStop      exec i3lock
 # bindsym XF86AudioPrev      exec i3lock
