@@ -22,8 +22,8 @@ set $mod Mod4
 # colors
 set $lock-bg-color       000000
 # set colors from Xresources
-# NOTE: The final HEX colors in the lines below is the color i3 will use if
-# it fails to get colors from Xresources.
+# NOTE: The final HEX colors in the lines below is the color
+# i3 will use if it fails to get colors from Xresources.
 set_from_resource $inactive-bg-color    i3wm.color0 #2f343f
 set_from_resource $inactive-text-color  i3wm.color8 #676e7d
 set_from_resource $selected-text-color  i3wm.color0 #2f343f
@@ -49,7 +49,8 @@ set $ws10 "10"
 #---- font ----#
 
 # font for window titles and bar
-font pango:Ubuntu Mono 12
+#font pango:Ubuntu Mono 12
+font pango:Mono 8
 
 #---- i3-gaps ----#
 
@@ -74,7 +75,7 @@ for_window [class="^.*"] border pixel 3
 # =======
 
 # polybar
-exec_always --no-startup-id $SHELL launch-polybar
+exec_always --no-startup-id launch-polybar
 # colorscheme
 exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
 # wallpaper
@@ -116,9 +117,6 @@ bindsym $mod+Escape       exec betterlockscreen -l blur
 # screenshot
 bindsym --release Print         exec scrot "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
 bindsym --release shift+Print   exec scrot -u "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
-
-# keyboard layout
-bindsym $mod+Tab          exec toggle-keyboard-layout
 
 #---- letters ----#
 
