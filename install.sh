@@ -40,12 +40,8 @@ function echoHighlight() {
   echo "$1" >> $log;
 }
 
-function aptInstall() {
-  sudo apt install -y "$@" 2>&1 | tee -a $log;
-}
-
-function snapInstall() {
-  sudo snap install "$@" 2>&1 | tee -a $log;
+function pacmanSynchronize() {
+  sudo pacman -Sy --needed "$@" 2>&1 | tee -a $log;
 }
 
 function echoColorEmptyLine() {
@@ -88,11 +84,8 @@ echoNoColorEmptyLine;
 
 read -p "Press Enter to continue...";
 
-echoSectionTitle "Updating apt repos";
-sudo apt update 2>&1 | tee -a $log;
-
-echoSectionTitle "Upgrading apt packages";
-sudo apt upgrade 2>&1 | tee -a $log;
+echoSectionTitle "Updating system";
+sudo pacman -Syu 2>&1 | tee -a $log;
 
 echoColorEmptyLine;
 echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗" | tee -a $log;
@@ -103,9 +96,9 @@ echo "██████╔╝███████╗██║     ████
 echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝" | tee -a $log;
 echoNoColorEmptyLine;
 
-echoSectionTitle "Installing apt dependencies";
-aptInstall software-properties-common;
-sudo apt update 2>&1 | tee -a $log;
+#echoSectionTitle "Installing apt dependencies";
+#aptInstall software-properties-common;
+#sudo apt update 2>&1 | tee -a $log;
 
 #echoSectionTitle "Adding speed-ricer ppa";
 #sudo add-apt-repository -y ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
@@ -365,13 +358,14 @@ wget $githubCliDebFileUrl -P $HOME/Downloads;
 aptInstall $githubCliDebFile;
 
 echoSectionTitle "Installing Font Awesome";
-if [ ! -d "$tmp" ]; then
-  mkdir ${tmp};
-fi
-wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/5.2.0.zip 2>&1 | tee -a $log;
-unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>&1 | tee -a $log;
-echoSectionTitle "Moving $fontFiles to $fonts";
-cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
+#if [ ! -d "$tmp" ]; then
+#  mkdir ${tmp};
+#fi
+#wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/5.2.0.zip 2>&1 | tee -a $log;
+#unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>&1 | tee -a $log;
+#echoSectionTitle "Moving $fontFiles to $fonts";
+#cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
+pacmanSynchronize ttf-font-awesome;
 
 echoSectionTitle "Installing Noto Color Emoji font";
 mkdir -p $fontsFolder;
