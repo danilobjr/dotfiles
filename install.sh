@@ -10,6 +10,7 @@ dotfiles="$HOME/.dotfiles"
 tmp="/tmp/.dotfiles"
 config="$HOME/.config"
 vscodium_user="$config/VSCodium/User"
+modprobeConfigFile="/etc/modprobe.d/default.conf"
 # replace this with $fontsFolder?
 fonts="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
@@ -403,8 +404,11 @@ echoSectionTitle "Creating symlink for .Xresources at $HOME/.Xresources";
 ln -sf $dotfiles/xorg/.Xresources $HOME/.Xresources 2>&1 | tee -a $log;
 
 # audio
-echoSectionTitle "Applying patch $dotfiles/audio/analog-output-headphones.diff at $analogOutputHeadphones";
-sudo patch $analogOutputHeadphones < $dotfiles/audio/analog-output-headphones.diff 2>&1 | tee -a $log;
+#echoSectionTitle "Applying patch $dotfiles/audio/analog-output-headphones.diff at $analogOutputHeadphones";
+#sudo patch $analogOutputHeadphones < $dotfiles/audio/analog-output-headphones.diff 2>&1 | tee -a $log;
+echoSectionTitle "Setting audio configuration";
+sudo touch $modprobeConfigFile;
+echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";
