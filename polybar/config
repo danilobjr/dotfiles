@@ -67,8 +67,8 @@ font-4 = Font Awesome 5 Brands:pixelsize=9;1
 
 modules-left = i3 mpd
 modules-center = date
+modules-right = backlight alsa memory cpu powermenu
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = alsa memory cpu powermenu
 
 tray-position = right
 tray-padding = 2
@@ -156,7 +156,6 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
@@ -190,7 +189,14 @@ bar-empty-foreground = ${colors.foreground-alt}
 [module/backlight-acpi]
 inherit = module/xbacklight
 type = internal/backlight
-card = intel_backlight
+card = acpi_video0
+
+[module/backlight]
+type = custom/script
+exec = ~/.config/polybar/backlight.sh
+interval = 0.2
+format-prefix = " "
+label = %output%
 
 [module/cpu]
 type = internal/cpu
@@ -302,9 +308,9 @@ format-volume = <ramp-volume> <bar-volume>
 ;format-muted-prefix = 🔇
 format-muted-prefix = 
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = " ───── Muted ─────"
+label-muted = " ──── Muted ────"
 
-bar-volume-width = 20
+bar-volume-width = 21
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -405,4 +411,4 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
+;vim:ft=dosini

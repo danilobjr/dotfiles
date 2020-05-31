@@ -1,0 +1,12 @@
+#!/bin/bash
+
+step=0.1
+connected_video_device=$(xrandr --prop --verbose | grep " connected" | awk '{ print $1 }')
+current_brightness=$(xrandr --prop --verbose | grep Brightness | awk '{ print $2 }')
+new_value=$(echo "$current_brightness - $step" | bc)
+
+if (( $(echo "$new_value >= 0" | bc -l) ))
+then
+  xrandr --output $connected_video_device --brightness $new_value
+fi
+

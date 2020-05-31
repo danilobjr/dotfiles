@@ -18,6 +18,8 @@
 
 # win key
 set $mod Mod4
+# default terminal
+set $term --no-startup-id urxvt
 
 # colors
 set $lock-bg-color       000000
@@ -30,9 +32,6 @@ set_from_resource $selected-text-color  i3wm.color0 #2f343f
 set_from_resource $main-color           i3wm.color4 #3e7aca
 set_from_resource $text-color           i3wm.color7 #f3f4f5
 set_from_resource $urgent-color         i3wm.color1 #e53935
-
-# default terminal
-set $term --no-startup-id urxvt
 
 # icons for workspaces
 set $ws1  "1"
@@ -196,6 +195,9 @@ bindsym $mod+F1           exec $term -e system-help
 bindsym $mod+F4           exec system-off
 # reload i3
 bindsym $mod+F5           restart
+# brightness controls
+bindsym $mod+F7           exec brightness-decrease
+bindsym $mod+F8           exec brightness-increase
 # mount removable device
 bindsym $mod+F9           exec rofimount
 # unmount removable device

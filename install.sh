@@ -409,7 +409,7 @@ ln -sf $dotfiles/i3 $config/i3 2>&1 | tee -a $log;
 # Polybar
 echoSectionTitle "Creating symlink for Polybar at $config/polybar/config";
 rm $config/polybar/config;
-ln -s $dotfiles/polybar/config $config/polybar/config 2>&1 | tee -a $log;
+ln -s $dotfiles/polybar $config/polybar 2>&1 | tee -a $log;
 
 # i3blocks
 # echoSectionTitle "Creating symlink for i3blocks at $config/i3blocks";
