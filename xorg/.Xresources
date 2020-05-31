@@ -31,6 +31,8 @@
 URxvt.intensityStyles:  false
 URxvt.background:       [80]#000000
 URxvt.depth:            32
-URxvt.font:             xft:Mono:size=12
+!!URxvt.font:             xft:Mono:size=12
+!!URxvt.font:             9x15,xft:TerminessTTFNerdFontMono,xft:DejaVu Sans Mono:autohint=true:size=12
+URxvt.font:             xft:DejaVu Sans Mono:autohint=true:size=12,xft:Font Awesome 5 Free:style=Solid:size=9
 URxvt.scrollBar:        false
 URxvt.cursorColor:      white
