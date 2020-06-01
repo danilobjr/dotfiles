@@ -28,13 +28,46 @@
 !! URxvt*background:  #101218
 !! URxvt*foreground:  #101218
 
-URxvt.intensityStyles:  false
-URxvt.background:       [80]#000000
-URxvt.depth:            32
-!!URxvt.font:             xft:Mono:size=12
-!!URxvt.font:             9x15,xft:TerminessTTFNerdFontMono,xft:DejaVu Sans Mono:autohint=true:size=12
-!!URxvt.font:             xft:DejaVu Sans Mono:autohint=true:size=12,xft:Font Awesome 5 Free:style=Solid:size=9
-!!URxvt.font:             xft:MesloLGS NF:autohint=true:size=12,xft:DejaVu Sans Mono:autohint=true:size=12
-URxvt.font:             xft:MesloLGS NF:autohint=true:size=12
-URxvt.scrollBar:        false
-URxvt.cursorColor:      white
+! normal settings
+! ===============
+Xft.dpi: 100
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+! urxvt settings
+! ==============
+
+URxvt.perl-ext-common: default,matcher,resize-font
+
+! transparency
+URxvt.background: [80]#000000
+URxvt.depth: 32
+
+! resize font
+URxvt.keysym.C-Down:  resize-font:smaller
+URxvt.keysym.C-Up:    resize-font:bigger
+
+! url
+URxvt.url-launcher: /usr/bin/chromium
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5
+
+! other
+URxvt.cursorColor: white
+URxvt.scrollBar: False
+URxvt.saveLines: 1000
+URxvt.preeditType: Root
+
+! disable iso14755 for use Ctrl+Shift
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! normal font
+URxvt.font:              xft:CaskaydiaCove Nerd Font Mono:antialias=true:size=12,xft:MesloLGS NF:antialias=true:size=12
+
+! bold font
+
+!URxvt.intensityStyles:  false
+!URxvt.font:             9x15,xft:TerminessTTFNerdFontMono,xft:DejaVu Sans Mono:autohint=true:size=12
