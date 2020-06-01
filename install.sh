@@ -40,10 +40,6 @@ function echoHighlight() {
   echo "$1" >> $log;
 }
 
-function pacmanSynchronize() {
-  sudo pacman -Sy --needed "$@" 2>&1 | tee -a $log;
-}
-
 function echoColorEmptyLine() {
   echo -e "${green}\n";
   echo >> $log;
@@ -54,46 +50,62 @@ function echoNoColorEmptyLine() {
   echo >> $log;
 }
 
+function cmd() {
+  "$@" 2>&1 | tee -a $log;
+}
+
+function pacmanSynchronize() {
+  sudo pacman -Sy --needed "$@" 2>&1 | tee -a $log;
+}
+
+function gitClone() {
+  git clone "$@" 2>&1 | tee -a $log;
+}
+
+function wGet() {
+  wget "$@" 2>&1 | tee -a $log;
+}
+
 if [ -f "$log" ]; then
   rm $log;
 fi
 
 echoColorEmptyLine;
-echo "Hello, fellow programmer! Welcome to Danilo's" | tee -a $log;
-echo | tee -a $log;
+cmd echo "Hello, fellow programmer! Welcome to Danilo's";
+cmd echo;
 
-echo "██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗" | tee -a $log;
-echo "██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝" | tee -a $log;
-echo "██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗" | tee -a $log;
-echo "██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║" | tee -a $log;
-echo "██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║" | tee -a $log;
-echo "╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝" | tee -a $log;
+cmd echo "██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗";
+cmd echo "██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝";
+cmd echo "██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗";
+cmd echo "██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║";
+cmd echo "██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║";
+cmd echo "╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝";
 
-echo -e "                                              install script." | tee -a $log;
-echo | tee -a $log;
-echo "This script will automatically install an i3 desktop and" | tee -a $log;
-echo "some dev and utility stuff, which I use in my main machine." | tee -a $log;
-echo | tee -a $log;
-echo "It may ask you something in the middle of the proccess." | tee -a $log;
-echo | tee -a $log;
-echo "Now sit back and relax. It'll take some time, but when done," | tee -a $log;
-echo "you'll have a much more simpler, focused and performant system." | tee -a $log;
-echo | tee -a $log;
-echo "-Danilo" | tee -a $log;
+cmd echo -e "                                              install script.";
+cmd echo;
+cmd echo "This script will automatically install an i3 desktop and";
+cmd echo "some dev and utility stuff, which I use in my main machine.";
+cmd echo;
+cmd echo "It may ask you something in the middle of the proccess.";
+cmd echo;
+cmd echo "Now sit back and relax. It'll take some time, but when done,";
+cmd echo "you'll have a much more simpler, focused and performant system.";
+cmd echo;
+cmd echo "-Danilo";
 echoNoColorEmptyLine;
 
 read -p "Press Enter to continue...";
 
 echoSectionTitle "Updating system";
-sudo pacman -Syu 2>&1 | tee -a $log;
+cmd sudo pacman -Syu;
 
 echoColorEmptyLine;
-echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗" | tee -a $log;
-echo "██╔══██╗██╔════╝██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔════╝████╗  ██║██╔════╝██║██╔════╝██╔════╝" | tee -a $log;
-echo "██║  ██║█████╗  ██████╔╝█████╗  ██╔██╗ ██║██║  ██║█████╗  ██╔██╗ ██║██║     ██║█████╗  ███████╗" | tee -a $log;
-echo "██║  ██║██╔══╝  ██╔═══╝ ██╔══╝  ██║╚██╗██║██║  ██║██╔══╝  ██║╚██╗██║██║     ██║██╔══╝  ╚════██║" | tee -a $log;
-echo "██████╔╝███████╗██║     ███████╗██║ ╚████║██████╔╝███████╗██║ ╚████║╚██████╗██║███████╗███████║" | tee -a $log;
-echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝" | tee -a $log;
+echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗";
+echo "██╔══██╗██╔════╝██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔════╝████╗  ██║██╔════╝██║██╔════╝██╔════╝";
+echo "██║  ██║█████╗  ██████╔╝█████╗  ██╔██╗ ██║██║  ██║█████╗  ██╔██╗ ██║██║     ██║█████╗  ███████╗";
+echo "██║  ██║██╔══╝  ██╔═══╝ ██╔══╝  ██║╚██╗██║██║  ██║██╔══╝  ██║╚██╗██║██║     ██║██╔══╝  ╚════██║";
+echo "██████╔╝███████╗██║     ███████╗██║ ╚████║██████╔╝███████╗██║ ╚████║╚██████╗██║███████╗███████║";
+echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝";
 echoNoColorEmptyLine;
 
 #echoSectionTitle "Installing apt dependencies";
@@ -103,37 +115,37 @@ echoNoColorEmptyLine;
 #echoSectionTitle "Adding speed-ricer ppa";
 #sudo add-apt-repository -y ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
 
-echoSectionTitle "Adding brightness-controller ppa";
-sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
+#echoSectionTitle "Adding brightness-controller ppa";
+#sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
 
-echoSectionTitle "Installing i3-gaps dependencies";
-aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
-libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
-libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
-libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
+#echoSectionTitle "Installing i3-gaps dependencies";
+#aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
+#libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
+#libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
+#libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
 
-echoSectionTitle "Installing Visual Studio Codium dependencies";
-aptInstall libgtk2.0-0;
+#echoSectionTitle "Installing Visual Studio Codium dependencies";
+#aptInstall libgtk2.0-0;
 
-echoSectionTitle "Installing PyWal dependencies";
-aptInstall python3-pip imagemagick;
+#echoSectionTitle "Installing PyWal dependencies";
+#aptInstall python3-pip imagemagick;
 
-echoSectionTitle "Installing Polybar dependencies";
-aptInstall build-essential git cmake cmake-data pkg-config python3-sphinx \
-libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev \
-python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
+#echoSectionTitle "Installing Polybar dependencies";
+#aptInstall build-essential git cmake cmake-data pkg-config python3-sphinx \
+#libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev \
+#python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
 
-echoSectionTitle "Installing Polybar optional dependencies";
-aptInstall libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev \
-#these can conflict with i3-gaps
-#i3-wm libjsoncpp-dev \
-libpulse-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
+#echoSectionTitle "Installing Polybar optional dependencies";
+#aptInstall libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev \
+##these can conflict with i3-gaps
+##i3-wm libjsoncpp-dev \
+#libpulse-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
 
-echoSectionTitle "Installing snapd";
-aptInstall snapd;
+#echoSectionTitle "Installing snapd";
+#aptInstall snapd;
 
-echoSectionTitle "Installing audio dependencies";
-aptInstall alsa-utils;
+echoSectionTitle "Installing audio (alsa-utils)";
+pacmanSynchronize alsa-utils;
 
 echoSectionTitle "Installing betterlockscreen dependencies";
 aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
@@ -148,354 +160,333 @@ echoSectionTitle "Installing dunst dependencies";
 aptInstall libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
 libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev;
 
-echoSectionTitle "Installing dependencies for custom scripts";
-aptInstall ssh-askpass-gnome ssh-askpass;
+#echoSectionTitle "Installing dependencies for custom scripts";
+#aptInstall ssh-askpass-gnome ssh-askpass;
 
 echoColorEmptyLine;
-echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     " | tee -a $log;
-echo "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     " | tee -a $log;
-echo "   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     " | tee -a $log;
-echo "   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     " | tee -a $log;
-echo "   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗" | tee -a $log;
-echo "   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝" | tee -a $log;
+cmd echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     ";
+cmd echo "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     ";
+cmd echo "   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     ";
+cmd echo "   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     ";
+cmd echo "   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗";
+cmd echo "   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝";
 echoNoColorEmptyLine;
 
 echoSectionTitle "Installing Zsh";
-aptInstall zsh;
+pacmanSynchronize zsh;
 
 echoSectionTitle "Installing Git";
-aptInstall git;
+pacmanSynchronize git;
 
 echoSectionTitle "Installing Oh-My-Zsh";
-(wget -q https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh) 2>&1 | tee -a $log;
+wGet -q https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
 
 echoSectionTitle "Installing Z.sh in home directory";
-(wget -q https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>&1 | tee -a $log;
+wGet -q https://raw.githubusercontent.com/rupa/z/master/z.sh;
 echoHighlight "z.sh installed";
 
 echoSectionTitle "Installing URxvt";
-aptInstall rxvt-unicode;
+pacmanSynchronize rxvt-unicode;
+
+echoSectionTitle "Installing tmux";
+pacmanSynchronize tmux;
 
 echoSectionTitle "Installing Powerlevel10k";
 if [ ! -d "$config" ]; then
   mkdir $config;
   echoHighlight "$config folder created";
 fi
-(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k) 2>&1 | tee -a $log;
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf 2>&1 | tee -a $log;
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf 2>&1 | tee -a $leg;
-eget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf 2>&1 | tee -a $log;
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf 2>&1 | tee -a $log;
-sudo mv ./*.ttf /usr/share/fonts/TTF 2>&1 | tee -a $log;
-fc-cache -f -v 2>&1 | tee -a $log;
+gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k);
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf;
+cmd sudo mv ./*.ttf /usr/share/fonts/TTF;
+cmd fc-cache -f -v;
+
+echoSectionTitle "Installing zsh-syntax-highlighting";
+gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
 
 echoColorEmptyLine;
-echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ " | tee -a $log;
-echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗" | tee -a $log;
-echo "██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝" | tee -a $log;
-echo "██║  ██║██╔══╝  ╚════██║██╔═██╗    ██║   ██║   ██║██╔═══╝ " | tee -a $log;
-echo "██████╔╝███████╗███████║██║  ██╗   ██║   ╚██████╔╝██║     " | tee -a $log;
-echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     " | tee -a $log;
+cmd echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
+cmd echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗";
+cmd echo "██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝";
+cmd echo "██║  ██║██╔══╝  ╚════██║██╔═██╗    ██║   ██║   ██║██╔═══╝ ";
+cmd echo "██████╔╝███████╗███████║██║  ██╗   ██║   ╚██████╔╝██║     ";
+cmd echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ";
 echoNoColorEmptyLine;
 
 echoSectionTitle "Creating common folders at home directory";
 if [ ! -d "$HOME/Downloads" ]; then
-  mkdir $HOME/Downloads;
+  cmd mkdir $HOME/Downloads;
   echoHighlight "$HOME/Downloads folder created";
 fi
 
 if [ ! -d "$HOME/Music" ]; then
-  mkdir $HOME/Music;
+  cmd mkdir $HOME/Music;
   echoHighlight "$HOME/Music folder created";
 fi
 
 if [ ! -d "$HOME/Pictures" ]; then
-  mkdir $HOME/Pictures;
+  cmd mkdir $HOME/Pictures;
   echoHighlight "$HOME/Pictures folder created";
 fi
 
 if [ ! -d "$HOME/Videos" ]; then
-  mkdir $HOME/Videos;
+  cmd mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
 fi
 
 echoSectionTitle "Installing Xorg";
-aptInstall xorg;
+pacmanSynchronize xorg;
 
-# make has some dependencies in Polybar dependencies. Check which ones
-echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
-# clone repo
-git clone https://www.github.com/Airblader/i3 $HOME/.i3-gaps 2>&1 | tee -a $log;
-# compile and install
-cd .i3-gaps;
-autoreconf --force --install 2>&1 | tee -a $log;
-rm -rf build/;
-mkdir -p build;
-cd build/;
-# Disabling sanitizers is important for release versions!
-# The prefix and sysconfdir are, obviously, dependent on the distribution.
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers 2>&1 | tee -a $log;
-make -j8 2>&1 | tee -a $log;
-sudo make install 2>&1 | tee -a $log;
-cd $HOME;
+## make has some dependencies in Polybar dependencies. Check which ones
+#echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
+## clone repo
+#gitClone https://www.github.com/Airblader/i3 $HOME/.i3-gaps;
+## compile and install
+#cmd cd .i3-gaps;
+#cmd autoreconf --force --install 2>&1 | tee -a $log;
+#cmd rm -rf build/;
+#cmd mkdir -p build;
+#cmd cd build/;
+## Disabling sanitizers is important for release versions!
+## The prefix and sysconfdir are, obviously, dependent on the distribution.
+#cmd ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers;
+#cmd make -j8;
+#cmd sudo make install;
+#cmd cd $HOME;
 
-#echoSectionTitle "Installing i3-gaps";
-#aptInstall i3-gaps-wm;
+echoSectionTitle "Installing i3-gaps";
+pacmanSynchronize i3-gaps;
 
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
-git clone https://github.com/danilobjr/dotfiles.git $dotfiles 2>&1 | tee -a $log;
+gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 
 echoSectionTitle "Installing Polybar in ~/.polybar directory";
 # clone repo
-git clone --branch 3.2 --recursive https://github.com/jaagr/polybar $HOME/.polybar 2>&1 | tee -a $log;
-cd .polybar;
-patch $HOME/.polybar/build.sh < $dotfiles/polybar/build.sh.diff 2>&1 | tee -a $log;
-./build.sh 2>&1 | tee -a $log;
-cd $HOME;
+gitClone --branch 3.2 --recursive https://github.com/jaagr/polybar $HOME/.polybar;
+cmd cd .polybar;
+cmd patch $HOME/.polybar/build.sh < $dotfiles/polybar/build.sh.diff;
+cmd ./build.sh 2>&1 | tee -a $log;
+cmd cd $HOME;
 
 echoSectionTitle "Installing i3lock-color in ~/.i3lock-color";
-git clone https://github.com/PandorasFox/i3lock-color.git $HOME/.i3lock-color 2>&1 | tee -a $log;
-cd .i3lock-color;
-autoreconf -i 2>&1 | tee -a $log;
-bash configure 2>&1 | tee -a $log;
-cd x86_64-pc-linux-gnu;
-make -j8 2>&1 | tee -a $log;
-cd $HOME;
+gitClone https://github.com/PandorasFox/i3lock-color.git $HOME/.i3lock-color;
+cmd cd .i3lock-color;
+cmd autoreconf -i;
+cmd bash configure;
+cmd cd x86_64-pc-linux-gnu;
+cmd make -j8;
+cmd cd $HOME;
 
 echoSectionTitle "Installing betterlockscreen script";
-wget https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen 2>&1 | tee -a $log;
-chmod 755 betterlockscreen;
-sudo cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
-rm betterlockscreen;
+wGet https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
+cmd chmod 755 betterlockscreen;
+cmd sudo cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
+cmd rm betterlockscreen;
 
 echoSectionTitle "Installing pywal";
-pip3 install pywal 2>&1 | tee -a $log;
+cmd pip3 install pywal;
 
 echoSectionTitle "Installing rofi";
-aptInstall rofi;
+pacmanSynchronize rofi;
 
 echoSectionTitle "Installing ranger";
-aptInstall ranger;
+pacmanSynchronize ranger;
 
 echoSectionTitle "Installing Chromium";
-snapInstall chromium;
+pacmanSynchronize chromium;
 
 echoSectionTitle "Installing mpv";
-snapInstall mpv;
+pacmanSynchronize mpv;
 
 echoSectionTitle "Installing mplayer";
 pacmanSynchronize mplayer;
 
 echoSectionTitle "Installing compton";
-aptInstall compton;
+pacmanSynchronize compton;
 
 echoSectionTitle "Installing feh";
-aptInstall feh;
+pacmanSynchronize feh;
 
 echoSectionTitle "Installing scrot";
-aptInstall scrot;
+pacmanSynchronize scrot;
 
 echoSectionTitle "Installing neofetch";
-aptInstall neofetch;
+pacmanSynchronize neofetch;
 
 echoSectionTitle "Installing htop";
-aptInstall htop;
+pacmanSynchronize htop;
 
 echoSectionTitle "Installing pandoc";
-aptInstall pandoc;
+pacmanSynchronize pandoc;
 
 echoSectionTitle "Installing dunst";
-aptInstall dunst;
+pacmanSynchronize dunst;
 
-echoSectionTitle "Installing Brightness Controller";
-aptInstall brightness-controller;
+#echoSectionTitle "Installing Brightness Controller";
+#aptInstall brightness-controller;
 
 echoSectionTitle "Installing zip";
-aptInstall zip;
+pacmanSynchronize zip;
 
 echoSectionTitle "Installing unzip";
-aptInstall unzip;
+pacmanSynchronize unzip;
 
-echoSectionTitle "Installing sound-theme-freedesktop";
-aptInstall sound-theme-freedesktop;
-
-##echoSectionTitle "Cloning Workman"
-#gcl https://github.com/ojbucao/Workman.git $HOME/.workman;
+#echoSectionTitle "Installing sound-theme-freedesktop";
+#aptInstall sound-theme-freedesktop;
 
 echoColorEmptyLine;
-echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗" | tee -a $log;
-echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝" | tee -a $log;
-echo "██║  ██║█████╗  ██║   ██║    ███████╗   ██║   ██║   ██║█████╗  █████╗  " | tee -a $log;
-echo "██║  ██║██╔══╝  ╚██╗ ██╔╝    ╚════██║   ██║   ██║   ██║██╔══╝  ██╔══╝  " | tee -a $log;
-echo "██████╔╝███████╗ ╚████╔╝     ███████║   ██║   ╚██████╔╝██║     ██║     " | tee -a $log;
-echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     " | tee -a $log;
+echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗";
+echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝";
+echo "██║  ██║█████╗  ██║   ██║    ███████╗   ██║   ██║   ██║█████╗  █████╗  ";
+echo "██║  ██║██╔══╝  ╚██╗ ██╔╝    ╚════██║   ██║   ██║   ██║██╔══╝  ██╔══╝  ";
+echo "██████╔╝███████╗ ╚████╔╝     ███████║   ██║   ╚██████╔╝██║     ██║     ";
+echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ";
 echoNoColorEmptyLine;
 
 echoSectionTitle "Installing Vim";
-aptInstall vim;
+pacmanSynchronize vim;
 
 echoSectionTitle "Installing Vundle";
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim 2>&1 | tee -a $log;
+gitClone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim;
 
 echoSectionTitle "Installing nvm";
-(wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash) 2>&1 | tee -a $log;
-chmod 755 $HOME/.nvm/nvm.sh;
-bash $HOME/.nvm/nvm.sh 2>&1 | tee -a $log;
+wGet -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
+cmd chmod 755 $HOME/.nvm/nvm.sh;
+cmd bash $HOME/.nvm/nvm.sh;
 
 echoSectionTitle "Installing node";
-nvm install node 2>&1 | tee -a $log;
+cmd nvm install node;
 
 echoSectionTitle "Installing now";
-npm install -g now 2>&1 | tee -a $log;
+cmd npm install -g now;
 
-# dialogDev ".................................terminal-alarm";
-# echoSectionTitle "Installing terminal-alarm";
-# npm install -g terminal-alarm;
+#echoSectionTitle "Installing alarm-cli";
+#cmd npm install -g alarm-cli;
 
-echoSectionTitle "Installing Visual Studio Codium";
-snapInstall codium --classic;
+#echoSectionTitle "Installing Visual Studio Codium";
+#pacmanSynchronize codium;
 
-echoSectionTitle "Installing Github CLI";
-wget $githubCliDebFileUrl -P $HOME/Downloads;
-aptInstall $githubCliDebFile;
+#echoSectionTitle "Installing Github CLI";
+#wGet $githubCliDebFileUrl -P $HOME/Downloads;
+#aptInstall $githubCliDebFile;
 
 echoSectionTitle "Installing Font Awesome";
-#if [ ! -d "$tmp" ]; then
-#  mkdir ${tmp};
-#fi
-#wget -qO ${tmp}/font-awesome.zip https://github.com/FortAwesome/Font-Awesome/archive/5.2.0.zip 2>&1 | tee -a $log;
-#unzip -o ${tmp}/font-awesome.zip -d ${tmp} 2>&1 | tee -a $log;
-#echoSectionTitle "Moving $fontFiles to $fonts";
-#cp ${fontFiles} ${fonts} 2>&1 | tee -a $log;
 pacmanSynchronize ttf-font-awesome;
 
-echoSectionTitle "Installing Noto Color Emoji font";
-mkdir -p $fontsFolder;
-wget $emojiFontUrl -P $fontsFolder;
-mkdir -p $fontConfigFolder;
-ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile";
+#echoSectionTitle "Installing Noto Color Emoji font";
+#cmd mkdir -p $fontsFolder;
+#wGet $emojiFontUrl -P $fontsFolder;
+#cmd mkdir -p $fontConfigFolder;
+#cmd ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile";
 
 echoSectionTitle "Caching fonts";
-sudo fc-cache -fv 2>&1 | tee -a $log;
+cmd sudo fc-cache -fv;
 
 echoColorEmptyLine;
-echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗" | tee -a $log;
-echo "██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝ ██╔════╝" | tee -a $log;
-echo "███████╗█████╗     ██║      ██║   ██║██╔██╗ ██║██║  ███╗███████╗" | tee -a $log;
-echo "╚════██║██╔══╝     ██║      ██║   ██║██║╚██╗██║██║   ██║╚════██║" | tee -a $log;
-echo "███████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝███████║" | tee -a $log;
-echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝" | tee -a $log;
+echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗";
+echo "██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝ ██╔════╝";
+echo "███████╗█████╗     ██║      ██║   ██║██╔██╗ ██║██║  ███╗███████╗";
+echo "╚════██║██╔══╝     ██║      ██║   ██║██║╚██╗██║██║   ██║╚════██║";
+echo "███████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝███████║";
+echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝";
 echoNoColorEmptyLine;
 
-# .profile
-echoSectionTitle "Creating symlink for .profile at $HOME/.profile";
-ln -sf $dotfiles/.profile $HOME/.profile 2>&1 | tee -a $log;
+#echoSectionTitle "Creating symlink for .bash_profile at $HOME/.bash_profile";
+#cmd ln -sf $dotfiles/.profile $HOME/.profile;
 
 # .xinitrc
 echoSectionTitle "Creating symlink for .xinitrc at $HOME/.xinitrc";
-ln -sf $dotfiles/xorg/.xinitrc $HOME/.xinitrc 2>&1 | tee -a $log;
+cmd ln -sf $dotfiles/xorg/.xinitrc $HOME/.xinitrc;
 
 # .Xresources
 echoSectionTitle "Creating symlink for .Xresources at $HOME/.Xresources";
-ln -sf $dotfiles/xorg/.Xresources $HOME/.Xresources 2>&1 | tee -a $log;
+cmd ln -sf $dotfiles/xorg/.Xresources $HOME/.Xresources;
 
 # audio
-#echoSectionTitle "Applying patch $dotfiles/audio/analog-output-headphones.diff at $analogOutputHeadphones";
-#sudo patch $analogOutputHeadphones < $dotfiles/audio/analog-output-headphones.diff 2>&1 | tee -a $log;
-echoSectionTitle "Setting audio configuration";
-sudo touch $modprobeConfigFile;
-echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
+echoSectionTitle "Audio settings";
+cmd sudo touch $modprobeConfigFile;
+cmd echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";
-rm -rf $config/i3;
-ln -sf $dotfiles/i3 $config/i3 2>&1 | tee -a $log;
+cmd rm -rf $config/i3;
+cmd ln -sf $dotfiles/i3 $config/i3;
 
 # Polybar
 echoSectionTitle "Creating symlink for Polybar at $config/polybar/config";
-rm $config/polybar/config;
-ln -s $dotfiles/polybar $config/polybar 2>&1 | tee -a $log;
-
-# i3blocks
-# echoSectionTitle "Creating symlink for i3blocks at $config/i3blocks";
-# ln -sf ${dotfiles}/i3blocks ${config}/i3blocks;
-# rm /usr/share/i3blocks/volume;
-# ln -s ${dotfiles}/i3blocks/volume /usr/share/i3blocks/volume;
+cmd rm $config/polybar/config;
+cmd ln -s $dotfiles/polybar $config/polybar;
 
 # ranger
 echoSectionTitle "Moving ranger settings to $config/ranger";
 # ranger --copy-config=all;
-ln -sf $dotfiles/ranger $config/ranger 2>&1 | tee -a $log;
+cmd ln -sf $dotfiles/ranger $config/ranger;
 
 # zsh
 echoSectionTitle "Creating symlink for Zsh at ~/.zshrc";
-rm $HOME/.zshrc;
-ln -s $dotfiles/zsh/.zshrc $HOME/.zshrc 2>&1 | tee -a $log;
-sudo chsh -s `which zsh` 2>&1 | tee -a $log;
+cmd rm $HOME/.zshrc;
+cmd ln -s $dotfiles/zsh/.zshrc $HOME/.zshrc;
+cmd sudo chsh -s $(which zsh);
 
 # .gitconfig
 echoSectionTitle "Creating symlink for .gitconfig at ~/.gitconfig";
-ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig 2>&1 | tee -a $log;
+cmd ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig;
 
 # tmux
-# dialogSettings "............................................tmux";
-# echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
-# ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
+echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
+cmd ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # neofetch
 echoSectionTitle "Creating symlink for neofetch";
-ln -s $dotfiles/neofetch/config $HOME/.config/neofetch/config;
+cmd ln -s $dotfiles/neofetch/config $HOME/.config/neofetch/config;
 echoHighlight "Created at ~/.config/neofetch/config"
 
 # dunst
 echoSectionTitle "Creating symlink for dunst";
-ln -s $dotfiles/dunst/dunstrc $HOME/.config/dunst/dunstrc;
+cmd ln -s $dotfiles/dunst/dunstrc $HOME/.config/dunst/dunstrc;
 
 # rofi
 echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";
-mkdir $config/rofi;
-ln -s $dotfiles/rofi/config $config/rofi/config;
-ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
-
-## workman
-#echoSectionTitle "Switching to workman keyboard layoutSet"
-#cd $HOME/.workman;
-#sudo cp xorg/workman /usr/share/X11/xkb/symbols/workman;
-#cd $HOME;
+cmd mkdir $config/rofi;
+cmd ln -s $dotfiles/rofi/config $config/rofi/config;
+cmd ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
 
 # vscodium
 echoSectionTitle "Installing Visual Studio Codium extensions";
-readarray vscodium_extensions < $dotfiles/vscodium/extensions;
+cmd readarray vscodium_extensions < $dotfiles/vscodium/extensions;
 
 for i in ${vscodium_extensions[@]}
 do
-  /snap/bin/codium --install-extension $i;
+  cmd /bin/codium --install-extension $i;
 done
 
-ln -s $dotfiles/vscodium/keybindings.json $vscodium_user/keybindings.json;
-ln -s $dotfiles/vscodium/settings.json $vscodium_user/settings.json;
-rm -rf $vscodium_user/snippets;
-ln -sf $dotfiles/vscodium/snippets $vscodium_user/snippets;
+cmd ln -s $dotfiles/vscodium/keybindings.json $vscodium_user/keybindings.json;
+cmd ln -s $dotfiles/vscodium/settings.json $vscodium_user/settings.json;
+cmd rm -rf $vscodium_user/snippets;
+cmd ln -sf $dotfiles/vscodium/snippets $vscodium_user/snippets;
 
 # vim
 echoSectionTitle "Creating symlink for Vim at ~/.vimrc";
-ln -s $dotfiles/vim/.vimrc $HOME/.vimrc 2>&1 | tee -a $log;
+cmd ln -s $dotfiles/vim/.vimrc $HOME/.vimrc;
 
 echoSectionTitle "Installing Vim plugins";
 
-vim +PluginInstall +qall 2>&1 | tee -a $log;
+cmd vim +PluginInstall +qall;
 
 # echoHighlight "Removing $tmp folder"
-rm -rf ${tmp};
+cmd rm -rf ${tmp};
 
 echoColorEmptyLine;
-echo "Congratulations!" | tee -a $log;
-echo | tee -a $log;
-echo "Now you have all the environment set in minutes." | tee -a $log;
-echo "Read the docs in https://github.com/danilobjr/dotfiles to know the features and keymappings." | tee -a $log;
-echo "Also you can see .dotfiles_installation_log file in you home directory with all outputs from this operation." | tee -a $log;
-echo | tee -a $log;
-echo "You have to reboot your system to see the changes." | tee -a $log;
+cmd echo "Congratulations!";
+cmd echo;
+cmd echo "Now you have all the environment set in minutes.";
+cmd echo "Read the docs in https://github.com/danilobjr/dotfiles to know the features and keymappings.";
+cmd echo "Also you can see .dotfiles_installation_log file in you home directory with all outputs from this operation.";
+cmd echo;
+cmd echo "You have to reboot your system to see the changes.";
 echoNoColorEmptyLine;
 
-read -p "Press Enter to quit..."
+cmd read -p "Press Enter to quit..."
