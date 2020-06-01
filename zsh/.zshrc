@@ -17,6 +17,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # Zsh Stuff
 # =========
 
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+plugins=(git zsh-autosuggestions zsh-completions)
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -30,10 +34,6 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/z.sh

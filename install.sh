@@ -210,6 +210,9 @@ gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-
 echoSectionTitle "Installing zsh-autosuggestions";
 pacmanSynchronize zsh-autosuggestions;
 
+echoSectionTitle "Installing zsh-completions";
+gitClone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions;
+
 echoColorEmptyLine;
 cmd echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
 cmd echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗";
