@@ -207,6 +207,9 @@ cmd fc-cache -f -v;
 echoSectionTitle "Installing zsh-syntax-highlighting";
 gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
 
+echoSectionTitle "Installing zsh-autosuggestions";
+pacmanSynchronize zsh-autosuggestions;
+
 echoColorEmptyLine;
 cmd echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
 cmd echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗";
