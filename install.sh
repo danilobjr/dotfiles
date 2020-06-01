@@ -171,10 +171,23 @@ echoSectionTitle "Installing Oh-My-Zsh";
 
 echoSectionTitle "Installing Z.sh in home directory";
 (wget -q https://raw.githubusercontent.com/rupa/z/master/z.sh) 2>&1 | tee -a $log;
-echoHighlight "z.sh installed" | tee -a $log;
+echoHighlight "z.sh installed";
 
 echoSectionTitle "Installing URxvt";
 aptInstall rxvt-unicode;
+
+echoSectionTitle "Installing Powerlevel10k";
+if [ ! -d "$config" ]; then
+  mkdir $config;
+  echoHighlight "$config folder created";
+fi
+(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k) 2>&1 | tee -a $log;
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf 2>&1 | tee -a $log;
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf 2>&1 | tee -a $leg;
+eget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf 2>&1 | tee -a $log;
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf 2>&1 | tee -a $log;
+sudo mv ./*.ttf /usr/share/fonts/TTF 2>&1 | tee -a $log;
+fc-cache -f -v 2>&1 | tee -a $log;
 
 echoColorEmptyLine;
 echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ " | tee -a $log;
@@ -189,29 +202,21 @@ echoSectionTitle "Creating common folders at home directory";
 if [ ! -d "$HOME/Downloads" ]; then
   mkdir $HOME/Downloads;
   echoHighlight "$HOME/Downloads folder created";
-else
-  echoHighlight "$HOME/Downloads folder already exists";
 fi
 
 if [ ! -d "$HOME/Music" ]; then
   mkdir $HOME/Music;
   echoHighlight "$HOME/Music folder created";
-else
-  echoHighlight "$HOME/Music folder already exists";
 fi
 
 if [ ! -d "$HOME/Pictures" ]; then
   mkdir $HOME/Pictures;
   echoHighlight "$HOME/Pictures folder created";
-else
-  echoHighlight "$HOME/Pictures folder already exists";
 fi
 
 if [ ! -d "$HOME/Videos" ]; then
   mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
-else
-  echoHighlight "$HOME/Videos folder already exists";
 fi
 
 echoSectionTitle "Installing Xorg";
