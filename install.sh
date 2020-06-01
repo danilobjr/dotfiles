@@ -144,6 +144,14 @@ echoNoColorEmptyLine;
 #echoSectionTitle "Installing snapd";
 #aptInstall snapd;
 
+echoSectionTitle "Installing Git";
+pacmanSynchronize git;
+
+echoSectionTitle "Installing yay";
+cmd git clone https://aur.archlinux.org/yay.git
+cmd cd yay
+cmd makepkg -sicr
+
 echoSectionTitle "Installing audio (alsa-utils)";
 pacmanSynchronize alsa-utils;
 
@@ -175,18 +183,18 @@ echoNoColorEmptyLine;
 echoSectionTitle "Installing Zsh";
 pacmanSynchronize zsh;
 
-echoSectionTitle "Installing Git";
-pacmanSynchronize git;
-
 echoSectionTitle "Installing Oh-My-Zsh";
-wGet -q https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
+wGet https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
 
 echoSectionTitle "Installing Z.sh in home directory";
-wGet -q https://raw.githubusercontent.com/rupa/z/master/z.sh;
+wGet https://raw.githubusercontent.com/rupa/z/master/z.sh;
 echoHighlight "z.sh installed";
 
 echoSectionTitle "Installing URxvt";
 pacmanSynchronize rxvt-unicode;
+
+echoSectionTitle "Installing URxvt";
+cmd yay -S urxvt-resize-font-git;
 
 echoSectionTitle "Installing tmux";
 pacmanSynchronize tmux;
