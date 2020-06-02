@@ -57,18 +57,16 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-;font-0 = fixed:pixelsize=10;1
-font-0 = Mono:size=12;1
+font-0 = CaskaydiaCove Nerd Font Mono:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
-;font-3 = Font Awesome 5 Free:style=Regular:pixelsize=9;1
-font-3 = Font Awesome 5 Free:style=Solid:pixelsize=9;1
+font-3 = CaskaydiaCove Nerd Font Mono:pixelsize=28;1
 font-4 = Font Awesome 5 Brands:pixelsize=9;1
 
-modules-left = i3 mpd
+modules-left = i3
 modules-center = date
 modules-right = backlight alsa memory cpu powermenu
-;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+;modules-right = mpd filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -195,7 +193,7 @@ card = acpi_video0
 type = custom/script
 exec = ~/.config/polybar/backlight.sh
 interval = 0.2
-format-prefix = " "
+format-prefix = "盛 "
 label = %output%
 
 [module/cpu]
@@ -209,7 +207,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = #4bffdc
 ;label = %percentage_used%%
@@ -261,7 +259,7 @@ date =
 ;date-alt = " %Y-%m-%d"
 
 ;time = %H:%M
-time = " %Y-%m-%d   %H:%M"
+time = " %Y-%m-%d   %H:%M"
 ;time-alt = %H:%M:%S
 
 ;format-prefix = 
@@ -299,14 +297,15 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
+mapped = true
 
 ;format-volume = <label-volume> <bar-volume>
 format-volume = <ramp-volume> <bar-volume>
 ;label-volume = VOL
 ;label-volume-foreground = ${root.foreground}
+label-font = 3
 
-;format-muted-prefix = 🔇
-format-muted-prefix = 
+format-muted-prefix = ﱝ
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = " ──── Muted ────"
 
@@ -320,16 +319,16 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 3
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 3
 bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-empty-font = 3
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
 
 [module/battery]
 type = internal/battery
@@ -390,7 +389,7 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = 襤
 label-open-foreground = ${colors.foreground}
 label-close =  Back
 label-close-foreground = ${colors.secondary}
