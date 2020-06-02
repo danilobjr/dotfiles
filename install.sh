@@ -360,11 +360,8 @@ echo "██████╔╝███████╗ ╚████╔╝    
 echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ";
 echoNoColorEmptyLine;
 
-echoSectionTitle "Installing Vim";
-pacmanSynchronize vim;
-
-echoSectionTitle "Installing Vundle";
-gitClone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim;
+echoSectionTitle "Installing Neovim";
+pacmanSynchronize neovim;
 
 echoSectionTitle "Installing nvm";
 wGet -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
@@ -387,8 +384,8 @@ cmd npm install -g now;
 #wGet $githubCliDebFileUrl -P $HOME/Downloads;
 #aptInstall $githubCliDebFile;
 
-echoSectionTitle "Installing Font Awesome";
-pacmanSynchronize ttf-font-awesome;
+#echoSectionTitle "Installing Font Awesome";
+#pacmanSynchronize ttf-font-awesome;
 
 #echoSectionTitle "Installing Noto Color Emoji font";
 #cmd mkdir -p $fontsFolder;
@@ -482,13 +479,13 @@ cmd ln -s $dotfiles/vscodium/settings.json $vscodium_user/settings.json;
 cmd rm -rf $vscodium_user/snippets;
 cmd ln -sf $dotfiles/vscodium/snippets $vscodium_user/snippets;
 
-# vim
-echoSectionTitle "Creating symlink for Vim at ~/.vimrc";
-cmd ln -s $dotfiles/vim/.vimrc $HOME/.vimrc;
+# Neovim
+echoSectionTitle "Creating symlink for Neovim at $config/nvim";
+cmd ln -sf $dotfiles/nvim $config/nvim;
 
-echoSectionTitle "Installing Vim plugins";
+#echoSectionTitle "Installing Vim plugins";
 
-cmd vim +PluginInstall +qall;
+#cmd vim +PluginInstall +qall;
 
 # echoHighlight "Removing $tmp folder"
 cmd rm -rf ${tmp};
