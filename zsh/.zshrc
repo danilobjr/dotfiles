@@ -75,6 +75,7 @@ alias initvim="nvim ~/.config/nvim/init.vim"
 alias tmuxconf="nvim ~/.tmux.conf"
 alias gitconfig="nvim ~/.gitconfig"
 alias i3config="nvim ~/.config/i3/config"
+alias rcconf="nvim ~/.config/ranger/rc.conf"
 
 # pacman
 alias pms="sudo pacman -S --needed"
