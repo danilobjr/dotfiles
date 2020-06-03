@@ -18,7 +18,14 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
+
+" ======================================================================
+" =                          color scheme                              =
+" ======================================================================
+
+colorscheme nord
 
 " ======================================================================
 " =                          base settings                             =
