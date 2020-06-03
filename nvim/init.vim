@@ -18,6 +18,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
@@ -38,9 +39,13 @@ set relativenumber
 " substitute show all references in another panel
 set inccommand=split
 " Give more space for displaying messages.
-set cmdheight=2
+"set cmdheight=2
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+" Show more info in status bar
+"set laststatus=2
+" Hide mode display at the very bottom (lightline already shows one)
+set noshowmode
 
 " ======================================================================
 " =                             leader                                 =
@@ -203,3 +208,11 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-f> :Ag<space>
+
+" ======================================================================
+" =                            lightline                               =
+" ======================================================================
+
+let g:lightline = {
+  \ 'colorscheme': 'nord',
+  \ }
