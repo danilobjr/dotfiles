@@ -26,12 +26,22 @@ set $lock-bg-color       000000
 # set colors from Xresources
 # NOTE: The final HEX colors in the lines below is the color
 # i3 will use if it fails to get colors from Xresources.
-set_from_resource $inactive-bg-color    i3wm.color0 #2f343f
-set_from_resource $inactive-text-color  i3wm.color8 #676e7d
-set_from_resource $selected-text-color  i3wm.color0 #2f343f
-set_from_resource $main-color           i3wm.color4 #3e7aca
-set_from_resource $text-color           i3wm.color7 #f3f4f5
-set_from_resource $urgent-color         i3wm.color1 #e53935
+set_from_resource $night0   i3wm.nord0   #2e3440
+set_from_resource $night1   i3wm.nord1   #3b4525
+set_from_resource $night2   i3wm.nord2   #434c5e
+set_from_resource $night3   i3wm.nord3   #4c566a
+set_from_resource $snow0    i3wm.nord4   #d8dee9
+set_from_resource $snow1    i3wm.nord5   #e5e9f0
+set_from_resource $snow2    i3wm.nord6   #eceff4
+set_from_resource $frost0   i3wm.nord7   #8fbcbb
+set_from_resource $frost1   i3wm.nord8   #88c0d0
+set_from_resource $frost2   i3wm.nord9   #81a1c1
+set_from_resource $frost3   i3wm.nord10  #5e81ac
+set_from_resource $aurora0  i3wm.nord11  #bf616a
+set_from_resource $aurora1  i3wm.nord12  #d08770
+set_from_resource $aurora2  i3wm.nord13  #ebcb8b
+set_from_resource $aurora3  i3wm.nord14  #a3be8c
+set_from_resource $aurora4  i3wm.nord15  #b48ead
 
 # icons for workspaces
 set $ws1  "1"
@@ -54,32 +64,35 @@ font pango:Mono 8
 #---- i3-gaps ----#
 
 gaps inner 15
-gaps outer 0
+gaps outer 0 
 
 #---- windows ----#
 
-# class                 border              backgr              text                  indicator           child_border
-client.focused          $main-color         $main-color         $text-color           $text-color         $main-color
-client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color  $inactive-bg-color
-client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color  $inactive-bg-color
-client.urgent           $urgent-color       $urgent-color       $text-color           $urgent-color       $urgent-color
-# client.placeholder      $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color  $inactive-bg-color
+# class                  border  bg        text    indicator  child_border
+client.focused           none    $night0   $snow0  $snow3     $snow0
+client.focused_inactive  none    $night3   $snow0  $night0    $night0
+client.unfocused         none    $night3   $snow0  $night0    $night0
+client.urgent            none    $aurora2  $snow0  $aurora2   $aurora2
+# client.placeholder     tbd     tbd       tbd     tbd        tbd
 
-client.background       $main-color
+client.background  $night0
 
-# border
-for_window [class="^.*"] border pixel 3
+# border width
+for_window [class="^.*"] border pixel 1
 
 # Scripts
 # =======
 
+# default background color
+exec --no-startup-id xsetroot -solid "$night3"
 # polybar
 exec_always --no-startup-id launch-polybar
 # colorscheme
-exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
-# wallpaper
-exec --no-startup-id betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscreen -w dimblur
-# fade effects
+#exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
+# lockscreen wallpaper
+#exec --no-startup-id betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscreen -w dimblur
+exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
+# compositor effects
 exec --no-startup-id compton -f -D 3
 # start audio
 exec --no-startup-id start-pulseaudio-x11

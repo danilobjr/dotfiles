@@ -1,32 +1,59 @@
-!! *foreground:      #00cc00
-!! *foreground_bold: #a8a19f
-!! *cursor:          color7
-!! *background:      #1b1918
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
 
-!! URxvt*color0:      #101218
-!! URxvt*color1:      #ee829f
-!! URxvt*color2:      #a5ffel
-!! URxvt*color3:      #101218
-!! URxvt*color4:      #101218
-!! URxvt*color5:      #101218
-!! URxvt*color6:      #101218
-!! URxvt*color7:      #101218
-!! URxvt*color8:      #101218
-!! URxvt*color9:      #101218
-!! URxvt*color10:     #101218
-!! URxvt*color11:     #101218
-!! URxvt*color12:     #101218
-!! URxvt*color13:     #101218
-!! URxvt*color14:     #101218
-!! URxvt*color15:     #101218
-!! URxvt*color16:     #101218
-!! URxvt*color17:     #101218
-!! URxvt*color18:     #101218
-!! URxvt*color19:     #101218
-!! URxvt*color20:     #101218
-!! URxvt*color21:     #101218
-!! URxvt*background:  #101218
-!! URxvt*foreground:  #101218
+*.nord0:  nord1
+*.nord1:  nord11
+*.nord2:  nord14
+*.nord3:  nord13
+*.nord4:  nord9
+*.nord5:  nord15
+*.nord6:  nord8
+*.nord7:  nord5
+*.nord8:  nord3
+*.nord9:  nord11
+*.nord10: nord14
+*.nord11: nord13
+*.nord12: nord9
+*.nord13: nord15
+*.nord14: nord7
+*.nord15: nord6
+
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading:        35
+*fadeColor:     nord3
+
+*.color0:  nord1
+*.color1:  nord11
+*.color2:  nord14
+*.color3:  nord13
+*.color4:  nord9
+*.color5:  nord15
+*.color6:  nord8
+*.color7:  nord5
+*.color8:  nord3
+*.color9:  nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
 
 ! normal settings
 ! ===============
@@ -42,8 +69,8 @@ Xft.hintstyle: hintslight
 URxvt.perl-ext-common: default,matcher,resize-font
 
 ! transparency
-URxvt.background: [80]#000000
-URxvt.depth: 32
+!URxvt.background: [80]#000000
+!URxvt.depth: 32
 
 ! resize font
 URxvt.keysym.C-Down:  resize-font:smaller
@@ -67,7 +94,7 @@ URxvt.iso14755_52: false
 ! normal font
 URxvt.font:              xft:CaskaydiaCove Nerd Font Mono:antialias=true:size=12,xft:MesloLGS NF:antialias=true:size=12
 
-! bold font
+! bold font tbd
 
 !URxvt.intensityStyles:  false
 !URxvt.font:             9x15,xft:TerminessTTFNerdFontMono,xft:DejaVu Sans Mono:autohint=true:size=12
