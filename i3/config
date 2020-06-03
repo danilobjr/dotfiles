@@ -69,7 +69,8 @@ gaps outer 0
 #---- windows ----#
 
 # class                  border  bg        text    indicator  child_border
-client.focused           none    $night0   $snow0  $snow3     $snow0
+#client.focused           none    $night0   $snow0  $snow3     $snow0
+client.focused           none    $night0   $snow0  $night3    $night2
 client.focused_inactive  none    $night3   $snow0  $night0    $night0
 client.unfocused         none    $night3   $snow0  $night0    $night0
 client.urgent            none    $aurora2  $snow0  $aurora2   $aurora2
