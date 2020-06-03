@@ -90,10 +90,9 @@ exec_always --no-startup-id launch-polybar
 # colorscheme
 #exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
 # lockscreen wallpaper
-#exec --no-startup-id betterlockscreen -u $DOTFILES/wallpapers/wall.jpg && betterlockscreen -w dimblur
 exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
 # compositor effects
-exec --no-startup-id compton -f -D 3
+exec --no-startup-id compton -c -f -D 3
 # start audio
 exec --no-startup-id start-pulseaudio-x11
 # notification
