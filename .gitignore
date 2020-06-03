@@ -5,3 +5,7 @@
 ranger/bookmarks
 ranger/history
 ranger/tagged
+
+# vim.plug
+nvim/plugged
+nvim/.netrwhist

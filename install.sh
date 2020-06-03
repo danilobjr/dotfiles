@@ -129,6 +129,8 @@ echoNoColorEmptyLine;
 
 #echoSectionTitle "Installing PyWal dependencies";
 #aptInstall python3-pip imagemagick;
+echoSectionTitle "Installing Python and pip";
+pacmanSynchronize python python-pip;
 
 #echoSectionTitle "Installing Polybar dependencies";
 #aptInstall build-essential git cmake cmake-data pkg-config python3-sphinx \
@@ -152,21 +154,18 @@ cmd git clone https://aur.archlinux.org/yay.git
 cmd cd yay
 cmd makepkg -sicr
 
-echoSectionTitle "Installing audio (alsa-utils)";
-pacmanSynchronize alsa-utils;
-
-echoSectionTitle "Installing betterlockscreen dependencies";
-aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
-libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
-libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
-libjpeg-turbo8-dev libpam0g-dev libxcb-xinerama0-dev;
+#echoSectionTitle "Installing betterlockscreen dependencies";
+#aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
+#libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
+#libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
+#libjpeg-turbo8-dev libpam0g-dev libxcb-xinerama0-dev;
 
 echoSectionTitle "Installing curl";
 aptInstall curl;
 
-echoSectionTitle "Installing dunst dependencies";
-aptInstall libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
-libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev;
+#echoSectionTitle "Installing dunst dependencies";
+#aptInstall libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
+#libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev;
 
 #echoSectionTitle "Installing dependencies for custom scripts";
 #aptInstall ssh-askpass-gnome ssh-askpass;
@@ -193,7 +192,7 @@ echoHighlight "z.sh installed";
 echoSectionTitle "Installing URxvt";
 pacmanSynchronize rxvt-unicode;
 
-echoSectionTitle "Installing URxvt";
+echoSectionTitle "Installing URxvt resize font plugin";
 cmd yay -S urxvt-resize-font-git;
 
 echoSectionTitle "Installing tmux";
@@ -220,6 +219,9 @@ pacmanSynchronize zsh-autosuggestions;
 
 echoSectionTitle "Installing zsh-completions";
 gitClone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions;
+
+echoSectionTitle "Installing Silver Searcher";
+pacmanSynchronize the_silver_searcher;
 
 echoColorEmptyLine;
 cmd echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
@@ -250,6 +252,9 @@ if [ ! -d "$HOME/Videos" ]; then
   cmd mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
 fi
+
+echoSectionTitle "Installing audio (alsa-utils)";
+pacmanSynchronize alsa-utils;
 
 echoSectionTitle "Installing Xorg";
 pacmanSynchronize xorg;
@@ -482,10 +487,11 @@ cmd ln -sf $dotfiles/vscodium/snippets $vscodium_user/snippets;
 # Neovim
 echoSectionTitle "Creating symlink for Neovim at $config/nvim";
 cmd ln -sf $dotfiles/nvim $config/nvim;
+echoSectionTitle "Install python3 provider for Neovim";
+cmd python3 -m pip install --user --upgrade pynvim;
 
-#echoSectionTitle "Installing Vim plugins";
-
-#cmd vim +PluginInstall +qall;
+#echoSectionTitle "Installing Neovim plugins";
+#cmd curl -fLo "$config/nvim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # echoHighlight "Removing $tmp folder"
 cmd rm -rf ${tmp};

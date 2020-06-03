@@ -70,11 +70,11 @@ export NVM_DIR="$HOME/.nvm"
 alias reload!="source ~/.zshrc"
 
 # open dotfiles
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-alias tmuxconf="vim ~/.tmux.conf"
-alias gitconfig="vim ~/.gitconfig"
-alias i3config="vim ~/.config/i3/config"
+alias zshrc="nvim ~/.zshrc"
+alias initvim="nvim ~/.config/nvim/init.vim"
+alias tmuxconf="nvim ~/.tmux.conf"
+alias gitconfig="nvim ~/.gitconfig"
+alias i3config="nvim ~/.config/i3/config"
 
 # pacman
 alias pms="sudo pacman -S --needed"
