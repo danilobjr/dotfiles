@@ -10,6 +10,7 @@ fi
 
 export BROSER=chromium
 export DOTFILES="$HOME/.dotfiles"
+export EDITOR=nvim
 export PATH="$PATH:$DOTFILES/scripts"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
