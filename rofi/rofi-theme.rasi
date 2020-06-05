@@ -1,169 +1,148 @@
-* {{
-  main-color: {color4};
-  urgent-color: {color1};
-  background-color: transparent;
-  background: #000000dd;
-  foreground: {color7};
-  foreground-selected: {color0};
-  border-color: {color0};
-  spacing: 2;
-}}
+* {
+  night0:                      #2E3440;
+  night1:                      #3B4252;
+  night2:                      #434C5E;
+  night3:                      #4C566A;
+  snow0:                       #D8DEE9;
+  snow1:                       #E5E9F0;
+  snow2:                       #ECEFF4;
+  frost0:                      #8FBCBB;
+  frost1:                      #88C0D0;
+  frost2:                      #81A1C1;
+  frost3:                      #5E81AC;
+  aurora0:                     #BF616A;
+  aurora1:                     #D08770;
+  aurora2:                     #EBCB8B;
+  aurora3:                     #A3BE8C;
+  aurora4:                     #B48EAD;
 
-* {{
-  active-background: @background-color;
-  active-foreground: @foreground;
-  normal-background: @background-color;
-  normal-foreground: @foreground;
-  urgent-background: @background-color;
-  urgent-foreground: @foreground;
+  background:                  @night0;
+  foreground:                  @snow2;
 
-  alternate-active-background: @background-color;
-  alternate-active-foreground: @foreground;
-  alternate-normal-background: @background-color;
+  normal-background:           @background;
+  normal-foreground:           @foreground;
+  active-background:           @background;
+  active-foreground:           @foreground;
+  urgent-background:           @background;
+  urgent-foreground:           @foreground;
+
+  selected-normal-background:  @night3;
+  selected-normal-foreground:  @snow2;
+  selected-active-background:  @night2;
+  selected-active-foreground:  @foreground;
+  selected-urgent-background:  @night2;
+  selected-urgent-foreground:  @snow2;
+
+  alternate-normal-background: @background;
   alternate-normal-foreground: @foreground;
-  alternate-urgent-background: @background-color;
-  alternate-urgent-foreground: @foreground;
+  alternate-active-background: @active-background;
+  alternate-active-foreground: @active-foreground;
+  alternate-urgent-background: @urgent-background;
+  alternate-urgent-foreground: @urgent-foreground;
 
-  selected-active-background: @main-color;
-  selected-active-foreground: @foreground-selected;
-  selected-normal-background: @main-color;
-  selected-normal-foreground: @foreground-selected;
-  selected-urgent-background: @main-color;
-  selected-urgent-foreground: @foreground-selected;
-}}
+  background-color:            @background;
+  bordercolor:                 @frost1;
+  border-color:                @night2;
+  spacing:                     2;
+  separatorcolor:              @night1;
+}
 
-#window {{
-  width: 700px;
-  padding: 5px;
+#window {
   background-color: @background;
-  border: 3px;
-  border-color: @main-color;
-}}
+}
 
-#mainbox {{
-  border: 0;
-  padding: 0;
-}}
+#mainbox {
+  border:  1;
+}
 
-#message {{
-  border: 2px 0px 0px;
-  border-color: @border-color;
-  padding: 1px;
-}}
+#message {
+  border:       2px 2px 2px;
+  border-color: @separatorcolor;
+  padding:      10;
+}
 
-#textbox {{
+#textbox {
   text-color: @foreground;
-}}
+}
 
-inputbar {{
-  children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
-}}
-
-textbox-prompt-colon {{
-  expand: false;
-  str: ":";
-  margin: 0px 0.3em 0em 0em;
-  text-color: @normal-foreground;
-}}
-
-#listview {{
+#listview {
   fixed-height: 0;
-  border: 2px 0px 0px;
-  border-color: @foreground;
-  spacing: 2px;
-  spacing: 4px;
-  scrollbar: true;
-  padding: 2px 0px 0px;
-}}
+}
 
-#element {{
-  border: 0;
-  padding: 1px;
-}}
+#element {
+  border:  0;
+  padding: 18px ;
+}
 
-#element.normal.normal {{
+#element.normal.normal {
   background-color: @normal-background;
-  text-color: @normal-foreground;
-}}
+  text-color:       @normal-foreground;
+}
 
-#element.normal.urgent {{
+#element.normal.urgent {
   background-color: @urgent-background;
-  text-color: @urgent-foreground;
-}}
+  text-color:       @urgent-foreground;
+}
 
-#element.normal.active {{
+#element.normal.active {
   background-color: @active-background;
-  text-color: @active-foreground;
-}}
+  text-color:       @active-foreground;
+}
 
-#element.selected.normal {{
+#element.selected.normal {
   background-color: @selected-normal-background;
-  text-color: @selected-normal-foreground;
-}}
+  text-color:       @selected-normal-foreground;
+}
 
-#element.selected.urgent {{
+#element.selected.urgent {
   background-color: @selected-urgent-background;
-  text-color: @selected-urgent-foreground;
-}}
+  text-color:       @selected-urgent-foreground;
+}
 
-#element.selected.active {{
+#element.selected.active {
   background-color: @selected-active-background;
-  text-color: @selected-active-foreground;
-}}
+  text-color:       @selected-active-foreground;
+}
 
-#element.alternate.normal {{
+#element.alternate.normal {
   background-color: @alternate-normal-background;
-  text-color: @alternate-normal-foreground;
-}}
+  text-color:       @alternate-normal-foreground;
+}
 
-#element.alternate.urgent {{
+#element.alternate.urgent {
   background-color: @alternate-urgent-background;
-  text-color: @alternate-urgent-foreground;
-}}
+  text-color:       @alternate-urgent-foreground;
+}
 
-#element.alternate.active {{
+#element.alternate.active {
   background-color: @alternate-active-background;
-  text-color: @alternate-active-foreground;
-}}
+  text-color:       @alternate-active-foreground;
+}
 
-#scrollbar {{
-  width: 4px;
-  border: 0;
-  handle-width: 8px;
-  padding: 0;
-}}
-
-#sidebar {{
-  border: 2px 0px 0px;
-  border-color: @border-color;
-}}
-
-#button {{
-  text-color: @normal-foreground;
-}}
-
-#button.selected {{
+#button.selected {
   background-color: @selected-normal-background;
-  text-color: @selected-normal-foreground;
-}}
+  text-color:       @selected-normal-foreground;
+}
 
-#inputbar {{
-  spacing: 0;
-  text-color: @normal-foreground;
-  padding: 1px;
-}}
+#inputbar {
+  spacing:      15px;
+  text-color:   @normal-foreground;
+  padding:      18px;
+  border:	0 0 1;
+  border-color: @separatorcolor;
+}
 
-#case-indicator {{
-  spacing: 0;
+#case-indicator {
+  spacing:    0;
   text-color: @normal-foreground;
-}}
+}
 
-#entry {{
-  spacing: 0;
+#entry {
+  spacing:    0;
   text-color: @normal-foreground;
-}}
+}
 
-#prompt {{
-  spacing: 0;
+#prompt {
+  spacing:    0;
   text-color: @normal-foreground;
-}}
+}

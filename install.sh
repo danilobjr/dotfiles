@@ -410,9 +410,6 @@ echo "███████║███████╗   ██║      ██�
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝";
 echoNoColorEmptyLine;
 
-#echoSectionTitle "Creating symlink for .bash_profile at $HOME/.bash_profile";
-#cmd ln -sf $dotfiles/.profile $HOME/.profile;
-
 # .xinitrc
 echoSectionTitle "Creating symlink for .xinitrc at $HOME/.xinitrc";
 cmd ln -sf $dotfiles/xorg/.xinitrc $HOME/.xinitrc;
@@ -465,10 +462,9 @@ echoSectionTitle "Creating symlink for dunst";
 cmd ln -s $dotfiles/dunst/dunstrc $HOME/.config/dunst/dunstrc;
 
 # rofi
-echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/config";
-cmd mkdir $config/rofi;
-cmd ln -s $dotfiles/rofi/config $config/rofi/config;
-cmd ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
+echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/";
+cmd ln -s $dotfiles/rofi $config/rofi;
+#cmd ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
 
 # vscodium
 echoSectionTitle "Installing Visual Studio Codium extensions";

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rofi -modi "run,drun" -show drun -display-run '' -display-drun '' -lines 5
