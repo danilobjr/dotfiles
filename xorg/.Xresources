@@ -15,22 +15,22 @@
 #define nord14 #A3BE8C
 #define nord15 #B48EAD
 
-*.nord0:  nord1
-*.nord1:  nord11
-*.nord2:  nord14
-*.nord3:  nord13
-*.nord4:  nord9
-*.nord5:  nord15
-*.nord6:  nord8
-*.nord7:  nord5
-*.nord8:  nord3
-*.nord9:  nord11
-*.nord10: nord14
-*.nord11: nord13
-*.nord12: nord9
-*.nord13: nord15
-*.nord14: nord7
-*.nord15: nord6
+*night0:   nord0
+*night1:   nord1
+*night2:   nord2
+*night3:   nord3
+*snow0:    nord4
+*snow1:    nord5
+*snow2:    nord6
+*frost0:   nord7
+*frost1:   nord8
+*frost2:   nord9
+*frost3:   nord10
+*aurora0:  nord11
+*aurora1:  nord12
+*aurora2:  nord13
+*aurora3:  nord14
+*aurora4:  nord15
 
 *.foreground:   nord4
 *.background:   nord0

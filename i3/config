@@ -22,26 +22,25 @@ set $mod Mod4
 set $term --no-startup-id urxvt
 
 # colors
-set $lock-bg-color       000000
 # set colors from Xresources
 # NOTE: The final HEX colors in the lines below is the color
 # i3 will use if it fails to get colors from Xresources.
-set_from_resource $night0   i3wm.nord0   #2e3440
-set_from_resource $night1   i3wm.nord1   #3b4525
-set_from_resource $night2   i3wm.nord2   #434c5e
-set_from_resource $night3   i3wm.nord3   #4c566a
-set_from_resource $snow0    i3wm.nord4   #d8dee9
-set_from_resource $snow1    i3wm.nord5   #e5e9f0
-set_from_resource $snow2    i3wm.nord6   #eceff4
-set_from_resource $frost0   i3wm.nord7   #8fbcbb
-set_from_resource $frost1   i3wm.nord8   #88c0d0
-set_from_resource $frost2   i3wm.nord9   #81a1c1
-set_from_resource $frost3   i3wm.nord10  #5e81ac
-set_from_resource $aurora0  i3wm.nord11  #bf616a
-set_from_resource $aurora1  i3wm.nord12  #d08770
-set_from_resource $aurora2  i3wm.nord13  #ebcb8b
-set_from_resource $aurora3  i3wm.nord14  #a3be8c
-set_from_resource $aurora4  i3wm.nord15  #b48ead
+set_from_resource $night0   i3wm.night0   #ff0000
+set_from_resource $night1   i3wm.night1   #00ff00
+set_from_resource $night2   i3wm.night2   #0000ff
+set_from_resource $night3   i3wm.night3   #ffffff
+set_from_resource $snow0    i3wm.snow0    #ffffff
+set_from_resource $snow1    i3wm.snow1    #ffffff
+set_from_resource $snow2    i3wm.snow2    #ffffff
+set_from_resource $frost0   i3wm.frost0   #ffffff
+set_from_resource $frost1   i3wm.frost1   #ffffff
+set_from_resource $frost2   i3wm.frost2   #ffffff
+set_from_resource $frost3   i3wm.frost3   #ffffff
+set_from_resource $aurora0  i3wm.aurora0  #ffffff
+set_from_resource $aurora1  i3wm.aurora1  #ffffff
+set_from_resource $aurora2  i3wm.aurora2  #ffffff
+set_from_resource $aurora3  i3wm.aurora3  #ffffff
+set_from_resource $aurora4  i3wm.aurora4  #ffffff
 
 # icons for workspaces
 set $ws1  "1"
