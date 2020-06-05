@@ -16,22 +16,33 @@
 ;
 ;==========================================================
 
+;colorscheme
+;${xrdb:night0:#2e3440}
+;${xrdb:night1:#3b4252}
+;${xrdb:night2:#434c5e}
+;${xrdb:night3:#4c566a}
+;${xrdb:snow0:#d8dee9}
+;${xrdb:snow1:#e5e9f0}
+;${xrdb:snow2:#eceff4}
+;${xrdb:frost0:#8fbcbb}
+;${xrdb:frost1:#88c0d0}
+;${xrdb:frost2:#81a1c1}
+;${xrdb:frost3:#5e81ac}
+;${xrdb:aurora0:#bf616A}
+;${xrdb:aurora1:#d08770}
+;${xrdb:aurora2:#ebcb8B}
+;${xrdb:aurora3:#a3be8C}
+;${xrdb:aurora4:#b48eaD}
+
 [colors]
-background     = #bb000000
-;background     = ${xrdb:color0:#222}
-background-alt = ${xrdb:color0:#444}
-foreground     = ${xrdb:color7:#dfdfdf}
-foreground-alt = ${xrdb:color2:#555}
-primary        = ${xrdb:color4:#ffb52a}
-secondary      = ${xrdb:color2:#e60053}
-alert          = ${xrdb:color1:#bd2c40}
-;background = #222
-;background-alt = #444
-;foreground = #dfdfdf
-;foreground-alt = #555
-;primary = #ffb52a
-;secondary = #e60053
-;alert = #bd2c40
+;background     = #bb000000
+background     = ${xrdb:night0:#2e3440}
+background-alt = ${xrdb:night0:#2e3440}
+foreground     = ${xrdb:snow0:#d8dee9}
+foreground-alt = ${xrdb:snow2:#eceff4}
+primary        = ${xrdb:night3:#4c566a}
+secondary      = ${xrdb:frost3:#5e81ac}
+alert          = ${xrdb:aurora2:#ebcb8b}
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
