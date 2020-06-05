@@ -58,8 +58,7 @@ set $ws10 "10"
 #---- font ----#
 
 # font for window titles and bar
-#font pango:Ubuntu Mono 12
-font pango:Mono 8
+font pango: Mono 10
 
 #---- i3-gaps ----#
 
@@ -68,13 +67,12 @@ gaps outer 0
 
 #---- windows ----#
 
-# class                  border  bg        text    indicator  child_border
-#client.focused           none    $night0   $snow0  $snow3     $snow0
-client.focused           none    $night0   $snow0  $night3    $night2
-client.focused_inactive  none    $night3   $snow0  $night0    $night0
-client.unfocused         none    $night3   $snow0  $night0    $night0
-client.urgent            none    $aurora2  $snow0  $aurora2   $aurora2
-# client.placeholder     tbd     tbd       tbd     tbd        tbd
+# class                  border    bg        text    indicator  child_border
+client.focused           $night2   $night0   $snow0  $night3    $night2
+client.focused_inactive  $night0   $night3   $snow0  $night0    $night0
+client.unfocused         $night0   $night3   $snow0  $night0    $night0
+client.urgent            $aurora2  $aurora2  $snow0  $aurora2   $aurora2
+# client.placeholder     tbd       tbd       tbd     tbd        tbd
 
 client.background  $night0
 
@@ -91,7 +89,7 @@ exec_always --no-startup-id launch-polybar
 # colorscheme
 #exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
 # lockscreen wallpaper
-exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
+#exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
 # compositor effects
 exec --no-startup-id compton -c -f -D 3
 # start audio
@@ -112,8 +110,8 @@ floating_modifier $mod
 # open terminal
 bindsym $mod+Return       exec $term -e zsh
 
-# show search bar (apps)
-bindsym $mod+space        exec rofi -show drun -lines 5 # -fullscreen
+# show searcher (for apps)
+bindsym $mod+space        exec rofi-searcher
 
 bindsym $mod+Prior        workspace prev
 bindsym $mod+Next         workspace next
