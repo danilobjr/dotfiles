@@ -47,6 +47,10 @@ set shortmess+=c
 "set laststatus=2
 " Hide mode display at the very bottom (lightline already shows one)
 set noshowmode
+" Open new window below when run :split
+set splitbelow
+" Open new window on the right when run :vsplit
+set splitright
 
 " ======================================================================
 " =                             leader                                 =
