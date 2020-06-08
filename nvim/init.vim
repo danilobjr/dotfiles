@@ -77,8 +77,9 @@ nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>; A;<esc>
 
 " git
-nnoremap <leader>gits :G<cr>
-nnoremap <leader>gitd :Git dc<cr>
+nnoremap <leader>gits :vertical rightbelow G<cr>
+nnoremap <leader>gitc :vertical rightbelow Gcommit<cr>
+nnoremap <leader>gitd :vertical rightbelow Git dc<cr>
 nnoremap <leader>gitj :diffget //3<cr>
 nnoremap <leader>gitf :diffget //2<cr>
 
