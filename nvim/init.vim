@@ -18,6 +18,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
 call plug#end()
@@ -68,9 +69,18 @@ vnoremap k j
 vnoremap l k
 vnoremap ; l
 
-nnoremap <leader>; A;<esc>
+" neovim config file
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
+
+" insert semicolon at end of line
+nnoremap <leader>; A;<esc>
+
+" git
+nnoremap <leader>gits :G<cr>
+nnoremap <leader>gitd :Git dc<cr>
+nnoremap <leader>gitj :diffget //3<cr>
+nnoremap <leader>gitf :diffget //2<cr>
 
 " ======================================================================
 " =                         plugins specific                           =
@@ -226,4 +236,13 @@ nnoremap <C-f> :Ag<space>
 
 let g:lightline = {
   \ 'colorscheme': 'nord',
+  \ 'active': {
+  \   'left': [
+  \     ['mode', 'paste'],
+  \     ['gitbranch', 'readonly', 'filename', 'modified']
+  \   ]
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'FugitiveHead'
+  \ },
   \ }
