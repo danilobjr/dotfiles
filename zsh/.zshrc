@@ -5,8 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Env Vars
-# ========
+# =============================================================================
+# === ENV VARS
+# =============================================================================
 
 export BROSER=chromium
 export DOTFILES="$HOME/.dotfiles"
@@ -15,8 +16,9 @@ export PATH="$PATH:$DOTFILES/scripts"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
 
-# Zsh Stuff
-# =========
+# =============================================================================
+# === ZSH STUFF
+# =============================================================================
 
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -58,14 +60,17 @@ if ! [ -d "$HOME/repos" ]; then
   echo
 fi
 
-# nvm
-# ===
+# =============================================================================
+# === NVM
+# =============================================================================
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Aliases
-# =======
+# =============================================================================
+# === ALIASES
+# =============================================================================
 
 # reload zsh config
 alias reload!="source ~/.zshrc"
@@ -77,6 +82,9 @@ alias tmuxconf="nvim ~/.tmux.conf"
 alias gitconfig="nvim ~/.gitconfig"
 alias i3config="nvim ~/.config/i3/config"
 alias rcconf="nvim ~/.config/ranger/rc.conf"
+
+# nvim
+alias v="nvim"
 
 # pacman
 alias pms="sudo pacman -S --needed"
