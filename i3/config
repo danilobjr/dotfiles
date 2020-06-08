@@ -9,19 +9,36 @@
 #
 # Github: https://github.com/danilobjr
 # i3 config file (v4)
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# Please see https://i3wm.org/docs/userguide.html for a complete reference
 
-# Definitions
-# ===========
-
-#---- variables ----#
+# =============================================================================
+# === VARIABLES
+# =============================================================================
 
 # win key
 set $mod Mod4
 # default terminal
 set $term --no-startup-id urxvt
 
-# colors
+# -----------------------------------------------------------------------------
+# --- WORKSPACE LABELS
+# -----------------------------------------------------------------------------
+
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+
+# -----------------------------------------------------------------------------
+# --- COLORS
+# -----------------------------------------------------------------------------
+
 # set colors from Xresources
 # NOTE: The final HEX colors in the lines below is the color
 # i3 will use if it fails to get colors from Xresources.
@@ -42,29 +59,13 @@ set_from_resource $aurora2  i3wm.aurora2  #EBCB8B
 set_from_resource $aurora3  i3wm.aurora3  #A3BE8C
 set_from_resource $aurora4  i3wm.aurora4  #B48EAD
 
-# icons for workspaces
-set $ws1  "1"
-set $ws2  "2"
-set $ws3  "3"
-set $ws4  "4"
-set $ws5  "5"
-set $ws6  "6"
-set $ws7  "7"
-set $ws8  "8"
-set $ws9  "9"
-set $ws10 "10"
+# =============================================================================
+# === VISUAL SETTINGS
+# =============================================================================
 
-#---- font ----#
-
-# font for window titles and bar
-font pango: Mono 10
-
-#---- i3-gaps ----#
-
-gaps inner 15
-gaps outer 0 
-
-#---- windows ----#
+# -----------------------------------------------------------------------------
+# --- WINDOWS
+# -----------------------------------------------------------------------------
 
 # class                  border    bg        text    indicator  child_border
 client.focused           $night2   $night0   $snow0  $night3    $night2
@@ -78,33 +79,53 @@ client.background  $night0
 # border width
 for_window [class="^.*"] border pixel 1
 
-# Scripts
-# =======
+# -----------------------------------------------------------------------------
+# --- FONT
+# -----------------------------------------------------------------------------
 
-# default background color
-exec --no-startup-id xsetroot -solid "$night3"
-# polybar
-exec_always --no-startup-id launch-polybar
-# colorscheme
-#exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
-# lockscreen wallpaper
-#exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
-# compositor effects
-exec --no-startup-id compton -c -f -D 3
-# start audio
-exec --no-startup-id start-pulseaudio-x11
-# notification
-exec --no-startup-id dunst
+# for window titles and bar
+font pango: Mono 10
 
-# Bindings
-# ========
+# -----------------------------------------------------------------------------
+# --- GAPS
+# -----------------------------------------------------------------------------
 
-#---- mouse ----#
+gaps inner 15
+gaps outer 0 
+
+# =============================================================================
+# === BINDINGS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# --- MOUSE
+# -----------------------------------------------------------------------------
 
 # use $mod+mouse to drag floating windows
 floating_modifier $mod
 
-#---- special keys ----#
+# -----------------------------------------------------------------------------
+# --- RESIZE WINDOW
+# -----------------------------------------------------------------------------
+
+mode "resize" {
+  bindsym j               resize shrink width 5 px or 5 ppt
+  bindsym k               resize shrink height 5 px or 5 ppt
+  bindsym l               resize grow height 5 px or 5 ppt
+  bindsym semicolon       resize grow width 5 px or 5 ppt
+
+  bindsym Left            resize shrink width 5 px or 5 ppt
+  bindsym Down            resize shrink height 5 px or 5 ppt
+  bindsym Up              resize grow height 5 px or 5 ppt
+  bindsym Right           resize grow width 5 px or 5 ppt
+
+  bindsym Return          mode "default"
+  bindsym Escape          mode "default"
+}
+
+# -----------------------------------------------------------------------------
+# --- SPECIAL KEYS
+# -----------------------------------------------------------------------------
 
 # open terminal
 bindsym $mod+Return       exec $term -e zsh
@@ -127,7 +148,9 @@ bindsym $mod+Escape       exec betterlockscreen -l blur
 bindsym --release Print         exec scrot "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
 bindsym --release shift+Print   exec scrot -u "$HOME/Pictures/%Y-%m-%d_%H-%M-%S_%s.jpg"; exec play-desktop-sound camera-shutter
 
-#---- letters ----#
+# -----------------------------------------------------------------------------
+# --- LETTERS
+# -----------------------------------------------------------------------------
 
 # enter resize mode
 bindsym $mod+r            mode "resize"
@@ -140,16 +163,16 @@ bindsym $mod+e            exec $term -e ranger
 bindsym $mod+shift+e      exec $term -e sudo ranger
 
 # change focused window
-bindsym $mod+h            focus left
-bindsym $mod+j            focus down
-bindsym $mod+k            focus up
-bindsym $mod+l            focus right
+bindsym $mod+j            focus left
+bindsym $mod+k            focus down
+bindsym $mod+l            focus up
+bindsym $mod+semicolon    focus right
 
 # move focused window
-bindsym $mod+shift+h      move left
-bindsym $mod+shift+j      move down
-bindsym $mod+shift+k      move up
-bindsym $mod+shift+l      move right
+bindsym $mod+shift+j          move left
+bindsym $mod+shift+k          move down
+bindsym $mod+shift+l          move up
+bindsym $mod+shift+semicolon  move right
 
 # toggle fullscreen
 bindsym $mod+f            fullscreen toggle
@@ -159,7 +182,9 @@ bindsym $mod+shift+f      floating toggle
 bindsym $mod+p            focus parent
 bindsym $mod+c            focus child
 
-#---- arrow keys ----#
+# -----------------------------------------------------------------------------
+# --- ARROW KEYS
+# -----------------------------------------------------------------------------
 
 # change focused window
 bindsym $mod+Left         focus left
@@ -173,7 +198,9 @@ bindsym $mod+shift+Down   move down
 bindsym $mod+shift+Up     move up
 bindsym $mod+shift+Right  move right
 
-#---- numbers ----#
+# -----------------------------------------------------------------------------
+# --- NUMBERS
+# -----------------------------------------------------------------------------
 
 # change to a workspace
 bindsym $mod+1 workspace $ws1
@@ -199,7 +226,9 @@ bindsym $mod+shift+8 move container to workspace $ws8
 bindsym $mod+shift+9 move container to workspace $ws9
 bindsym $mod+shift+0 move container to workspace $ws10
 
-#---- function keys ----#
+# -----------------------------------------------------------------------------
+# --- FUNCTION KEYS
+# -----------------------------------------------------------------------------
 
 bindsym $mod+F1           exec $term -e system-help
 bindsym $mod+F4           exec system-off
@@ -216,39 +245,40 @@ bindsym $mod+F10          exec rofiumount
 bindsym $mod+F11          exec $term -e htop
 bindsym $mod+F12          exec $term -e system-details
 
-#---- resize window ----#
-
-mode "resize" {
-  bindsym h               resize shrink width 5 px or 5 ppt
-  bindsym j               resize shrink height 5 px or 5 ppt
-  bindsym k               resize grow height 5 px or 5 ppt
-  bindsym l               resize grow width 5 px or 5 ppt
-
-  bindsym Left            resize shrink width 5 px or 5 ppt
-  bindsym Down            resize shrink height 5 px or 5 ppt
-  bindsym Up              resize grow height 5 px or 5 ppt
-  bindsym Right           resize grow width 5 px or 5 ppt
-
-  bindsym Return          mode "default"
-  bindsym Escape          mode "default"
-}
-
-#---- XF86 keys ----#
+# -----------------------------------------------------------------------------
+# --- XF86 KEYS
+# -----------------------------------------------------------------------------
 
 # audio controls
 bindsym XF86AudioMute        exec amixer sset Master toggle
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%-; exec play-desktop-sound audio-volume-change
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+; exec play-desktop-sound audio-volume-change
-# bindsym XF86AudioPlay      exec i3lock
-# bindsym XF86AudioStop      exec i3lock
-# bindsym XF86AudioPrev      exec i3lock
-# bindsym XF86AudioNext      exec i3lock
-# bindsym XF86Tools          exec i3lock
 
-# Apps assignments
-# ================
+# -----------------------------------------------------------------------------
+# --- APPS ASSIGNMENTS
+# -----------------------------------------------------------------------------
 
 # attach apps to specific workspace
 assign [class="Google-chrome"]  $ws1
 assign [class="Chromium"]       $ws1
-# assign [class="Code"]           $ws2
+assign [class="Code"]           $ws2
+assign [class="Codium"]         $ws2
+
+# =============================================================================
+# === SCRIPTS
+# =============================================================================
+
+# default background color
+exec --no-startup-id xsetroot -solid "$night3"
+# polybar
+exec_always --no-startup-id launch-polybar
+# colorscheme
+#exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
+# lockscreen wallpaper
+#exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
+# compositor effects
+exec --no-startup-id compton -c -f -D 3
+# start audio
+exec --no-startup-id start-pulseaudio-x11
+# notification
+exec --no-startup-id dunst

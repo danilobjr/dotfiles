@@ -57,9 +57,20 @@ let mapleader="\<space>"
 " =                           custom maps                              =
 " ======================================================================
 
+" cursor navigation
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
+
+vnoremap j h
+vnoremap k j
+vnoremap l k
+vnoremap ; l
+
 nnoremap <leader>; A;<esc>
-nnoremap <leader>enc :vsplit ~/.config/nvim/init.vim<cr>
-nnoremap <leader>snc :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
+nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 
 " ======================================================================
 " =                         plugins specific                           =
