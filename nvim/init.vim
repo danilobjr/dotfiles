@@ -52,6 +52,8 @@ set noshowmode
 set splitbelow
 " Open new window on the right when run :vsplit
 set splitright
+" Do not wrap lines
+set nowrap
 
 " ======================================================================
 " =                             leader                                 =
