@@ -73,6 +73,12 @@ vnoremap k j
 vnoremap l k
 vnoremap ; l
 
+" window navigation
+noremap <a-j> <c-w>h
+noremap <a-k> <c-w>j
+noremap <a-l> <c-w>k
+noremap <a-;> <c-w>l
+
 " neovim config file
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
