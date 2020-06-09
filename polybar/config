@@ -35,8 +35,8 @@
 ;${xrdb:aurora4:#b48eaD}
 
 [colors]
-;background     = #bb000000
-background     = ${xrdb:night0:#2e3440}
+background     = #332e3440
+;background     = ${xrdb:night0:#2e3440}
 background-alt = ${xrdb:night0:#2e3440}
 foreground     = ${xrdb:snow0:#d8dee9}
 foreground-alt = ${xrdb:snow2:#eceff4}
