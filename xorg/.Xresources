@@ -90,7 +90,8 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 ! normal font
-URxvt.font: xft:CaskaydiaCove Nerd Font Mono:antialias=true:size=12,xft:MesloLGS NF:antialias=true:size=12
+!URxvt.font: xft:JetBrainsMono Nerd Font:antialias=true:size=12,xft:MesloLGS NF:antialias=true:size=12,-addy-waffle-medium-r-normal--10-100-75-75-p-120-iso10646-1
+URxvt.font: xft:Mono:size=12,-addy-waffle-medium-r-normal--10-100-75-75-p-120-iso10646-1
 
 ! bold font tbd
 

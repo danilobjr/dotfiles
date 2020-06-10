@@ -12,11 +12,10 @@ config="$HOME/.config"
 vscodium_user="$config/VSCodium/User"
 modprobeConfigFile="/etc/modprobe.d/default.conf"
 # replace this with $fontsFolder?
-fonts="$HOME/.local/share/fonts"
+fontsFolder="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
 fontConfigFolder="$HOME/.config/fontconfig"
 fontConfFile="fonts.conf"
-fontsFolder="$HOME/.fonts"
 emojiFontUrl="https://noto-website-2.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip"
 githubCliVersion="0.8.0"
 githubCliDebFile="gh_${githubCliVersion}_linux_386.deb"
@@ -233,25 +232,34 @@ cmd echo "╚═════╝ ╚══════╝╚══════╝
 echoNoColorEmptyLine;
 
 echoSectionTitle "Creating common folders at home directory";
+echoSectionTitle "Creating Downloads folder";
 if [ ! -d "$HOME/Downloads" ]; then
   cmd mkdir $HOME/Downloads;
   echoHighlight "$HOME/Downloads folder created";
 fi
 
+echoSectionTitle "Creating Music folder";
 if [ ! -d "$HOME/Music" ]; then
   cmd mkdir $HOME/Music;
   echoHighlight "$HOME/Music folder created";
 fi
 
+echoSectionTitle "Creating Pictures folder";
 if [ ! -d "$HOME/Pictures" ]; then
   cmd mkdir $HOME/Pictures;
   echoHighlight "$HOME/Pictures folder created";
 fi
 
+echoSectionTitle "Creating Videos folder";
 if [ ! -d "$HOME/Videos" ]; then
   cmd mkdir $HOME/Videos;
   echoHighlight "$HOME/Videos folder created";
 fi
+
+echoSectionTitle "Creating $fontsFolder folder";
+cmd mkdir -p $fontsFolder;
+cmd mkdir -p $fontsFolder/bitmap;
+cmd mkdir -p $fontsFolder/ttf;
 
 echoSectionTitle "Installing audio (alsa-utils)";
 pacmanSynchronize alsa-utils;
@@ -282,12 +290,28 @@ pacmanSynchronize i3-gaps;
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
 gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 
+#echoSectionTitle "Installing Font Awesome";
+#pacmanSynchronize ttf-font-awesome;
+
+echoSectionTitle "Installing Noto Color Emoji font";
+wGet $emojiFontUrl -P $fontsFolder/ttf;
+#cmd mkdir -p $fontConfigFolder;
+#cmd ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile";
+
+echoSectionTitle "Installing Waffle bitmap font";
+cmd cp $dotfiles/polybar/fonts/* $fontsFolder/bitmap;
+cmd mkfontdir $fontsFolder/bitmap;
+cmd xset fp+ $fontsFolder/bitmap;
+cmd xset fp rehash;
+
+echoSectionTitle "Caching fonts";
+cmd sudo fc-cache -fv;
+
 echoSectionTitle "Installing Polybar in ~/.polybar directory";
-# clone repo
 gitClone --branch 3.2 --recursive https://github.com/jaagr/polybar $HOME/.polybar;
 cmd cd .polybar;
 cmd patch $HOME/.polybar/build.sh < $dotfiles/polybar/build.sh.diff;
-cmd ./build.sh 2>&1 | tee -a $log;
+cmd ./build.sh;
 cmd cd $HOME;
 
 echoSectionTitle "Installing i3lock-color in ~/.i3lock-color";
@@ -388,18 +412,6 @@ cmd npm install -g now;
 #echoSectionTitle "Installing Github CLI";
 #wGet $githubCliDebFileUrl -P $HOME/Downloads;
 #aptInstall $githubCliDebFile;
-
-#echoSectionTitle "Installing Font Awesome";
-#pacmanSynchronize ttf-font-awesome;
-
-#echoSectionTitle "Installing Noto Color Emoji font";
-#cmd mkdir -p $fontsFolder;
-#wGet $emojiFontUrl -P $fontsFolder;
-#cmd mkdir -p $fontConfigFolder;
-#cmd ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile";
-
-echoSectionTitle "Caching fonts";
-cmd sudo fc-cache -fv;
 
 echoColorEmptyLine;
 echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗";
