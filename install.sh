@@ -107,6 +107,9 @@ echo "██████╔╝███████╗██║     ████
 echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝";
 echoNoColorEmptyLine;
 
+echoSectionTitle "Installing pacman utils";
+cmd pacmanSynchronize pacman-contrib;
+
 #echoSectionTitle "Installing apt dependencies";
 #aptInstall software-properties-common;
 #sudo apt update 2>&1 | tee -a $log;
@@ -159,8 +162,11 @@ cmd makepkg -sicr
 #libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
 #libjpeg-turbo8-dev libpam0g-dev libxcb-xinerama0-dev;
 
-echoSectionTitle "Installing curl";
-aptInstall curl;
+#echoSectionTitle "Installing curl";
+#aptInstall curl;
+
+echoSectionTitle "Installing ranger utils";
+pacmanSynchronize ffmpegthumbnailer;
 
 #echoSectionTitle "Installing dunst dependencies";
 #aptInstall libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
@@ -198,17 +204,9 @@ echoSectionTitle "Installing tmux";
 pacmanSynchronize tmux;
 
 echoSectionTitle "Installing Powerlevel10k";
-if [ ! -d "$config" ]; then
-  mkdir $config;
-  echoHighlight "$config folder created";
-fi
+mkdir -p $config;
+echoHighlight "$config folder created";
 gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k);
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf;
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf;
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf;
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf;
-cmd sudo mv ./*.ttf /usr/share/fonts/TTF;
-cmd fc-cache -f -v;
 
 echoSectionTitle "Installing zsh-syntax-highlighting";
 gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
@@ -292,6 +290,13 @@ gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 
 #echoSectionTitle "Installing Font Awesome";
 #pacmanSynchronize ttf-font-awesome;
+
+echoSectionTitle "Installing fonts for powerlevel10k";
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf;
+cmd sudo mv ./*.ttf $fontsFolder/ttf;
 
 echoSectionTitle "Installing Noto Color Emoji font";
 wGet $emojiFontUrl -P $fontsFolder/ttf;
