@@ -244,8 +244,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " =                               fzf                                  =
 " ======================================================================
 
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-f> :Ag<space>
+nnoremap <C-p>   :GFiles<CR>
+nnoremap <C-A-p> :Files<CR>
+nnoremap <C-f>   :Ag<space>
 
 " ======================================================================
 " =                            lightline                               =
