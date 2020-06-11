@@ -65,6 +65,10 @@ let mapleader="\<space>"
 " =                           custom maps                              =
 " ======================================================================
 
+" neovim config file
+nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
+nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
+
 " cursor navigation
 nnoremap j h
 nnoremap k j
@@ -82,9 +86,8 @@ noremap <a-k> <c-w>j
 noremap <a-l> <c-w>k
 noremap <a-;> <c-w>l
 
-" neovim config file
-nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
-nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
+" search ignore case
+nnoremap / :/\c
 
 " insert semicolon at end of line
 nnoremap <leader>; A;<esc>
