@@ -1,0 +1,13 @@
+#!/bin/sh
+
+BAR_ICON=""
+
+if ! updates=$(checkupdates 2> /dev/null | wc -l ); then
+    updates=0
+fi
+
+if [ "$updates" -gt 0 ]; then
+    echo "$BAR_ICON $updates Updates"
+else
+    echo "$BAR_ICON Up to date"
+fi
