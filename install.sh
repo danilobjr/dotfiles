@@ -343,6 +343,9 @@ pacmanSynchronize rofi;
 echoSectionTitle "Installing ranger";
 pacmanSynchronize ranger;
 
+echoSectionTitle "Installing calcurse";
+pacmanSynchronize calcurse;
+
 echoSectionTitle "Installing Chromium";
 pacmanSynchronize chromium;
 
