@@ -269,7 +269,7 @@ assign [class="Codium"]         $ws2
 # =============================================================================
 
 # default background color
-exec --no-startup-id xsetroot -solid "$night3"
+#exec --no-startup-id xsetroot -solid "$night3"
 # polybar
 exec_always --no-startup-id launch-polybar
 # colorscheme
@@ -279,6 +279,6 @@ exec_always --no-startup-id launch-polybar
 # compositor effects
 exec_always --no-startup-id compton -c -f -D 3 --shadow-exclude "class_g = 'Polybar'"
 # start audio
-exec --no-startup-id start-pulseaudio-x11
+#exec --no-startup-id start-pulseaudio-x11
 # notification
 exec --no-startup-id dunst
