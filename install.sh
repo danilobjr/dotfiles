@@ -509,6 +509,13 @@ cmd python3 -m pip install --user --upgrade pynvim;
 # echoHighlight "Removing $tmp folder"
 cmd rm -rf ${tmp};
 
+# Keyboard mapping
+echoSectionTitle "Mapping CapsLock as Escape";
+cmd xmodmap -e 'keycode 66 = Escape';
+cmd xmodmap -e 'keycode 66 = Escape';
+cmd xmodmap -e 'clear lock';
+cmd xmodmap -pke > $HOME/.Xmodmap;
+
 echoColorEmptyLine;
 cmd echo "Congratulations!";
 cmd echo;
