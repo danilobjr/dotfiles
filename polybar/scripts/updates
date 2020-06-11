@@ -7,7 +7,7 @@ if ! updates=$(checkupdates 2> /dev/null | wc -l ); then
 fi
 
 if [ "$updates" -gt 0 ]; then
-    echo "$BAR_ICON $updates Updates"
+  echo "%{F#a3be8c}$BAR_ICON%{F-} $updates Updates"
 else
-    echo "$BAR_ICON Up to date"
+  echo "%{F#a3be8c}$BAR_ICON%{F-} Up to date"
 fi
