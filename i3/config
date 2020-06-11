@@ -179,8 +179,10 @@ bindsym $mod+f            fullscreen toggle
 # toggle floating/tiling window
 bindsym $mod+shift+f      floating toggle
 
-bindsym $mod+p            focus parent
-bindsym $mod+c            focus child
+bindsym $mod+c            exec $term -e calcurse
+
+#bindsym $mod+p            focus parent
+#bindsym $mod+c            focus child
 
 # -----------------------------------------------------------------------------
 # --- ARROW KEYS
