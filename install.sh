@@ -330,8 +330,8 @@ cmd cd $HOME;
 echoSectionTitle "Installing betterlockscreen script";
 wGet https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
 cmd chmod 755 betterlockscreen;
-cmd sudo cp $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
-cmd rm betterlockscreen;
+cmd sudo mv $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
+cmd ln -s $dotfiles/betterlockscreen/betterlockscreenrc $config/betterlockscreenrc;
 
 echoSectionTitle "Installing pywal";
 cmd pip3 install pywal;

@@ -1,0 +1,42 @@
+# configuration file for betterlockscreen
+
+# =================================
+# === COLORS (Nord Theme)
+# =================================
+
+# Typing
+# ------
+insidecolor=2E344088 #night0
+ringcolor=4C566Aff #night3
+# normal arc
+keyhlcolor=D8DEE9ff #snow0
+# backspace arc
+bshlcolor=EBCB8Bff #aurora2
+
+# Wrong
+# -----
+insidewrongcolor=2E344088 #night0
+ringwrongcolor=bf616aff #aurora0
+
+# Verifying
+# ---------
+insidevercolor=2E344088 #night0
+ringvercolor=EBCB8Bff #aurora2
+
+verifcolor=ffffffff
+
+# Text
+# ----
+timecolor=D8DEE9ff #snow0
+datecolor=D8DEE9ff #snow0
+loginbox=ff0000ff
+
+# ================================
+# === OTHER
+# ================================
+
+font='JetBrains Mono'
+locktext='Type password to unlock'
+lock_timeout=5
+
+separatorcolor=ffffffff
