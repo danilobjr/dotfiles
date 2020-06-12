@@ -21,6 +21,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# bitmap font
+
+xset fp+ $HOME/.local/share/fonts/bitmap
+xset fp rehash
+
+# set wallpaper
+
 if [ -f $HOME/.fehbg ]
 then
   source $HOME/.fehbg;
