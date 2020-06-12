@@ -84,7 +84,7 @@ for_window [class="^.*"] border pixel 1
 # -----------------------------------------------------------------------------
 
 # for window titles and bar
-font pango: Mono 10
+font pango: JetBrains Mono 9
 
 # -----------------------------------------------------------------------------
 # --- GAPS
