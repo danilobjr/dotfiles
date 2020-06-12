@@ -1,3 +1,4 @@
 #!/bin/bash
 
-pandoc -s -f markdown -t man $DOTFILES/README.md | groff -T utf8 -man | less;
+#pandoc -s -f markdown -t man $DOTFILES/README.md | groff -T utf8 -man | less;
+glow -p $DOTFILES/README.md;
