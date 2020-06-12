@@ -11,11 +11,8 @@ tmp="/tmp/.dotfiles"
 config="$HOME/.config"
 vscodium_user="$config/VSCodium/User"
 modprobeConfigFile="/etc/modprobe.d/default.conf"
-# replace this with $fontsFolder?
 fontsFolder="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
-fontConfigFolder="$HOME/.config/fontconfig"
-fontConfFile="fonts.conf"
 emojiFontUrl="https://noto-website-2.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip"
 githubCliVersion="0.8.0"
 githubCliDebFile="gh_${githubCliVersion}_linux_386.deb"
@@ -291,23 +288,25 @@ gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 #echoSectionTitle "Installing Font Awesome";
 #pacmanSynchronize ttf-font-awesome;
 
-echoSectionTitle "Installing fonts for powerlevel10k";
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf;
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf;
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf;
-wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf;
-cmd sudo mv ./*.ttf $fontsFolder/ttf;
+echoSectionTitle "Installing JetBrains font";
+wGet https://download.jetbrains.com/fonts/JetBrainsMono-1.0.3.zip -P $HOME/Downloads;
+cmd unzip $HOME/Downloads/JetBrainsMono-1.0.3.zip;
+cmd mv $HOME/Downloads/JetBrainsMono-1.0.3/ttf/* $fontsFolder/ttf;
 
-echoSectionTitle "Installing Noto Color Emoji font";
-wGet $emojiFontUrl -P $fontsFolder/ttf;
-#cmd mkdir -p $fontConfigFolder;
-#cmd ln -s "$dotfiles/$fontConfFile" "$fontConfigFolder/$fontConfFile";
+echoSectionTitle "Installing fonts for powerlevel10k";
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P $fontsFolder/ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P $fontsFolder/ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P $fontsFolder/ttf;
+wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P $fontsFolder/ttf;
 
 echoSectionTitle "Installing Waffle bitmap font";
 cmd cp $dotfiles/polybar/fonts/* $fontsFolder/bitmap;
 cmd mkfontdir $fontsFolder/bitmap;
 cmd xset fp+ $fontsFolder/bitmap;
 cmd xset fp rehash;
+
+echoSectionTitle "Installing Noto Color Emoji font";
+wGet $emojiFontUrl -P $fontsFolder/ttf;
 
 echoSectionTitle "Caching fonts";
 cmd sudo fc-cache -fv;
