@@ -217,6 +217,9 @@ gitClone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh
 echoSectionTitle "Installing Silver Searcher";
 pacmanSynchronize the_silver_searcher;
 
+echoSectionTitle "Installing fd";
+pacmanSynchronize fd;
+
 echoColorEmptyLine;
 cmd echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
 cmd echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗";

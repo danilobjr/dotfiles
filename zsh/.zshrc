@@ -15,6 +15,7 @@ export EDITOR=nvim
 export PATH="$PATH:$DOTFILES/scripts"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 
 # =============================================================================
 # === ZSH STUFF
