@@ -54,6 +54,8 @@ set splitbelow
 set splitright
 " Do not wrap lines
 set nowrap
+" Case insensitive on search
+set ignorecase
 
 " ======================================================================
 " =                             leader                                 =
@@ -91,13 +93,16 @@ noremap <a-k> <c-w>j
 noremap <a-l> <c-w>k
 noremap <a-;> <c-w>l
 
-" search ignore case
-nnoremap / :/\c
 " replace
 nnoremap <F3> :%s/
 
 " toggle search highlight
 nnoremap <F4> :set hlsearch!<cr>
+
+" common commands
+nnoremap <leader>ww :w<cr>
+nnoremap <leader>qq :q<cr>
+nnoremap <leader>wq :wq<cr>
 
 " insert semicolon at end of line
 nnoremap <leader>; A;<esc>
@@ -110,16 +115,26 @@ nnoremap <leader>gj :diffget //3<cr>
 nnoremap <leader>gf :diffget //2<cr>
 
 " ======================================================================
+" =                             commands                               =
+" ======================================================================
+
+" javascript comment
+autocmd FileType javascript nnoremap <buffer> <leader>/ :0i//<esc>
+autocmd FileType javascript vnoremap <buffer> <leader>/ :normal 0i//<esc>
+
+" comment highlight at jsonc files
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" ======================================================================
 " =                         plugins specific                           =
 " ======================================================================
 
-" ======================================================================
-" =                               coc                                  =
-" ======================================================================
+" ----------------------------------------------------------------------
+" -                               coc                                  -
+" ----------------------------------------------------------------------
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
-  \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-eslint',
   \ 'coc-prettier',
@@ -181,8 +196,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>f :CocCommand prettier.formatFile<cr>
 
 augroup mygroup
   autocmd!
@@ -250,17 +266,17 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Resume latest coc list.
 "nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" ======================================================================
-" =                               fzf                                  =
-" ======================================================================
+" ----------------------------------------------------------------------
+" -                               fzf                                  -
+" ----------------------------------------------------------------------
 
 nnoremap <C-p>   :GFiles<CR>
 nnoremap <C-A-p> :Files<CR>
 nnoremap <C-f>   :Ag<space>
 
-" ======================================================================
-" =                            lightline                               =
-" ======================================================================
+" ----------------------------------------------------------------------
+" -                            lightline                               -
+" ----------------------------------------------------------------------
 
 let g:lightline = {
   \ 'colorscheme': 'nord',
