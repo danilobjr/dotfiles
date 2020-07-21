@@ -7,7 +7,7 @@ if empty(glob('~/.config/nvim/plugged'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 "  autocmd VimEnter * CocInstall coc-snippets coc-pairs coc-tsserver
-"    \ coc-eslint coc-prettier coc-json
+"    \ coc-eslint coc-prettier coc-json coc-reason coc-fsharp
 endif
 
 " ======================================================================
@@ -15,7 +15,6 @@ endif
 " ======================================================================
 
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
@@ -23,6 +22,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'reasonml-editor/vim-reason-plus'
 call plug#end()
 
 " ======================================================================
@@ -95,15 +96,17 @@ noremap <a-l> <c-w>k
 noremap <a-;> <c-w>l
 
 " replace
-nnoremap <F3> :%s/
+nnoremap <F3> :%s/<c-r><c-w>//g<left><left>
 
 " toggle search highlight
 nnoremap <F4> :set hlsearch!<cr>
 
 " common commands
 nnoremap <leader>ww :w<cr>
-nnoremap <leader>qq :q<cr>
+nnoremap <leader>wa :wa<cr>
 nnoremap <leader>wq :wq<cr>
+nnoremap <leader>qq :q<cr>
+nnoremap <leader>qa :qa<cr>
 
 " insert semicolon at end of line
 nnoremap <leader>; A;<esc>
@@ -271,8 +274,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " -                               fzf                                  -
 " ----------------------------------------------------------------------
 
-nnoremap <C-p>   :GFiles<CR>
-nnoremap <C-A-p> :Files<CR>
+nnoremap <C-p>   :Files<CR>
+nnoremap <C-A-p> :GFiles<CR>
 nnoremap <C-f>   :Ag<space>
 
 " ----------------------------------------------------------------------
@@ -291,3 +294,11 @@ let g:lightline = {
   \   'gitbranch': 'FugitiveHead'
   \ },
   \ }
+
+" ----------------------------------------------------------------------
+" -                         vim-reason-plus                            -
+" ----------------------------------------------------------------------
+
+"let g:LanguageClient_serverCommands = {
+"    \ 'reason': ['/home/danilo/.config/nvim/plugged/vim-reason-plus/reason-language-server']
+"    \ }
