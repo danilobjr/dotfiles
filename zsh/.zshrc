@@ -115,8 +115,9 @@ alias yi="yarn install"
 alias ya="yarn add -E"
 alias yad="yarn add -E -D"
 alias yr="yarn remove"
-alias ys="yarn start"
 alias yb="yarn build"
+alias yd="yarn dev"
+alias ys="yarn start"
 alias yl="yarn lint"
 
 # git
