@@ -77,12 +77,11 @@ export NVM_DIR="$HOME/.nvm"
 alias reload!="source ~/.zshrc"
 
 # open dotfiles
-alias zshrc="nvim ~/.zshrc"
-alias initvim="nvim ~/.config/nvim/init.vim"
-alias tmuxconf="nvim ~/.tmux.conf"
+alias zshconfig="nvim ~/.zshrc"
+alias nvimconfig="nvim ~/.config/nvim/init.vim"
 alias gitconfig="nvim ~/.gitconfig"
 alias i3config="nvim ~/.config/i3/config"
-alias rcconf="nvim ~/.config/ranger/rc.conf"
+alias rangerconfig="nvim ~/.config/ranger/rc.conf"
 
 # nvim
 alias v="nvim"
