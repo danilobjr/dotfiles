@@ -274,8 +274,6 @@ assign [class="Codium"]         $ws2
 #exec --no-startup-id xsetroot -solid "$night3"
 # polybar
 exec_always --no-startup-id launch-polybar
-# colorscheme
-#exec --no-startup-id wal -i $DOTFILES/wallpapers/wall.jpg
 # lockscreen wallpaper
 #exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
 # compositor effects
