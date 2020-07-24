@@ -482,6 +482,7 @@ echoHighlight "Created at ~/.config/neofetch/config"
 
 # dunst
 echoSectionTitle "Creating symlink for dunst";
+cmd mkdir -p $condif/dunst;
 cmd ln -s $dotfiles/dunst/dunstrc $HOME/.config/dunst/dunstrc;
 
 # rofi
