@@ -294,7 +294,7 @@ gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 echoSectionTitle "Installing JetBrains font";
 wGet https://download.jetbrains.com/fonts/JetBrainsMono-1.0.3.zip -P $HOME/Downloads;
 cmd unzip $HOME/Downloads/JetBrainsMono-1.0.3.zip;
-cmd mv $HOME/Downloads/JetBrainsMono-1.0.3/ttf/* $fontsFolder/ttf;
+cmd mv $HOME/JetBrainsMono-1.0.3/ttf/* $fontsFolder/ttf;
 
 echoSectionTitle "Installing fonts for powerlevel10k";
 wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P $fontsFolder/ttf;
