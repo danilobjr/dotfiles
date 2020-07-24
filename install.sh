@@ -305,8 +305,6 @@ wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20B
 echoSectionTitle "Installing Waffle bitmap font";
 cmd cp $dotfiles/polybar/fonts/* $fontsFolder/bitmap;
 cmd mkfontdir $fontsFolder/bitmap;
-cmd xset fp+ $fontsFolder/bitmap;
-cmd xset fp rehash;
 
 echoSectionTitle "Installing Noto Color Emoji font";
 wGet $emojiFontUrl -P $fontsFolder/ttf;
