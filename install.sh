@@ -476,6 +476,7 @@ cmd ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # neofetch
 echoSectionTitle "Creating symlink for neofetch";
+cmd mkdir -p $config/neofetch;
 cmd ln -s $dotfiles/neofetch/config $HOME/.config/neofetch/config;
 echoHighlight "Created at ~/.config/neofetch/config"
 
