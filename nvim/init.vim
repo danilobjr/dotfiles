@@ -106,6 +106,7 @@ nnoremap <leader>wa :wa<cr>
 nnoremap <leader>wq :wq<cr>
 nnoremap <leader>qq :q<cr>
 nnoremap <leader>qa :qa<cr>
+nnoremap <leader>on :on<cr>
 
 " insert semicolon at end of line
 nnoremap <leader>; A;<esc>
