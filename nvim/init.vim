@@ -23,7 +23,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'reasonml-editor/vim-reason-plus'
 call plug#end()
 
 " ======================================================================
