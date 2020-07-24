@@ -345,6 +345,9 @@ pacmanSynchronize rofi;
 echoSectionTitle "Installing ranger";
 pacmanSynchronize ranger;
 
+echoSectionTitle "Installing w3m";
+pacmanSynchronize w3m;
+
 echoSectionTitle "Installing calcurse";
 pacmanSynchronize calcurse;
 
