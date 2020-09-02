@@ -131,7 +131,7 @@ mode "resize" {
 bindsym $mod+Return       exec $term -e zsh
 
 # show searcher (for apps)
-bindsym $mod+space        exec rofi-searcher
+bindsym $mod+space        exec ~/.dotfiles/scripts/rofi-searcher
 
 bindsym $mod+Prior        workspace prev
 bindsym $mod+Next         workspace next
@@ -232,20 +232,20 @@ bindsym $mod+shift+0 move container to workspace $ws10
 # --- FUNCTION KEYS
 # -----------------------------------------------------------------------------
 
-bindsym $mod+F1           exec $term -e system-help
-bindsym $mod+F4           exec system-off
+bindsym $mod+F1           exec $term -e ~/.dotfiles/scripts/system-help
+bindsym $mod+F4           exec ~/.dotfiles/scripts/system-off
 # reload i3
 bindsym $mod+F5           restart
 # brightness controls
-bindsym $mod+F7           exec brightness-decrease
-bindsym $mod+F8           exec brightness-increase
+bindsym $mod+F7           exec ~/.dotfiles/scripts/brightness-decrease
+bindsym $mod+F8           exec ~/.dotfiles/scripts/brightness-increase
 # mount removable device
-bindsym $mod+F9           exec rofimount
+bindsym $mod+F9           exec ~/.dotfiles/scripts/rofimount
 # unmount removable device
-bindsym $mod+F10          exec rofiumount
+bindsym $mod+F10          exec ~/.dotfiles/scripts/rofiumount
 # process management
 bindsym $mod+F11          exec $term -e htop
-bindsym $mod+F12          exec $term -e system-details
+bindsym $mod+F12          exec $term -e ~/.dotfiles/scripts/system-details
 
 # -----------------------------------------------------------------------------
 # --- XF86 KEYS
@@ -253,8 +253,8 @@ bindsym $mod+F12          exec $term -e system-details
 
 # audio controls
 bindsym XF86AudioMute        exec amixer sset Master toggle
-bindsym XF86AudioLowerVolume exec amixer sset Master 5%-; exec play-desktop-sound audio-volume-change
-bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+; exec play-desktop-sound audio-volume-change
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-; exec ~/.dotfiles/scripts/play-desktop-sound ~/.dotfiles/scripts/audio-volume-change
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+; exec ~/.dotfiles/scripts/play-desktop-sound ~/.dotfiles/scripts/audio-volume-change
 
 # -----------------------------------------------------------------------------
 # --- APPS ASSIGNMENTS
@@ -273,7 +273,7 @@ assign [class="Codium"]         $ws2
 # default background color
 #exec --no-startup-id xsetroot -solid "$night3"
 # polybar
-exec_always --no-startup-id launch-polybar
+exec_always --no-startup-id ~/.dotfiles/scripts/launch-polybar
 # lockscreen wallpaper
 #exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
 # compositor effects
