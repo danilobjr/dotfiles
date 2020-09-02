@@ -29,7 +29,7 @@ verifcolor=ffffffff
 # ----
 timecolor=D8DEE9ff #snow0
 datecolor=D8DEE9ff #snow0
-loginbox=ff0000ff
+loginbox=2e344088
 
 # ================================
 # === OTHER
@@ -37,6 +37,6 @@ loginbox=ff0000ff
 
 font='JetBrains Mono'
 locktext='Type password to unlock'
-lock_timeout=5
+lock_timeout=10
 
 separatorcolor=ffffffff
