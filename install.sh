@@ -203,13 +203,13 @@ pacmanSynchronize tmux;
 echoSectionTitle "Installing Powerlevel10k";
 mkdir -p $config;
 echoHighlight "$config folder created";
-gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k);
+gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k;
 
 echoSectionTitle "Installing zsh-syntax-highlighting";
 gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
 
 echoSectionTitle "Installing zsh-autosuggestions";
-pacmanSynchronize zsh-autosuggestions;
+gitClone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
 
 echoSectionTitle "Installing zsh-completions";
 gitClone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions;
@@ -320,13 +320,7 @@ cmd ./build.sh;
 cmd cd $HOME;
 
 echoSectionTitle "Installing i3lock-color in ~/.i3lock-color";
-gitClone https://github.com/PandorasFox/i3lock-color.git $HOME/.i3lock-color;
-cmd cd .i3lock-color;
-cmd autoreconf -i;
-cmd bash configure;
-cmd cd x86_64-pc-linux-gnu;
-cmd make -j8;
-cmd cd $HOME;
+cmd yay -S i3lock-color;
 
 echoSectionTitle "Installing betterlockscreen script";
 wGet https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
@@ -334,8 +328,8 @@ cmd chmod 755 betterlockscreen;
 cmd sudo mv $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
 cmd ln -s $dotfiles/betterlockscreen/betterlockscreenrc $config/betterlockscreenrc;
 
-echoSectionTitle "Installing pywal";
-cmd pip3 install pywal;
+#echoSectionTitle "Installing pywal";
+#cmd pip3 install pywal;
 
 echoSectionTitle "Installing rofi";
 pacmanSynchronize rofi;
