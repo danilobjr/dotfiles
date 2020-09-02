@@ -24,7 +24,7 @@ if [ -f $HOME/.fehbg ]
 then
   source $HOME/.fehbg;
 else
-  background $dotfiles/wallpapers/wall.jpg;
+  background $DOTFILES/wallpapers/wall.jpg;
 fi
 
 exec i3
