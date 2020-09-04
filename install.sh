@@ -259,8 +259,9 @@ cmd mkdir -p $fontsFolder;
 cmd mkdir -p $fontsFolder/bitmap;
 cmd mkdir -p $fontsFolder/ttf;
 
-echoSectionTitle "Installing audio (alsa-utils)";
+echoSectionTitle "Installing audio stuff";
 pacmanSynchronize alsa-utils;
+pacmanSynchronize asoundconf;
 
 echoSectionTitle "Installing Xorg";
 pacmanSynchronize xorg;
@@ -439,6 +440,7 @@ cmd ln -sf $dotfiles/xorg/.Xresources $HOME/.Xresources;
 echoSectionTitle "Audio settings";
 cmd sudo touch $modprobeConfigFile;
 cmd echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
+cmd asoundconf set-default-card PCH;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";
