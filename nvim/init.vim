@@ -7,7 +7,7 @@ if empty(glob('~/.config/nvim/plugged'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 "  autocmd VimEnter * CocInstall coc-snippets coc-pairs coc-tsserver
-"    \ coc-eslint coc-prettier coc-json coc-reason coc-fsharp
+"    \ coc-eslint coc-prettier coc-json coc-reason coc-fsharp coc-emmet
 endif
 
 " ======================================================================
@@ -98,7 +98,7 @@ noremap <a-;> <c-w>l
 nnoremap <F3> :%s/<c-r><c-w>//g<left><left>
 
 " toggle search highlight
-nnoremap <F4> :set hlsearch!<cr>
+nnoremap <F5> :set hlsearch!<cr>
 
 " common commands
 nnoremap <leader>ww :w<cr>
@@ -117,6 +117,20 @@ nnoremap <leader>gc :vertical rightbelow Gcommit<cr>
 nnoremap <leader>gd :vertical rightbelow Git dc<cr>
 nnoremap <leader>gj :diffget //3<cr>
 nnoremap <leader>gf :diffget //2<cr>
+
+" netrw
+nnoremap <F4> :Vex<cr>
+
+" ======================================================================
+" =                               ntrw                                 =
+" ======================================================================
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_localrmdir = 'rm -r'
 
 " ======================================================================
 " =                             commands                               =
