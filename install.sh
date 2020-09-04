@@ -107,6 +107,9 @@ echoNoColorEmptyLine;
 echoSectionTitle "Installing pacman utils";
 cmd pacmanSynchronize pacman-contrib;
 
+echoSectionTitle "Installing wget";
+cmd pacmanSynchronize wget;
+
 #echoSectionTitle "Installing apt dependencies";
 #aptInstall software-properties-common;
 #sudo apt update 2>&1 | tee -a $log;
@@ -149,9 +152,10 @@ echoSectionTitle "Installing Git";
 pacmanSynchronize git;
 
 echoSectionTitle "Installing yay";
-cmd git clone https://aur.archlinux.org/yay.git
-cmd cd yay
-cmd makepkg -sicr
+cmd git clone https://aur.archlinux.org/yay.git;
+cmd cd yay;
+cmd makepkg -sicr;
+cmd cd $HOME;
 
 #echoSectionTitle "Installing betterlockscreen dependencies";
 #aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
@@ -197,22 +201,22 @@ pacmanSynchronize rxvt-unicode;
 echoSectionTitle "Installing URxvt resize font plugin";
 cmd yay -S urxvt-resize-font-git;
 
-echoSectionTitle "Installing tmux";
-pacmanSynchronize tmux;
+#echoSectionTitle "Installing tmux";
+#pacmanSynchronize tmux;
 
 echoSectionTitle "Installing Powerlevel10k";
 mkdir -p $config;
 echoHighlight "$config folder created";
-gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k;
+gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k;
 
 echoSectionTitle "Installing zsh-syntax-highlighting";
 gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
 
 echoSectionTitle "Installing zsh-autosuggestions";
-gitClone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
+gitClone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
 
 echoSectionTitle "Installing zsh-completions";
-gitClone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions;
+gitClone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions;
 
 echoSectionTitle "Installing Silver Searcher";
 pacmanSynchronize the_silver_searcher;
@@ -264,7 +268,7 @@ pacmanSynchronize alsa-utils;
 pacmanSynchronize asoundconf;
 
 echoSectionTitle "Installing Xorg";
-pacmanSynchronize xorg;
+pacmanSynchronize xorg xorg-init xf86-video-ati;
 
 ## make has some dependencies in Polybar dependencies. Check which ones
 #echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
@@ -314,9 +318,9 @@ echoSectionTitle "Caching fonts";
 cmd sudo fc-cache -fv;
 
 echoSectionTitle "Installing Polybar in ~/.polybar directory";
-gitClone --branch 3.2 --recursive https://github.com/jaagr/polybar $HOME/.polybar;
+gitClone --recursive https://github.com/polybar/polybar $HOME/.polybar;
 cmd cd .polybar;
-cmd patch $HOME/.polybar/build.sh < $dotfiles/polybar/build.sh.diff;
+#cmd patch $HOME/.polybar/build.sh < $dotfiles/polybar/build.sh.diff;
 cmd ./build.sh;
 cmd cd $HOME;
 
@@ -409,14 +413,14 @@ cmd bash $HOME/.nvm/nvm.sh;
 echoSectionTitle "Installing node";
 cmd nvm install node;
 
-echoSectionTitle "Installing now";
-cmd npm install -g now;
+echoSectionTitle "Installing vercel";
+cmd npm install -g vercel;
 
-#echoSectionTitle "Installing alarm-cli";
-#cmd npm install -g alarm-cli;
+echoSectionTitle "Installing alarm-cli";
+cmd npm install -g alarm-cli;
 
-#echoSectionTitle "Installing Visual Studio Codium";
-#pacmanSynchronize codium;
+echoSectionTitle "Installing Visual Studio Code";
+pacmanSynchronize codo;
 
 #echoSectionTitle "Installing Github CLI";
 #wGet $githubCliDebFileUrl -P $HOME/Downloads;
@@ -447,12 +451,12 @@ cmd asoundconf set-default-card PCH;
 
 # i3
 echoSectionTitle "Creating symlink for i3 at $config/i3";
-cmd rm -rf $config/i3;
+#cmd rm -rf $config/i3;
 cmd ln -sf $dotfiles/i3 $config/i3;
 
 # Polybar
 echoSectionTitle "Creating symlink for Polybar at $config/polybar/config";
-cmd rm $config/polybar/config;
+#cmd rm $config/polybar/config;
 cmd ln -s $dotfiles/polybar $config/polybar;
 
 # ranger
@@ -468,11 +472,11 @@ cmd sudo chsh -s $(which zsh);
 
 # .gitconfig
 echoSectionTitle "Creating symlink for .gitconfig at ~/.gitconfig";
-cmd ln -s $dotfiles/git/.gitconfig $HOME/.gitconfig;
+cmd ln -sf $dotfiles/git/.gitconfig $HOME/.gitconfig;
 
 # tmux
-echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
-cmd ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
+#echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
+#cmd ln -s ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
 # neofetch
 echoSectionTitle "Creating symlink for neofetch";
