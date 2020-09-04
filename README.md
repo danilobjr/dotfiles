@@ -2,9 +2,9 @@
 
 My dotfiles.
 
-It installs the [i3wm](https://github.com/i3/i3) for a more lightweight and focused windows management, some dev stuff and utilities. Take a look at [Resources](#resources) section to see the whole list.
+It installs the [i3wm](https://github.com/i3/i3) ([gaps version](https://github.com/Airblader/i3)) for a more lightweight and focused windows management, some dev stuff and utilities. Take a look at [Resources](#resources) section to see the whole list.
 
-It was tested in a fresh installation of Ubuntu Minimal 18.04.
+It was tested in a fresh installation of Arch Linux on May 2020.
 
 ## Install
 
@@ -26,18 +26,17 @@ You can search for a related issue at [issues tab](https://github.com/danilobjr/
 
 ### Desktop Environment
 
+- [Xorg](https://www.x.org/) - An open source implementation of the X Window System.
 - [i3-gaps](https://github.com/Airblader/i3) - Windows Management.
-- [LightDM](https://freedesktop.org/wiki/Software/LightDM/) - Cross-desktop display manager.
 - [Polybar](https://github.com/jaagr/polybar) - A fast and easy-to-use status bar.
 - [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen) - Sweet looking lockscreen for linux system - i3lock.
+- [feh](https://feh.finalrewind.org) - An X11 image viewer aimed mostly at console users.
 - [neofetch](https://github.com/dylanaraps/neofetch) - A command-line system information tool written in bash 3.2+.
-- [pywal](https://github.com/dylanaraps/pywal) - Generate and change color-schemes on the fly.
+- [htop](https://htop.dev/) - An interactive process viewer.
 - [rofi](https://github.com/DaveDavenport/rofi) - A window switcher, application launcher and dmenu replacement.
 - [ranger](https://github.com/ranger/ranger) - A VIM-inspired filemanager for the console.
 - [Chromium](https://www.chromium.org/Home) - Open-source browser.
-- [feh](https://feh.finalrewind.org) - An X11 image viewer aimed mostly at console users.
 - [scrot](http://freshmeat.sourceforge.net/projects/scrot) - A simple commandline screen capture utility.
-- [Brightness Controller](https://github.com/lordamit/Brightness)
 - [compton](https://wiki.archlinux.org/index.php/Compton) - It's a standalone compositor for Xorg.
 
 ### Dev Stuff
@@ -49,18 +48,9 @@ You can search for a related issue at [issues tab](https://github.com/danilobjr/
 - [git](https://git-scm.com/) - A free and open source distributed version control system.
 - [nvm](https://github.com/creationix/nvm) - Node Version Manager.
 - [Node.js](https://nodejs.org/) - It is a JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [now](https://zeit.co/now) - Realtime Global Deployments.
+- [vercel](https://vercel.com/) - Optimal workflow for frontend teams. All-in-one: Static and Jamstack deployment, Serverless Functions, and Global CDN.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined. Free. Open source. Runs everywhere.
-- [Vim](https://www.vim.org/) - A highly configurable text editor for efficiently creating and changing any kind of text.
-
-### What's next
-
-Enable color scheme for Vim by uncomment the lines below.
-
-```
-let base16colorspace=256
-colorscheme base16-default-dark " the base16-shell colors has precedence
-```
+- [neovim](https://www.neovim.io/) - Hyperextensible Vim-based text editor.
 
 ## Usage
 
@@ -79,9 +69,9 @@ Here are the main ones separated by category.
 - `Win+c` - Focus child window.
 - `Win+-` - Prepare to open window horizontally.
 - `Win+\` - Prepare to open window vertically.
-- `Win+h, j, k or l` - Change focused to adjacent window.
+- `Win+j, k, l or ;` - Change focused to adjacent window.
 - `Win+Arrow keys` - Change focused to adjacent window.
-- `Win+Shift+h, j, k or l` - Move focused window.
+- `Win+Shift+j, k, l or ;` - Move focused window.
 - `Win+Shift+Arrow keys` - Move focused window.
 - `Win+r` - Enter resize mode.
   - `h, j, k or l` - Change size when resize mode is on.
@@ -89,12 +79,12 @@ Here are the main ones separated by category.
 
 #### i3 - System
 
-- `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1. VSCode opens in WS2.
+- `Win+Space` - Show app search bar (fuzzy finder). Chromium and Chrome open always in Workspace 1.
 - `Win+F4` - Show system off options that user can choose from: Logout, Reboot, Hibernate and Shutdown.
-- `Win+ESC` - Lock screen using [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen) script. Enter password to return.
-- `Win+Increase Volume (function key)` - Increase master volume.
-- `Win+Decrease Volume (function key)` - Decrease master volume.
-- `Win+Mute Volume (function key)` - Mute master volume.
+- `Win+Esc` - Lock screen. Enter password to return.
+- `Fn+Increase Volume (function key)` - Increase master volume.
+- `Fn+Decrease Volume (function key)` - Decrease master volume.
+- `Fn+Mute Volume (function key)` - Mute master volume.
 - `PrintScreen` - Take a screenshot of entire display.
 - `Shift+PrintScreen` - Take a screenshot of a focused window.
 
@@ -164,20 +154,25 @@ I've added many folder-specific shortcuts for fast move. Here's the idea:
 `<Location>`:
 
 - `/` - / (except for `X` action)
+- `m` - /media
 - `h` - ~
 - `c` - ~/.config
-- `?` - ~/.config/ranger
+- `i` - ~/.dotfiles/i3
+- `R` - ~/.dotfiles/ranger
+- `p` - ~/.dotfiles/polybar
+- `w` - ~/.dotfiles/wallpapers
+- `x` - ~/.dotfiles/xorg
 - `.` - ~/.dotfiles
-- `d` - ~/dev
-- `l` - ~/Downloads
-- `p` - ~/Pictures
+- `r` - ~/repos
+- `d` - ~/Downloads
+- `P` - ~/Pictures
 - `v` - ~/Videos
 
 Examples:
 
-- `gl` - Go to _~/Downloads_ folder.
+- `gd` - Go to _~/Downloads_ folder.
 - `mv` - Move selected file/folder to _~/Videos_ folder.
-- `td` - Create a new tab at _~/dev_ folder.
+- `tr` - Create a new tab at _~/repos folder.
 
 #### Ranger - General file manipulation
 
@@ -190,15 +185,15 @@ There's a common pattern for Vim and Visual Studio Code.
 
 Visual Studio Code.
 
-- `CC` - Open selected object in Code.
-- `CN` - Prompt shell command line to type a new file and open it in Code.
-- `CD` - Open current directory in Code.
+- `ecc` - Open selected file in Code.
+- `ecn` - Prompt shell command line to type a new file and open it in Code.
+- `ecd` - Open current directory in Code.
 
 Vim.
 
-- `VV` - Open selected object in Vim.
-- `VN` - Prompt shell command line to type a new file and open it in Vim.
-- `VD` - Open current directory in Vim.
+- `evv` - Open selected file in Vim.
+- `evn` - Prompt shell command line to type a new file and open it in Vim.
+- `evd` - Open current directory in Vim.
 
 #### Ranger - Zip and Unzip
 
@@ -211,9 +206,9 @@ Vim.
 
 ### Zsh
 
-There is bunch of aliases for npm, yarn, git, git-flow and configuration files. You can modify them at `~/.zshrc`. See the whole [aliases list here](zsh/README.md).
+There is bunch of aliases for npm, yarn, git, pacman and configuration files. You can modify them at `~/.zshrc`. See the whole aliases list [here](zsh/.zshrc).
 
-A `~/dev/` folder is created in your home directory when Zsh runs at first time. It is the default folder on Zsh startup. I put all my repos there.
+A `~/repos` folder is created in your home directory when Zsh runs at first time. It is the default folder on Zsh startup. I put all my repos there.
 
 ### Visual Studio Code
 
@@ -228,18 +223,16 @@ They are on top of the list.
 
 _**Note:** You can press Alt to toggle menu._
 
-### Vim
+### NeoVim
 
-It comes with some preinstalled plugins, such as NerdTree, vim-suround, etc.
-You can check at `~/.vimrc` file.
+It comes with some preinstalled plugins, such as coc.nvim, lightline, vim-fugitive, auto-pairs, etc.
+You can check at `~/.config/nvim/init.vim` file.
 
 ### Wallpapers
 
-To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfiles/wallpapers/` folder and then reload i3 `Win+F5`.
+To set a wallpaper manually just name a image file as `wall.jpg` in move it to [`wallpapers`](wallpapers) folder and then reload i3 by pressing `Win+F5`.
 
-### Next
-
-- Setup audio.
+Or you can just run ranger, put cursor over an image, and press `bg`.
 
 ## TODO
 
@@ -247,7 +240,7 @@ To set a wallpaper just name a image file as `wall.jpg` in move it to `~/.dotfil
 - Video recording (gif/mp4).
 - Send email from ranger?
 - Update docs: background script, etc.
-- Instal use rofi instead of dmenu.
+OK - Instal use rofi instead of dmenu.
 - FAQ setcion: log, audio, print, etc.
 
 ## License
