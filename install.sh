@@ -365,6 +365,9 @@ pacmanSynchronize scrot;
 echoSectionTitle "Installing neofetch";
 pacmanSynchronize neofetch;
 
+echoSectionTitle "Installing glow";
+cmd yay -S glow;
+
 echoSectionTitle "Installing htop";
 pacmanSynchronize htop;
 
