@@ -253,8 +253,8 @@ bindsym $mod+F12          exec $term -e ~/.dotfiles/scripts/system-details
 
 # audio controls
 bindsym XF86AudioMute        exec amixer sset Master toggle
-bindsym XF86AudioLowerVolume exec amixer sset Master 5%-; exec ~/.dotfiles/scripts/play-desktop-sound ~/.dotfiles/scripts/audio-volume-change
-bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+; exec ~/.dotfiles/scripts/play-desktop-sound ~/.dotfiles/scripts/audio-volume-change
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-; exec ~/.dotfiles/scripts/play-desktop-sound audio-volume-change
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+; exec ~/.dotfiles/scripts/play-desktop-sound audio-volume-change
 
 # -----------------------------------------------------------------------------
 # --- APPS ASSIGNMENTS
