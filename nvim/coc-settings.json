@@ -8,7 +8,7 @@
     "typescriptreact",
     "typescript.tsx"
   ],
-  "emmet.showExpandedAbbreviation": false,
+  "emmet.showExpandedAbbreviation": "never",
   "emmet.showAbbreviationSuggestions": false,
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true
