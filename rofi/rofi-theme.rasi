@@ -45,9 +45,12 @@
   border-color:                @night2;
   spacing:                     2;
   separatorcolor:              @night1;
+
+  font: "JetBrains Mono 12";
 }
 
 #window {
+  width: 600px;
   background-color: @background;
 }
 
