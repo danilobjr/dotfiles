@@ -12,10 +12,11 @@ fi
 export BROSER=chromium
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR=nvim
-export PATH="$PATH:$DOTFILES/scripts"
+#export PATH="$PATH:$DOTFILES/scripts" # already set on .bashrc
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
+#export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 
 # =============================================================================
 # === ZSH STUFF
