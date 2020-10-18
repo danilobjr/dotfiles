@@ -145,9 +145,6 @@ pacmanSynchronize python python-pip;
 ##i3-wm libjsoncpp-dev \
 #libpulse-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
 
-#echoSectionTitle "Installing snapd";
-#aptInstall snapd;
-
 echoSectionTitle "Installing Git";
 pacmanSynchronize git;
 
@@ -156,6 +153,17 @@ cmd git clone https://aur.archlinux.org/yay.git;
 cmd cd yay;
 cmd makepkg -sicr;
 cmd cd $HOME;
+
+echoSectionTitle "Installing snapd";
+cmd yay -S snapd;
+cmd systemctl enable --now apparmor.service;
+cmd systemctl enable --now snapd.apparmor.service;
+cmd systemctl enable --now snapd.socket;
+cmd sudo ln -s /var/lib/snapd/snap /snap;
+cmd sudo snap set core snapshots.automatic.retention=no;
+
+echoSectionTitle "Installing glu (flutter dependency)";
+pacmanSynchronize glu;
 
 #echoSectionTitle "Installing betterlockscreen dependencies";
 #aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
@@ -413,6 +421,10 @@ cmd bash $HOME/.nvm/nvm.sh;
 echoSectionTitle "Installing node";
 cmd nvm install node;
 
+echoSectionTitle "Installing flutter";
+cmd snap install flutter --classic;
+cmd yay -S android-sdk;
+
 echoSectionTitle "Installing vercel";
 cmd npm install -g vercel;
 
@@ -420,7 +432,7 @@ echoSectionTitle "Installing alarm-cli";
 cmd npm install -g alarm-cli;
 
 echoSectionTitle "Installing Visual Studio Code";
-pacmanSynchronize codo;
+pacmanSynchronize code;
 
 #echoSectionTitle "Installing Github CLI";
 #wGet $githubCliDebFileUrl -P $HOME/Downloads;
