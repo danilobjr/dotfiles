@@ -416,6 +416,9 @@ cmd sudo gpasswd -a danilo docker;
 cmd sudo systemctl start docker.service;
 cmd sudo systemctl enable docker.service;
 
+echoSectionTitle "Installing Docker Compose";
+pacmanSynchronize docker-compose;
+
 echoSectionTitle "Installing Neovim";
 pacmanSynchronize neovim;
 
