@@ -410,6 +410,12 @@ echo "██████╔╝███████╗ ╚████╔╝    
 echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ";
 echoNoColorEmptyLine;
 
+echoSectionTitle "Installing Docker";
+pacmanSynchronize docker;
+cmd sudo gpasswd -a danilo docker;
+cmd sudo systemctl start docker.service;
+cmd sudo systemctl enable docker.service;
+
 echoSectionTitle "Installing Neovim";
 pacmanSynchronize neovim;
 
