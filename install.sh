@@ -134,6 +134,9 @@ cmd pacmanSynchronize wget;
 echoSectionTitle "Installing Python and pip";
 pacmanSynchronize python python-pip;
 
+echoSectionTitle "Installing betterlockscreen dependencies";
+pacmanSynchronize imagemagick;
+
 echoSectionTitle "Installing Polybar dependencies";
 pacmanSynchronize bc;
 #aptInstall build-essential git cmake cmake-data pkg-config python3-sphinx \

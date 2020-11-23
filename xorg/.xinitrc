@@ -24,7 +24,8 @@ if [ -f $HOME/.fehbg ]
 then
   source $HOME/.fehbg;
 else
-  background $DOTFILES/wallpapers/wall.jpg;
+  #background $DOTFILES/wallpapers/wall.jpg;
+  betterlockscreen -w blur;
 fi
 
 exec i3
