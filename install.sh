@@ -9,7 +9,7 @@ no_color="\033[0m"
 dotfiles="$HOME/.dotfiles"
 tmp="/tmp/.dotfiles"
 config="$HOME/.config"
-vscodium_user="$config/VSCodium/User"
+vscode_user="$config/Code/User"
 modprobeConfigFile="/etc/modprobe.d/default.conf"
 fontsFolder="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
@@ -126,7 +126,7 @@ cmd pacmanSynchronize wget;
 #libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
 #libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
 
-#echoSectionTitle "Installing Visual Studio Codium dependencies";
+#echoSectionTitle "Installing Visual Studio Code dependencies";
 #aptInstall libgtk2.0-0;
 
 #echoSectionTitle "Installing PyWal dependencies";
@@ -521,19 +521,19 @@ echoSectionTitle "Creating symlink for rofi at ~/.config/rofi/";
 cmd ln -s $dotfiles/rofi $config/rofi;
 #cmd ln -s $dotfiles/rofi/rofi-theme.rasi $config/wal/templates/rofi-theme.rasi;
 
-# vscodium
-echoSectionTitle "Installing Visual Studio Codium extensions";
-cmd readarray vscodium_extensions < $dotfiles/vscodium/extensions;
+# vscode
+echoSectionTitle "Installing Visual Studio Code extensions";
+cmd readarray vscode_extensions < $dotfiles/vscode/extensions;
 
-for i in ${vscodium_extensions[@]}
+for i in ${vscode_extensions[@]}
 do
-  cmd /bin/codium --install-extension $i;
+  cmd /var/lib/snapd/snap/bin/code --install-extension $i;
 done
 
-cmd ln -s $dotfiles/vscodium/keybindings.json $vscodium_user/keybindings.json;
-cmd ln -s $dotfiles/vscodium/settings.json $vscodium_user/settings.json;
-cmd rm -rf $vscodium_user/snippets;
-cmd ln -sf $dotfiles/vscodium/snippets $vscodium_user/snippets;
+cmd ln -s $dotfiles/vscode/keybindings.json $vscode_user/keybindings.json;
+cmd ln -s $dotfiles/vscode/settings.json $vscode_user/settings.json;
+cmd rm -rf $vscode_user/snippets;
+cmd ln -sf $dotfiles/vscode/snippets $vscode_user/snippets;
 
 # Neovim
 echoSectionTitle "Creating symlink for Neovim at $config/nvim";
