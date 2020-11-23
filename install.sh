@@ -134,7 +134,8 @@ cmd pacmanSynchronize wget;
 echoSectionTitle "Installing Python and pip";
 pacmanSynchronize python python-pip;
 
-#echoSectionTitle "Installing Polybar dependencies";
+echoSectionTitle "Installing Polybar dependencies";
+pacmanSynchronize bc;
 #aptInstall build-essential git cmake cmake-data pkg-config python3-sphinx \
 #libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev \
 #python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
