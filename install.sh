@@ -431,18 +431,15 @@ wGet -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | b
 cmd chmod 755 $HOME/.nvm/nvm.sh;
 cmd bash $HOME/.nvm/nvm.sh;
 
-echoSectionTitle "Installing node";
-cmd nvm install node;
+#echoSectionTitle "Installing flutter";
+#cmd snap install flutter --classic;
+#cmd yay -S android-sdk;
 
-echoSectionTitle "Installing flutter";
-cmd snap install flutter --classic;
-cmd yay -S android-sdk;
+#echoSectionTitle "Installing vercel";
+#cmd npm install -g vercel;
 
-echoSectionTitle "Installing vercel";
-cmd npm install -g vercel;
-
-echoSectionTitle "Installing alarm-cli";
-cmd npm install -g alarm-cli;
+#echoSectionTitle "Installing alarm-cli";
+#cmd npm install -g alarm-cli;
 
 echoSectionTitle "Installing Visual Studio Code";
 pacmanSynchronize code;
