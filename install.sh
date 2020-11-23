@@ -348,6 +348,9 @@ cmd ln -s $dotfiles/betterlockscreen/betterlockscreenrc $config/betterlockscreen
 #echoSectionTitle "Installing pywal";
 #cmd pip3 install pywal;
 
+echoSectionTitle "Installing OBS Studio";
+cmd sudo snap install obs-studio;
+
 echoSectionTitle "Installing rofi";
 pacmanSynchronize rofi;
 
