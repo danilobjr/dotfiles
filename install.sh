@@ -457,6 +457,11 @@ echo "╚══════╝╚══════╝   ╚═╝      ╚═�
 echoNoColorEmptyLine;
 
 # .xinitrc
+echoSectionTitle "Creating symlink for .bashrc and .bash_profile";
+cmd ln -sf $dotfiles/.bashrc $HOME/.bashrc;
+cmd ln -sf $dotfiles/.bash_profile $HOME/.bash_profile;
+
+# .xinitrc
 echoSectionTitle "Creating symlink for .xinitrc at $HOME/.xinitrc";
 cmd ln -sf $dotfiles/xorg/.xinitrc $HOME/.xinitrc;
 
@@ -489,7 +494,7 @@ cmd ln -sf $dotfiles/ranger $config/ranger;
 echoSectionTitle "Creating symlink for Zsh at ~/.zshrc";
 cmd rm $HOME/.zshrc;
 cmd ln -s $dotfiles/zsh/.zshrc $HOME/.zshrc;
-cmd sudo chsh -s $(which zsh);
+#cmd sudo chsh -s $(which zsh);
 
 # .gitconfig
 echoSectionTitle "Creating symlink for .gitconfig at ~/.gitconfig";
