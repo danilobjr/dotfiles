@@ -457,7 +457,7 @@ echo "███████║███████╗   ██║      ██�
 echo "╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝";
 echoNoColorEmptyLine;
 
-# .xinitrc
+# .bash
 echoSectionTitle "Creating symlink for .bashrc and .bash_profile";
 cmd ln -sf $dotfiles/.bashrc $HOME/.bashrc;
 cmd ln -sf $dotfiles/.bash_profile $HOME/.bash_profile;
@@ -473,7 +473,7 @@ cmd ln -sf $dotfiles/xorg/.Xresources $HOME/.Xresources;
 # audio
 echoSectionTitle "Audio settings";
 cmd sudo touch $modprobeConfigFile;
-cmd echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
+#cmd echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
 cmd asoundconf set-default-card PCH;
 
 # i3
