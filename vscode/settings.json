@@ -18,9 +18,99 @@
       "when": "$(basename).tsx"
     }
   },
+  "keyboard.dispatch": "keyCode",
+  "vim.leader": "<space>",
   "vim.statusBarColorControl": true,
-  "vim.statusBarColors.normal": "#3e7aca",
-  "vim.statusBarColors.insert": "#679436",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["h"]
+    },
+    {
+      "before": ["k"],
+      "after": ["j"]
+    },
+    {
+      "before": ["l"],
+      "after": ["k"]
+    },
+    {
+      "before": [";"],
+      "after": ["l"]
+    },
+    {
+      "before": ["<leader>", "w", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "w", "a"],
+      "commands": ["workbench.action.files.saveAll"]
+    },
+    {
+      "before": ["<leader>", "q", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "q", "a"],
+      "commands": ["workbench.action.closeAllEditors"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "after": ["S", "<esc>"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "after": [":", "%", "s", "/", "<c-r>", "<c-w>", "/", "/", "g", "<left>", "<left>"]
+    },
+    {
+      "before": ["<leader>", "S"],
+      "after": [":", "%", "s", "/", "<c-r>", "<c-w>", "/", "<c-r>", "<c-w>", "/", "g", "<left>", "<left>"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["h"]
+    },
+    {
+      "before": ["k"],
+      "after": ["j"]
+    },
+    {
+      "before": ["l"],
+      "after": ["k"]
+    },
+    {
+      "before": [";"],
+      "after": ["l"]
+    }
+  ],
+  "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["h"]
+    },
+    {
+      "before": ["k"],
+      "after": ["j"]
+    },
+    {
+      "before": ["l"],
+      "after": ["k"]
+    },
+    {
+      "before": [";"],
+      "after": ["l"]
+    }
+  ],
+  "vim.statusBarColors.normal": [
+    "#3e7aca",
+    "#FFFFFF"
+  ],
+  "vim.statusBarColors.insert": [
+    "#679436",
+    "#FFFFFF"
+  ],
   "vim.statusBarColors.visual": [
     "#D5DFE5",
     "#3C4859B3"
@@ -33,18 +123,24 @@
     "#D5DFE5",
     "#3C4859"
   ],
-  "vim.statusBarColors.replace": "#D05353",
+  "vim.statusBarColors.replace": [
+    "#D05353",
+    "#FFFFFF"
+  ],
   "window.menuBarVisibility": "toggle",
   "window.openFilesInNewWindow": "off",
   "window.zoomLevel": 0,
-  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.colorCustomizations": {
     "statusBar.background": "#3e7aca",
     "statusBar.noFolderBackground": "#3e7aca",
-    "statusBar.debuggingBackground": "#3e7aca"
+    "statusBar.debuggingBackground": "#3e7aca",
+    "statusBar.foreground": "#FFFFFF"
   },
   "typescript.updateImportsOnFileMove.enabled": "never",
   "banner-comments-plus.favorites": [
     "ANSI Shadow"
-  ]
+  ],
+  "todo-tree.tree.showScanModeButton": false,
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }

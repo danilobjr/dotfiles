@@ -8,10 +8,6 @@
     "command": "-workbench.action.toggleSidebarVisibility"
   },
   {
-    "key": "ctrl+shift+e",
-    "command": "-workbench.view.explorer"
-  },
-  {
     "key": "f4",
     "command": "-search.action.focusNextSearchResult",
     "when": "hasSearchResult"
@@ -27,12 +23,16 @@
     "when": "inReferenceSearchEditor"
   },
   {
+    "key": "f3",
+    "command": "workbench.action.toggleCenteredLayout"
+  },
+  {
     "key": "ctrl+shift+e",
     "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
     "when": "inFilesPicker && inQuickOpen"
   },
   {
     "key": "ctrl+shift+e",
-    "command": "workbench.view.explorer"
+    "command": "-workbench.view.explorer"
   }
 ]
