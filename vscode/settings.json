@@ -55,6 +55,14 @@
       "commands": ["workbench.action.closeAllEditors"]
     },
     {
+      "before": ["<leader>", "o"],
+      "after": ["o", "<esc>"]
+    },
+    {
+      "before": ["<leader>", "O"],
+      "after": ["O", "<esc>"]
+    },
+    {
       "before": ["<leader>", "d"],
       "after": ["S", "<esc>"]
     },
