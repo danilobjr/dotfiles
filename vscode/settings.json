@@ -141,9 +141,9 @@
   "window.zoomLevel": 0,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorCustomizations": {
-    "statusBar.background": "#3e7aca",
-    "statusBar.noFolderBackground": "#3e7aca",
-    "statusBar.debuggingBackground": "#3e7aca",
+    "statusBar.background": "#679436",
+    "statusBar.noFolderBackground": "#679436",
+    "statusBar.debuggingBackground": "#679436",
     "statusBar.foreground": "#FFFFFF"
   },
   "typescript.updateImportsOnFileMove.enabled": "never",
@@ -151,5 +151,6 @@
     "ANSI Shadow"
   ],
   "todo-tree.tree.showScanModeButton": false,
-  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true
 }
