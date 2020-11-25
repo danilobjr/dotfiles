@@ -19,6 +19,7 @@
     }
   },
   "keyboard.dispatch": "keyCode",
+  "vim.smartRelativeLine": true,
   "vim.leader": "<space>",
   "vim.statusBarColorControl": true,
   "vim.normalModeKeyBindingsNonRecursive": [
