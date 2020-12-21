@@ -1,6 +1,12 @@
 {
+  "banner-comments-plus.favorites": ["ANSI Shadow"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.snippetSuggestions": "top",
+  "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
@@ -18,7 +24,14 @@
       "when": "$(basename).tsx"
     }
   },
+  "javascript.updateImportsOnFileMove.enabled": "never",
   "keyboard.dispatch": "keyCode",
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "terminal.integrated.shell.linux": "/bin/zsh",
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\wsl.exe",
+  "todo-tree.tree.showScanModeButton": false,
+  "typescript.updateImportsOnFileMove.enabled": "never",
   "vim.smartRelativeLine": true,
   "vim.leader": "<space>",
   "vim.statusBarColorControl": true,
@@ -69,11 +82,42 @@
     },
     {
       "before": ["<leader>", "s"],
-      "after": [":", "%", "s", "/", "<c-r>", "<c-w>", "/", "/", "g", "<left>", "<left>"]
+      "after": [
+        ":",
+        "%",
+        "s",
+        "/",
+        "<c-r>",
+        "<c-w>",
+        "/",
+        "/",
+        "g",
+        "<left>",
+        "<left>"
+      ]
     },
     {
       "before": ["<leader>", "S"],
-      "after": [":", "%", "s", "/", "<c-r>", "<c-w>", "/", "<c-r>", "<c-w>", "/", "g", "<left>", "<left>"]
+      "after": [
+        ":",
+        "%",
+        "s",
+        "/",
+        "<c-r>",
+        "<c-w>",
+        "/",
+        "<c-r>",
+        "<c-w>",
+        "/",
+        "g",
+        "<left>",
+        "<left>"
+      ]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["editor.action.rename"],
+      "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -112,45 +156,21 @@
       "after": ["l"]
     }
   ],
-  "vim.statusBarColors.normal": [
-    "#3e7aca",
-    "#FFFFFF"
-  ],
-  "vim.statusBarColors.insert": [
-    "#679436",
-    "#FFFFFF"
-  ],
-  "vim.statusBarColors.visual": [
-    "#D5DFE5",
-    "#3C4859B3"
-  ],
-  "vim.statusBarColors.visualline": [
-    "#D5DFE5",
-    "#3C4859B3"
-  ],
-  "vim.statusBarColors.visualblock": [
-    "#D5DFE5",
-    "#3C4859"
-  ],
-  "vim.statusBarColors.replace": [
-    "#D05353",
-    "#FFFFFF"
-  ],
+  "vim.statusBarColors.normal": ["#3e7aca", "#FFFFFF"],
+  "vim.statusBarColors.insert": ["#679436", "#FFFFFF"],
+  "vim.statusBarColors.visual": ["#D5DFE5", "#3C4859B3"],
+  "vim.statusBarColors.visualline": ["#D5DFE5", "#3C4859B3"],
+  "vim.statusBarColors.visualblock": ["#D5DFE5", "#3C4859"],
+  "vim.statusBarColors.replace": ["#D05353", "#FFFFFF"],
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.menuBarVisibility": "toggle",
   "window.openFilesInNewWindow": "off",
   "window.zoomLevel": 0,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorCustomizations": {
-    "statusBar.background": "#679436",
-    "statusBar.noFolderBackground": "#679436",
-    "statusBar.debuggingBackground": "#679436",
+    "statusBar.background": "#3e7aca",
+    "statusBar.noFolderBackground": "#3e7aca",
+    "statusBar.debuggingBackground": "#3e7aca",
     "statusBar.foreground": "#FFFFFF"
-  },
-  "typescript.updateImportsOnFileMove.enabled": "never",
-  "banner-comments-plus.favorites": [
-    "ANSI Shadow"
-  ],
-  "todo-tree.tree.showScanModeButton": false,
-  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.fontLigatures": true
+  }
 }
