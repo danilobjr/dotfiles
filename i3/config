@@ -277,7 +277,8 @@ exec_always --no-startup-id launch-polybar
 # lockscreen wallpaper
 exec --no-startup-id background $DOTFILES/wallpapers/wall.jpg
 # compositor effects
-exec_always --no-startup-id compton -c -f -D 3 --shadow-exclude "class_g = 'Polybar'"
+# TODO remove this. picom already sets a window shadow
+#exec_always --no-startup-id compton -c -f -D 3 --shadow-exclude "class_g = 'Polybar'"
 # start audio
 #exec --no-startup-id start-pulseaudio-x11
 # notification
