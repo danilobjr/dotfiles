@@ -17,6 +17,13 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
+export JAVA_HOME=/usr/lib64/jvm/java-8-openjdk
+export ANDROID_HOME=~/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:~/android-studio/bin
 
 # =============================================================================
 # === ZSH STUFF
