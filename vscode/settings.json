@@ -5,6 +5,9 @@
   "editor.fontLigatures": true,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
+  "editor.snippetSuggestions": "top",
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
   "editor.quickSuggestions": {
     "other": true,
     "comments": false,
