@@ -31,7 +31,7 @@ export PATH=$PATH:~/android-studio/bin
 
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git zsh-autosuggestions zsh-completions)
+plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -154,4 +154,4 @@ alias ghist="git hist"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zsh syntax highlighting
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
