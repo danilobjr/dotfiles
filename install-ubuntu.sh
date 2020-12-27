@@ -50,16 +50,20 @@ function cmd() {
   "$@" 2>&1 | tee -a $log;
 }
 
+function snapInstall() {
+  cmd sudo snap install "$@";
+}
+
 function aptInstall() {
-  sudo apt install -y "$@" 2>&1 | tee -a $log;
+  cmd sudo apt install -y "$@";
+}
+
+function aptUpdate() {
+  cmd sudo apt update;
 }
 
 function gitClone() {
-  git clone "$@" 2>&1 | tee -a $log;
-}
-
-function wGet() {
-  wget "$@" 2>&1 | tee -a $log;
+  cmd git clone "$@";
 }
 
 if [ -f "$log" ]; then
@@ -93,7 +97,7 @@ echoNoColorEmptyLine;
 read -p "Press Enter to continue...";
 
 echoSectionTitle "Updating system";
-cmd sudo apt update & sudo apt upgrade;
+cmd aptUpdate & sudo apt upgrade;
 
 echoColorEmptyLine;
 echo "██████╗ ███████╗██████╗ ███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗██╗███████╗███████╗";
@@ -104,67 +108,24 @@ echo "██████╔╝███████╗██║     ████
 echo "╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚══════╝╚══════╝";
 echoNoColorEmptyLine;
 
-# echoSectionTitle "Installing wget";
-# cmd pacmanSynchronize wget;
+echoSectionTitle "Installing curl";
+cmd aptInstall curl;
+
+echoSectionTitle "Installing build-essential";
+cmd aptInstall build-essential;
 
 echoSectionTitle "Installing apt dependencies";
-cmd aptInstall software-properties-common;
-sudo apt update 2>&1 | tee -a $log;
+aptInstall software-properties-common;
+aptUpdate;
 
 echoSectionTitle "Installing dconf";
-cmd aptInstall dconf-editor;
+aptInstall dconf-editor;
 
-#echoSectionTitle "Adding speed-ricer ppa";
-#sudo add-apt-repository -y ppa:kgilmer/speed-ricer 2>&1 | tee -a $log;
-
-#echoSectionTitle "Adding brightness-controller ppa";
-#sudo add-apt-repository -y ppa:apandada1/brightness-controller 2>&1 | tee -a $log;
-
-#echoSectionTitle "Installing i3-gaps dependencies";
-#aptInstall libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
-#libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev \
-#libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
-#libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev;
-
-#echoSectionTitle "Installing Visual Studio Code dependencies";
-#aptInstall libgtk2.0-0;
-
-#echoSectionTitle "Installing PyWal dependencies";
-#aptInstall python3-pip imagemagick;
-echoSectionTitle "Installing Python and pip";
-pacmanSynchronize python python-pip;
-
-echoSectionTitle "Installing betterlockscreen dependencies";
-pacmanSynchronize imagemagick;
-
-echoSectionTitle "Installing Polybar dependencies";
-pacmanSynchronize bc;
-#aptInstall build-essential git cmake cmake-data pkg-config python3-sphinx \
-#libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev \
-#python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
-
-#echoSectionTitle "Installing Polybar optional dependencies";
-#aptInstall libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev \
-##these can conflict with i3-gaps
-##i3-wm libjsoncpp-dev \
-#libpulse-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
+# echoSectionTitle "Adding brightness-controller ppa";
+# cmd sudo add-apt-repository -y ppa:apandada1/brightness-controller;
 
 echoSectionTitle "Installing Git";
-pacmanSynchronize git;
-
-echoSectionTitle "Installing yay";
-cmd git clone https://aur.archlinux.org/yay.git;
-cmd cd yay;
-cmd makepkg -sicr;
-cmd cd $HOME;
-
-echoSectionTitle "Installing snapd";
-cmd yay -S snapd;
-cmd systemctl enable --now apparmor.service;
-cmd systemctl enable --now snapd.apparmor.service;
-cmd systemctl enable --now snapd.socket;
-cmd sudo ln -s /var/lib/snapd/snap /snap;
-cmd sudo snap set core snapshots.automatic.retention=no;
+aptInstall git;
 
 echoSectionTitle "Installing glu (flutter dependency)";
 pacmanSynchronize glu;
@@ -174,19 +135,6 @@ pacmanSynchronize glu;
 #libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
 #libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
 #libjpeg-turbo8-dev libpam0g-dev libxcb-xinerama0-dev;
-
-#echoSectionTitle "Installing curl";
-#aptInstall curl;
-
-echoSectionTitle "Installing ranger utils";
-pacmanSynchronize ffmpegthumbnailer;
-
-#echoSectionTitle "Installing dunst dependencies";
-#aptInstall libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
-#libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev;
-
-#echoSectionTitle "Installing dependencies for custom scripts";
-#aptInstall ssh-askpass-gnome ssh-askpass;
 
 echoColorEmptyLine;
 cmd echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     ";
@@ -198,31 +146,25 @@ cmd echo "   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  
 echoNoColorEmptyLine;
 
 echoSectionTitle "Installing Zsh";
-pacmanSynchronize zsh;
+aptInstall zsh;
 
 echoSectionTitle "Installing Oh-My-Zsh";
-wGet https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
+cmd wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
 
 echoSectionTitle "Installing Z.sh in home directory";
-wGet https://raw.githubusercontent.com/rupa/z/master/z.sh;
+cmd wget https://raw.githubusercontent.com/rupa/z/master/z.sh;
 echoHighlight "z.sh installed";
 
-echoSectionTitle "Installing URxvt";
-pacmanSynchronize rxvt-unicode;
-
-echoSectionTitle "Installing URxvt resize font plugin";
-cmd yay -S urxvt-resize-font-git;
-
-#echoSectionTitle "Installing tmux";
-#pacmanSynchronize tmux;
+# echoSectionTitle "Installing tmux";
+# pacmanSynchronize tmux;
 
 echoSectionTitle "Installing Powerlevel10k";
 mkdir -p $config;
 echoHighlight "$config folder created";
-gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k;
+cmd gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k;
 
-echoSectionTitle "Installing zsh-syntax-highlighting";
-gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
+# echoSectionTitle "Installing zsh-syntax-highlighting";
+# gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
 
 echoSectionTitle "Installing zsh-autosuggestions";
 gitClone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
@@ -417,22 +359,33 @@ echo "██████╔╝███████╗ ╚████╔╝    
 echo "╚═════╝ ╚══════╝  ╚═══╝      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ";
 echoNoColorEmptyLine;
 
-echoSectionTitle "Installing Docker";
-pacmanSynchronize docker;
-cmd sudo gpasswd -a danilo docker;
-cmd sudo systemctl start docker.service;
-cmd sudo systemctl enable docker.service;
+echoSectionTitle "Installing docker-compose";
+cmd sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose;
+cmd sudo chmod +x /usr/local/bin/docker-compose;
+cmd sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose;
+cmd docker-compose --version;
 
-echoSectionTitle "Installing Docker Compose";
-pacmanSynchronize docker-compose;
+echoSectionTitle "Installing docker";
+cmd sudo apt-get remove docker docker-engine docker.io containerd runc;
+cmd aptUpdate;
+aptInstall apt-transport-https ca-certificates curl gnupg-agent software-properties-common;
+cmd curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
+cmd sudo apt-key fingerprint 0EBFCD88;
+cmd sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable";
+cmd aptUpdate;
+aptInstall docker-ce docker-ce-cli containerd.io;
+cmd sudo groupadd docker;
+cmd sudo usermod -aG docker $USER;
+cmd newgrp docker;
+
+echoSectionTitle "Installing Visual Studio Code";
+aptInstall code;
 
 echoSectionTitle "Installing Neovim";
-pacmanSynchronize neovim;
+aptInstall neovim;
 
 echoSectionTitle "Installing nvm";
 wGet -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
-cmd chmod 755 $HOME/.nvm/nvm.sh;
-cmd bash $HOME/.nvm/nvm.sh;
 
 #echoSectionTitle "Installing flutter";
 #cmd snap install flutter --classic;
@@ -443,9 +396,6 @@ cmd bash $HOME/.nvm/nvm.sh;
 
 #echoSectionTitle "Installing alarm-cli";
 #cmd npm install -g alarm-cli;
-
-echoSectionTitle "Installing Visual Studio Code";
-pacmanSynchronize code;
 
 #echoSectionTitle "Installing Github CLI";
 #wGet $githubCliDebFileUrl -P $HOME/Downloads;
