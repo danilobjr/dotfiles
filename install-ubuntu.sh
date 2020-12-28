@@ -377,6 +377,7 @@ aptInstall docker-ce docker-ce-cli containerd.io;
 cmd sudo groupadd docker;
 cmd sudo usermod -aG docker $USER;
 cmd newgrp docker;
+cmd sudo chmod 666 /var/run/docker.sock;
 
 echoSectionTitle "Installing Visual Studio Code";
 aptInstall code;
