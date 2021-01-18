@@ -17,8 +17,8 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
-export JAVA_HOME=/usr/lib64/jvm/java-8-openjdk
-export ANDROID_HOME=~/Android/sdk
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ANDROID_HOME=~/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -90,6 +90,7 @@ alias nvimconfig="nvim ~/.config/nvim/init.vim"
 alias gitconfig="nvim ~/.gitconfig"
 alias i3config="nvim ~/.config/i3/config"
 alias rangerconfig="nvim ~/.config/ranger/rc.conf"
+alias tmuxconfig="nvim ~/.tmux.conf"
 
 # nvim
 alias v="nvim"
