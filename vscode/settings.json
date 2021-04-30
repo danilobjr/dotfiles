@@ -167,12 +167,16 @@
   "vim.statusBarColors.replace": ["#D05353", "#FFFFFF"],
   "window.menuBarVisibility": "toggle",
   "window.openFilesInNewWindow": "off",
-  "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
-    "statusBar.background": "#D5DFE5",
+    "statusBar.background": "#3e7aca",
     "statusBar.noFolerBackground": "#D5DFE5",
-    "statusBar.debuggingBackground": "#D5DFE5",
-    "statusBar.foreground": "#3C4859B3"
+    "statusBar.debuggingBackground": "#3e7aca",
+    "statusBar.foreground": "#FFFFFF",
+    "statusBar.noFolderBackground": "#3e7aca"
   },
-  "workbench.iconTheme": "material-icon-theme"
+  "workbench.iconTheme": "material-icon-theme",
+  "mdb.confirmRunAll": false,
+  "mdb.defaultLimit": 50,
+  "mdb.sendTelemetry": false,
+  "banner-comments-plus.font": "3D-ASCII"
 }
