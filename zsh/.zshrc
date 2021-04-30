@@ -162,4 +162,4 @@ alias ghist="git hist"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # mute white noise on headphones when no sound
-source remove-sound-white-noise;
+source remove-white-noise;
