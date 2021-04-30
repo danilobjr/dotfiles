@@ -1,5 +1,5 @@
 export DOTFILES=$HOME/.dotfiles
-export PATH=$PATH:$DOTFILES/scripts
+export PATH=$PATH:$DOTFILES/scripts:$HOME/.local/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
