@@ -19,11 +19,13 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$DOTFILES/scripts
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:~/android-studio/bin
+export PATH=$PATH:~/.tfenv/bin
 
 # =============================================================================
 # === ZSH STUFF
@@ -92,6 +94,9 @@ alias i3config="nvim ~/.config/i3/config"
 alias rangerconfig="nvim ~/.config/ranger/rc.conf"
 alias tmuxconfig="nvim ~/.tmux.conf"
 
+# sudo
+alias sudoe="sudo env 'PATH=$PATH'"
+
 # nvim
 alias v="nvim"
 
@@ -127,6 +132,8 @@ alias yb="yarn build"
 alias yd="yarn dev"
 alias ys="yarn start"
 alias yl="yarn lint"
+alias yrb="yarn re:build"
+alias yrs="yarn re:start"
 
 # git
 alias gs="git st"
@@ -154,5 +161,5 @@ alias ghist="git hist"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# zsh syntax highlighting
-# source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# mute white noise on headphones when no sound
+source remove-sound-white-noise;
