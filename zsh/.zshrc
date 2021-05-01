@@ -12,14 +12,13 @@ fi
 export BROSER=chromium
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR=nvim
-#export PATH="$PATH:$DOTFILES/scripts" # already set on .bashrc
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export ANDROID_HOME=~/Android/Sdk
-export PATH=$PATH:$DOTFILES/scripts
+export PATH=$PATH:$DOTFILES/scripts # set on .bashrc as well
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -160,6 +159,3 @@ alias ghist="git hist"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# mute white noise on headphones when no sound
-source remove-white-noise;
