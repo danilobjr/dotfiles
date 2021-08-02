@@ -7,10 +7,9 @@
 	trustctime = false
 	editor = vim
 	filemode = false
+	pager = git-split-diffs --color | less -RFX
 [color]
 	ui = true
-[credential]
-	helper = cache --timeout=3600
 [merge]
 	tool = vimdiff
 [mergetool]
@@ -66,3 +65,5 @@
 	fbf = flow bugfix finish
 	fbp = flow bugfix publish
 	fbt = flow bugfix track
+[credential]
+	helper = cache --timeout=36000
