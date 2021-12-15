@@ -93,6 +93,9 @@ alias i3config="nvim ~/.config/i3/config"
 alias rangerconfig="nvim ~/.config/ranger/rc.conf"
 alias tmuxconfig="nvim ~/.tmux.conf"
 
+# utils
+alias rmrf="rm -rf"
+
 # sudo
 alias sudoe="sudo env 'PATH=$PATH'"
 
@@ -133,6 +136,8 @@ alias ys="yarn start"
 alias yl="yarn lint"
 alias yrb="yarn re:build"
 alias yrs="yarn re:start"
+alias yt="yarn test"
+alias yc="yarn commit"
 
 # git
 alias gs="git st"
@@ -158,11 +163,13 @@ alias glast="git last"
 alias ghist="git hist"
 alias gparent='git show-branch | sed "s/].*//" | grep "\*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/^.*\[//"'
 
-alias dcl='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
-alias dcla='docker container list --all --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
+alias dcls='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
+alias dclsp='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}"'
+alias dclsa='docker container list --all --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
 alias dcstart='docker container start'
 alias dcstop='docker container stop'
 alias dcr='docker container restart'
+alias dcl='docker container logs -f'
 alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"'
 
 alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
