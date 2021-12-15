@@ -2,7 +2,7 @@
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.cursorSmoothCaretAnimation": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.detectIndentation": true,
+  "editor.detectIndentation": false,
   "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
@@ -172,11 +172,16 @@
     "statusBar.noFolerBackground": "#D5DFE5",
     "statusBar.debuggingBackground": "#3e7aca",
     "statusBar.foreground": "#FFFFFF",
-    "statusBar.noFolderBackground": "#3e7aca"
-  },
+    "statusBar.noFolderBackground": "#3e7aca",
+    "statusBar.debuggingForeground": "#FFFFFF"
+},
   "workbench.iconTheme": "material-icon-theme",
-  "mdb.confirmRunAll": false,
-  "mdb.defaultLimit": 50,
-  "mdb.sendTelemetry": false,
-  "banner-comments-plus.font": "3D-ASCII"
+  "banner-comments-plus.font": "3D-ASCII",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": false
+  }
 }
