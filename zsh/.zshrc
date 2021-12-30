@@ -95,6 +95,7 @@ alias tmuxconfig="nvim ~/.tmux.conf"
 
 # utils
 alias rmrf="rm -rf"
+alias rmrfnm="rm -rf node_modules"
 
 # sudo
 alias sudoe="sudo env 'PATH=$PATH'"
@@ -137,6 +138,8 @@ alias yl="yarn lint"
 alias yrb="yarn re:build"
 alias yrs="yarn re:start"
 alias yt="yarn test"
+alias ytw="yarn test --watch"
+alias ytc="yarn test --coverage"
 alias yc="yarn commit"
 
 # git
@@ -162,7 +165,12 @@ alias grc="git rc"
 alias glast="git last"
 alias ghist="git hist"
 alias gparent='git show-branch | sed "s/].*//" | grep "\*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/^.*\[//"'
+alias gfo='git fetch origin'
 
+# lazygit
+alias lg='lazygit'
+
+# docker
 alias dcls='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
 alias dclsp='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}"'
 alias dclsa='docker container list --all --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
@@ -172,7 +180,13 @@ alias dcr='docker container restart'
 alias dcl='docker container logs -f'
 alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"'
 
+# aws
 alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
+
+# android
+alias avdls='avdmanager list avd'
+alias emulatorhighres='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
+alias emulatorlowres='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
