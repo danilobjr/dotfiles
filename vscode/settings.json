@@ -182,6 +182,9 @@
     "*": true,
     "yaml": true,
     "plaintext": true,
-    "markdown": false
-  }
+    "markdown": true
+},
+"diffEditor.ignoreTrimWhitespace": false,
+"gitlens.codeLens.enabled": false,
+"gitlens.statusBar.enabled": false
 }
