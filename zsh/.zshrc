@@ -184,9 +184,9 @@ alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.
 alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
 
 # android
-alias avdls='avdmanager list avd'
-alias emulatorhighres='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
-alias emulatorlowres='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
+alias avd-ls='avdmanager list avd'
+alias emulator-pixel-3='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
+alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
