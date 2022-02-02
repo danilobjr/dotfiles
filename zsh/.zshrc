@@ -25,6 +25,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:~/android-studio/bin
 export PATH=$PATH:~/.tfenv/bin
+export PATH=$PATH:~/.yarn/bin
 
 # =============================================================================
 # === ZSH STUFF
@@ -166,6 +167,7 @@ alias glast="git last"
 alias ghist="git hist"
 alias gparent='git show-branch | sed "s/].*//" | grep "\*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/^.*\[//"'
 alias gfo='git fetch origin'
+alias gruop='git remote update origin --prune'
 
 # lazygit
 alias lg='lazygit'
