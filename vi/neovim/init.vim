@@ -2,13 +2,13 @@
 " =                   install plugins on first run                     =
 " ======================================================================
 
-if empty(glob('~/.config/nvim/plugged'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
-"  autocmd VimEnter * CocInstall coc-snippets coc-pairs coc-tsserver
-"    \ coc-eslint coc-prettier coc-json coc-reason coc-fsharp coc-emmet
-endif
+" if empty(glob('~/.config/nvim/plugged'))
+"   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+" "  autocmd VimEnter * CocInstall coc-snippets coc-pairs coc-tsserver
+" "    \ coc-eslint coc-prettier coc-json coc-reason coc-fsharp coc-emmet
+" endif
 
 " ======================================================================
 " =                             plugins                                =
@@ -37,26 +37,17 @@ colorscheme nord
 
 " TextEdit might fail if hidden is not set
 set hidden
-set number
-set relativenumber
-" substitute show all references in another panel
-set inccommand=split
-" Give more space for displaying messages.
-"set cmdheight=2
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-" Show more info in status bar
-"set laststatus=2
-" Hide mode display at the very bottom (lightline already shows one)
-set noshowmode
-" Open new window below when run :split
-set splitbelow
-" Open new window on the right when run :vsplit
-set splitright
-" Do not wrap lines
-set nowrap
-" Case insensitive on search
-set ignorecase
+set number            " show line numbers
+set relativenumber    " show line numbers relative to the current line
+set inccommand=split  " substitute show all references in another panel
+"set cmdheight=2       " Give more space for displaying messages.
+set shortmess+=c      " Don't pass messages to |ins-completion-menu|.
+"set laststatus=2      " Show more info in status bar
+set noshowmode        " Hide mode display at the very bottom (lightline already shows one)
+set splitbelow        " Open new window below when run :split
+set splitright        " Open new window on the right when run :vsplit
+set nowrap            " Do not wrap lines
+set ignorecase        " Case insensitive on search
 
 " ======================================================================
 " =                             leader                                 =
@@ -133,7 +124,7 @@ let g:netrw_winsize = 25
 let g:netrw_localrmdir = 'rm -r'
 
 " ======================================================================
-" =                             commands                               =
+" =                           autocommands                             =
 " ======================================================================
 
 " javascript comment
