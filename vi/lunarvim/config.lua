@@ -196,6 +196,7 @@ lvim.plugins = {
       }
     end
   },
+  {'rescript-lang/vim-rescript'},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
