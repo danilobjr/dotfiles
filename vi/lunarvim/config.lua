@@ -21,8 +21,8 @@ lvim.leader = "space"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<c-s>"] = ":w<cr>"
 
--- cursor navigation
 vim.cmd([[
+  " cursor navigation
   nnoremap j h
   nnoremap k j
   nnoremap l k
@@ -37,6 +37,14 @@ vim.cmd([[
   onoremap k j
   onoremap l k
   onoremap ; l
+
+  " system clipboard
+  vmap <c-c> "+y
+  nmap <c-v> "+p
+  inoremap <c-v> <c-r>+
+  cnoremap <c-v> <c-r>+
+  " use <c-r> to insert original character without triggering things like auto-pairs
+  " inoremap <c-r> <c-v>
 ]])
 
 -- unmap a default keymapping
@@ -45,7 +53,7 @@ lvim.keys.insert_mode["jj"] = false  -- disable 'move line up'
 lvim.keys.insert_mode["kj"] = false  -- disable 'move line up'
 lvim.keys.insert_mode["jk"] = false  -- disable 'move line up'
 
--- edit a default keymapping
+-- pane navigation
 lvim.keys.normal_mode["<a-j>"] = "<c-w>h"  -- focus on left panel
 lvim.keys.normal_mode["<a-k>"] = "<c-w>j"  -- focus on left panel
 lvim.keys.normal_mode["<a-l>"] = "<c-w>k"  -- focus on left panel
