@@ -208,6 +208,7 @@ lvim.plugins = {
     end
   },
   {'rescript-lang/vim-rescript'},
+  {'tpope/vim-surround'},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
