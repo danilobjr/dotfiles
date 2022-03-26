@@ -62,6 +62,9 @@ lvim.keys.normal_mode["<a-;>"] = "<c-w>l"  -- focus on right panel
 lvim.keys.normal_mode["<a-,>"] = "<cmd>BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["<a-.>"] = "<cmd>BufferLineCycleNext<cr>"
 
+lvim.keys.normal_mode["<a-<>"] = "<cmd>BufferLineMovePrev<cr>"
+lvim.keys.normal_mode["<a->>"] = "<cmd>BufferLineMoveNext<cr>"
+
 lvim.keys.normal_mode[">"] = ">>"
 lvim.keys.normal_mode["<"] = "<<"
 
