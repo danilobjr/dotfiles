@@ -107,7 +107,8 @@ lvim.builtin.which_key.mappings["q"] = {
   q = { "<cmd>q!<cr>", "Quit" },
 }
 
-lvim.builtin.which_key.mappings["o"] = { "o<esc>", "New line" }
+lvim.builtin.which_key.mappings["o"] = { "o<esc>", "New line below" }
+lvim.builtin.which_key.mappings["O"] = { "O<esc>", "New line above" }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
