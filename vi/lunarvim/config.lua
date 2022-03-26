@@ -40,7 +40,6 @@ vim.cmd([[
 
   " system clipboard
   vmap <c-c> "+y
-  nmap <c-v> "+p
   inoremap <c-v> <c-r>+
   cnoremap <c-v> <c-r>+
   " use <c-r> to insert original character without triggering things like auto-pairs
