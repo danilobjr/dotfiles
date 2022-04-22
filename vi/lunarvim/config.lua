@@ -124,14 +124,14 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.mappings.list = {
   { key = {"l"}, action = "" },
-  { key = {"<c-r>"}, action = "" },
-  { key = {"<c-v>"}, action = "" },
-  { key = {"<c-x>"}, action = "" },
+  { key = {"<C-r>"}, action = "" },
+  { key = {"<C-v>"}, action = "" },
+  { key = {"<C-x>"}, action = "" },
   { key = {"<CR>", "o", ";"}, action = "edit" },
   { key = {"j"}, action = "parent_node" },
   { key = {"r"}, action = "rename" },
-  { key = {"<c-->"}, action = "split" },
-  { key = {"<c-\\>"}, action = "vsplit" },
+  { key = {"-"}, action = "split" },
+  { key = {"\\"}, action = "vsplit" },
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
