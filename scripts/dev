@@ -1,0 +1,28 @@
+#!/bin/sh
+
+session="dev"
+
+tmux new-session -d -s $session
+
+window=1
+
+tmux rename-window -t $session:$window vim
+tmux send-keys -t $session:$window 'lvim .' C-m
+
+window=2
+
+tmux new-window -t $session:$window -n compiler
+tmux send-keys -t $session:$window 'yarn re:watch' C-m
+tmux split-window -v
+tmux send-keys -t $session:$window 'yarn start' C-m
+
+window=3
+
+tmux new-window -t $session:$window -n git
+tmux send-keys -t $session:$window 'lazygit' C-m
+
+window=1
+
+tmux select-window -t $session:$window
+
+tmux attach-session -t $session
