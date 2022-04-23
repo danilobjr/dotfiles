@@ -1,0 +1,21 @@
+#!/bin/bash
+
+scriptname="$(basename "$0")"
+input=$1
+output=$2
+
+if [ -z "$input" ];
+then
+  echo "Usage: $scriptname INPUT [OUTPUT]"
+  echo "Note: If no output is provided, the output file name"
+  echo "      will be the same as input with mp3 extension"
+  exit 0
+fi
+
+if [ -z "$output" ];
+then
+  output="${input%.*}.mp3"
+fi
+
+ffmpeg -i "$input" -q:a 0 -map a "$output"
+
