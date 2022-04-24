@@ -1,0 +1,88 @@
+#!/bin/zsh
+
+scriptname="$(basename $0)"
+configfile=~/.gittoken
+command=$1
+value=$2
+
+function try_help {
+  echo "For some help, try:"
+  echo "  gittoken --help"
+  echo
+}
+
+if [[ $command == "--help" ]];
+then
+  echo "Usage"
+  echo "  $ $scriptname <command> [token]"
+  echo
+  echo "Commands"
+  echo "  new    Set a new token. Generate "$configfile" if doesn't exists"
+  echo "  cp     Copy token to clipboard"
+  echo
+  echo "Options"
+  echo "  --help   Show this doc"
+  echo
+  echo "Examples"
+  echo "  $ $scriptname new 123"
+  echo "  $ $scriptname cp"
+  echo
+
+  exit 0
+fi
+
+if [[ $command == "new" ]];
+then
+  token=$value
+
+  if [ -z $token ];
+  then
+    echo "You should specify a token after 'new' keyword"
+    echo
+    echo "Like this:"
+    echo "  $scriptname new TOKEN"
+    echo
+    try_help
+
+    exit 0
+  fi
+
+  rm "${configfile}" 2>/dev/null
+  touch "${configfile}"
+  echo $token > "${configfile}"
+
+  echo "New token set in $configfile"
+  echo
+
+  exit 0
+fi
+
+if [[ $command == "cp" ]];
+then
+  if [ ! -f $configfile ];
+  then
+    echo "No token set. To set one, run:"
+    echo "  gittoken new TOKEN"
+    echo
+    try_help
+
+    exit 0
+  fi
+
+  xclip -sel c < $configfile
+
+  echo "Token copied to clipboard"
+  echo
+
+  exit 0
+fi
+
+if [ ! -f $configfile ];
+then
+  echo "No token set. To set one, run:"
+  echo "  gittoken new TOKEN"
+  echo
+fi
+
+try_help
+
