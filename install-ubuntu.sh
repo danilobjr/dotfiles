@@ -165,9 +165,9 @@ echoSectionTitle "Installing tmux";
 aptInstall tmux;
 
 echoSectionTitle "Installing Powerlevel10k";
-mkdir -p $config;
-echoHighlight "$config folder created";
-cmd gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k;
+# mkdir -p $config;
+# echoHighlight "$config folder created";
+cmd gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k;
 
 # echoSectionTitle "Installing zsh-syntax-highlighting";
 # gitClone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting;
