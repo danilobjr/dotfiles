@@ -1,0 +1,5 @@
+#!/bin/bash
+
+current_brightness=$(xrandr --prop --verbose | grep Brightness | awk '{ print $2 }')
+
+echo $current_brightness
