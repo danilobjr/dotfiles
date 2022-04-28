@@ -47,17 +47,17 @@ vim.cmd([[
 ]])
 
 -- unmap a default keymapping
-lvim.keys.normal_mode["<a-k>"] = false  -- disable 'move line up'
-lvim.keys.insert_mode["jj"] = false  -- disable 'exit insert mode'
-lvim.keys.insert_mode["kj"] = false  -- disable 'exit insert mode'
-lvim.keys.insert_mode["jk"] = false  -- disable 'exit insert mode'
+lvim.keys.normal_mode["<a-k>"] = false -- disable 'move line up'
+lvim.keys.insert_mode["jj"] = false -- disable 'exit insert mode'
+lvim.keys.insert_mode["kj"] = false -- disable 'exit insert mode'
+lvim.keys.insert_mode["jk"] = false -- disable 'exit insert mode'
 lvim.keys.normal_mode["<c-\\>"] = false
 
 -- pane navigation
-lvim.keys.normal_mode["<a-j>"] = "<c-w>h"  -- focus on left panel
-lvim.keys.normal_mode["<a-k>"] = "<c-w>j"  -- focus on left panel
-lvim.keys.normal_mode["<a-l>"] = "<c-w>k"  -- focus on left panel
-lvim.keys.normal_mode["<a-;>"] = "<c-w>l"  -- focus on right panel
+lvim.keys.normal_mode["<a-j>"] = "<c-w>h" -- focus on left panel
+lvim.keys.normal_mode["<a-k>"] = "<c-w>j" -- focus on left panel
+lvim.keys.normal_mode["<a-l>"] = "<c-w>k" -- focus on left panel
+lvim.keys.normal_mode["<a-;>"] = "<c-w>l" -- focus on right panel
 
 -- tab navigation
 lvim.keys.normal_mode["<a-,>"] = "<cmd>BufferLineCyclePrev<cr>"
@@ -123,15 +123,15 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.mappings.list = {
-  { key = {"l"}, action = "" },
-  { key = {"<C-r>"}, action = "" },
-  { key = {"<C-v>"}, action = "" },
-  { key = {"<C-x>"}, action = "" },
-  { key = {"<CR>", "o", ";"}, action = "edit" },
-  { key = {"j"}, action = "parent_node" },
-  { key = {"r"}, action = "rename" },
-  { key = {"-"}, action = "split" },
-  { key = {"\\"}, action = "vsplit" },
+  { key = { "l" }, action = "" },
+  { key = { "<C-r>" }, action = "" },
+  { key = { "<C-v>" }, action = "" },
+  { key = { "<C-x>" }, action = "" },
+  { key = { "<CR>", "o", ";" }, action = "edit" },
+  { key = { "j" }, action = "parent_node" },
+  { key = { "r" }, action = "rename" },
+  { key = { "-" }, action = "split" },
+  { key = { "\\" }, action = "vsplit" },
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -223,8 +223,8 @@ lvim.plugins = {
       }
     end
   },
-  {'rescript-lang/vim-rescript'},
-  {'tpope/vim-surround'},
+  { 'rescript-lang/vim-rescript' },
+  { 'tpope/vim-surround' },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
