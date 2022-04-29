@@ -113,34 +113,14 @@ cmd aptInstall curl;
 echoSectionTitle "Installing build-essential";
 cmd aptInstall build-essential;
 
-echoSectionTitle "Installing apt dependencies";
-aptInstall software-properties-common;
-aptUpdate;
+# echoSectionTitle "Installing apt dependencies";
+# aptInstall software-properties-common;
 
-echoSectionTitle "Installing dconf";
-aptInstall dconf-editor;
-
-# echoSectionTitle "Adding brightness-controller ppa";
-# cmd sudo add-apt-repository -y ppa:apandada1/brightness-controller;
+# echoSectionTitle "Installing dconf";
+# aptInstall dconf-editor;
 
 echoSectionTitle "Installing Git";
 aptInstall git;
-
-echoSectionTitle "Installing Lazygit";
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+');
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz";
-sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit;
-lazygit --version;
-rm -rf lazygit.tar.gz;
-
-#echoSectionTitle "Installing glu (flutter dependency)";
-#pacmanSynchronize glu;
-
-#echoSectionTitle "Installing betterlockscreen dependencies";
-#aptInstall autoconf imagemagick bc feh libxrandr-dev libev-dev libxcb-composite0 \
-#libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libxcb-xinerama0-dev \
-#libxcb-xkb-dev libxcb-image0-dev libxcb-util-dev libxkbcommon-x11-dev \
-#libjpeg-turbo8-dev libpam0g-dev libxcb-xinerama0-dev;
 
 echoColorEmptyLine;
 cmd echo "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     ";
@@ -154,15 +134,17 @@ echoNoColorEmptyLine;
 echoSectionTitle "Installing Zsh";
 aptInstall zsh;
 
-#echoSectionTitle "Installing Oh-My-Zsh";
-#cmd wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh;
-
 echoSectionTitle "Installing Z.sh in home directory";
 cmd wget https://raw.githubusercontent.com/rupa/z/master/z.sh;
-echoHighlight "z.sh installed";
+cmd mv z.sh .z.sh;
 
 echoSectionTitle "Installing tmux";
 aptInstall tmux;
+
+echoSectionTitle "Installing tmux-powerline";
+cmd gitClone https://github.com/erikw/tmux-powerline.git $HOME/.tmux-powerline;
+cmd cp $HOME/.tmux-powerline/themes/default.sh $HOME/.tmux-powerline/themes/default.sh.backup;
+cmd ln -sf $dotfiles/tmux/powerline/themes/default.sh $HOME/.tmux-powerline/themes/default.sh;
 
 echoSectionTitle "Installing Powerlevel10k";
 # mkdir -p $config;
@@ -179,10 +161,24 @@ echoSectionTitle "Installing zsh-completions";
 gitClone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions;
 
 echoSectionTitle "Installing Silver Searcher";
-pacmanSynchronize the_silver_searcher;
+aptInstall silversearcher-ag;
 
 echoSectionTitle "Installing fd";
-pacmanSynchronize fd;
+aptInstall fd-find;
+
+echoSectionTitle "Installing Lazygit";
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+');
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz";
+sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit;
+lazygit --version;
+rm -rf lazygit.tar.gz;
+
+echoSectionTitle "Installing exa";
+aptInstall exa;
+
+echoSectionTitle "Installing bat";
+aptInstall bat;
+cmd ln -s /usr/bin/batcat $HOME/.local/bin/bat;
 
 echoColorEmptyLine;
 cmd echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ ";
@@ -193,62 +189,13 @@ cmd echo "██████╔╝███████╗███████�
 cmd echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ";
 echoNoColorEmptyLine;
 
-# echoSectionTitle "Creating common folders at home directory";
-# echoSectionTitle "Creating Downloads folder";
-# if [ ! -d "$HOME/Downloads" ]; then
-#   cmd mkdir $HOME/Downloads;
-#   echoHighlight "$HOME/Downloads folder created";
-# fi
-
-# echoSectionTitle "Creating Music folder";
-# if [ ! -d "$HOME/Music" ]; then
-#   cmd mkdir $HOME/Music;
-#   echoHighlight "$HOME/Music folder created";
-# fi
-
-# echoSectionTitle "Creating Pictures folder";
-# if [ ! -d "$HOME/Pictures" ]; then
-#   cmd mkdir $HOME/Pictures;
-#   echoHighlight "$HOME/Pictures folder created";
-# fi
-
-# echoSectionTitle "Creating Videos folder";
-# if [ ! -d "$HOME/Videos" ]; then
-#   cmd mkdir $HOME/Videos;
-#   echoHighlight "$HOME/Videos folder created";
-# fi
-
 echoSectionTitle "Creating $fontsFolder folder";
 cmd mkdir -p $fontsFolder;
 cmd mkdir -p $fontsFolder/bitmap;
 cmd mkdir -p $fontsFolder/ttf;
 
-# echoSectionTitle "Installing audio stuff";
-# pacmanSynchronize alsa-utils;
-# pacmanSynchronize asoundconf;
-
 # echoSectionTitle "Installing Xorg";
 # pacmanSynchronize xorg xorg-init xf86-video-ati;
-
-## make has some dependencies in Polybar dependencies. Check which ones
-#echoSectionTitle "Installing i3-gaps at ~/.i3-gaps directory";
-## clone repo
-#gitClone https://www.github.com/Airblader/i3 $HOME/.i3-gaps;
-## compile and install
-#cmd cd .i3-gaps;
-#cmd autoreconf --force --install 2>&1 | tee -a $log;
-#cmd rm -rf build/;
-#cmd mkdir -p build;
-#cmd cd build/;
-## Disabling sanitizers is important for release versions!
-## The prefix and sysconfdir are, obviously, dependent on the distribution.
-#cmd ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers;
-#cmd make -j8;
-#cmd sudo make install;
-#cmd cd $HOME;
-
-#echoSectionTitle "Installing i3-gaps";
-#pacmanSynchronize i3-gaps;
 
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
 gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
@@ -268,85 +215,14 @@ wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20B
 wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P $fontsFolder/ttf;
 wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P $fontsFolder/ttf;
 
-# echoSectionTitle "Installing Waffle bitmap font";
-# cmd cp $dotfiles/polybar/fonts/* $fontsFolder/bitmap;
-# cmd mkfontdir $fontsFolder/bitmap;
-
 echoSectionTitle "Installing Noto Color Emoji font";
 wGet $emojiFontUrl -P $fontsFolder/ttf;
 
 echoSectionTitle "Caching fonts";
 cmd sudo fc-cache -fv;
 
-# echoSectionTitle "Installing Polybar in ~/.polybar directory";
-# gitClone --recursive https://github.com/polybar/polybar $HOME/.polybar;
-# cmd cd .polybar;
-# #cmd patch $HOME/.polybar/build.sh < $dotfiles/polybar/build.sh.diff;
-# cmd ./build.sh;
-# cmd cd $HOME;
-
-# echoSectionTitle "Installing i3lock-color in ~/.i3lock-color";
-# cmd yay -S i3lock-color;
-
-# echoSectionTitle "Installing betterlockscreen script";
-# wGet https://raw.githubusercontent.com/pavanjadhaw/betterlockscreen/master/betterlockscreen;
-# cmd chmod 755 betterlockscreen;
-# cmd sudo mv $HOME/betterlockscreen /usr/local/bin/betterlockscreen;
-# cmd ln -s $dotfiles/betterlockscreen/betterlockscreenrc $config/betterlockscreenrc;
-
-#echoSectionTitle "Installing pywal";
-#cmd pip3 install pywal;
-
-# echoSectionTitle "Installing OBS Studio";
-# cmd sudo snap install obs-studio;
-
 echoSectionTitle "Installing rofi";
 pacmanSynchronize rofi;
-
-# echoSectionTitle "Installing ranger";
-# pacmanSynchronize ranger;
-
-# echoSectionTitle "Installing w3m";
-# pacmanSynchronize w3m;
-
-# echoSectionTitle "Installing calcurse";
-# pacmanSynchronize calcurse;
-
-# echoSectionTitle "Installing Chromium";
-# pacmanSynchronize chromium;
-
-# echoSectionTitle "Installing mpv";
-# pacmanSynchronize mpv;
-
-# echoSectionTitle "Installing mplayer";
-# pacmanSynchronize mplayer;
-
-# echoSectionTitle "Installing compton";
-# pacmanSynchronize compton;
-
-# echoSectionTitle "Installing feh";
-# pacmanSynchronize feh;
-
-# echoSectionTitle "Installing scrot";
-# pacmanSynchronize scrot;
-
-# echoSectionTitle "Installing neofetch";
-# pacmanSynchronize neofetch;
-
-# echoSectionTitle "Installing glow";
-# cmd yay -S glow;
-
-# echoSectionTitle "Installing htop";
-# pacmanSynchronize htop;
-
-# echoSectionTitle "Installing pandoc";
-# pacmanSynchronize pandoc;
-
-# echoSectionTitle "Installing dunst";
-# pacmanSynchronize dunst;
-
-#echoSectionTitle "Installing Brightness Controller";
-#aptInstall brightness-controller;
 
 # echoSectionTitle "Installing zip";
 # pacmanSynchronize zip;
@@ -390,7 +266,7 @@ cmd newgrp docker;
 cmd sudo chmod 666 /var/run/docker.sock;
 
 echoSectionTitle "Installing Visual Studio Code";
-aptInstall code;
+snapInstall code --classic;
 
 echoSectionTitle "Installing Neovim";
 wGet https://github.com/neovim/neovim/releases/latest/download/nvim.appimage;
@@ -401,25 +277,6 @@ cmd mv squashfs-root nvim-appimage;
 # exposing nvim globally
 cmd mv nvim-appimage /;
 cmd ln -s /nvim-appimage/AppRun /usr/bin/nvim;
-
-echoSectionTitle "Installing LunarVim";
-
-# echoSectionTitle "Installing nvm";
-# wGet -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;
-
-#echoSectionTitle "Installing flutter";
-#cmd snap install flutter --classic;
-#cmd yay -S android-sdk;
-
-#echoSectionTitle "Installing vercel";
-#cmd npm install -g vercel;
-
-#echoSectionTitle "Installing alarm-cli";
-#cmd npm install -g alarm-cli;
-
-#echoSectionTitle "Installing Github CLI";
-#wGet $githubCliDebFileUrl -P $HOME/Downloads;
-#aptInstall $githubCliDebFile;
 
 echoColorEmptyLine;
 echo "███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗";
@@ -449,16 +306,6 @@ cmd ln -sf $dotfiles/.bash_profile $HOME/.bash_profile;
 # #cmd echo "options snd_hda_intel index=1" | sudo tee $modprobeConfigFile;
 # cmd asoundconf set-default-card PCH;
 
-# i3
-# echoSectionTitle "Creating symlink for i3 at $config/i3";
-# #cmd rm -rf $config/i3;
-# cmd ln -sf $dotfiles/i3 $config/i3;
-
-# Polybar
-# echoSectionTitle "Creating symlink for Polybar at $config/polybar/config";
-# #cmd rm $config/polybar/config;
-# cmd ln -s $dotfiles/polybar $config/polybar;
-
 # ranger
 # echoSectionTitle "Moving ranger settings to $config/ranger";
 # # ranger --copy-config=all;
@@ -467,7 +314,7 @@ cmd ln -sf $dotfiles/.bash_profile $HOME/.bash_profile;
 # zsh
 echoSectionTitle "Creating symlink for Zsh at ~/.zshrc";
 cmd ln -sf $dotfiles/zsh/.zshrc $HOME/.zshrc;
-#cmd sudo chsh -s $(which zsh);
+cmd sudo chsh -s $(which zsh);
 
 # .gitconfig
 echoSectionTitle "Creating symlink for .gitconfig at ~/.gitconfig";
