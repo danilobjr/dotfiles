@@ -37,9 +37,9 @@ bindkey -v
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
-autoload -Uz compinit
-compinit
+zstyle :compinstall filename "$HOME/.zshrc";
+autoload -Uz compinit;
+compinit;
 # End of lines added by compinstall
 
 # default folder
