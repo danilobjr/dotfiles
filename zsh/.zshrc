@@ -2,7 +2,7 @@
 # === ENV VARS
 # =============================================================================
 
-export BROSER=chromium
+export BROWSER=brave
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR=nvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
