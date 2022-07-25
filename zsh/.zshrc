@@ -4,7 +4,7 @@
 
 export BROWSER=brave
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR=nvim
+export EDITOR=lvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
@@ -80,12 +80,13 @@ export NVM_DIR="$HOME/.nvm"
 alias reload!="source ~/.zshrc"
 
 # open dotfiles
-alias zshconfig="nvim ~/.zshrc"
-alias nvimconfig="nvim ~/.config/nvim/init.vim"
-alias gitconfig="nvim ~/.gitconfig"
-alias i3config="nvim ~/.config/i3/config"
-alias rangerconfig="nvim ~/.config/ranger/rc.conf"
-alias tmuxconfig="nvim ~/.tmux.conf"
+alias zshconfig="lvim ~/.zshrc"
+alias nvimconfig="lvim ~/.config/nvim/init.vim"
+alias lvimconfig="lvim"
+alias gitconfig="lvim ~/.gitconfig"
+alias i3config="lvim ~/.config/i3/config"
+alias rangerconfig="lvim ~/.config/ranger/rc.conf"
+alias tmuxconfig="lvim ~/.tmux.conf"
 
 # utils
 alias rmrf="rm -rf"
@@ -94,8 +95,8 @@ alias rmrfnm="rm -rf node_modules"
 # sudo
 alias sudoe="sudo env 'PATH=$PATH'"
 
-# nvim
-alias v="nvim"
+# vim
+alias v="lvim"
 
 # pacman
 alias pms="sudo pacman -S --needed"
