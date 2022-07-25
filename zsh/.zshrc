@@ -101,11 +101,11 @@ alias pmu="sudo pacman -Syu"
 alias pmq="pacman -Qs"
 
 # apt-get
-#alias sai="sudo apt install"
-#alias sap="sudo apt purge"
-#alias saar="sudo apt autoremove"
-#alias saud="sudo apt update"
-#alias saug="sudo apt upgrade"
+alias sai="sudo apt install"
+alias sap="sudo apt purge"
+alias saar="sudo apt autoremove"
+alias saud="sudo apt update"
+alias saug="sudo apt upgrade"
 
 # npm
 alias ns="npm start"
