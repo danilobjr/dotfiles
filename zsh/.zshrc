@@ -78,6 +78,7 @@ alias gitconfig="lvim ~/.gitconfig"
 alias i3config="lvim ~/.config/i3/config"
 alias rangerconfig="lvim ~/.config/ranger/rc.conf"
 alias tmuxconfig="lvim ~/.tmux.conf"
+alias lazygitconfig="lvim ~/.config/lazygit/config.yml"
 
 # utils
 alias rmrf="rm -rf"
