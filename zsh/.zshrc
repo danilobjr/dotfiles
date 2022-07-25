@@ -129,7 +129,7 @@ alias yc="yarn commit"
 
 # git
 alias gs="git st"
-alias gdc="git dc"
+alias gdiff="git dc"
 alias ga="git a"
 alias gap="git ap"
 alias gaa="git aa"
