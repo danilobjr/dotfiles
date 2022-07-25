@@ -6,7 +6,6 @@ export BROWSER=brave
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR=lvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
-export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -24,9 +23,8 @@ export PATH=$PATH:~/.yarn/bin
 # === ZSH STUFF
 # =============================================================================
 
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+#plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -42,7 +40,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-source $ZSH/oh-my-zsh.sh
 source $HOME/z.sh
 
 # default folder
@@ -184,5 +181,13 @@ alias avd-ls='avdmanager list avd'
 alias emulator-pixel-3='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
 alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
 
+# =============================================================================
+# === SCRIPTS
+# =============================================================================
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/.powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ ! -f $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] || source $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+[[ ! -f $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
