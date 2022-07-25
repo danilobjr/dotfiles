@@ -42,8 +42,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-source $HOME/z.sh
-
 # default folder
 yellow="\033[1;33m"
 light_cyan="\033[1;36m"
@@ -182,6 +180,7 @@ alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.z.sh ]] || source $HOME/.z.sh
 [[ ! -f ~/.asdf/asdf.sh ]] || source $HOME/.asdf/asdf.sh
 [[ ! -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/.powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
