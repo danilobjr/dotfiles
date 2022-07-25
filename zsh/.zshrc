@@ -34,6 +34,8 @@ setopt autocd extendedglob nomatch notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+fpath=(${ASDF_DIR}/completions $fpath)
+
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
@@ -60,14 +62,6 @@ if ! [ -d "$HOME/repos" ]; then
   echo -e "${yellow}  ╰────────────────────────────────────────╯"
   echo
 fi
-
-# =============================================================================
-# === NVM
-# =============================================================================
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # =============================================================================
 # === ALIASES
@@ -187,6 +181,7 @@ alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.asdf/asdf.sh ]] || source $HOME/.asdf/asdf.sh
 [[ ! -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/.powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ ! -f $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] || source $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
