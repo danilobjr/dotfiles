@@ -69,7 +69,7 @@ then
     exit 0
   fi
 
-  xclip -sel c < $configfile
+  xclip -sel c < $configfile || exit 1
 
   echo "Token copied to clipboard"
   echo
