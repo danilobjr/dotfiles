@@ -81,6 +81,12 @@ alias lazygitconfig="lvim ~/.config/lazygit/config.yml"
 # utils
 alias rmrf="rm -rf"
 alias rmrfnm="rm -rf node_modules"
+alias ll="exa -l --header --icons --group-directories-first"
+alias la="ll --all"
+alias ld="ll --only-dirs"
+function lt {
+  ll --tree --level=2 $1 $2
+}
 
 # sudo
 alias sudoe="sudo env 'PATH=$PATH'"
