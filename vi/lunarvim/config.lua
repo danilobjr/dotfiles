@@ -133,11 +133,12 @@ lvim.builtin.nvimtree.setup.view.mappings.list = {
   { key = { "<C-r>" }, action = "" },
   { key = { "<C-v>" }, action = "" },
   { key = { "<C-x>" }, action = "" },
-  { key = { "<CR>", "o", ";" }, action = "edit" },
+  { key = { "o", ";" }, action = "edit" },
   { key = { "j" }, action = "parent_node" },
   { key = { "r" }, action = "rename" },
   { key = { "-" }, action = "split" },
   { key = { "\\" }, action = "vsplit" },
+  { key = { "<CR>" }, action = "cd" },
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
