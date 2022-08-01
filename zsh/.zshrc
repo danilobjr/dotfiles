@@ -192,9 +192,10 @@ alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[[ ! -f ~/.z.sh ]] || source $HOME/.z.sh
+[[ ! -f $BREW/etc/profile.d/z.sh ]] || source $BREW/etc/profile.d/z.sh
 [[ ! -f ~/.asdf/asdf.sh ]] || source $HOME/.asdf/asdf.sh
-[[ ! -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/.powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f $BREW/opt/powerlevel10k/powerlevel10k.zsh-theme ]] || source $BREW/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ ! -f $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] || source $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 [[ ! -f $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ ! -f $BREW/opt/asdf/libexec/asdf.sh ]] || source $BREW/opt/asdf/libexec/asdf.sh 
