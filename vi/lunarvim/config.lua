@@ -73,6 +73,9 @@ lvim.keys.normal_mode["<"] = "<<"
 -- nvimtree
 lvim.keys.normal_mode["<F4>"] = "<cmd>NvimTreeToggle<cr>"
 
+-- autotag plugin (https://github.com/windwp/nvim-ts-autotag/issues/64#issuecomment-1200083102)
+lvim.builtin.treesitter.autotag.enable = true
+
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 -- local _, actions = pcall(require, "telescope.actions")
@@ -215,6 +218,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
