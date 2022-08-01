@@ -12,6 +12,9 @@ tmux send-keys -t $session:$window 'lvim .' C-m
 window=2
 
 tmux new-window -t $session:$window -n compiler
+tmux send-keys -t $session:$window 'yarn re:watch' C-m
+tmux split-window -v
+tmux send-keys -t $session:$window 'yarn start' C-m
 
 window=3
 
