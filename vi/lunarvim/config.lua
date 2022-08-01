@@ -13,7 +13,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 
-vim.opt.guifont = "JetBrains Mono:h11"
+vim.opt.guifont = "JetBrains Mono:h13"
 vim.opt.relativenumber = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
