@@ -2,22 +2,27 @@
 # === ENV VARS
 # =============================================================================
 
+export BREW=/opt/homebrew
 export BROWSER=brave
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR=lvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
+export PATH=$PATH:$DOTFILES/scripts
+export PATH=$PATH:~/.yarn/bin
+export PATH=$PATH:/Users/danilo/.asdf/installs/rust/stable/bin
+export PATH=$PATH:/Users/danilo/Library/Python/3.8/bin
+export PATH=$PATH:/Users/danilo/.cargo/bin
+export PATH=$PATH:/Users/danilo/.local/bin
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 #export ANDROID_HOME=~/Android/Sdk
-export PATH=$PATH:$DOTFILES/scripts # set on .bashrc as well
 #export PATH=$PATH:$ANDROID_HOME/emulator
 #export PATH=$PATH:$ANDROID_HOME/tools
 #export PATH=$PATH:$ANDROID_HOME/tools/bin
 #export PATH=$PATH:$ANDROID_HOME/platform-tools
 #export PATH=$PATH:~/android-studio/bin
 #export PATH=$PATH:~/.tfenv/bin
-export PATH=$PATH:~/.yarn/bin
 
 # =============================================================================
 # === ZSH STUFF
