@@ -31,21 +31,42 @@ export PATH=$PATH:/Users/danilo/.local/bin
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 #plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
-# Lines configured by zsh-newuser-install
+# history in cache directory
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+
+# some zsh options
 setopt autocd extendedglob nomatch notify
-bindkey -v
-# End of lines configured by zsh-newuser-install
 
-fpath=(${ASDF_DIR}/completions $fpath)
-
-# The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc";
-autoload -Uz compinit;
+# auto/tab complete
+autoload -U compinit;
+zstyle ':completion:*' menu select;
+# zstyle :compinstall filename "$HOME/.zshrc";
+zmodload zsh/complist;
 compinit;
-# End of lines added by compinstall
+
+# vi mode
+bindkey -v 
+export KEYTIMEOUT=1
+
+bindkey -M menuselect 'j' vi-backward-char
+bindkey -M menuselect 'k' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-up-line-or-history
+bindkey -M menuselect ';' vi-forward-char
+
+bindkey -M vicmd 'j' vi-backward-char
+bindkey -M vicmd 'k' down-line-or-history
+bindkey -M vicmd 'l' up-line-or-history
+bindkey -M vicmd ';' vi-forward-char
+
+bindkey -M visual 'j' vi-backward-char
+bindkey -M visual ';' vi-forward-char
+
+bindkey '^r' history-incremental-search-backward
+
+# asdf completions
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # default folder
 yellow="\033[1;33m"
