@@ -162,6 +162,10 @@ echoNoColorEmptyLine;
 
 echoSectionTitle "Installing rectangle";
 brewInstall --cask rectangle;
+cmd defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 5;
+cmd defaults write com.knollsoft.Rectangle screenEdgeGapBottom -int 5;
+cmd defaults write com.knollsoft.Rectangle screenEdgeGapLeft -int 5;
+cmd defaults write com.knollsoft.Rectangle screenEdgeGapRight -int 5;
 
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
 gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
