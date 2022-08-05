@@ -123,8 +123,6 @@ cmd cp $HOME/.tmux-powerline/themes/default.sh $HOME/.tmux-powerline/themes/defa
 cmd ln -sf $dotfiles/tmux/powerline/themes/default.sh $HOME/.tmux-powerline/themes/default.sh;
 
 echoSectionTitle "Installing Powerlevel10k";
-# mkdir -p $config;
-# echoHighlight "$config folder created";
 gitClone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k;
 
 # echoSectionTitle "Installing zsh-syntax-highlighting";
@@ -162,13 +160,8 @@ cmd echo "██████╔╝███████╗███████�
 cmd echo "╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ";
 echoNoColorEmptyLine;
 
-# echoSectionTitle "Creating $fontsFolder folder";
-# cmd mkdir -p $fontsFolder;
-# cmd mkdir -p $fontsFolder/bitmap;
-# cmd mkdir -p $fontsFolder/ttf;
-
-# echoSectionTitle "Installing Xorg";
-# pacmanSynchronize xorg xorg-init xf86-video-ati;
+echoSectionTitle "Installing rectangle";
+brewInstall --cask rectangle;
 
 echoSectionTitle "Cloning dotfiles repo in $dotfiles directory";
 gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
@@ -179,30 +172,6 @@ gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 echoSectionTitle "Installing JetBrains font";
 cmd brew tap homebrew/cask-fonts;
 brewInstall --cask font-jetbrains-mono;
-
-# echoSectionTitle "Installing fonts for powerlevel10k";
-# wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P $fontsFolder/ttf;
-# wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P $fontsFolder/ttf;
-# wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P $fontsFolder/ttf;
-# wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P $fontsFolder/ttf;
-
-# echoSectionTitle "Installing Noto Color Emoji font";
-# wGet $emojiFontUrl -P $fontsFolder/ttf;
-
-# echoSectionTitle "Caching fonts";
-# cmd sudo fc-cache -fv;
-
-# echoSectionTitle "Installing rofi";
-# pacmanSynchronize rofi;
-
-# echoSectionTitle "Installing zip";
-# pacmanSynchronize zip;
-
-# echoSectionTitle "Installing unzip";
-# pacmanSynchronize unzip;
-
-#echoSectionTitle "Installing sound-theme-freedesktop";
-#aptInstall sound-theme-freedesktop;
 
 echoColorEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗";
