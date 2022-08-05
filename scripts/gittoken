@@ -69,7 +69,25 @@ then
     exit 0
   fi
 
-  xclip -sel c < $configfile || exit 1
+# if [[ "$OSTYPE" == ]]; then
+#         # ...
+# elif [[ "$OSTYPE" == ]]; then
+#         # Mac OSX
+
+  case "$OSTYPE" in
+    "linux-gnu"*)
+      xclip -sel c < $configfile || exit 1
+      ;;
+    "darwin"*)
+      pbcopy < $configfile || exit 1
+      ;;
+    *)
+      echo "Couldn't detect OS"
+      exit
+      ;;
+  esac
+
+  # xclip -sel c < $configfile || exit 1
 
   echo "Token copied to clipboard"
   echo
