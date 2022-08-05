@@ -177,10 +177,8 @@ gitClone https://github.com/danilobjr/dotfiles.git $dotfiles;
 #pacmanSynchronize ttf-font-awesome;
 
 echoSectionTitle "Installing JetBrains font";
-# wGet https://download.jetbrains.com/fonts/JetBrainsMono-2.242.zip -P $HOME/Downloads;
-# cmd unzip $HOME/Downloads/JetBrainsMono-2.242.zip -d JetBrainsMono;
-# cmd mv $HOME/JetBrainsMono/fonts/ttf/* $fontsFolder/ttf;
-# cmd rm -rf $HOME/JetBrainsMono;
+cmd brew tap homebrew/cask-fonts;
+brewInstall --cask font-jetbrains-mono;
 
 # echoSectionTitle "Installing fonts for powerlevel10k";
 # wGet https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P $fontsFolder/ttf;
