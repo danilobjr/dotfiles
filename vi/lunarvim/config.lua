@@ -95,6 +95,7 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.which_key.mappings["e"] = {
   name = "+Editor",
   e = { ":NvimTreeToggle<cr>", "Toggle File Explorer" },
+  z = { "<cmd>ZenMode<cr>", "Zen Mode" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -241,6 +242,26 @@ lvim.plugins = {
   },
   { 'rescript-lang/vim-rescript' },
   { 'tpope/vim-surround' },
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup {
+        window = {
+          width = 400,
+        }
+      }
+    end
+  },
+  {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
