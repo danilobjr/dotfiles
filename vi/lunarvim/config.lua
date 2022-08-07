@@ -129,6 +129,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.width = 50
 lvim.builtin.nvimtree.setup.view.mappings.list = {
   { key = { "l" }, action = "" },
   { key = { "<C-r>" }, action = "" },
