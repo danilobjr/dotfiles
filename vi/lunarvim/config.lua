@@ -52,6 +52,8 @@ lvim.keys.insert_mode["jj"] = false -- disable 'exit insert mode'
 lvim.keys.insert_mode["kj"] = false -- disable 'exit insert mode'
 lvim.keys.insert_mode["jk"] = false -- disable 'exit insert mode'
 lvim.keys.normal_mode["<c-\\>"] = false
+lvim.keys.normal_mode["<s-h>"] = false
+lvim.keys.normal_mode["<s-l>"] = false
 
 -- pane navigation
 lvim.keys.normal_mode["<a-j>"] = "<c-w>h" -- focus on left panel
