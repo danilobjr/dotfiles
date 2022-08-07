@@ -1,6 +1,8 @@
 [user]
 	email = danilobjr@gmail.com
 	name = Danilo
+[init]
+  defaultBranch = main
 [push]
 	default = matching
 [core]
