@@ -128,7 +128,6 @@ lvim.builtin.which_key.mappings["O"] = { "O<esc>", "New line above" }
 lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.mappings.list = {
   { key = { "l" }, action = "" },
