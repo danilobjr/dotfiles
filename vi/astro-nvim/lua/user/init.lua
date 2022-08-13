@@ -332,7 +332,7 @@ local config = {
       -- Line utils 
       ["<leader>O"] = { "O<esc>", desc = "New line above" },
       ["<leader>o"] = { "o<esc>S<esc>", desc = "New line below" },
-      ["<leader>s"] = { "S<esc>", desc = "Remove line content" },
+      ["<leader>s"] =  "S<esc>",
       [">"] = ">>",
       ["<"] = "<<",
 
@@ -402,7 +402,8 @@ local config = {
           -- third key is the key to bring up next level and its displayed
           -- group name in which-key top level menu
           ["e"] = { name = "Editor" },
-          ["S"] = { name = "Serch" },
+          ["s"] = { name = "Remove line content" },
+          ["S"] = { name = "Search" },
           ["w"] = { name = "Write" },
         },
       },
