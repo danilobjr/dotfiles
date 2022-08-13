@@ -6,12 +6,12 @@ tmux new-session -d -s $session
 
 window=1
 
-tmux rename-window -t $session:$window vim
+tmux rename-window -t $session:$window editor
 tmux send-keys -t $session:$window '$EDITOR .' C-m
 
 window=2
 
-tmux new-window -t $session:$window -n compiler
+tmux new-window -t $session:$window -n shell
 
 # window=3
 #
