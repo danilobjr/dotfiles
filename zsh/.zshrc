@@ -5,12 +5,13 @@
 export BREW=/opt/homebrew
 export BROWSER=brave
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR=lvim
-export VISUAL=lvim
-export MANPAGER=lvim
+export EDITOR=nvim
+export VISUAL=$EDITOR
+export MANPAGER=$EDITOR
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 export PATH=$PATH:$DOTFILES/scripts
+export PATH=$PATH:$HOME/.nvim/bin
 export PATH=$PATH:~/.yarn/bin
 export PATH=$PATH:/Users/danilo/.asdf/installs/rust/stable/bin
 export PATH=$PATH:/Users/danilo/Library/Python/3.8/bin
@@ -97,14 +98,13 @@ fi
 alias reload!="source ~/.zshrc"
 
 # open dotfiles
-alias zshconfig="lvim ~/.zshrc"
-alias nvimconfig="lvim ~/.config/nvim/init.vim"
-alias lvimconfig="lvim"
-alias gitconfig="lvim ~/.gitconfig"
-alias i3config="lvim ~/.config/i3/config"
-alias rangerconfig="lvim ~/.config/ranger/rc.conf"
-alias tmuxconfig="lvim ~/.tmux.conf"
-alias lazygitconfig="lvim ~/.config/lazygit/config.yml"
+alias zshconfig="$EDITOR ~/.zshrc"
+alias vimconfig="$EDITOR ~/.config/nvim/lua/user/init.lua"
+alias gitconfig="$EDITOR ~/.gitconfig"
+alias i3config="$EDITOR ~/.config/i3/config"
+alias rangerconfig="$EDITOR ~/.config/ranger/rc.conf"
+alias tmuxconfig="$EDITOR ~/.tmux.conf"
+alias lazygitconfig="$EDITOR ~/.config/lazygit/config.yml"
 
 # utils
 alias rmrf="rm -rf"
@@ -120,7 +120,7 @@ function lt {
 alias sudoe="sudo env 'PATH=$PATH'"
 
 # vim
-alias v="lvim"
+alias v="$EDITOR"
 
 # pacman
 alias pms="sudo pacman -S --needed"
