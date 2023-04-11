@@ -2,12 +2,12 @@
   "import": {
     "prefix": "im",
     "description": "Import statement",
-    "body": "import { $0 } from '${1:module}';"
+    "body": "import { $0 } from '${1:module}'"
   },
   "import * as": {
     "prefix": "imas",
     "description": "Import * as statement",
-    "body": "import * as $0 from '${1:module}';"
+    "body": "import * as $0 from '${1:module}'"
   },
   "require": {
     "prefix": "re",
@@ -17,12 +17,12 @@
   "export * from": {
     "prefix": "exa",
     "description": "export * from",
-    "body": "export * from '${1:module}';"
+    "body": "export * from '${1:module}'"
   },
   "use strict": {
     "prefix": "us",
-    "description": "'use strict'; statement",
-    "body": "'use strict';"
+    "description": "'use strict' statement",
+    "body": "'use strict'"
   },
   "var": {
     "prefix": "var",
@@ -42,45 +42,29 @@
   "function": {
     "prefix": "fn",
     "description": "Function statement",
-    "body": [
-      "function ${name}(${param}) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["function ${name}(${param}) {", "\t$0", "}"]
   },
   "class": {
     "prefix": "cls",
     "description": "Class",
-    "body": [
-      "class ${Name} {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["class ${Name} {", "\t$0", "}"]
   },
   "class that extends another class": {
     "prefix": "clsx",
     "description": "Class that extends another class",
-    "body": [
-      "class ${Name} extends ${AnotherClass} {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["class ${Name} extends ${AnotherClass} {", "\t$0", "}"]
   },
   "constructor simple": {
     "prefix": "ct",
     "description": "Class constructor",
-    "body": [
-      "constructor(${...args}) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["constructor(${...args}) {", "\t$0", "}"]
   },
   "constructor with super()": {
     "prefix": "cts",
     "description": "Class constructor with super() call",
     "body": [
       "constructor(${...args}) {",
-      "\tsuper(${...args});",
+      "\tsuper(${...args})",
       "",
       "\t$0",
       "}"
@@ -89,18 +73,12 @@
   "method class": {
     "prefix": "mt",
     "description": "Class method",
-    "body": [
-      "${name}(${param}) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["${name}(${param}) {", "\t$0", "}"]
   },
   "method class using as arrow function": {
     "prefix": "mta",
     "description": "Class method as arrow function",
-    "body": [
-      "${1:name} = (${2:param})$3 => $0"
-    ]
+    "body": ["${1:name} = (${2:param})$3 => $0"]
   },
   "switch": {
     "prefix": "sw",
@@ -109,16 +87,16 @@
       "switch (${variable}) {",
       "\tcase ${value}:",
       "\t\t$0",
-      "\t\tbreak;",
+      "\t\tbreak",
       "\tdefault:",
-      "\t\treturn $1;",
+      "\t\treturn $1",
       "}"
     ]
   },
   "debugger": {
     "prefix": "de",
-    "description": "debugger; statement",
-    "body": "debugger;"
+    "description": "debugger statement",
+    "body": "debugger"
   },
   "console log": {
     "prefix": "cl",
@@ -148,7 +126,7 @@
       "\trender() {",
       "\t\treturn (",
       "\t\t\t$0",
-      "\t\t);",
+      "\t\t)",
       "\t}",
       "}"
     ]
@@ -156,18 +134,12 @@
   "stateless functional react component": {
     "prefix": "sfc",
     "description": "Stateless functional react component",
-    "body": [
-      "const ${Name} = (${props}) => $0;"
-    ]
+    "body": ["const ${Name} = (${props}) => $0"]
   },
   "componentDidMount": {
     "prefix": "cdm",
     "description": "componentDidMount() - React lifecycle method",
-    "body": [
-      "componentDidMount() {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["componentDidMount() {", "\t$0", "}"]
   },
   "prop types": {
     "prefix": "pt",
@@ -175,7 +147,7 @@
     "body": [
       "${ComponentName}.propTypes = {",
       "\t${propName}: PropTypes.${type}",
-      "};"
+      "}"
     ]
   }
 }
