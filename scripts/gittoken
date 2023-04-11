@@ -52,7 +52,6 @@ then
   echo $token > "${configfile}"
 
   echo "New token set in $configfile"
-  echo
 
   exit 0
 fi
@@ -90,7 +89,6 @@ then
   # xclip -sel c < $configfile || exit 1
 
   echo "Token copied to clipboard"
-  echo
 
   exit 0
 fi
