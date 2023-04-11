@@ -1,0 +1,90 @@
+#!/bin/sh
+
+usage() {
+  cat <<EOF
+Usage: $0 [-r <command>]
+  -r COMMAND    Runs a command on top left pane
+EOF
+  exit 0
+}
+
+# TODO refactor this to be like runWithVsCode
+# BUT should have two windows:
+# 1. with vim
+# 2. like the runWithVsCode
+runWithVim() {
+  session="dev"
+
+  tmux new-session -d -s $session
+
+  window=1
+
+  tmux rename-window -t $session:$window editor
+  tmux send-keys -t $session:$window '$EDITOR .' C-m
+
+  window=2
+
+  tmux new-window -t $session:$window -n shell
+
+  window=3
+  
+  tmux new-window -t $session:$window -n git
+  tmux send-keys -t $session:$window 'lazygit' C-m
+
+  window=1
+
+  tmux select-window -t $session:$window
+
+  tmux attach-session -t $session
+}
+
+runWithVsCode() {
+  command=$1
+  session="dev"
+
+  tmux new-session -d -s $session
+
+  window=1
+
+  tmux split-window -v
+  tmux send-keys 'lazygit' C-m
+
+  tmux select-pane -U
+  tmux split-window -h
+  tmux send-keys 'code .' C-m
+
+  tmux select-pane -L
+  # tmux send-keys -t $session:$window '$EDITOR .' C-m
+  if [[ ${command} ]]; then
+    echo ping;
+    # ($command)
+    tmux send-keys '$command' C-m
+  fi
+
+  tmux select-pane -R
+
+  tmux attach-session -t $session
+}
+
+options="r"
+editor=
+command=
+
+while getopts ${options} option; do
+  case ${option} in
+    r)
+      command=${OPTARG}
+      ;;
+    h)
+      usage
+      ;;
+    \?)
+      # echo "Unknown option: ${OPTARG}." >&2; exit 1;;
+      echo "Unknown option: ${OPTARG}."
+      echo
+      usage
+      ;;
+  esac
+done
+
+runWithVsCode "$command"

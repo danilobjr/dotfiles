@@ -1,25 +1,54 @@
 #!/bin/sh
 
-session="dev"
+usage() {
+  echo "Usage: $0 [-r <command>] [-h]" 2>&1
+  echo '  -r COMMAND    Runs command on the top left pane'
+  echo '  -h            Shows this text'
+  exit 1
+}
 
-tmux new-session -d -s $session
+run() {
+  command=$1
+  session="dev"
 
-window=1
+  tmux new-session -d -s $session
 
-tmux rename-window -t $session:$window editor
-tmux send-keys -t $session:$window '$EDITOR .' C-m
+  window=1
 
-window=2
+  tmux split-window -v
+  tmux send-keys 'lazygit' C-m
 
-tmux new-window -t $session:$window -n shell
+  tmux select-pane -U
+  tmux split-window -h
+  tmux send-keys 'code .' C-m
 
-# window=3
-#
-# tmux new-window -t $session:$window -n git
-# tmux send-keys -t $session:$window 'lazygit' C-m
+  if [[ ${command} ]]; then
+    tmux select-pane -L
+    tmux send-keys "$command" C-m
+    tmux select-pane -R
+  fi
 
-window=1
+  tmux attach-session -t $session
+}
 
-tmux select-window -t $session:$window
+options=":r:"
+command=
 
-tmux attach-session -t $session
+while getopts ${options} option; do
+  case ${option} in
+    r)
+      command="$OPTARG"
+      ;;
+    h)
+      usage
+      ;;
+    \?)
+      # echo "Unknown option: ${OPTARG}." >&2; exit 1;;
+      echo "Unknown option: ${OPTARG}."
+      echo
+      usage
+      ;;
+  esac
+done
+
+run "$command"
