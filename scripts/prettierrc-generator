@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cat > .prettierrc<< EOL
+{
+  "semi": false,
+  "singleQuote": true
+}
+
+EOL
