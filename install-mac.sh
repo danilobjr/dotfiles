@@ -260,7 +260,8 @@ cmd ln -sf ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 # cmd ln -s $dotfiles/vscode/keybindings.json $vscode_user/keybindings.json;
 # cmd ln -s $dotfiles/vscode/settings.json $vscode_user/settings.json;
 # cmd rm -rf $vscode_user/snippets;
-# cmd ln -sf $dotfiles/vscode/snippets $vscode_user/snippets;
+cmd ln -sf $DOTFILES/vscode/snippets $HOME/Library/Application\ Support/Code/User/snippets
+
 
 # Neovim
 # echoSectionTitle "Creating symlink for Neovim at $config/nvim";
