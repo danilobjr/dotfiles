@@ -184,6 +184,7 @@ alias gcl="git cl"
 alias gm="git m"
 alias gr="git r"
 alias grc="git rc"
+alias gfp="git fetch -p"
 alias glast="git last"
 alias ghist="git hist"
 alias gparent='git show-branch | sed "s/].*//" | grep "\*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/^.*\[//"'
