@@ -7,7 +7,7 @@ export BROWSER=brave
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export MANPAGER=$EDITOR
+# export MANPAGER=$EDITOR
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 # custom colors for exa (move this to exa-colors.sh file?)
