@@ -1,0 +1,10 @@
+#!/bin/bash
+
+replace_extension() {
+  old_name="$1"
+  new_ext="$2"
+  new_name="${old_name%.*}.$new_ext"
+  echo "$new_name"
+}
+
+afconvert $1 -o $(replace_extension $1 mp3) -q 127 -b 128000 -f mp3f -d .mp3
