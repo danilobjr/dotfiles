@@ -7,7 +7,7 @@
 	default = matching
 [core]
 	trustctime = false
-	editor = v
+	editor = vi
 	filemode = false
 	pager = git-split-diffs --color | less -RFX
 [color]
@@ -37,7 +37,7 @@
 	r = rebase
 	rc = rebase --continue
 	last = log -1 --stat
-	hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cred<%an>%Creset' --abbrev-commit --date=relative --all
 	
 	# git-flow
 	
