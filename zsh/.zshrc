@@ -167,6 +167,7 @@ alias yc="yarn commit"
 # git
 alias gs="git st"
 alias gdiff="git dc"
+alias gstashsup="git stash show -u -p"
 alias ga="git a"
 alias gap="git ap"
 alias gaa="git aa"
