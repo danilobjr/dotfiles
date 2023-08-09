@@ -177,6 +177,12 @@ echoSectionTitle "Installing JetBrains font";
 cmd brew tap homebrew/cask-fonts;
 brewInstall --cask font-jetbrains-mono;
 
+echoSectionTitle "Installing yabai";
+brewInstall koekeishiya/formulae/yabai;
+
+echoSectionTitle "Installing skhd";
+brewInstall koekeishiya/formulae/skhd;
+
 echoColorEmptyLine;
 echo "██████╗ ███████╗██╗   ██╗    ███████╗████████╗██╗   ██╗███████╗███████╗";
 echo "██╔══██╗██╔════╝██║   ██║    ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝";
@@ -262,6 +268,8 @@ cmd ln -sf ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 # cmd rm -rf $vscode_user/snippets;
 cmd ln -sf $DOTFILES/vscode/snippets $HOME/Library/Application\ Support/Code/User/snippets
 
+# karabiner
+cmd ln -sf $DOTFILES/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
 
 # Neovim
 # echoSectionTitle "Creating symlink for Neovim at $config/nvim";
