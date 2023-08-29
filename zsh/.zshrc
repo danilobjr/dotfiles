@@ -19,6 +19,7 @@ export PATH=$PATH:/Users/danilo/.asdf/installs/rust/stable/bin
 export PATH=$PATH:/Users/danilo/Library/Python/3.8/bin
 export PATH=$PATH:/Users/danilo/.cargo/bin
 export PATH=$PATH:/Users/danilo/.local/bin
+export PATH=$PATH:/Users/danilo/.dotnet/tools
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 #export ANDROID_HOME=~/Android/Sdk
