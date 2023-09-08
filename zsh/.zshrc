@@ -202,9 +202,13 @@ alias dclsp='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.Ru
 alias dclsa='docker container list --all --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
 alias dcstart='docker container start'
 alias dcstop='docker container stop'
-alias dcr='docker container restart'
-alias dcl='docker container logs -f'
+alias dcrestart='docker container restart'
+alias dclogs='docker container logs -f'
+alias drm='docker rm'
+alias dvls='docker volume ls'
+alias dvrm='docker volume rm'
 alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"'
+alias dexecit='docker exec -it'
 
 # aws
 alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
