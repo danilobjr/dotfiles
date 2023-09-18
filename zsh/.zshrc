@@ -204,11 +204,15 @@ alias dcstart='docker container start'
 alias dcstop='docker container stop'
 alias dcrestart='docker container restart'
 alias dclogs='docker container logs -f'
+alias diqall="docker images -q | % { docker rmi $_ }"
 alias drm='docker rm'
+alias dexecit='docker exec -it'
 alias dvls='docker volume ls'
 alias dvrm='docker volume rm'
+alias dlogs='docker logs'
 alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"'
-alias dexecit='docker exec -it'
+alias dsp='docker system prune'
+alias dbuild='docker build -t NAME:TAG .'
 
 # aws
 alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
