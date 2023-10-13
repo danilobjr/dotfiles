@@ -110,8 +110,7 @@ alias tmuxconfig="$EDITOR ~/.tmux.conf"
 alias lazygitconfig="$EDITOR ~/.config/lazygit/config.yml"
 
 # utils
-alias rmrf="rm -rf"
-alias rmrfnm="rm -rf node_modules"
+alias rm=trash
 alias ll="exa -l --header --icons --group-directories-first"
 alias la="ll --all"
 alias ld="ll --only-dirs"
