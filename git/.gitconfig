@@ -7,7 +7,7 @@
 	default = matching
 [core]
 	trustctime = false
-	editor = vi
+	editor = nvim
 	filemode = false
 	pager = git-split-diffs --color | less -RFX
 [color]
