@@ -9,3 +9,5 @@ ranger/tagged
 # vim.plug
 nvim/plugged
 nvim/.netrwhist
+
+.DS_Store
