@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# reference: https://typicode.github.io/husky/getting-started.html
+
+# Install husky
+npm install --save-dev husky
+
+# enable git hooks
+npx husky install
+
+# add a 'prepare' script in package.json
+npm pkg set scripts.prepare="husky install"
+
+# a 'pre-commit' file with a 'npm test'
+npx husky add .husky/pre-commit "npm test"
