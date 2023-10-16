@@ -221,6 +221,19 @@ alias avd-ls='avdmanager list avd'
 alias emulator-pixel-3='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
 alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
 
+# dotnet
+alias dn-info='dotnet --info'
+alias dn-new='dotnet new -h' # template instantiation commands
+alias dn-newls='dotnet new list' # list project templates: solution, webapi, class lib, gitignore, editorconfig
+alias dn-newsln='dotnet new sln -h' # create an empty solution containing no projects
+# alias dn-newclasslib='dotnet new classlib -n ClassLibProject' 
+# alias dn-newwebapi='dotnet new webapi -n WebApiProject' 
+alias db-sln='dotnet sln -h' # modify solution files
+alias dn-slnls='dotnet sln list' # list all projects in a solution file
+alias dn-slnadd='dotnet sln add -h' # add one or more projects to a solution file
+alias dn-addref='dotnet add reference -h' # add a project-to-project reference to the project
+alias dn-addpkg='dotnet add package -h' # add a nuget package reference to the project
+
 # =============================================================================
 # === SCRIPTS
 # =============================================================================
