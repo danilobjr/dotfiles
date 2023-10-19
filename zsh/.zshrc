@@ -233,6 +233,8 @@ alias dn-slnls='dotnet sln list' # list all projects in a solution file
 alias dn-slnadd='dotnet sln add -h' # add one or more projects to a solution file
 alias dn-addref='dotnet add reference -h' # add a project-to-project reference to the project
 alias dn-addpkg='dotnet add package -h' # add a nuget package reference to the project
+alias dn-build='dotnet build' # It'll build on current folder or you can specify a project 'dn-build ./SomeProject'
+alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-run ./SomeProject'
 
 # =============================================================================
 # === SCRIPTS
