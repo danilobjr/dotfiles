@@ -118,28 +118,14 @@
     "description": "console.error() statement",
     "body": "console.error(${value})"
   },
-  "react component": {
+  "react component - simple": {
     "prefix": "rc",
-    "description": "React component",
+    "description": "React component - Simple",
     "body": [
-      "export class ${ComponentName} extends Component {",
-      "\trender() {",
-      "\t\treturn (",
-      "\t\t\t$0",
-      "\t\t)",
-      "\t}",
-      "}"
+      "const ${Name} = () => (",
+      "\t$0",
+      ")"
     ]
-  },
-  "stateless functional react component": {
-    "prefix": "sfc",
-    "description": "Stateless functional react component",
-    "body": ["const ${Name} = (${props}) => $0"]
-  },
-  "componentDidMount": {
-    "prefix": "cdm",
-    "description": "componentDidMount() - React lifecycle method",
-    "body": ["componentDidMount() {", "\t$0", "}"]
   },
   "prop types": {
     "prefix": "pt",
