@@ -146,6 +146,7 @@ alias nr="npm run"
 alias nrb="npm run build"
 alias nrd="npm run dev"
 alias nrl="npm run lint"
+alias nrt="npm run test"
 
 # yarn
 alias yi="yarn install"
