@@ -120,6 +120,14 @@
     "when": "codeActionMenuVisible"
   },
   {
+    "key": "alt+j",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "alt+;",
+    "command": "workbench.action.navigateRight"
+  },
+  {
     "key": "cmd+0",
     "command": "-workbench.action.focusSideBar"
   },
