@@ -92,12 +92,14 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   {
-    "key": "cmd+n",
-    "command": "-workbench.action.files.newUntitledFile"
+    "key": "alt+k",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
   },
   {
-    "key": "cmd+n",
-    "command": "extension.simpleNewFile"
+    "key": "alt+l",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
   },
   {
     "key": "alt+k",
@@ -126,6 +128,14 @@
   {
     "key": "alt+;",
     "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "cmd+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "cmd+n",
+    "command": "extension.simpleNewFile"
   },
   {
     "key": "cmd+0",
