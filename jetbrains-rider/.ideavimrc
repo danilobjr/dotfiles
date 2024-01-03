@@ -1,0 +1,166 @@
+" ======================================================================
+" =                            settings                                =
+" ======================================================================
+
+set ignorecase
+set relativenumber
+set surround
+
+" ======================================================================
+" =                             leader                                 =
+" ======================================================================
+
+let mapleader="\<space>"
+
+" ======================================================================
+" =                           custom maps                              =
+" ======================================================================
+
+" cursor navigation
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
+
+vnoremap j h
+vnoremap k j
+vnoremap l k
+vnoremap ; l
+
+onoremap j h
+onoremap k j
+onoremap l k
+onoremap ; l
+
+" common commands
+" nnoremap <leader>ww <Action>(SaveDocument)
+" nnoremap <leader>wa <Action>(SaveAll)
+map <leader>e <Action>(ActivateProjectToolWindow)
+map <leader>ww <Action>(SaveDocument)
+map <leader>wa <Action>(SaveAll)
+nnoremap <leader>c :q<CR>
+
+" nnoremap <leader>/ <Action>(CommentByLineComment)
+map <leader>/ <Action>(CommentByLineComment)
+
+map <leader>o o<esc>0D
+map <leader>O O<esc>0D
+
+map <leader>r <Action>(RenameElement)
+
+" map <S->> <Action>(EditorTab)
+" map <S-<> <Action>(EditorUnindentSelection)
+
+" NORMAL MODE
+"     {
+"       "before": ["<leader>", ":"],
+"       "commands": ["workbench.action.showCommands"]
+"     },
+"     {
+"       "before": ["<leader>", "/"],
+"       "commands": ["editor.action.commentLine"],
+"       "when": "editorTextFocus && !editorReadonly"
+"     },
+"     {
+"       "before": [">"],
+"       "commands": ["editor.action.indentLines"]
+"     },
+"     {
+"       "before": ["<"],
+"       "commands": ["editor.action.outdentLines"]
+"     },
+"     {
+"       "before": ["<leader>", "e"],
+"       "commands": ["workbench.action.toggleSidebarVisibility"]
+"     },
+"     {
+"       "before": ["<leader>", "f"],
+"       "commands": ["workbench.action.quickOpen"]
+"     },
+"     {
+"       "before": ["<leader>", "z"],
+"       "commands": ["workbench.action.toggleCenteredLayout"]
+"     },
+"     {
+"       "before": ["<leader>", "c"],
+"       "commands": ["workbench.action.closeActiveEditor"]
+"     },
+"     {
+"       "before": ["<leader>", "m", "m"],
+"       "commands": ["bookmarks.toggle"]
+"     },
+"     {
+"       "before": ["<leader>", "m", "l"],
+"       "commands": ["bookmarks.list"]
+"     },
+"     {
+"       "before": ["<leader>", "w", "w"],
+"       "commands": ["workbench.action.files.save"]
+"     },
+"     {
+"       "before": ["<leader>", "w", "a"],
+"       "commands": ["workbench.action.files.saveAll"]
+"     },
+"     {
+"       "before": ["<leader>", "q", "q"],
+"       "commands": ["workbench.action.closeActiveEditor"]
+"     },
+"     {
+"       "before": ["<leader>", "q", "a"],
+"       "commands": ["workbench.action.closeAllEditors"]
+"     },
+"     {
+"       "before": ["<leader>", "d"],
+"       "after": ["S", "<esc>"]
+"     },
+"     {
+"       "before": ["<leader>", "r"],
+"       "commands": ["editor.action.rename"],
+"       "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"]
+"     }
+"
+"
+"     VISUAL MODE
+"     {
+"       "before": ["j"],
+"       "after": ["h"]
+"     },
+"     {
+"       "before": ["k"],
+"       "after": ["j"]
+"     },
+"     {
+"       "before": ["l"],
+"       "after": ["k"]
+"     },
+"     {
+"       "before": [";"],
+"       "after": ["l"]
+"     },
+"     {
+"       "before": [">"],
+"       "commands": ["editor.action.indentLines"]
+"     },
+"     {
+"       "before": ["<"],
+"       "commands": ["editor.action.outdentLines"]
+"     }
+"
+"       "vim.operatorPendingModeKeyBindingsNonRecursive": [
+"     {
+"       "before": ["j"],
+"       "after": ["h"]
+"     },
+"     {
+"       "before": ["k"],
+"       "after": ["j"]
+"     },
+"     {
+"       "before": ["l"],
+"       "after": ["k"]
+"     },
+"     {
+"       "before": [";"],
+"       "after": ["l"]
+"     }
+"   ],
