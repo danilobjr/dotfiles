@@ -51,6 +51,12 @@ map <leader>r <Action>(RenameElement)
 " map <S->> <Action>(EditorTab)
 " map <S-<> <Action>(EditorUnindentSelection)
 
+" indentation
+nnoremap > >>
+nnoremap < <<
+vnoremap < <gv
+vnoremap > >gv
+
 " NORMAL MODE
 "     {
 "       "before": ["<leader>", ":"],
