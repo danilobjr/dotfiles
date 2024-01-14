@@ -245,7 +245,7 @@ alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-r
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f $BREW/etc/profile.d/z.sh ]] || source $BREW/etc/profile.d/z.sh
 [[ ! -f ~/.asdf/asdf.sh ]] || source $HOME/.asdf/asdf.sh
-[[ ! -f $BREW/opt/powerlevel10k/powerlevel10k.zsh-theme ]] || source $BREW/opt/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f $BREW/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme ]] || source $BREW/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ ! -f $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] || source $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 [[ ! -f $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
