@@ -1,0 +1,4 @@
+#!/bin/sh
+
+curl "https://fonts.googleapis.com/css?family=$1"
+
