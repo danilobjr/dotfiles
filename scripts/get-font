@@ -2,3 +2,8 @@
 
 curl "https://fonts.googleapis.com/css?family=$1"
 
+# woff2
+# curl 'https://fonts.googleapis.com/css?family=Karla' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116'
+
+# woff
+# curl 'https://fonts.googleapis.com/css?family=Karla' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome'
