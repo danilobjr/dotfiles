@@ -1,0 +1,52 @@
+#!/bin/bash
+
+FRONT_FOLDER=""
+BACK_FOLDER=""
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -f|--front) FRONT_FOLDER="$2"; shift ;;
+        -b|--back) BACK_FOLDER="$2"; shift ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+tmux new-session -s dev -d
+
+if [[ -n "$FRONT_FOLDER" ]]; then
+    tmux rename-window 'front'
+    tmux send-keys -t dev 'cd '"$FRONT_FOLDER" C-m
+    tmux split-window -v
+    tmux send-keys -t dev 'cd '"$FRONT_FOLDER" C-m
+    tmux send-keys -t dev:1.2 'lazygit' C-m
+    tmux select-pane -t dev:1.1
+    tmux split-window -h
+    tmux send-keys -t dev 'cd '"$FRONT_FOLDER" C-m
+fi
+
+if [[ -n "$BACK_FOLDER" && -n "$FRONT_FOLDER" ]]; then
+    tmux new-window -n 'back'
+    tmux send-keys -t dev 'cd '"$BACK_FOLDER" C-m
+    tmux split-window -v
+    tmux send-keys -t dev 'cd '"$BACK_FOLDER" C-m
+    tmux send-keys -t dev:2.2 'lazygit' C-m
+    tmux select-pane -t dev:2.1
+else
+    tmux rename-window 'back'
+    tmux split-window -v
+    tmux send-keys -t dev 'cd '"$BACK_FOLDER" C-m
+    tmux send-keys -t dev:1.2 'lazygit' C-m
+    tmux select-pane -t dev:1.1
+fi
+
+if [[ -z "$BACK_FOLDER" && -z "$BACK_FOLDER" ]]; then
+    tmux split-window -v
+    #tmux split-window -h
+    #tmux select-pane -t dev:0.0
+fi
+
+
+tmux select-pane -t dev:1.1
+tmux attach-session -t dev
+
