@@ -101,22 +101,22 @@
   "console log": {
     "prefix": "cl",
     "description": "console.log() statement",
-    "body": "console.log(${value})"
+    "body": "console.log($0)"
   },
   "console info": {
     "prefix": "ci",
     "description": "console.info() statement",
-    "body": "console.info(${value})"
+    "body": "console.info($0)"
   },
   "console warn": {
     "prefix": "cw",
     "description": "console.warn() statement",
-    "body": "console.warn(${value})"
+    "body": "console.warn($0)"
   },
   "console error": {
     "prefix": "ce",
     "description": "console.error() statement",
-    "body": "console.error(${value})"
+    "body": "console.error($0)"
   },
   "react component - simple": {
     "prefix": "rc",

@@ -116,21 +116,21 @@
   "console log": {
     "prefix": "cl",
     "description": "console.log() statement",
-    "body": "console.log(${text})"
+    "body": "console.log($0)"
   },
   "console info": {
     "prefix": "ci",
     "description": "console.info() statement",
-    "body": "console.info(${text})"
+    "body": "console.info($0)"
   },
   "console warn": {
     "prefix": "cw",
     "description": "console.warn() statement",
-    "body": "console.warn(${text})"
+    "body": "console.warn($0)"
   },
   "console error": {
     "prefix": "ce",
     "description": "console.error() statement",
-    "body": "console.error(${text})"
+    "body": "console.error($0)"
   }
 }
