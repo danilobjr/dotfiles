@@ -1,0 +1,190 @@
+{
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": false,
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.smoothScrolling": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "keyboard.dispatch": "keyCode",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.build": true,
+    "**/.gh-pages": true
+  },
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "terminal.integrated.shell.linux": "/bin/zsh",
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\wsl.exe",
+  "todo-tree.tree.showScanModeButton": false,
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "vim.smartRelativeLine": true,
+  "vim.leader": "<space>",
+  "vim.statusBarColorControl": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["h"]
+    },
+    {
+      "before": ["k"],
+      "after": ["j"]
+    },
+    {
+      "before": ["l"],
+      "after": ["k"]
+    },
+    {
+      "before": [";"],
+      "after": ["l"]
+    },
+    {
+      "before": ["<leader>", "w", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "w", "a"],
+      "commands": ["workbench.action.files.saveAll"]
+    },
+    {
+      "before": ["<leader>", "q", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "q", "a"],
+      "commands": ["workbench.action.closeAllEditors"]
+    },
+    {
+      "before": ["<leader>", "o"],
+      "after": ["o", "<esc>"]
+    },
+    {
+      "before": ["<leader>", "O"],
+      "after": ["O", "<esc>"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "after": ["S", "<esc>"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "after": [
+        ":",
+        "%",
+        "s",
+        "/",
+        "<c-r>",
+        "<c-w>",
+        "/",
+        "/",
+        "g",
+        "<left>",
+        "<left>"
+      ]
+    },
+    {
+      "before": ["<leader>", "S"],
+      "after": [
+        ":",
+        "%",
+        "s",
+        "/",
+        "<c-r>",
+        "<c-w>",
+        "/",
+        "<c-r>",
+        "<c-w>",
+        "/",
+        "g",
+        "<left>",
+        "<left>"
+      ]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["editor.action.rename"],
+      "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["h"]
+    },
+    {
+      "before": ["k"],
+      "after": ["j"]
+    },
+    {
+      "before": ["l"],
+      "after": ["k"]
+    },
+    {
+      "before": [";"],
+      "after": ["l"]
+    }
+  ],
+  "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["h"]
+    },
+    {
+      "before": ["k"],
+      "after": ["j"]
+    },
+    {
+      "before": ["l"],
+      "after": ["k"]
+    },
+    {
+      "before": [";"],
+      "after": ["l"]
+    }
+  ],
+  "vim.statusBarColors.normal": ["#3e7aca", "#FFFFFF"],
+  "vim.statusBarColors.insert": ["#679436", "#FFFFFF"],
+  "vim.statusBarColors.visual": ["#D5DFE5", "#3C4859B3"],
+  "vim.statusBarColors.visualline": ["#D5DFE5", "#3C4859B3"],
+  "vim.statusBarColors.visualblock": ["#D5DFE5", "#3C4859"],
+  "vim.statusBarColors.replace": ["#D05353", "#FFFFFF"],
+  "window.menuBarVisibility": "toggle",
+  "window.openFilesInNewWindow": "off",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#3e7aca",
+    "statusBar.noFolerBackground": "#D5DFE5",
+    "statusBar.debuggingBackground": "#3e7aca",
+    "statusBar.foreground": "#FFFFFF",
+    "statusBar.noFolderBackground": "#3e7aca",
+    "statusBar.debuggingForeground": "#FFFFFF"
+},
+  "workbench.iconTheme": "material-icon-theme",
+  "banner-comments-plus.font": "3D-ASCII",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true
+},
+"diffEditor.ignoreTrimWhitespace": false,
+"gitlens.codeLens.enabled": false,
+"gitlens.statusBar.enabled": false
+}
