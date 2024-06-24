@@ -1,9 +1,12 @@
 #!/bin/sh
 
-curl "https://fonts.googleapis.com/css?family=$1"
+# usage
+# get-font Source+Sans+3
+
+curl "https://fonts.googleapis.com/css?family=$1:wght@0,200..900;1,200..900&display=swap"
 
 # woff2
-# curl 'https://fonts.googleapis.com/css?family=Karla' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116'
+#curl "https://fonts.googleapis.com/css?family=$1:wght@0,200..900;1,200..900&display=swap" -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116'
 
 # woff
-# curl 'https://fonts.googleapis.com/css?family=Karla' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome'
+#curl "https://fonts.googleapis.com/css?family=$1:wght@0,200..900;1,200..900&display=swap" -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome'
