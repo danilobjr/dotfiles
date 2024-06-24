@@ -57,6 +57,9 @@ nnoremap < <<
 vnoremap < <gv
 vnoremap > >gv
 
+" g commands
+nmap gi :action GotoImplementation<CR>
+
 " NORMAL MODE
 "     {
 "       "before": ["<leader>", ":"],
