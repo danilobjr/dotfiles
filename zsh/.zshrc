@@ -239,6 +239,7 @@ alias dn-slnadd='dotnet sln add -h' # add one or more projects to a solution fil
 alias dn-addref='dotnet add reference -h' # add a project-to-project reference to the project
 alias dn-addpkg='dotnet add package -h' # add a nuget package reference to the project
 alias dn-build='dotnet build' # It'll build on current folder or you can specify a project 'dn-build ./SomeProject'
+alias dn-clean='dotnet build --no-incremental' # Marks the build as unsafe for incremental build. This flag turns off incremental compilation and forces a clean rebuild of the project's dependency graph. 'dn-clean'
 alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-run ./SomeProject'
 
 # =============================================================================
