@@ -5,6 +5,8 @@
 set ignorecase
 set relativenumber
 set surround
+set visualbell
+set noerrorbells
 
 " ======================================================================
 " =                             leader                                 =
