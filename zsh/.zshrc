@@ -115,6 +115,7 @@ alias lazygitconfig="$EDITOR ~/.config/lazygit/config.yml"
 
 # utils
 alias rm=trash
+alias rmnm=trash ./node_modules
 alias ll="exa -l --header --icons --group-directories-first"
 alias la="ll --all"
 alias ld="ll --only-dirs"
