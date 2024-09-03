@@ -1,0 +1,121 @@
+#!/bin/bash
+
+##############
+# using find #
+##############
+
+# # List of directories to search in
+# SEARCH_DIRS=(
+#   "/Applications"
+#   "/Library/Caches"
+#   "$HOME/Library"
+#   "$HOME/Library/Application Support"
+#   "$HOME/Library/Application Support/CrashReporter"
+#   "$HOME/Library/Caches"
+#   "$HOME/Library/Internet Plug-Ins"
+#   "$HOME/Library/Preferences"
+#   "$HOME/Library/Saved Application State"
+# )
+#
+# # Function to search for the term in specified directories
+# search_files() {
+#   local term="$1"
+#
+#   if [[ -z "$term" ]]; then
+#     printf "Error: Search term is required.\n" >&2
+#     return 1
+#   fi
+#
+#   # Iterate over the directories and search for files/folders matching the term (case insensitive)
+#   local found=0
+#   for dir in "${SEARCH_DIRS[@]}"; do
+#     if [[ -d "$dir" ]]; then
+#       # Find matching files and directories, ignoring case
+#       if ! find "$dir" -iname "*$term*" 2>/dev/null; then
+#         continue
+#       else
+#         found=1
+#       fi
+#     fi
+#   done
+#
+#   # If no occurrences are found, notify the user
+#   if [[ $found -eq 0 ]]; then
+#     printf "No occurrences found for '%s'.\n" "$term"
+#   fi
+# }
+#
+# # Main function to validate input and execute the search
+# main() {
+#   if [[ "$#" -ne 1 ]]; then
+#     printf "Usage: %s <search_term>\n" "$0" >&2
+#     return 1
+#   fi
+#
+#   local search_term="$1"
+#   search_files "$search_term"
+# }
+#
+# # Execute the main function with all script arguments
+# main "$@"
+
+############
+# using fd #
+############
+
+# List of directories to search in
+SEARCH_DIRS=(
+  "/Applications"
+  "/Library/Caches"
+  "$HOME/Library"
+  "$HOME/Library/Application Support"
+  "$HOME/Library/Application Support/CrashReporter"
+  "$HOME/Library/Caches"
+  "$HOME/Library/Internet Plug-Ins"
+  "$HOME/Library/Preferences"
+  "$HOME/Library/Saved Application State"
+)
+
+# Function to search for the term in specified directories using fd
+search_files() {
+  local term="$1"
+
+  if [[ -z "$term" ]]; then
+    printf "Error: Search term is required.\n" >&2
+    return 1
+  fi
+
+  # Iterate over the directories and search for files/folders matching the term (case insensitive)
+  local found=0
+  for dir in "${SEARCH_DIRS[@]}"; do
+    if [[ -d "$dir" ]]; then
+      # Use fd to find matching files and directories, ignoring case
+      if ! fd -HI "$term" "$dir" 2>/dev/null; then
+        continue
+      else
+        found=1
+      fi
+    fi
+  done
+
+  # If no occurrences are found, notify the user
+  if [[ $found -eq 0 ]]; then
+    printf "No occurrences found for '%s'.\n" "$term"
+  fi
+}
+
+# Main function to validate input and execute the search
+main() {
+  if [[ "$#" -ne 1 ]]; then
+    printf "Usage: %s <search_term>\n" "$0" >&2
+    return 1
+  fi
+
+  local search_term="$1"
+  search_files "$search_term"
+}
+
+# Execute the main function with all script arguments
+main "$@"
+
+
