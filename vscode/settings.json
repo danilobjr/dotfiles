@@ -292,6 +292,6 @@
   "typescript.suggest.paths": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "window.commandCenter": false,
-  "editor.stickyScroll.enabled": false,
   "diffEditor.ignoreTrimWhitespace": true
+  "workbench.tree.enableStickyScroll": false
 }
