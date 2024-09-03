@@ -3,6 +3,7 @@
   "breadcrumbs.enabled": false,
   "breadcrumbs.filePath": "off",
   "cSpell.language": "en,,pt_BR",
+  "diffEditor.ignoreTrimWhitespace": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.fontSize": 13,
@@ -292,6 +293,5 @@
   "typescript.suggest.paths": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "window.commandCenter": false,
-  "diffEditor.ignoreTrimWhitespace": true
   "workbench.tree.enableStickyScroll": false
 }
