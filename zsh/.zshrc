@@ -17,6 +17,11 @@ export PKG_MANAGER=pnpm
 export BUN_INSTALL="$HOME/.bun"
 # path
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PNPM_HOME="/Users/danilo/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 export PATH=$PATH:$DOTFILES/scripts
 export PATH=$PATH:$HOME/.nvim/bin
 export PATH=$PATH:~/.yarn/bin
@@ -269,4 +274,3 @@ alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-r
 [[ ! -f $BREW/opt/asdf/libexec/asdf.sh ]] || source $BREW/opt/asdf/libexec/asdf.sh 
 # bun completions
 [ -s "/Users/danilo/.bun/_bun" ] && source "/Users/danilo/.bun/_bun"
-
