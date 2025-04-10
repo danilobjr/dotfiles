@@ -93,6 +93,10 @@
       "commands": ["editor.fold"]
     },
     {
+      "before": ["<leader>", "f", "u"],
+      "commands": ["editor.unfold"]
+    },
+    {
       "before": ["<leader>", "f", "a"],
       "commands": ["editor.foldAll"]
     },
@@ -103,10 +107,6 @@
     {
       "before": ["<leader>", "f", "2"],
       "commands": ["editor.foldLevel2"]
-    },
-    {
-      "before": ["<leader>", "f", "u"],
-      "commands": ["editor.unfoldAll"]
     },
     {
       "before": [">"],
