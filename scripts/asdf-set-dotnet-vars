@@ -1,0 +1,12 @@
+#!/bin/sh
+# run with `source fix-omnisharp-asdf.sh` to ensure environment variables are made available
+# https://stackoverflow.com/questions/70820780/vscode-or-anothers-editors-dont-recognize-sdk-dotnet-installed-with-asdf/70820974#70820974
+
+# tell omnisharp where to find the current dotnet sdk installed by asdf-vm
+
+version=`asdf current dotnet-core | awk '{print $2}'`
+echo "Parsed version: $version"
+export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR=$(echo $HOME/.asdf/installs/dotnet-core/$version/sdk/$version/Sdks)
+export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_VER=$version
+export DOTNET_MSBUILD_SDK_RESOLVER_CLI_DIR=$(echo $HOME/.asdf/installs/dotnet-core/$version)
+
