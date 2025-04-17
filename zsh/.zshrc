@@ -15,6 +15,8 @@ export LS_COLORS='*.7z=38;5;40:*.WARC=38;5;40:*.a=38;5;40:*.arj=38;5;40:*.bz2=38
 export PKG_MANAGER=pnpm
 # bun
 export BUN_INSTALL="$HOME/.bun"
+# dotnet
+DOTNET_CLI_TELEMETRY_OPTOUT=1
 # path
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PNPM_HOME="/Users/danilo/Library/pnpm"
