@@ -134,14 +134,10 @@ function lt {
 # sudo
 alias sudoe="sudo env 'PATH=$PATH'"
 
-# vim
-alias v="$EDITOR"
-
-# pacman
-alias pms="sudo pacman -S --needed"
-alias pmr="sudo pacman -Rns"
-alias pmu="sudo pacman -Syu"
-alias pmq="pacman -Qs"
+# android
+alias avd-ls='avdmanager list avd'
+alias emulator-pixel-3='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
+alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
 
 # apt-get
 alias sai="sudo apt install"
@@ -150,43 +146,42 @@ alias saar="sudo apt autoremove"
 alias saud="sudo apt update"
 alias saug="sudo apt upgrade"
 
-# node package manager
-alias ni="$PKG_MANAGER install"
-alias nr="$PKG_MANAGER run"
-alias ns="$PKG_MANAGER run start"
-alias nrb="$PKG_MANAGER run build"
-alias nrd="$PKG_MANAGER run dev"
-alias nrl="$PKG_MANAGER run lint"
-alias nrt="$PKG_MANAGER run test"
+# aws
+alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
 
-if [[ "$PKG_MANAGER" == "npm" ]]; then
-  alias na="$PKG_MANAGER install -E -S"
-  alias nad="$PKG_MANAGER install -E -D"
-  alias nu="$PKG_MANAGER uninstall"
-fi
+# docker
+alias dcls='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
+alias dclsp='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}"'
+alias dclsa='docker container list --all --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
+alias dcstart='docker container start'
+alias dcstop='docker container stop'
+alias dcrestart='docker container restart'
+alias dclogs='docker container logs -f'
+alias diqall="docker images -q | % { docker rmi $_ }"
+alias drm='docker rm'
+alias dexecit='docker exec -it'
+alias dvls='docker volume ls'
+alias dvrm='docker volume rm'
+alias dlogs='docker logs'
+alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"'
+alias dsp='docker system prune'
+alias dbuild='docker build -t NAME:TAG .'
 
-if [[ "$PKG_MANAGER" == "pnpm" ]]; then
-  alias na="$PKG_MANAGER add -E"
-  alias nad="$PKG_MANAGER add -E -D"
-  alias nu="$PKG_MANAGER rm"
-fi
-
-# yarn
-alias yi="yarn install"
-alias ya="yarn add -E"
-alias yad="yarn add -E -D"
-alias yr="yarn remove"
-alias yb="yarn build"
-alias yd="yarn dev"
-alias ys="yarn start"
-alias yl="yarn lint"
-alias yrb="yarn rescript:build"
-alias yrs="yarn rescript:start"
-alias yrw="yarn rescript:watch"
-alias yt="yarn test"
-alias ytw="yarn test --watch"
-alias ytc="yarn test --coverage"
-alias yc="yarn commit"
+# dotnet
+alias dn-info='dotnet --info'
+alias dn-new='dotnet new -h' # template instantiation commands
+alias dn-newls='dotnet new list' # list project templates: solution, webapi, class lib, gitignore, editorconfig
+alias dn-newsln='dotnet new sln -h' # create an empty solution containing no projects
+# alias dn-newclasslib='dotnet new classlib -n ClassLibProject' 
+# alias dn-newwebapi='dotnet new webapi -n WebApiProject' 
+alias db-sln='dotnet sln -h' # modify solution files
+alias dn-slnls='dotnet sln list' # list all projects in a solution file
+alias dn-slnadd='dotnet sln add -h' # add one or more projects to a solution file
+alias dn-addref='dotnet add reference -h' # add a project-to-project reference to the project
+alias dn-addpkg='dotnet add package -h' # add a nuget package reference to the project
+alias dn-build='dotnet build' # It'll build on current folder or you can specify a project 'dn-build ./SomeProject'
+alias dn-clean='dotnet build --no-incremental' # Marks the build as unsafe for incremental build. This flag turns off incremental compilation and forces a clean rebuild of the project's dependency graph. 'dn-clean'
+alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-run ./SomeProject'
 
 # git
 alias gs="git st"
@@ -219,47 +214,52 @@ alias gruop='git remote update origin --prune'
 # lazygit
 alias lg='lazygit'
 
-# docker
-alias dcls='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
-alias dclsp='docker container list --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}"'
-alias dclsa='docker container list --all --format "table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}"'
-alias dcstart='docker container start'
-alias dcstop='docker container stop'
-alias dcrestart='docker container restart'
-alias dclogs='docker container logs -f'
-alias diqall="docker images -q | % { docker rmi $_ }"
-alias drm='docker rm'
-alias dexecit='docker exec -it'
-alias dvls='docker volume ls'
-alias dvrm='docker volume rm'
-alias dlogs='docker logs'
-alias dclearlogs='sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"'
-alias dsp='docker system prune'
-alias dbuild='docker build -t NAME:TAG .'
+# node package manager
+alias ni="$PKG_MANAGER install"
+alias nr="$PKG_MANAGER run"
+alias ns="$PKG_MANAGER run start"
+alias nrb="$PKG_MANAGER run build"
+alias nrd="$PKG_MANAGER run dev"
+alias nrl="$PKG_MANAGER run lint"
+alias nrt="$PKG_MANAGER run test"
 
-# aws
-alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
+if [[ "$PKG_MANAGER" == "npm" ]]; then
+  alias na="$PKG_MANAGER install -E -S"
+  alias nad="$PKG_MANAGER install -E -D"
+  alias nu="$PKG_MANAGER uninstall"
+fi
 
-# android
-alias avd-ls='avdmanager list avd'
-alias emulator-pixel-3='emulator -avd Pixel_3a_API_30_x86 -netdelay none -no-snapshot -wipe-data &'
-alias emulator-galaxy-nexus='emulator -avd Galaxy_Nexus_API_30_1 -netdelay none -no-snapshot -wipe-data &'
+if [[ "$PKG_MANAGER" == "pnpm" ]]; then
+  alias na="$PKG_MANAGER add -E"
+  alias nad="$PKG_MANAGER add -E -D"
+  alias nu="$PKG_MANAGER rm"
+fi
 
-# dotnet
-alias dn-info='dotnet --info'
-alias dn-new='dotnet new -h' # template instantiation commands
-alias dn-newls='dotnet new list' # list project templates: solution, webapi, class lib, gitignore, editorconfig
-alias dn-newsln='dotnet new sln -h' # create an empty solution containing no projects
-# alias dn-newclasslib='dotnet new classlib -n ClassLibProject' 
-# alias dn-newwebapi='dotnet new webapi -n WebApiProject' 
-alias db-sln='dotnet sln -h' # modify solution files
-alias dn-slnls='dotnet sln list' # list all projects in a solution file
-alias dn-slnadd='dotnet sln add -h' # add one or more projects to a solution file
-alias dn-addref='dotnet add reference -h' # add a project-to-project reference to the project
-alias dn-addpkg='dotnet add package -h' # add a nuget package reference to the project
-alias dn-build='dotnet build' # It'll build on current folder or you can specify a project 'dn-build ./SomeProject'
-alias dn-clean='dotnet build --no-incremental' # Marks the build as unsafe for incremental build. This flag turns off incremental compilation and forces a clean rebuild of the project's dependency graph. 'dn-clean'
-alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-run ./SomeProject'
+# pacman
+alias pms="sudo pacman -S --needed"
+alias pmr="sudo pacman -Rns"
+alias pmu="sudo pacman -Syu"
+alias pmq="pacman -Qs"
+
+# vim
+alias v="$EDITOR"
+
+# yarn
+alias yi="yarn install"
+alias ya="yarn add -E"
+alias yad="yarn add -E -D"
+alias yr="yarn remove"
+alias yb="yarn build"
+alias yd="yarn dev"
+alias ys="yarn start"
+alias yl="yarn lint"
+alias yrb="yarn rescript:build"
+alias yrs="yarn rescript:start"
+alias yrw="yarn rescript:watch"
+alias yt="yarn test"
+alias ytw="yarn test --watch"
+alias ytc="yarn test --coverage"
+alias yc="yarn commit"
 
 # =============================================================================
 # === SCRIPTS
