@@ -16,6 +16,9 @@
   "editor.tabCompletion": "on",
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
