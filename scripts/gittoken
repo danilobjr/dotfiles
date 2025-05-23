@@ -1,6 +1,6 @@
 #!/bin/bash
 # File: gittoken
-# Description: Sets and copies Git tokens (GitHub and GitLab) from $HOME/.gittoken
+# Description: Sets and copies Git tokens (GitHub and GitLab) stored in $HOME/.gittoken
 
 # Storage file
 TOKEN_FILE="$HOME/.gittoken"
@@ -14,32 +14,32 @@ Usage:
   gittoken <command> <flag> [token]
 
 Commands:
-  new         Create a new token or update an existing one.
-  cp          Copy a token to the system clipboard.
+  set         Set or update a token.
+  cp          Copy a token to the clipboard.
 
 Flags:
-  -gh        Use this flag for the GitHub token.
-  -gl        Use this flag for the GitLab token.
+  -gh        GitHub token.
+  -gl        GitLab token.
 
 Examples:
-  gittoken new -gh asdf
-      Updates the GitHub token to "asdf".
+  gittoken set -gh GH_TOKEN
+      Set or update the GitHub token.
 
-  gittoken new -gl zxcv
-      Updates the GitLab token to "zxcv".
+  gittoken set -gl GL_TOKEN
+      Set or update the GitLab token.
 
   gittoken cp -gh
-      Copies the GitHub token to your clipboard.
+      Copy the GitHub token to your clipboard.
 
   gittoken cp -gl
-      Copies the GitLab token to your clipboard.
+      Copy the GitLab token to your clipboard.
 
 Other Options:
   -h, --help, help   Display this help screen.
 EOF
 }
 
-# Verify at least one argument is provided
+# Ensure at least one argument is provided
 if [ $# -lt 1 ]; then
     show_usage
     exit 1
@@ -54,18 +54,30 @@ case "$cmd" in
     ;;
 esac
 
-# Helper function to update a token field
+# Helper function to update a token field with confirmation if needed
 update_token() {
     local field="$1"
     local new_value="$2"
 
-    # Create .gittoken file with default content if it doesn't exist.
+    # If the file doesn't exist, create it with default content.
     if [ ! -f "$TOKEN_FILE" ]; then
         echo "GITHUB=" > "$TOKEN_FILE"
         echo "GITLAB=" >> "$TOKEN_FILE"
     fi
 
-    # Update the token entry using a portable delimiter (@) to avoid issues with slashes
+    # Check for existing non-empty token for that field.
+    local existing
+    existing=$(grep "^$field=" "$TOKEN_FILE" | cut -d '=' -f2-)
+    if [ -n "$existing" ]; then
+        echo -n "A token for $field already exists. Do you want to replace it? (y/n): "
+        read answer
+        if [[ "$answer" != [Yy] ]]; then
+            echo "Token update cancelled."
+            exit 0
+        fi
+    fi
+
+    # Update the token using sed with a portable delimiter.
     if grep -q "^$field=" "$TOKEN_FILE"; then
         if [[ "$OSTYPE" == "darwin"* ]]; then
             sed -i '' "s@^$field=.*@$field=${new_value}@" "$TOKEN_FILE"
@@ -83,23 +95,29 @@ update_token() {
 
 # Process commands
 case "$cmd" in
-  new)
+  set)
+    # Ensure exactly 3 arguments are present: command, flag, token_value.
+    if [ "$#" -ne 3 ]; then
+        echo "Error: Token value must be provided as a single string without spaces." >&2
+        exit 1
+    fi
+
     flag="$2"
     token_value="$3"
 
-    # Validate flag
+    # Check flag validity.
     if [ -z "$flag" ] || { [ "$flag" != "-gh" ] && [ "$flag" != "-gl" ]; }; then
         echo "Error: Missing or invalid flag. Use -gh or -gl." >&2
         exit 1
     fi
 
-    # Validate token value provided
-    if [ -z "$token_value" ]; then
-        echo "Error: A token value is required for the 'new' command." >&2
+    # Ensure token_value does not contain spaces.
+    if [[ "$token_value" =~ \  ]]; then
+        echo "Error: Token value must be a single string without spaces." >&2
         exit 1
     fi
 
-    # Update the appropriate token field
+    # Update the appropriate token.
     if [ "$flag" = "-gh" ]; then
         update_token "GITHUB" "$token_value"
     elif [ "$flag" = "-gl" ]; then
@@ -112,32 +130,29 @@ case "$cmd" in
 
   cp)
     flag="$2"
-    # Validate flag
+
     if [ -z "$flag" ] || { [ "$flag" != "-gh" ] && [ "$flag" != "-gl" ]; }; then
         echo "Error: Missing or invalid flag for the 'cp' command. Use -gh or -gl." >&2
         exit 1
     fi
 
-    # Ensure .gittoken file exists
     if [ ! -f "$TOKEN_FILE" ]; then
-        echo "Error: .gittoken file does not exist. Please add a token first using 'gittoken new'." >&2
+        echo "Error: .gittoken file does not exist. Please add a token first using 'gittoken set'." >&2
         exit 1
     fi
 
-    # Retrieve token from file based on the flag
     if [ "$flag" = "-gh" ]; then
         token=$(grep '^GITHUB=' "$TOKEN_FILE" | cut -d '=' -f2-)
     elif [ "$flag" = "-gl" ]; then
         token=$(grep '^GITLAB=' "$TOKEN_FILE" | cut -d '=' -f2-)
     fi
 
-    # Ensure token exists
     if [ -z "$token" ]; then
         echo "Error: No token found for the selected flag ($flag)." >&2
         exit 1
     fi
 
-    # Copy token to the clipboard
+    # Copy token to clipboard using xclip (Linux) or pbcopy (macOS)
     if command -v xclip >/dev/null 2>&1; then
         echo -n "$token" | xclip -selection clipboard
     elif command -v pbcopy >/dev/null 2>&1; then
