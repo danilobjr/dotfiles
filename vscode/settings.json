@@ -297,5 +297,8 @@
   "typescript.suggest.paths": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "window.commandCenter": false,
-  "workbench.tree.enableStickyScroll": false,
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "workbench.tree.enableStickyScroll": false
 }
