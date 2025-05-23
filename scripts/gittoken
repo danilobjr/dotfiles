@@ -1,104 +1,160 @@
-#!/bin/zsh
+#!/bin/bash
+# File: gittoken
+# Description: Sets and copies Git tokens (GitHub and GitLab) from $HOME/.gittoken
 
-scriptname="$(basename $0)"
-configfile=~/.gittoken
-command=$1
-value=$2
+# Storage file
+TOKEN_FILE="$HOME/.gittoken"
 
-function try_help {
-  echo "For some help, try:"
-  echo "  gittoken --help"
-  echo
+# Function to display help/usage information
+show_usage() {
+    cat <<EOF
+GITTOKEN - A simple utility to store and copy Git tokens
+
+Usage:
+  gittoken <command> <flag> [token]
+
+Commands:
+  new         Create a new token or update an existing one.
+  cp          Copy a token to the system clipboard.
+
+Flags:
+  -gh        Use this flag for the GitHub token.
+  -gl        Use this flag for the GitLab token.
+
+Examples:
+  gittoken new -gh asdf
+      Updates the GitHub token to "asdf".
+
+  gittoken new -gl zxcv
+      Updates the GitLab token to "zxcv".
+
+  gittoken cp -gh
+      Copies the GitHub token to your clipboard.
+
+  gittoken cp -gl
+      Copies the GitLab token to your clipboard.
+
+Other Options:
+  -h, --help, help   Display this help screen.
+EOF
 }
 
-if [[ $command == "--help" ]];
-then
-  echo "Usage"
-  echo "  $ $scriptname <command> [token]"
-  echo
-  echo "Commands"
-  echo "  new    Set a new token. Generate "$configfile" if doesn't exists"
-  echo "  cp     Copy token to clipboard"
-  echo
-  echo "Options"
-  echo "  --help   Show this doc"
-  echo
-  echo "Examples"
-  echo "  $ $scriptname new 123"
-  echo "  $ $scriptname cp"
-  echo
-
-  exit 0
+# Verify at least one argument is provided
+if [ $# -lt 1 ]; then
+    show_usage
+    exit 1
 fi
 
-if [[ $command == "new" ]];
-then
-  token=$value
-
-  if [ -z $token ];
-  then
-    echo "You should specify a token after 'new' keyword"
-    echo
-    echo "Like this:"
-    echo "  $scriptname new TOKEN"
-    echo
-    try_help
-
+# Handle help options
+cmd="$1"
+case "$cmd" in
+  -h|--help|help)
+    show_usage
     exit 0
-  fi
+    ;;
+esac
 
-  rm "${configfile}" 2>/dev/null
-  touch "${configfile}"
-  echo $token > "${configfile}"
+# Helper function to update a token field
+update_token() {
+    local field="$1"
+    local new_value="$2"
 
-  echo "New token set in $configfile"
+    # Create .gittoken file with default content if it doesn't exist.
+    if [ ! -f "$TOKEN_FILE" ]; then
+        echo "GITHUB=" > "$TOKEN_FILE"
+        echo "GITLAB=" >> "$TOKEN_FILE"
+    fi
 
-  exit 0
-fi
+    # Update the token entry using a portable delimiter (@) to avoid issues with slashes
+    if grep -q "^$field=" "$TOKEN_FILE"; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' "s@^$field=.*@$field=${new_value}@" "$TOKEN_FILE"
+        else
+            sed -i "s@^$field=.*@$field=${new_value}@" "$TOKEN_FILE"
+        fi
+        if [ $? -ne 0 ]; then
+            echo "Error: Failed to update $field token." >&2
+            exit 1
+        fi
+    else
+        echo "$field=${new_value}" >> "$TOKEN_FILE"
+    fi
+}
 
-if [[ $command == "cp" ]];
-then
-  if [ ! -f $configfile ];
-  then
-    echo "No token set. To set one, run:"
-    echo "  gittoken new TOKEN"
-    echo
-    try_help
+# Process commands
+case "$cmd" in
+  new)
+    flag="$2"
+    token_value="$3"
 
+    # Validate flag
+    if [ -z "$flag" ] || { [ "$flag" != "-gh" ] && [ "$flag" != "-gl" ]; }; then
+        echo "Error: Missing or invalid flag. Use -gh or -gl." >&2
+        exit 1
+    fi
+
+    # Validate token value provided
+    if [ -z "$token_value" ]; then
+        echo "Error: A token value is required for the 'new' command." >&2
+        exit 1
+    fi
+
+    # Update the appropriate token field
+    if [ "$flag" = "-gh" ]; then
+        update_token "GITHUB" "$token_value"
+    elif [ "$flag" = "-gl" ]; then
+        update_token "GITLAB" "$token_value"
+    fi
+
+    echo "Token updated successfully."
     exit 0
-  fi
+    ;;
 
-# if [[ "$OSTYPE" == ]]; then
-#         # ...
-# elif [[ "$OSTYPE" == ]]; then
-#         # Mac OSX
+  cp)
+    flag="$2"
+    # Validate flag
+    if [ -z "$flag" ] || { [ "$flag" != "-gh" ] && [ "$flag" != "-gl" ]; }; then
+        echo "Error: Missing or invalid flag for the 'cp' command. Use -gh or -gl." >&2
+        exit 1
+    fi
 
-  case "$OSTYPE" in
-    "linux-gnu"*)
-      xclip -sel c < $configfile || exit 1
-      ;;
-    "darwin"*)
-      pbcopy < $configfile || exit 1
-      ;;
-    *)
-      echo "Couldn't detect OS"
-      exit
-      ;;
-  esac
+    # Ensure .gittoken file exists
+    if [ ! -f "$TOKEN_FILE" ]; then
+        echo "Error: .gittoken file does not exist. Please add a token first using 'gittoken new'." >&2
+        exit 1
+    fi
 
-  # xclip -sel c < $configfile || exit 1
+    # Retrieve token from file based on the flag
+    if [ "$flag" = "-gh" ]; then
+        token=$(grep '^GITHUB=' "$TOKEN_FILE" | cut -d '=' -f2-)
+    elif [ "$flag" = "-gl" ]; then
+        token=$(grep '^GITLAB=' "$TOKEN_FILE" | cut -d '=' -f2-)
+    fi
 
-  echo "Token copied to clipboard"
+    # Ensure token exists
+    if [ -z "$token" ]; then
+        echo "Error: No token found for the selected flag ($flag)." >&2
+        exit 1
+    fi
 
-  exit 0
-fi
+    # Copy token to the clipboard
+    if command -v xclip >/dev/null 2>&1; then
+        echo -n "$token" | xclip -selection clipboard
+    elif command -v pbcopy >/dev/null 2>&1; then
+        echo -n "$token" | pbcopy
+    else
+        echo "Error: No clipboard utility found. Please install xclip or pbcopy." >&2
+        exit 1
+    fi
 
-if [ ! -f $configfile ];
-then
-  echo "No token set. To set one, run:"
-  echo "  gittoken new TOKEN"
-  echo
-fi
+    echo "Token copied to clipboard."
+    exit 0
+    ;;
 
-try_help
+  *)
+    echo "Error: Unknown command \"$cmd\"." >&2
+    show_usage
+    exit 1
+    ;;
+esac
 
