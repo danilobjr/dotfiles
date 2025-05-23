@@ -22,7 +22,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PNPM_HOME="/Users/danilo/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *) export PATH="$PATH:$PNPM_HOME" ;;
 esac
 export PATH=$PATH:$DOTFILES/scripts
 export PATH=$PATH:$HOME/.nvim/bin
