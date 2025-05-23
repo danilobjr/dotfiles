@@ -295,6 +295,7 @@
   "typescript.preferences.preferTypeOnlyAutoImports": true,
   "typescript.preferences.importModuleSpecifier": "shortest",
   "typescript.suggest.paths": true,
+  "typescript.tsserver.log": "off",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "window.commandCenter": false,
   "workbench.editorAssociations": {
