@@ -54,6 +54,11 @@
   "vim.statusBarColorControl": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"],
+      "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
       "before": ["j"],
       "after": ["h"]
     },
