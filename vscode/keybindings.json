@@ -3,6 +3,9 @@
     "key": "f4",
     "command": "workbench.action.toggleSidebarVisibility"
   },
+  // ==================================
+  // FUNCTION KEYS - Remove keybindings
+  // ==================================
   {
     "key": "ctrl+b",
     "command": "-workbench.action.toggleSidebarVisibility"
@@ -14,6 +17,11 @@
   },
   {
     "key": "f4",
+    "command": "-references-view.next",
+    "when": "reference-list.hasResult && references-view.canNavigate"
+  },
+  {
+    "key": "f4",
     "command": "-goToNextReference",
     "when": "referenceSearchVisible"
   },
@@ -21,6 +29,31 @@
     "key": "f4",
     "command": "-goToNextReferenceFromEmbeddedEditor",
     "when": "inReferenceSearchEditor"
+  },
+  {
+    "key": "f12",
+    "command": "-goToNextReference",
+    "when": "inReferenceSearchEditor || referenceSearchVisible"
+  },
+  {
+    "key": "shift+f4",
+    "command": "goToPreviousReference",
+    "when": "inReferenceSearchEditor || referenceSearchVisible"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-references-view.prev",
+    "when": "reference-list.hasResult && references-view.canNavigate"
+  },
+  {
+    "key": "shift+f12",
+    "command": "-goToPreviousReference",
+    "when": "inReferenceSearchEditor || referenceSearchVisible"
+  },
+  {
+    "key": "shift+f12",
+    "command": "-editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
   {
     "key": "f3",
