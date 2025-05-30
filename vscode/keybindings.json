@@ -1,8 +1,4 @@
 [
-  {
-    "key": "f4",
-    "command": "workbench.action.toggleSidebarVisibility"
-  },
   // ==================================
   // FUNCTION KEYS - Remove keybindings
   // ==================================
@@ -58,6 +54,10 @@
   {
     "key": "f3",
     "command": "workbench.action.toggleCenteredLayout"
+  },
+  {
+    "key": "f4",
+    "command": "workbench.action.toggleSidebarVisibility"
   },
   {
     "key": "k",
