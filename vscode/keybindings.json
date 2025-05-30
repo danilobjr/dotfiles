@@ -51,6 +51,9 @@
     "command": "-editor.action.goToReferences",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
+  // ===============================
+  // FUNCTION KEYS - Add keybindings
+  // ===============================
   {
     "key": "f3",
     "command": "workbench.action.toggleCenteredLayout"
@@ -59,6 +62,9 @@
     "key": "f4",
     "command": "workbench.action.toggleSidebarVisibility"
   },
+  // ========================
+  // VIM - Remove keybindings
+  // ========================
   {
     "key": "k",
     "command": "-list.focusUp",
