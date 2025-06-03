@@ -132,5 +132,18 @@
     "prefix": "ce",
     "description": "console.error() statement",
     "body": "console.error($0)"
+  },
+  "XState Machine": {
+    "prefix": "xsm",
+    "body":[
+      "import { createMachine } from 'xstate'",
+      "const ${1:nameOf}Machine = createMachine({",
+      "\tid: '${1:nameOf}',",
+      "\tinitial: '${2:initialState}',",
+      "\tstates: {",
+      "\t\t${2:initialState}: {$0},",
+      "\t},",
+      "})",
+    ]
   }
 }
