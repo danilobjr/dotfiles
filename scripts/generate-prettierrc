@@ -2,6 +2,7 @@
 
 cat > .prettierrc<< EOL
 {
+  "editorconfig": true,
   "semi": false,
   "singleQuote": true
 }
