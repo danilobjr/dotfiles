@@ -75,6 +75,11 @@
     "command": "-list.focusDown",
     "when": "listFocus && !inputFocus"
   },
+  {
+    "key": "j",
+    "command": "list.collapse",
+    "when": "listFocus && treeElementCanCollapse && !inputFocus && !treestickyScrollFocused || listFocus && treeElementHasParent && !inputFocus && !treestickyScrollFocused"
+  },
   { "key": "l", "command": "-list.select", "when": "listFocus && !inputFocus" },
   { "key": "l", "command": "list.focusUp", "when": "listFocus && !inputFocus" },
   {
