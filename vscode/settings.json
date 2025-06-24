@@ -302,5 +302,6 @@
   "workbench.editorAssociations": {
     "*.svg": "default"
   },
-  "workbench.tree.enableStickyScroll": false
+  "workbench.tree.enableStickyScroll": false,
+  "xstate.nestTypegenFiles": false
 }
