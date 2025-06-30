@@ -14,4 +14,9 @@ const config = {
 export default config
 EOL
 
+cat > .prettierignore<< EOL
+node_modules
+package-lock.json
+pnpm-lock.yaml
+public
 EOL
