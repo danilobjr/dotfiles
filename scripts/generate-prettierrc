@@ -9,8 +9,9 @@ const config = {
   editorconfig: true,
   semi: false,
   singleQuote: true,
-};
+}
 
-export default config;
+export default config
+EOL
 
 EOL
