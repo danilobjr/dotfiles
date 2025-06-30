@@ -9,6 +9,25 @@ const config = {
   editorconfig: true,
   semi: false,
   singleQuote: true,
+  tailwindFunctions: ['cva'],
+  // prettier-plugin-tailwindcss must be loaded last in certain conditions. See https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file#compatibility-with-other-prettier-plugins
+  plugins: [
+    '@trivago/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss',
+  ],
+  importOrderSpecifiers: true,
+  importOrder: [
+    '^node:(.*)$',
+    '^react$',
+    '^react(.*)$',
+    '<THIRD_PARTY_MODULES>',
+    '^@/pages/(.*)$',
+    '^@/config/(.*)$',
+    '^@/utils/(.*)$',
+    '^@/assets/(.*)$',
+    '^[./]',
+  ],
+  tailwindStylesheet: './path/to/global.css',
 }
 
 export default config
