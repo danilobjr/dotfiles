@@ -1,3 +1,5 @@
+git:
+  autoForwardBranches: "none"
 keybinding:
   universal:
     prevItem-alt: 'l' # go one line up
