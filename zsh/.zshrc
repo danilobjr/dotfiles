@@ -219,6 +219,7 @@ alias gruop='git remote update origin --prune'
 
 # lazygit
 alias lg='lazygit'
+alias lgf='lazygit -f' # git history of a file. Example: lgf .prettierrc
 
 # node package manager
 alias ni="$PKG_MANAGER install"
