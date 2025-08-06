@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# printf "%s\n" "${precmd_functions[@]}" | grep -x _z_precmd
+
+typeset -p precmd_functions chpwd_functions preexec_functions zlehooks
