@@ -272,14 +272,17 @@ alias yc="yarn commit"
 # === SCRIPTS
 # =============================================================================
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[[ ! -f $BREW/etc/profile.d/z.sh ]] || source $BREW/etc/profile.d/z.sh
+# asdf
 [[ ! -f ~/.asdf/asdf.sh ]] || source $HOME/.asdf/asdf.sh
-[[ ! -f $BREW/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme ]] || source $BREW/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ ! -f $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] || source $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-[[ ! -f $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ ! -f $BREW/opt/asdf/libexec/asdf.sh ]] || source $BREW/opt/asdf/libexec/asdf.sh 
 # bun completions
 [ -s "/Users/danilo/.bun/_bun" ] && source "/Users/danilo/.bun/_bun"
+# p10k - To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $BREW/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme ]] || source $BREW/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
+# rupa/z
+[[ ! -f $BREW/etc/profile.d/z.sh ]] || source $BREW/etc/profile.d/z.sh
+# zsh plugins
+[[ ! -f $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ ! -f $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] || source $DOTFILES/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+[[ ! -f $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
