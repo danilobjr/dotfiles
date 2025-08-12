@@ -19,7 +19,7 @@
   {
     "key": "f4",
     "command": "-goToNextReference",
-    "when": "referenceSearchVisible"
+    "when": "inReferenceSearchEditor || referenceSearchVisible"
   },
   {
     "key": "f4",
