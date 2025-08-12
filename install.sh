@@ -489,6 +489,9 @@ echoSectionTitle "Creating symlink for Polybar at $config/polybar/config";
 #cmd rm $config/polybar/config;
 cmd ln -s $dotfiles/polybar $config/polybar;
 
+# powerlevel10k
+cmd ln -s $DOTFILES/zsh/powerlevel10k/.p10k.zsh $HOME/.p10k.zsh
+
 # ranger
 echoSectionTitle "Moving ranger settings to $config/ranger";
 # ranger --copy-config=all;

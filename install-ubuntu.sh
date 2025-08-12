@@ -324,6 +324,9 @@ cmd ln -sf $dotfiles/git/.gitconfig $HOME/.gitconfig;
 echoSectionTitle "Creating symlink for tmux at ~/.tmux.conf";
 cmd ln -sf ${dotfiles}/tmux/.tmux.conf ${HOME}/.tmux.conf;
 
+# powerlevel10k
+cmd ln -s $DOTFILES/zsh/powerlevel10k/.p10k.zsh $HOME/.p10k.zsh
+
 # neofetch
 # echoSectionTitle "Creating symlink for neofetch";
 # cmd mkdir -p $config/neofetch;
