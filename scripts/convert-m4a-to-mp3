@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Function to show usage
+usage() {
+    echo "Usage: $0 input.m4a"
+    echo ""
+    echo "Converts a .m4a audio file to .mp3 format using the same bitrate."
+    echo ""
+    echo "Options:"
+    echo "  -h, --help     Show this help message"
+    echo ""
+    echo "Example:"
+    echo "  $0 song.m4a"
+    echo "      → Converts 'song.m4a' to 'song.mp3' using its original bitrate"
+    exit 0
+}
+
+# 🛑 Check for required tools
+if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+    echo "Error: ffmpeg and ffprobe must be installed for this script to work properly."
+    exit 1
+fi
+
+# Handle --help manually
+for arg in "$@"; do
+    if [[ "$arg" == "--help" || "$arg" == "-h" ]]; then
+        usage
+    fi
+done
+
+# Check for input file
+INPUT="$1"
+if [[ -z "$INPUT" ]]; then
+    echo "Error: No input file provided."
+    usage
+fi
+
+if [[ ! -f "$INPUT" ]]; then
+    echo "Error: File '$INPUT' does not exist."
+    exit 1
+fi
+
+if [[ "${INPUT##*.}" != "m4a" ]]; then
+    echo "Error: Input file must have .m4a extension."
+    exit 1
+fi
+
+# 🔍 Detect bitrate using ffprobe
+BITRATE=$(ffprobe -v error -select_streams a:0 -show_entries stream=bit_rate \
+         -of default=noprint_wrappers=1:nokey=1 "$INPUT")
+
+if [[ -z "$BITRATE" ]]; then
+    echo "Error: Could not detect bitrate from input file."
+    exit 1
+fi
+
+# 🔄 Convert bits to kilobits for ffmpeg
+BITRATE_KB="$((BITRATE / 1000))k"
+
+# Extract filename without extension
+BASENAME="${INPUT%.*}"
+OUTPUT="${BASENAME}.mp3"
+
+# 🎧 Convert using detected bitrate
+ffmpeg -i "$INPUT" -b:a "$BITRATE_KB" "$OUTPUT"
+
+echo "✅ Conversion complete: $OUTPUT (bitrate: $BITRATE_KB)"
+
