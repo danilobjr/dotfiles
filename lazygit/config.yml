@@ -7,3 +7,6 @@ keybinding:
     nextItem-alt: "k" # go one line down
     prevBlock-alt: "j" # goto the previous block / panel
     nextBlock-alt: ";" # goto the next block / panel
+  commits:
+    moveDownCommit: <c-k>
+    moveUpCommit: <c-l>
