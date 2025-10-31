@@ -1,3 +1,64 @@
+# #!/usr/bin/env bash
+#
+# print_help() {
+#   cat << EOF
+# Usage: $(basename "$0") [OPTIONS] <file>
+#
+# Converts <file> to Base64, builds a Data URI with the detected MIME type,
+# and copies the result to the clipboard (pbcopy or xclip).
+#
+# Options:
+#   -h, --help    Show this help message and exit
+#
+# Example:
+#   $(basename "$0") image.png
+# EOF
+# }
+#
+# # Parse options
+# if [[ $# -eq 0 ]]; then
+#   print_help
+#   exit 1
+# fi
+#
+# while [[ $# -gt 0 ]]; do
+#   case "$1" in
+#     -h|--help)
+#       print_help
+#       exit 0
+#       ;;
+#     *)
+#       FILE="$1"
+#       shift
+#       ;;
+#   esac
+# done
+#
+# # Check if file exists
+# if [[ ! -f "$FILE" ]]; then
+#   echo "Error: file '$FILE' not found."
+#   exit 1
+# fi
+#
+# # Detect clipboard command
+# if command -v pbcopy &>/dev/null; then
+#   COPY_CMD="pbcopy"
+#   BASE64_OPTS="-b 0"
+# elif command -v xclip &>/dev/null; then
+#   COPY_CMD="xclip -selection clipboard"
+#   BASE64_OPTS="-w 0"
+# else
+#   echo "Please install pbcopy (macOS) or xclip (Linux) to enable clipboard copying."
+#   exit 1
+# fi
+#
+# # Determine MIME type and convert to Data URI
+# MIME_TYPE=$(file --mime-type -b "$FILE")
+# base64 $BASE64_OPTS "$FILE" \
+#   | sed "s#^#data:$MIME_TYPE;base64,#" \
+#   | $COPY_CMD \
+#   && echo "✅ Data URI created and copied to clipboard!"
+#
 #!/usr/bin/env bash
 
 print_help() {
@@ -40,13 +101,15 @@ if [[ ! -f "$FILE" ]]; then
   exit 1
 fi
 
-# Detect clipboard command
+# Detect clipboard command and set base64 invocation
 if command -v pbcopy &>/dev/null; then
   COPY_CMD="pbcopy"
-  BASE64_OPTS="-b 0"
+  # macOS base64: use -i for input, omit wrap flag (break len=0 isn’t valid positional)
+  BASE64_CMD=( base64 -b 0 -i "$FILE" )
 elif command -v xclip &>/dev/null; then
   COPY_CMD="xclip -selection clipboard"
-  BASE64_OPTS="-w 0"
+  # GNU base64: -w 0 disables line wrapping
+  BASE64_CMD=( base64 -w 0 "$FILE" )
 else
   echo "Please install pbcopy (macOS) or xclip (Linux) to enable clipboard copying."
   exit 1
@@ -54,7 +117,8 @@ fi
 
 # Determine MIME type and convert to Data URI
 MIME_TYPE=$(file --mime-type -b "$FILE")
-base64 $BASE64_OPTS "$FILE" \
+
+"${BASE64_CMD[@]}" \
   | sed "s#^#data:$MIME_TYPE;base64,#" \
   | $COPY_CMD \
   && echo "✅ Data URI created and copied to clipboard!"
