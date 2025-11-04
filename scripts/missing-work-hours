@@ -1,0 +1,340 @@
+#!/usr/bin/env bash
+#
+# missing-work-hours
+# Sugere ponto(s) esquecido(s) para totalizar 8h de trabalho com 1h de almoço
+# Compatível com bash antigos (sem local -n) e evita horários fora de 00:00-23:59
+#
+# Uso:
+#   missing-work-hours "11:59 12:59 | 19:49 |"
+#   missing-work-hours "11:49 12:59"
+# Flag:
+#   -h | --help
+
+GREEN_LIGHT="\033[92m"
+ORANGE="\033[33m"
+RED="\033[31m"
+RESET="\033[0m"
+
+print_help() {
+  cat <<EOF
+Uso: missing-work-hours "HORÁRIOS"
+
+  HORÁRIOS: string única com 1 a 3 tempos (separados por espaço e/ou |).
+  Exemplos:
+    missing-work-hours "11:59 12:59 | 19:49 |"
+    missing-work-hours "11:49 12:59"
+    missing-work-hours "12:59 14:21 | 18:25 |"
+
+EOF
+  exit 0
+}
+
+if [[ $# -eq 0 || $1 == "-h" || $1 == "--help" ]]; then print_help; fi
+if [[ $# -ne 1 ]]; then
+  echo "Erro: passe EXATAMENTE UMA string com os horários entre aspas." >&2
+  exit 1
+fi
+
+input="$1"
+
+# parse time -> minutes from 00:00
+parse_time() {
+  local t=${1//h/}
+  if [[ $t =~ ^([0-9]{1,2}):([0-9]{1,2})$ ]]; then
+    echo $((10#${BASH_REMATCH[1]}*60 + 10#${BASH_REMATCH[2]}))
+  elif [[ $t =~ ^([0-9]{1,2})$ ]]; then
+    echo $((10#${BASH_REMATCH[1]}*60))
+  else
+    echo "ERR"
+  fi
+}
+
+# format minutes -> HH:MMh (no wrap)
+format_hhmm() {
+  local m=$1
+  printf "%02d:%02dh" $((m/60)) $((m%60))
+}
+
+raw="${input//|/ }"
+read -ra tokens <<<"$raw"
+
+if (( ${#tokens[@]} < 1 || ${#tokens[@]} > 3 )); then
+  echo "Erro: informe entre 1 e 3 horários." >&2
+  exit 1
+fi
+
+times=()
+for t in "${tokens[@]}"; do
+  p=$(parse_time "$t")
+  if [[ $p == "ERR" ]]; then
+    echo "Formato inválido: $t" >&2
+    exit 1
+  fi
+  times+=( "$p" )
+done
+
+IDEAL=(480 720 780 1020)   # 08:00,12:00,13:00,17:00
+IDEAL2=(540 720 780 1080)  # 09:00,12:00,13:00,18:00
+NAMES=("Entrada no trabalho" "Saída para o almoço" "Volta do almoço" "Saída do trabalho")
+K_REQUIRED=480  # 8h em minutos
+MAX_MIN=1439    # 23:59 em minutos
+
+# permutações injetivas k-permutations of slots {0,1,2,3}
+permute_slots_for_k() {
+  local k=$1
+  local arr=(0 1 2 3)
+  if (( k == 1 )); then
+    for a in "${arr[@]}"; do echo "$a"; done
+  elif (( k == 2 )); then
+    for a in "${arr[@]}"; do
+      for b in "${arr[@]}"; do
+        [[ $b -eq $a ]] && continue
+        echo "$a $b"
+      done
+    done
+  elif (( k == 3 )); then
+    for a in "${arr[@]}"; do
+      for b in "${arr[@]}"; do
+        [[ $b -eq $a ]] && continue
+        for c in "${arr[@]}"; do
+          [[ $c -eq $a || $c -eq $b ]] && continue
+          echo "$a $b $c"
+        done
+      done
+    done
+  fi
+}
+
+compute_total_work() {
+  local t0=$1; local t1=$2; local t2=$3; local t3=$4
+  echo $(( (t1 - t0) + (t3 - t2) ))
+}
+
+# Escolhe escala ideal comparando custo simples — compatível sem local -n
+cost_for_sched_simple() {
+  # $1: name (não usado), $2: nome da array com a escala (ex: "IDEAL" ou "IDEAL2")
+  local arr_name="$2"
+  # copiar array para arr
+  eval "arr=( \"\${${arr_name}[@]}\" )"
+  local used=()
+  local cost=0
+  local tm
+  for tm in "${times[@]}"; do
+    local best_i=-1
+    local best_d=999999
+    local i u skip d
+    for i in "${!arr[@]}"; do
+      skip=0
+      for u in "${used[@]}"; do
+        [[ $u -eq $i ]] && skip=1
+      done
+      (( skip )) && continue
+      d=$(( tm>arr[i] ? tm-arr[i] : arr[i]-tm ))
+      if (( d < best_d )); then best_d=$d; best_i=$i; fi
+    done
+    used+=( "$best_i" )
+    cost=$(( cost + best_d ))
+  done
+  echo $cost
+}
+
+c1=$(cost_for_sched_simple 1 IDEAL)
+c2=$(cost_for_sched_simple 2 IDEAL2)
+if (( c1 <= c2 )); then ideal=( "${IDEAL[@]}" ); else ideal=( "${IDEAL2[@]}" ); fi
+
+k=${#times[@]}
+all_suggestions=()
+
+perm_out="$(permute_slots_for_k $k)"
+while IFS= read -r mapping_line; do
+  # init mapping: slot->time (empty means missing)
+  for i in 0 1 2 3; do mapping[$i]="" ; done
+  idx=0
+  for slot in $mapping_line; do
+    mapping[$slot]=${times[$idx]}
+    idx=$((idx+1))
+  done
+
+  # determine missing slots
+  missing=()
+  for i in 0 1 2 3; do [[ -z "${mapping[$i]}" ]] && missing+=( "$i" ); done
+
+  # helper validate schedule: times within 0..MAX_MIN and strictly increasing and total == K_REQUIRED
+  validate_and_accept() {
+    local a=$1 b=$2 c=$3 d=$4
+    local v
+    for v in $a $b $c $d; do
+      if ! [[ $v =~ ^-?[0-9]+$ ]]; then return 1; fi
+      if (( v < 0 || v > MAX_MIN )); then return 1; fi
+    done
+    if (( !(a < b && b < c && c < d) )); then return 1; fi
+    tot=$(compute_total_work $a $b $c $d)
+    if (( tot != K_REQUIRED )); then return 1; fi
+    all_suggestions+=( "$a $b $c $d" )
+    return 0
+  }
+
+  if (( ${#missing[@]} == 1 )); then
+    mid=${missing[0]}
+    s0=${mapping[0]}; s1=${mapping[1]}; s2=${mapping[2]}; s3=${mapping[3]}
+    if [[ -n "$s1" && -n "$s2" ]]; then lunch=$(( s2 - s1 )); else lunch=60; fi
+    case $mid in
+      0) s0=$(( s3 - K_REQUIRED - lunch )) ;;
+      1) s1=$(( s0 + (K_REQUIRED - (s3 - s2)) )) ;;
+      2) s2=$(( s3 - (K_REQUIRED - (s1 - s0)) )) ;;
+      3) s3=$(( s0 + K_REQUIRED + lunch )) ;;
+    esac
+    validate_and_accept $s0 $s1 $s2 $s3
+
+  elif (( ${#missing[@]} == 2 )); then
+    m0=${missing[0]}; m1=${missing[1]}
+
+    # Strategy A: fix one missing to ideal then compute other (both orders)
+    for ord in 1 2; do
+      s0=${mapping[0]}; s1=${mapping[1]}; s2=${mapping[2]}; s3=${mapping[3]}
+      if (( ord == 1 )); then
+        case $m0 in
+          0) s0=${ideal[0]} ;;
+          1) s1=${ideal[1]} ;;
+          2) s2=${ideal[2]} ;;
+          3) s3=${ideal[3]} ;;
+        esac
+        case $m1 in
+          0) s0=$(( s1 - (K_REQUIRED - (s3 - s2)) )) ;;
+          1) s1=$(( s0 + (K_REQUIRED - (s3 - s2)) )) ;;
+          2) s2=$(( s3 - (K_REQUIRED - (s1 - s0)) )) ;;
+          3) s3=$(( s0 + K_REQUIRED + (s2 - s1) )) ;;
+        esac
+      else
+        case $m1 in
+          0) s0=${ideal[0]} ;;
+          1) s1=${ideal[1]} ;;
+          2) s2=${ideal[2]} ;;
+          3) s3=${ideal[3]} ;;
+        esac
+        case $m0 in
+          0) s0=$(( s1 - (K_REQUIRED - (s3 - s2)) )) ;;
+          1) s1=$(( s0 + (K_REQUIRED - (s3 - s2)) )) ;;
+          2) s2=$(( s3 - (K_REQUIRED - (s1 - s0)) )) ;;
+          3) s3=$(( s0 + K_REQUIRED + (s2 - s1) )) ;;
+        esac
+      fi
+      [[ -z "$s0" ]] && s0=${ideal[0]}
+      [[ -z "$s1" ]] && s1=${ideal[1]}
+      [[ -z "$s2" ]] && s2=${ideal[2]}
+      [[ -z "$s3" ]] && s3=${ideal[3]}
+      validate_and_accept $s0 $s1 $s2 $s3
+    done
+
+    # Strategy B: balance morning/afternoon (~240 each) where possible, then fallback to ideal
+    s0=${mapping[0]}; s1=${mapping[1]}; s2=${mapping[2]}; s3=${mapping[3]}
+    [[ -z "$s0" && -n "$s1" ]] && s0=$(( s1 - 240 ))
+    [[ -z "$s1" && -n "$s0" ]] && s1=$(( s0 + 240 ))
+    [[ -z "$s2" && -n "$s3" ]] && s2=$(( s3 - 240 ))
+    [[ -z "$s3" && -n "$s2" ]] && s3=$(( s2 + 240 ))
+    [[ -z "$s0" ]] && s0=${ideal[0]}
+    [[ -z "$s1" ]] && s1=${ideal[1]}
+    [[ -z "$s2" ]] && s2=${ideal[2]}
+    [[ -z "$s3" ]] && s3=${ideal[3]}
+    validate_and_accept $s0 $s1 $s2 $s3
+
+  else
+    continue
+  fi
+
+done <<< "$perm_out"
+
+# deduplicate
+uniq_full=()
+for s in "${all_suggestions[@]}"; do
+  found=0
+  for u in "${uniq_full[@]}"; do [[ "$u" == "$s" ]] && found=1; done
+  (( found == 0 )) && uniq_full+=( "$s" )
+done
+
+if (( ${#uniq_full[@]} == 0 )); then
+  echo "Nenhuma sugestão válida encontrada." >&2
+  exit 1
+fi
+
+# build outputs and clipboard entries
+outputs=(); clipboard_entries=()
+for s in "${uniq_full[@]}"; do
+  read -r t0 t1 t2 t3 <<<"$s"
+  # match which slots were provided by input (greedy matching)
+  tmp=( $t0 $t1 $t2 $t3 )
+  provided=(0 0 0 0)
+  for val in "${times[@]}"; do
+    for j in 0 1 2 3; do
+      if [[ ${tmp[$j]} -eq $val ]]; then provided[$j]=1; tmp[$j]=-999999; break; fi
+    done
+  done
+  pieces=(); clip_pieces=()
+  for j in 0 1 2 3; do
+    if [[ ${provided[$j]} -eq 0 ]]; then
+      if (( j == 0 )); then tv=$(format_hhmm $t0); fi
+      if (( j == 1 )); then tv=$(format_hhmm $t1); fi
+      if (( j == 2 )); then tv=$(format_hhmm $t2); fi
+      if (( j == 3 )); then tv=$(format_hhmm $t3); fi
+      pieces+=( "[$GREEN_LIGHT${NAMES[$j]} às $tv$RESET]" )
+      clip_pieces+=( "${NAMES[$j]} às $tv" )
+    fi
+  done
+  # join pieces with " e "
+  join=""
+  for ((i=0;i<${#pieces[@]};i++)); do
+    (( i>0 )) && join+=" e "
+    join+="${pieces[$i]}"
+  done
+  total=$(compute_total_work $t0 $t1 $t2 $t3)
+  if (( total <= 539 )); then col=$GREEN_LIGHT
+  elif (( total <= 599 )); then col=$ORANGE
+  else col=$RED; fi
+  if (( total % 60 == 0 )); then tf="$((total/60))h"; else tf="$((total/60)):$(printf "%02d" $((total%60)))h"; fi
+  total_piece="[$col$tf trabalhadas$RESET]"
+  outputs+=( "Ao registrar ${join}, você obterá o total de ${total_piece}." )
+  clip_join=$(printf " | %s" "${clip_pieces[@]}")
+  clip_join=${clip_join:3}
+  clipboard_entries+=( "$clip_join" )
+done
+
+# scoring and sorting
+scores=()
+for idx in "${!uniq_full[@]}"; do
+  read -r ft0 ft1 ft2 ft3 <<<"${uniq_full[$idx]}"
+  dev=$(( (ft1>IDEAL[1]?ft1-IDEAL[1]:IDEAL[1]-ft1) + (ft2>IDEAL[2]?ft2-IDEAL[2]:IDEAL[2]-ft2) ))
+  morn=$(( ft1 - ft0 )); aft=$(( ft3 - ft2 ))
+  imb=$(( morn>aft ? morn-aft : aft-morn ))
+  sc=$(( dev + imb ))
+  scores+=( "$sc:$idx" )
+done
+IFS=$'\n' sorted=( $(printf "%s\n" "${scores[@]}" | sort -n) ); unset IFS
+
+# print up to 2 best suggestions and copy first to clipboard
+count=0; chosen_clip=""
+for entry in "${sorted[@]}"; do
+  idx=${entry#*:}
+  printf "%b\n" "${outputs[$idx]}"
+  if [[ -z "$chosen_clip" ]]; then chosen_clip="${clipboard_entries[$idx]}"; fi
+  count=$((count+1)); (( count>=2 )) && break
+done
+
+copied=0
+if [[ -n "$chosen_clip" ]]; then
+  if command -v pbcopy &>/dev/null; then
+    printf "%s" "$chosen_clip" | pbcopy && copied=1
+  elif command -v xclip &>/dev/null; then
+    printf "%s" "$chosen_clip" | xclip -selection clipboard && copied=1
+  elif command -v wl-copy &>/dev/null; then
+    printf "%s" "$chosen_clip" | wl-copy && copied=1
+  fi
+fi
+
+if (( copied == 1 )); then
+  echo "Os horários foram copiados para a área de transferência."
+else
+  echo "Não foi possível copiar automaticamente (nenhum utilitário de clipboard encontrado)."
+fi
+
+exit 0
+
