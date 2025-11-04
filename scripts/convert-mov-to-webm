@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+#
+# convert-mov-to-webm
+# Convert a .mov to a WebM (VP9 + Opus) using professional defaults.
+# Usage: convert-mov-to-webm [OPTIONS] INPUT.mov
+#
+# - Detects audio and encodes Opus if present; otherwise produces video-only WebM.
+# - Preserves aspect ratio, caps height to 480px by default (no upscaling).
+# - Output shares basename with .webm extension.
+#
+set -euo pipefail
+
+print_help() {
+  cat <<'EOF'
+convert-mov-to-webm — Convert .mov to WebM (VP9 + Opus) with smart audio detection.
+
+Usage:
+  convert-mov-to-webm [OPTIONS] INPUT.mov
+
+Options:
+  -h, --help    Show this help message and exit.
+
+Examples:
+  convert-mov-to-webm clip.mov
+  convert-mov-to-webm "My Recording.mov"
+EOF
+}
+
+# ---- Args ----
+if [[ "${#@}" -eq 0 ]]; then
+  echo "Error: no input file provided. Use -h for help." >&2
+  exit 2
+fi
+
+case "$1" in
+  -h|--help)
+    print_help
+    exit 0
+    ;;
+esac
+
+INPUT="$1"
+
+# ---- Checks ----
+command -v ffmpeg >/dev/null 2>&1 || { echo "ffmpeg is required but not found in PATH." >&2; exit 3; }
+command -v ffprobe >/dev/null 2>&1 || { echo "ffprobe is required but not found in PATH." >&2; exit 3; }
+
+if [[ ! -f "$INPUT" ]]; then
+  echo "Error: input file not found: $INPUT" >&2
+  exit 4
+fi
+
+# ---- Paths and names ----
+INPUT_DIR="$(dirname -- "$INPUT")"
+INPUT_BASE="$(basename -- "$INPUT")"
+BASENAME="${INPUT_BASE%.*}"
+OUTPUT="${INPUT_DIR}/${BASENAME}.webm"
+
+# ---- Detect audio ----
+has_audio() {
+  # returns 0 if audio stream exists
+  if ffprobe -v error -select_streams a -show_entries stream=index -of csv=p=0 -- "$1" | grep -q .; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# ---- Encoding defaults ----
+CRF_VIDEO=32
+MAX_HEIGHT=480
+AUDIO_BITRATE="64k"
+
+# Build scale filter: if input height > MAX_HEIGHT -> scale height to MAX_HEIGHT (keep even dim with -2),
+# otherwise keep original dimensions. Use Lanczos for good quality.
+# The expression uses ffmpeg variables iw/ih and produces even width/height using -2.
+SCALE_FILTER="scale='if(gt(ih,${MAX_HEIGHT}),-2,iw)':'if(gt(ih,${MAX_HEIGHT}),${MAX_HEIGHT},ih)':flags=lanczos"
+
+echo "Input: $INPUT"
+echo "Output: $OUTPUT"
+
+if has_audio "$INPUT"; then
+  echo "Audio track detected — encoding VP9 + Opus (${AUDIO_BITRATE})"
+  ffmpeg -y -hide_banner -loglevel info \
+    -i "$INPUT" \
+    -c:v libvpx-vp9 -crf "$CRF_VIDEO" -b:v 0 -vf "$SCALE_FILTER" \
+    -c:a libopus -b:a "$AUDIO_BITRATE" \
+    "$OUTPUT"
+else
+  echo "No audio track detected — encoding VP9 video only"
+  ffmpeg -y -hide_banner -loglevel info \
+    -i "$INPUT" \
+    -c:v libvpx-vp9 -crf "$CRF_VIDEO" -b:v 0 -vf "$SCALE_FILTER" \
+    -an \
+    "$OUTPUT"
+fi
+
+# ---- Post-check and info ----
+if [[ -f "$OUTPUT" ]]; then
+  echo "Conversion complete: $OUTPUT"
+  ls -lh -- "$OUTPUT"
+  echo "Video stream info:"
+  ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate -of default=noprint_wrappers=1:nokey=1 "$OUTPUT" | \
+    awk 'NR==1{printf "  width: %spx\n",$1} NR==2{printf "  height: %spx\n",$1} NR==3{printf "  framerate: %s\n",$1}'
+  if ffprobe -v error -select_streams a -show_entries stream=index -of csv=p=0 -- "$OUTPUT" | grep -q .; then
+    echo "Audio stream info:"
+    ffprobe -v error -select_streams a -show_entries stream=codec_name,bit_rate -of default=noprint_wrappers=1 "$OUTPUT"
+  fi
+  exit 0
+else
+  echo "Error: conversion failed, no output file produced." >&2
+  exit 5
+fi
+
