@@ -235,10 +235,10 @@ nu()  { "$PKG_MANAGER" remove     "$@" }
 nv()  { echo "$PKG_MANAGER"; "$PKG_MANAGER"  -v }
 
 # pacman
-alias pms="sudo pacman -S --needed"
-alias pmr="sudo pacman -Rns"
-alias pmu="sudo pacman -Syu"
-alias pmq="pacman -Qs"
+alias pms='sudo pacman -S --needed'
+alias pmr='sudo pacman -Rns'
+alias pmu='sudo pacman -Syu'
+alias pmq='pacman -Qs'
 
 # scripts
 alias mwh='missing-working-hours'
