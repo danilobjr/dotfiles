@@ -240,6 +240,9 @@ alias pmr="sudo pacman -Rns"
 alias pmu="sudo pacman -Syu"
 alias pmq="pacman -Qs"
 
+# scripts
+alias mwh='missing-working-hours'
+
 # vim
 alias v="$EDITOR"
 
