@@ -241,7 +241,7 @@ alias pmu='sudo pacman -Syu'
 alias pmq='pacman -Qs'
 
 # scripts
-alias mwh='missing-working-hours'
+alias mwh='missing-work-hours'
 
 # vim
 alias v="$EDITOR"
