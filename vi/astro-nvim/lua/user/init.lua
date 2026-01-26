@@ -286,7 +286,8 @@ local config = {
 			["<leader>sr"] = false, -- search stuff. It was remapped to capital S
 			["<leader>sk"] = false, -- search stuff. It was remapped to capital S
 			["<leader>sc"] = false, -- search stuff. It was remapped to capital S
-			["<leader>u"] = false, -- toggle url highlights
+			-- using <leader>u to run a RemoveDiacritics
+			-- ["<leader>u"] = false, -- toggle url highlights
 			["<leader>d"] = false, -- alpha dashboard
 			["<leader>bb"] = false, -- new tab
 			["<leader>bj"] = false, -- pick buffer to jump
@@ -437,6 +438,9 @@ local config = {
 				end,
 				desc = "Search commands",
 			},
+
+			-- Diacritics
+			["<leader>u"] = { "viw:RemoveDiacritics<CR>", desc = "Remove diacritics (word)" },
 		},
 		i = {
 			["jk"] = false,
@@ -446,6 +450,9 @@ local config = {
 			["k"] = "j",
 			["l"] = "k",
 			[";"] = "l",
+
+			-- Diacritics
+			["<leader>u"] = { ":'<,'>RemoveDiacritics<CR>", desc = "Remove diacritics (visual)" },
 		},
 		x = {
 			["j"] = "h",
@@ -514,6 +521,16 @@ local config = {
 		--     ["~/%.config/foo/.*"] = "fooscript",
 		--   },
 		-- }
+
+		-- RemoveDiacritics ============================ BEGIN =================================== //
+		-- require the diacritics helper
+		local diacritics = require("user.diacritics")
+
+		-- Create a user command that accepts a range (works with visual selection)
+		vim.api.nvim_create_user_command("RemoveDiacritics", function(opts)
+			diacritics.remove_range(opts.line1, opts.line2)
+		end, { range = true, desc = "Remove Latin diacritics in range" })
+		-- RemoveDiacritics ============================ END ===================================== //
 	end,
 }
 
