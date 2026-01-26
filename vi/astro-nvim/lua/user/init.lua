@@ -446,6 +446,7 @@ local config = {
 			["jk"] = false,
 		},
 		v = {
+			-- Navigation keys
 			["j"] = "h",
 			["k"] = "j",
 			["l"] = "k",
@@ -455,12 +456,14 @@ local config = {
 			["<leader>u"] = { ":'<,'>RemoveDiacritics<CR>", desc = "Remove diacritics (visual)" },
 		},
 		x = {
+			-- Navigation keys
 			["j"] = "h",
 			["k"] = "j",
 			["l"] = "k",
 			[";"] = "l",
 		},
 		o = {
+			-- Navigation keys
 			["j"] = "h",
 			["k"] = "j",
 			["l"] = "k",
