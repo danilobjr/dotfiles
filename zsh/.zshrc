@@ -112,7 +112,7 @@ fi
 # reload zsh config
 alias reload!="source ~/.zshrc"
 
-# open dotfiles
+# dotfiles
 alias zshconfig="$EDITOR ~/.zshrc"
 alias vimconfig="$EDITOR ~/.config/nvim/lua/user/init.lua"
 alias gitconfig="$EDITOR ~/.gitconfig"
