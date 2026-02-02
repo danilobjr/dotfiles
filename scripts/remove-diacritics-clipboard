@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# remove-diacritics-clipboard - read clipboard, remove diacritics, write back
+set -euo pipefail
+
+if command -v pbpaste >/dev/null 2>&1 && command -v pbcopy >/dev/null 2>&1; then
+  pbpaste | remove-diacritics | pbcopy
+  exit 0
+fi
+
+if command -v xclip >/dev/null 2>&1; then
+  xclip -selection clipboard -o | remove-diacritics | xclip -selection clipboard -i
+  exit 0
+fi
+
+if command -v xsel >/dev/null 2>&1; then
+  xsel --clipboard --output | remove-diacritics | xsel --clipboard --input
+  exit 0
+fi
+
+echo "No clipboard helper found (pbpaste/xclip/xsel)." >&2
+exit 1

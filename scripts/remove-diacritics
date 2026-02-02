@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# remove_diacritics - deterministic, pure-shell transliteration (no iconv)
+set -euo pipefail
+
+# Single sed script: lowercase + uppercase replacements and common ligatures.
+# Works line-by-line and preserves newlines.
+sed -E '
+# lowercase
+s/à/a/g; s/á/a/g; s/â/a/g; s/ã/a/g; s/ä/a/g; s/å/a/g; s/ā/a/g; s/ă/a/g; s/ą/a/g;
+s/ç/c/g; s/ć/c/g; s/č/c/g;
+s/ď/d/g; s/đ/d/g;
+s/è/e/g; s/é/e/g; s/ê/e/g; s/ë/e/g; s/ē/e/g; s/ė/e/g; s/ę/e/g; s/ě/e/g;
+s/ì/i/g; s/í/i/g; s/î/i/g; s/ï/i/g; s/ī/i/g; s/į/i/g;
+s/ł/l/g;
+s/ñ/n/g; s/ń/n/g; s/ň/n/g;
+s/ò/o/g; s/ó/o/g; s/ô/o/g; s/õ/o/g; s/ö/o/g; s/ø/o/g; s/ō/o/g; s/ŏ/o/g;
+s/œ/oe/g; s/æ/ae/g; s/ß/ss/g;
+s/ŕ/r/g; s/ř/r/g;
+s/ś/s/g; s/ş/s/g; s/š/s/g; s/ș/s/g;
+s/ť/t/g; s/ț/t/g;
+s/ù/u/g; s/ú/u/g; s/û/u/g; s/ü/u/g; s/ū/u/g; s/ů/u/g; s/ű/u/g; s/ų/u/g;
+s/ý/y/g; s/ÿ/y/g;
+s/ž/z/g; s/ź/z/g; s/ż/z/g;
+
+# uppercase
+s/À/A/g; s/Á/A/g; s/Â/A/g; s/Ã/A/g; s/Ä/A/g; s/Å/A/g; s/Ā/A/g; s/Ă/A/g; s/Ą/A/g;
+s/Ç/C/g; s/Ć/C/g; s/Č/C/g;
+s/Ď/D/g; s/Đ/D/g;
+s/È/E/g; s/É/E/g; s/Ê/E/g; s/Ë/E/g; s/Ē/E/g; s/Ė/E/g; s/Ę/E/g; s/Ě/E/g;
+s/Ì/I/g; s/Í/I/g; s/Î/I/g; s/Ï/I/g; s/Ī/I/g; s/Į/I/g;
+s/Ł/L/g;
+s/Ñ/N/g; s/Ń/N/g; s/Ň/N/g;
+s/Ò/O/g; s/Ó/O/g; s/Ô/O/g; s/Õ/O/g; s/Ö/O/g; s/Ø/O/g; s/Ō/O/g; s/Ŏ/O/g;
+s/Œ/OE/g; s/Æ/AE/g;
+s/Ŕ/R/g; s/Ř/R/g;
+s/Ś/S/g; s/Ş/S/g; s/Š/S/g; s/Ș/S/g;
+s/Ť/T/g; s/Ț/T/g;
+s/Ù/U/g; s/Ú/U/g; s/Û/U/g; s/Ü/U/g; s/Ū/U/g; s/Ů/U/g; s/Ű/U/g; s/Ų/U/g;
+s/Ý/Y/g; s/Ÿ/Y/g;
+s/Ž/Z/g; s/Ź/Z/g; s/Ż/Z/g;
+' 
