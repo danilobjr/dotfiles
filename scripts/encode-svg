@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# encode-svg
+# Read SVG from arguments or stdin, percent-encode every byte, optionally wrap
+# as a data URI, and copy the result to the system clipboard (or print if no
+# clipboard tool is available).
+
+show_help() {
+  cat <<'EOF'
+Usage: encode-svg [-d|--data-uri] [SVG_STRING...]
+Read SVG from arguments or stdin, percent-encode every byte, copy to clipboard.
+
+Flags:
+  -d, --data-uri
+        Prefix result with: data:image/svg+xml;charset=utf-8,
+  -h, --help
+        Show this help and exit
+
+Examples:
+  # Read from a file and copy plain percent-encoded string
+  cat icon.svg | encode-svg
+
+  # Read from a file and copy as a data URI
+  cat icon.svg | encode-svg -d
+
+  # Pass an SVG string as an argument and copy
+  encode-svg '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">...</svg>'
+
+  # Print to stdout (no clipboard tool available)
+  printf '%s' '<svg ...>...</svg>' | encode-svg
+
+EOF
+}
+
+# Parse flags
+DATA_URI=false
+ARGS=()
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -d|--data-uri) DATA_URI=true; shift ;;
+    -h|--help) show_help; exit 0 ;;
+    --) shift; while [ "$#" -gt 0 ]; do ARGS+=("$1"); shift; done ;;
+    -*) echo "Unknown option: $1" >&2; show_help; exit 2 ;;
+    *) ARGS+=("$1"); shift ;;
+  esac
+done
+
+# Create temp file to preserve bytes safely
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+
+if [ "${#ARGS[@]}" -gt 0 ]; then
+  # join args with spaces (preserve exactly as provided)
+  printf '%s' "${ARGS[*]}" > "$tmp"
+else
+  # read stdin (binary-safe)
+  cat > "$tmp"
+fi
+
+# produce uppercase hex stream of every byte
+if command -v hexdump >/dev/null 2>&1; then
+  hexstream=$(hexdump -v -e '1/1 "%02X"' "$tmp")
+elif command -v xxd >/dev/null 2>&1; then
+  hexstream=$(xxd -p -c 256 "$tmp" | tr -d '\n' | tr '[:lower:]' '[:upper:]')
+else
+  # POSIX fallback using od
+  hexstream=$(od -An -v -t x1 "$tmp" | tr -s ' ' | sed 's/^ *//;s/ $//' | tr ' ' '\n' | tr -d '\n' | tr '[:lower:]' '[:upper:]')
+fi
+
+# insert % before every two hex digits
+encoded=$(printf '%s' "$hexstream" | sed 's/../%&/g')
+
+# optionally prefix data URI
+if [ "$DATA_URI" = true ]; then
+  encoded="data:image/svg+xml;charset=utf-8,${encoded}"
+fi
+
+# copy to clipboard using available utilities, otherwise print
+COPIED_MSG="Copied to clipboard."
+if command -v pbcopy >/dev/null 2>&1; then
+  printf '%s' "$encoded" | pbcopy
+  # echo "Copied to clipboard using pbcopy."
+  echo $COPIED_MSG
+elif command -v wl-copy >/dev/null 2>&1; then
+  printf '%s' "$encoded" | wl-copy
+  # echo "Copied to clipboard using wl-copy."
+  echo $COPIED_MSG
+elif command -v xclip >/dev/null 2>&1; then
+  printf '%s' "$encoded" | xclip -selection clipboard
+  # echo "Copied to clipboard using xclip."
+  echo $COPIED_MSG
+elif command -v xsel >/dev/null 2>&1; then
+  printf '%s' "$encoded" | xsel --clipboard --input
+  # echo "Copied to clipboard using xsel."
+  echo $COPIED_MSG
+else
+  # fallback: print to stdout
+  printf '%s\n' "$encoded"
+  echo "No clipboard utility found; output printed to stdout."
+fi
+
