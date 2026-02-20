@@ -1,16 +1,61 @@
 #!/bin/bash
+set -euo pipefail
 
-convert $1 -resize 16x16 "$1-16x16.png"
-convert $1 -resize 32x32 "$1-32x32.png"
-convert $1 -resize 48x48 "$1-48x48.png"
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <source-image>"
+  exit 2
+fi
 
-convert "$1-16x16.png" "$1-32x32.png" "$1-48x48.png" "$1-favicon.ico"
+src="$1"
+base="${src%.*}"
+out_ico="${base}-favicon.ico"
 
-rm "$1-16x16.png"
-rm "$1-32x32.png"
-rm "$1-48x48.png"
+# Create resized PNGs
+magick "$src" -resize 16x16 "${base}-16x16.png"
+magick "$src" -resize 32x32 "${base}-32x32.png"
+magick "$src" -resize 48x48 "${base}-48x48.png"
 
-identify "$1-favicon.ico"
+# Combine into multi-size ICO
+magick "${base}-16x16.png" "${base}-32x32.png" "${base}-48x48.png" "$out_ico"
 
-pidof dunst && notify-send "$1-favicon.ico created"
+# Clean up temporary PNGs
+rm -f "${base}-16x16.png" "${base}-32x32.png" "${base}-48x48.png"
+
+# Show info about the created ICO
+identify "$out_ico"
+
+# Conclusion message
+echo "Created $out_ico"
+
+# Mini tutorial printed to terminal explaining how to apply the favicon in HTML
+cat <<'TUTORIAL'
+
+How to apply this favicon to your HTML page
+
+1. Place the file where your site can serve it
+   - Option A — Root directory: put the ICO at /favicon.ico so browsers find it automatically.
+   - Option B — Custom path: place it under /img/ or similar and reference that path in your HTML.
+
+2. Add a link tag inside the <head> of your HTML
+   - Basic ICO tag for broad compatibility:
+     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+   - PNG alternative (modern browsers):
+     <link rel="icon" type="image/png" sizes="24x24" href="/img/favicon.png">
+
+3. Provide multiple sizes for high-DPI devices (optional)
+   - Example tags:
+     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48x48.png">
+   - Or use the multi-size .ico created by this script.
+
+4. Server settings and caching
+   - Ensure correct MIME type: image/x-icon for .ico, image/png for .png.
+   - Use cache busting when updating (change filename or add ?v=2).
+
+5. Test
+   - Clear browser cache or open a private/incognito window to verify the favicon.
+   - If it does not appear, confirm file path, MIME type, and that the <link> tag is inside <head>.
+
+TUTORIAL
 
