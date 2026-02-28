@@ -129,7 +129,7 @@
   },
   "XState Machine": {
     "prefix": "xsm",
-    "body":[
+    "body": [
       "import { createMachine } from 'xstate'",
       "const ${1:nameOf}Machine = createMachine({",
       "\tid: '${1:nameOf}',",
@@ -137,7 +137,7 @@
       "\tstates: {",
       "\t\t${2:initialState}: {$0},",
       "\t},",
-      "})",
+      "})"
     ]
   }
 }
