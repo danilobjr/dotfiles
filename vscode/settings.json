@@ -18,14 +18,14 @@
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
   },
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+    "javascript": "javascriptreact",
   },
   "emmet.triggerExpansionOnTab": true,
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
   },
   "files.exclude": {
     "**/.git": true,
@@ -33,11 +33,11 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     "**/*.js": {
-      "when": "$(basename).ts"
+      "when": "$(basename).ts",
     },
     "**/**.js": {
-      "when": "$(basename).tsx"
-    }
+      "when": "$(basename).tsx",
+    },
   },
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
@@ -47,7 +47,7 @@
   "multiDiffEditor.experimental.enabled": true,
   "telemetry.telemetryLevel": "off",
   "terminal.integrated.profiles.windows": {
-    "path": { "path": "C:\\Windows\\System32\\wsl.exe" }
+    "path": { "path": "C:\\Windows\\System32\\wsl.exe" },
   },
   "todo-tree.tree.showScanModeButton": false,
   "vim.smartRelativeLine": true,
@@ -57,81 +57,81 @@
     {
       "before": ["g", "r"],
       "commands": ["editor.action.goToReferences"],
-      "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+      "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor",
     },
     {
       "before": ["j"],
-      "after": ["h"]
+      "after": ["h"],
     },
     {
       "before": ["k"],
-      "after": ["j"]
+      "after": ["j"],
     },
     {
       "before": ["l"],
-      "after": ["k"]
+      "after": ["k"],
     },
     {
       "before": [";"],
-      "after": ["l"]
+      "after": ["l"],
     },
     {
       "before": ["<leader>", ";"],
-      "commands": ["workbench.action.showCommands"]
+      "commands": ["workbench.action.showCommands"],
     },
     {
       "before": ["<leader>", "p"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
     {
       "before": ["<leader>", "\\"],
-      "commands": ["workbench.action.splitEditor"]
+      "commands": ["workbench.action.splitEditor"],
     },
     {
       "before": ["<leader>", "g", "f"],
       "commands": ["workbench.action.toggleMaximizeEditorGroup"],
-      "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+      "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups",
     },
     {
       "before": ["<leader>", "/"],
       "commands": ["editor.action.commentLine"],
-      "when": "editorTextFocus && !editorReadonly"
+      "when": "editorTextFocus && !editorReadonly",
     },
     {
       "before": ["<leader>", "f", "f"],
-      "commands": ["editor.fold"]
+      "commands": ["editor.fold"],
     },
     {
       "before": ["<leader>", "f", "u"],
-      "commands": ["editor.unfold"]
+      "commands": ["editor.unfold"],
     },
     {
       "before": ["<leader>", "f", "a"],
-      "commands": ["editor.foldAll"]
+      "commands": ["editor.foldAll"],
     },
     {
       "before": ["<leader>", "f", "1"],
-      "commands": ["editor.foldLevel1"]
+      "commands": ["editor.foldLevel1"],
     },
     {
       "before": ["<leader>", "f", "2"],
-      "commands": ["editor.foldLevel2"]
+      "commands": ["editor.foldLevel2"],
     },
     {
       "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "commands": ["editor.action.indentLines"],
     },
     {
       "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "commands": ["editor.action.outdentLines"],
     },
     {
       "before": ["<leader>", "e"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
+      "commands": ["workbench.action.toggleSidebarVisibility"],
     },
     {
       "before": ["<leader>", "z"],
-      "commands": ["workbench.action.toggleCenteredLayout"]
+      "commands": ["workbench.action.toggleCenteredLayout"],
     },
     // {
     //   "before": ["<leader>", "m", "m"],
@@ -143,36 +143,36 @@
     // },
     {
       "before": ["<leader>", "w", "w"],
-      "commands": ["workbench.action.files.save"]
+      "commands": ["workbench.action.files.save"],
     },
     {
       "before": ["<leader>", "w", "a"],
-      "commands": ["workbench.action.files.saveAll"]
+      "commands": ["workbench.action.files.saveAll"],
     },
     {
       "before": ["<leader>", "q", "q"],
-      "commands": ["workbench.action.closeActiveEditor"]
+      "commands": ["workbench.action.closeActiveEditor"],
     },
     {
       "before": ["<leader>", "q", "a"],
-      "commands": ["workbench.action.closeAllEditors"]
+      "commands": ["workbench.action.closeAllEditors"],
     },
     {
       "before": ["<leader>", "r"],
       "commands": ["editor.action.rename"],
-      "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"]
+      "when": ["editorHasRenameProvider && editorTextFocus && !editorReadonly"],
     },
     {
       "before": ["<leader>", "o"],
-      "after": ["o", "<esc>"]
+      "after": ["o", "<esc>"],
     },
     {
       "before": ["<leader>", "O"],
-      "after": ["O", "<esc>"]
+      "after": ["O", "<esc>"],
     },
     {
       "before": ["<leader>", "d"],
-      "after": ["S", "<esc>"]
+      "after": ["S", "<esc>"],
     },
     {
       "before": ["<leader>", "s"],
@@ -187,8 +187,8 @@
         "/",
         "g",
         "<left>",
-        "<left>"
-      ]
+        "<left>",
+      ],
     },
     {
       "before": ["<leader>", "S"],
@@ -205,61 +205,61 @@
         "/",
         "g",
         "<left>",
-        "<left>"
-      ]
-    }
+        "<left>",
+      ],
+    },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["j"],
-      "after": ["h"]
+      "after": ["h"],
     },
     {
       "before": ["k"],
-      "after": ["j"]
+      "after": ["j"],
     },
     {
       "before": ["l"],
-      "after": ["k"]
+      "after": ["k"],
     },
     {
       "before": [";"],
-      "after": ["l"]
+      "after": ["l"],
     },
     {
       "before": ["p"],
-      "after": ["p", "g", "v", "y"]
+      "after": ["p", "g", "v", "y"],
     },
     {
       "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "commands": ["editor.action.indentLines"],
     },
     {
       "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "commands": ["editor.action.outdentLines"],
     },
     {
       "before": ["<leader>", "/"],
-      "commands": ["editor.action.blockComment"]
-    }
+      "commands": ["editor.action.blockComment"],
+    },
   ],
   "vim.operatorPendingModeKeyBindingsNonRecursive": [
     {
       "before": ["j"],
-      "after": ["h"]
+      "after": ["h"],
     },
     {
       "before": ["k"],
-      "after": ["j"]
+      "after": ["j"],
     },
     {
       "before": ["l"],
-      "after": ["k"]
+      "after": ["k"],
     },
     {
       "before": [";"],
-      "after": ["l"]
-    }
+      "after": ["l"],
+    },
   ],
   "vim.statusBarColors.normal": ["#3e7aca", "#FFFFFF"],
   "vim.statusBarColors.insert": ["#679436", "#FFFFFF"],
@@ -275,24 +275,24 @@
     "statusBar.noFolderBackground": "#3e7aca",
     "statusBar.debuggingBackground": "#3e7aca",
     "statusBar.foreground": "#FFFFFF",
-    "statusBar.debuggingForeground": "#FFFFFF"
+    "statusBar.debuggingForeground": "#FFFFFF",
   },
   "[csharp]": {
-    "editor.defaultFormatter": "csharpier.csharpier-vscode"
+    "editor.defaultFormatter": "csharpier.csharpier-vscode",
     // "editor.defaultFormatter": "ms-dotnettools.csharp",
   },
   "[terraform]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "hashicorp.terraform",
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "[terraform-vars]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "javascript.updateImportsOnFileMove.enabled": "never",
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cx\\(([^)]*)\\)", "'([^']*)'"]
+    ["cx\\(([^)]*)\\)", "'([^']*)'"],
   ],
   "typescript.preferences.preferTypeOnlyAutoImports": true,
   "typescript.preferences.importModuleSpecifier": "shortest",
@@ -301,8 +301,8 @@
   "typescript.updateImportsOnFileMove.enabled": "never",
   "window.commandCenter": false,
   "workbench.editorAssociations": {
-    "*.svg": "default"
+    "*.svg": "default",
   },
   "workbench.tree.enableStickyScroll": false,
-  "xstate.nestTypegenFiles": false
+  "xstate.nestTypegenFiles": false,
 }
