@@ -72,18 +72,12 @@
   "constructor simple": {
     "prefix": "ct",
     "description": "Class constructor",
-    "body": ["constructor(${...args}) {", "\t$0", "}"]
+    "body": ["constructor(${args}) {", "\t$0", "}"]
   },
   "constructor with super()": {
     "prefix": "cts",
     "description": "Class constructor with super() call",
-    "body": [
-      "constructor(${...args}) {",
-      "\tsuper(${...args})",
-      "",
-      "\t$0",
-      "}"
-    ]
+    "body": ["constructor(${ctArgs}) {", "\tsuper(${superArgs})", "\t$0", "}"]
   },
   "method class": {
     "prefix": "mt",
