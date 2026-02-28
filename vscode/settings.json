@@ -9,6 +9,7 @@
   "editor.fontLigatures": true,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.stickyScroll.enabled": false,
   "editor.suggest.showWords": false,
