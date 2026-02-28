@@ -306,4 +306,11 @@
   "workbench.tree.enableStickyScroll": false,
   "xstate.nestTypegenFiles": false,
   "git.blame.editorDecoration.enabled": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "typescript": true,
+  },
 }
