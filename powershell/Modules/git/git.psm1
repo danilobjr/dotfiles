@@ -4,7 +4,7 @@
 $oldPrompt = Get-Content function:prompt -ErrorAction SilentlyContinue
 
 $MyInvocation.MyCommand.ScriptBlock.Module.onRemove = {
-    Set-Content Function:prompt -Value $oldPrompt
+  Set-Content Function:prompt -Value $oldPrompt
 }
 
 # aliases
@@ -116,74 +116,74 @@ function GitLastCommit { git last }
 function GitHist { git hist }
 
 function GitStatus {
-    param (
-        [switch] $Modified = $false,
-        [switch] $Added = $false,
-        [switch] $Deleted = $false,
-        [switch] $Renamed = $false,
-        [switch] $Untracked = $false
-    )
+  param (
+    [switch] $Modified = $false,
+    [switch] $Added = $false,
+    [switch] $Deleted = $false,
+    [switch] $Renamed = $false,
+    [switch] $Untracked = $false
+  )
 
-    $statusLetter = ""
+  $statusLetter = ""
 
-    if ($Modified) {
-        $statusLetter = 'M'
-    }
+  if ($Modified) {
+    $statusLetter = 'M'
+  }
 
-    if ($Added) {
-        $statusLetter = 'A'
-    }
+  if ($Added) {
+    $statusLetter = 'A'
+  }
 
-    if ($Deleted) {
-        $statusLetter = 'D'
-    }
+  if ($Deleted) {
+    $statusLetter = 'D'
+  }
 
-    if ($Renamed) {
-        $statusLetter = 'R'
-    }
+  if ($Renamed) {
+    $statusLetter = 'R'
+  }
 
-    if ($Untracked) {
-        $statusLetter = '\?'
-    }
+  if ($Untracked) {
+    $statusLetter = '\?'
+  }
 
-    if ($Modified -or $Added -or $Deleted -or $Renamed -or $Untracked) {
-        git status -s | 
-            Where-Object { $_ -match "(^$statusLetter+)|(^\s$statusLetter)" } |
-            ForEach-Object { $commaSeparated = $_ -replace '(?!^\s+)\s+', ','; $commaSeparated.split(',')[1] }  
-    } else {
-        git status -sb
-    }
+  if ($Modified -or $Added -or $Deleted -or $Renamed -or $Untracked) {
+    git status -s | 
+      Where-Object { $_ -match "(^$statusLetter+)|(^\s$statusLetter)" } |
+      ForEach-Object { $commaSeparated = $_ -replace '(?!^\s+)\s+', ','; $commaSeparated.split(',')[1] }  
+  } else {
+    git status -sb
+  }
 }
 
 function GitRebaseDevelopBranch () {
-    $featureBranchName = Get-GitBranchName;
+  $featureBranchName = Get-GitBranchName;
 
-    Write-Host "Checking out to 'develop' branch" -ForegroundColor Green
-    gco develop;
+  Write-Host "Checking out to 'develop' branch" -ForegroundColor Green
+  gco develop;
 
-    Write-Host "Pull 'develop' branch" -ForegroundColor Green
-    gpullo develop;
+  Write-Host "Pull 'develop' branch" -ForegroundColor Green
+  gpullo develop;
 
-    Write-Host "Checking out to '$($featureBranchName)' branch" -ForegroundColor Green
-    gco $featureBranchName;
+  Write-Host "Checking out to '$($featureBranchName)' branch" -ForegroundColor Green
+  gco $featureBranchName;
 
-    Write-Host "Rebasing 'develop' branch" -ForegroundColor Green
-    gr develop;
+  Write-Host "Rebasing 'develop' branch" -ForegroundColor Green
+  gr develop;
 }
 
 function GitCheckoutGitFlowBranch() {
-    Param(
-        # Branch name from Gitflow
-        [Parameter(Mandatory=$true)]
-        [string] $featureBranchName
-    )
+  Param(
+    # Branch name from Gitflow
+    [Parameter(Mandatory=$true)]
+    [string] $featureBranchName
+  )
 
-    gco feature/$featureBranchName;
+  gco feature/$featureBranchName;
 }
 
 function Get-GitBranchName() {
-    $branchName = gb | Where-Object { $_ -match '^\*' } | ForEach-Object { $_ -replace '(?!^\s)\s', ',' };
-    $branchName.split(',')[1];
+  $branchName = gb | Where-Object { $_ -match '^\*' } | ForEach-Object { $_ -replace '(?!^\s)\s', ',' };
+  $branchName.split(',')[1];
 }
 
 function GitCheckoutGitFlowDevelopBranch() { gco develop; }
@@ -192,88 +192,88 @@ function GitCheckoutGitFlowDevelopBranch() { gco develop; }
 # =============
 
 function global:prompt {
-    <#
-    $symbolicRef = [string](git symbolic-ref HEAD)
+  <#
+  $symbolicRef = [string](git symbolic-ref HEAD)
 
-    if ($symbolicRef -ne $null) {
-        $branch = $symbolicRef.Substring(11)
-    }
-    #>
+  if ($symbolicRef -ne $null) {
+    $branch = $symbolicRef.Substring(11)
+  }
+  #>
 
-    $branch = Get-GitBranch
+  $branch = Get-GitBranch
 
-    Write-Host
+  Write-Host
 
-    Write-Host "$env:USERNAME@$env:USERDOMAIN " -ForegroundColor Green -NoNewline
-    Write-Host "$pwd " -ForegroundColor Yellow -NoNewline
+  Write-Host "$env:USERNAME@$env:USERDOMAIN " -ForegroundColor Green -NoNewline
+  Write-Host "$pwd " -ForegroundColor Yellow -NoNewline
 
-    if ($branch) {
-        $groupedStatuses = gs | ForEach-Object { $_ -replace '(?!^\s+)\s+', ',' } | ConvertFrom-Csv -Header Status, Path | Group-Object Status
+  if ($branch) {
+    $groupedStatuses = gs | ForEach-Object { $_ -replace '(?!^\s+)\s+', ',' } | ConvertFrom-Csv -Header Status, Path | Group-Object Status
 
-        $modifiedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('M') } | Select-Object -ExpandProperty Count
-        $addedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('A') } | Select-Object -ExpandProperty Count
-        $deletedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('D') } | Select-Object -ExpandProperty Count
-        $renamedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('R') } | Select-Object -ExpandProperty Count
-        #$copiedAmount = $groupedStatuses | Where-Object { $_.Name -eq 'C' } | Select-Object -ExpandProperty Count
-        #$updatedButUnmergedAmount = $groupedStatuses | Where-Object { $_.Name -eq 'U' } | Select-Object -ExpandProperty Count
-        $untrackedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('?') } | Select-Object -ExpandProperty Count
+    $modifiedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('M') } | Select-Object -ExpandProperty Count
+    $addedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('A') } | Select-Object -ExpandProperty Count
+    $deletedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('D') } | Select-Object -ExpandProperty Count
+    $renamedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('R') } | Select-Object -ExpandProperty Count
+    #$copiedAmount = $groupedStatuses | Where-Object { $_.Name -eq 'C' } | Select-Object -ExpandProperty Count
+    #$updatedButUnmergedAmount = $groupedStatuses | Where-Object { $_.Name -eq 'U' } | Select-Object -ExpandProperty Count
+    $untrackedAmount = $groupedStatuses | Where-Object { $_.Name.Contains('?') } | Select-Object -ExpandProperty Count
 
-        $statusesAmount = @($modifiedAmount, $addedAmount, $deletedAmount, $renamedAmount, $untrackedAmount)
+    $statusesAmount = @($modifiedAmount, $addedAmount, $deletedAmount, $renamedAmount, $untrackedAmount)
 
-        $someStatusIsPedding = $false
+    $someStatusIsPedding = $false
 
-        foreach ($status in $statusesAmount) {
-            if ($status -gt 0) {
-                $someStatusIsPedding = $true
-            }
-        }
-
-        if ($someStatusIsPedding) {
-            Write-Host "[ " -NoNewline
-
-            if ($modifiedAmount) {
-                Write-Host "$modifiedAmount " -ForegroundColor Green -NoNewline
-            }
-
-            if ($addedAmount) {
-                Write-Host "+$addedAmount " -ForegroundColor Yellow -NoNewline
-            }
-
-            if ($deletedAmount) {
-                Write-Host "-$deletedAmount " -ForegroundColor Magenta -NoNewline
-            }
-
-            if ($renamedAmount) {
-                Write-Host "r$renamedAmount " -ForegroundColor Blue -NoNewline
-            }
-
-            if ($untrackedAmount) {
-                Write-Host "?$untrackedAmount " -ForegroundColor Red -NoNewline
-            }
-
-            Write-Host "] " -NoNewline
-        }
-
-        Write-Host "($branch) " -ForegroundColor Cyan -NoNewline
+    foreach ($status in $statusesAmount) {
+      if ($status -gt 0) {
+        $someStatusIsPedding = $true
+      }
     }
 
-    write-host
+    if ($someStatusIsPedding) {
+      Write-Host "[ " -NoNewline
 
-    '> '
+      if ($modifiedAmount) {
+        Write-Host "$modifiedAmount " -ForegroundColor Green -NoNewline
+      }
+
+      if ($addedAmount) {
+        Write-Host "+$addedAmount " -ForegroundColor Yellow -NoNewline
+      }
+
+      if ($deletedAmount) {
+        Write-Host "-$deletedAmount " -ForegroundColor Magenta -NoNewline
+      }
+
+      if ($renamedAmount) {
+        Write-Host "r$renamedAmount " -ForegroundColor Blue -NoNewline
+      }
+
+      if ($untrackedAmount) {
+        Write-Host "?$untrackedAmount " -ForegroundColor Red -NoNewline
+      }
+
+      Write-Host "] " -NoNewline
+    }
+
+    Write-Host "($branch) " -ForegroundColor Cyan -NoNewline
+  }
+
+  write-host
+
+  '> '
 }
 
 function Get-GitBranch {
-    $symbolicRef = [string](git symbolic-ref HEAD)
+  $symbolicRef = [string](git symbolic-ref HEAD)
 
-    if ($symbolicRef -ne $null) {
-        return $symbolicRef.Substring(11)
-    }
+  if ($symbolicRef -ne $null) {
+    return $symbolicRef.Substring(11)
+  }
 
-    if (Test-Path .\.git\rebase-apply\rebasing) {
-        $branch = (Get-Content .\.git\rebase-apply\head-name).Substring(11)
-        $currentStep = Get-Content .\.git\rebase-apply\next
-        $steps = Get-Content .\.git\rebase-apply\last
+  if (Test-Path .\.git\rebase-apply\rebasing) {
+    $branch = (Get-Content .\.git\rebase-apply\head-name).Substring(11)
+    $currentStep = Get-Content .\.git\rebase-apply\next
+    $steps = Get-Content .\.git\rebase-apply\last
 
-        return "$branch|REBASE $currentStep/$steps"
-    }
+    return "$branch|REBASE $currentStep/$steps"
+  }
 }
