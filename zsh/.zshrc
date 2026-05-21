@@ -148,6 +148,9 @@ alias saug="sudo apt upgrade"
 # aws
 alias aws-cf-invalidate='aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"'
 
+# bash
+alias "..."='cd .. && cd ..'
+
 # brew
 alias buzap="brew uninstall --zap" # uninstall package/cask and remove all settings from system
 alias bcu="brew cleanup" # Remove stale lock files and outdated downloads for all formulae and casks, and remove old versions of installed formulae. If arguments are specified, only do this for the given formulae and casks. Removes all downloads more than 120 days old. This can be adjusted with HOMEBREW_CLEANUP_MAX_AGE_DAYS
