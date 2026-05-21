@@ -56,8 +56,10 @@ SAVEHIST=1000
 # some zsh options
 setopt autocd extendedglob nomatch notify
 
-# auto/tab complete
-autoload -U compinit;
+# auto/tab complete. Options:
+# -U disables alias expansion during loading.
+# -z forces Zsh-style autoloading even if KSH_AUTOLOAD is set.
+autoload -Uz compinit;
 zstyle ':completion:*' menu select;
 # zstyle :compinstall filename "$HOME/.zshrc";
 zmodload zsh/complist;
