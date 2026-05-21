@@ -83,7 +83,7 @@ bindkey -M visual ';' vi-forward-char
 bindkey '^r' history-incremental-search-backward
 
 # asdf completions
-fpath=(${ASDF_DIR}/completions $fpath)
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 
 # default folder
 yellow="\033[1;33m"
