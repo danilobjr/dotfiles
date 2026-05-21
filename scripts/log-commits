@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+
+# log-commits: Generate commit logs with flexible filters
+# Inspired by opencode CLI style
+
+set -e
+
+OUTPUT_DIR="."
+DATE_FMT="%Y-%m-%d"
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)
+
+# --- Color + glyph helpers ---
+success() { echo -e "\033[32m✔ $1\033[0m"; }
+error()   { echo -e "\033[31m✖ $1\033[0m"; }
+warn()    { echo -e "\033[33m⚠ $1\033[0m"; }
+info()    { echo -e "\033[36m➜ $1\033[0m"; }
+
+# --- Check if inside a git repo ---
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+  error "This folder is not a Git repository"
+  exit 1
+fi
+
+show_help() {
+  cat <<EOF
+log-commits — Generate commit logs with flexible filters
+
+Syntax:
+  log-commits [options]
+
+Options:
+  -r, --range <first..last>   Create log for commits in given range (first excluded).
+  -d, --day <N>               Create log for commits authored on day N of current month.
+  -dr, -rd <N..M>             Create log for commits authored between days N and M of current month.
+  -o, --output <folder>       Set output folder for log files (default: current directory).
+  -h, --help                  Show this help message.
+
+Examples:
+  log-commits
+    → Will create a log file with ALL commits in the current branch.
+      You will be asked to confirm before proceeding.
+
+  log-commits -r abc123..def456
+    → Creates a log file with commits between abc123 (excluded) and def456 (included).
+
+  log-commits -d 5
+    → Creates a log file with commits authored on the 5th day of the current month.
+      If no commits exist, informs user and does nothing.
+
+  log-commits -dr 5..10
+    → Creates a log file with commits authored between the 5th and 10th days of the current month.
+
+  log-commits -o ~/logs -r abc123..def456
+    → Same as range example, but saves the log file in ~/logs.
+
+EOF
+}
+
+confirm_all_commits() {
+  warn "You are about to create a log file with ALL commits from branch '$BRANCH'."
+  echo "   This may include a large number of commits."
+  read -p "Proceed? (y/N): " ans
+  [[ "$ans" == "y" || "$ans" == "Y" ]]
+}
+
+log_all_commits() {
+  FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT).txt"
+  git log -p --stat > "$FILE"
+  success "Log file created: $FILE"
+}
+
+log_range_commits() {
+  RANGE=$1
+  FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT).txt"
+  git log "$RANGE" -p --stat > "$FILE"
+  success "Log file created for range $RANGE: $FILE"
+}
+
+log_day_commits() {
+  DAY=$1
+  FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT)-day${DAY}.txt"
+  COMMITS=$(git log --since="$(date +%Y-%m)-${DAY} 00:00" --until="$(date +%Y-%m)-${DAY} 23:59" --pretty=format:"%H")
+  if [[ -z "$COMMITS" ]]; then
+    info "No commits found on day $DAY of this month. No log file created."
+  else
+    git log --since="$(date +%Y-%m)-${DAY} 00:00" --until="$(date +%Y-%m)-${DAY} 23:59" -p --stat > "$FILE"
+    success "Log file created for day $DAY: $FILE"
+  fi
+}
+
+log_day_range_commits() {
+  RANGE=$1
+  START=$(echo "$RANGE" | cut -d. -f1)
+  END=$(echo "$RANGE" | cut -d. -f3)
+  FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT)-days${START}-${END}.txt"
+  COMMITS=$(git log --since="$(date +%Y-%m)-${START} 00:00" --until="$(date +%Y-%m)-${END} 23:59" --pretty=format:"%H")
+  if [[ -z "$COMMITS" ]]; then
+    info "No commits found between days $START and $END of this month. No log file created."
+  else
+    git log --since="$(date +%Y-%m)-${START} 00:00" --until="$(date +%Y-%m)-${END} 23:59" -p --stat > "$FILE"
+    success "Log file created for days $START..$END: $FILE"
+  fi
+}
+
+# --- Argument parsing ---
+if [[ $# -eq 0 ]]; then
+  if confirm_all_commits; then
+    log_all_commits
+  else
+    warn "Operation cancelled by user"
+  fi
+  exit 0
+fi
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help) show_help; exit 0 ;;
+    -r|--range) RANGE=$2; shift 2 ;;
+    -d|--day) DAY=$2; shift 2 ;;
+    -dr|--day-range|-rd) DAYRANGE=$2; shift 2 ;;
+    -o|--output) OUTPUT_DIR=$2; shift 2 ;;
+    *) error "Unknown option: $1"; show_help; exit 1 ;;
+  esac
+done
+
+# --- Execute based on flags ---
+if [[ -n "$RANGE" ]]; then
+  log_range_commits "$RANGE"
+elif [[ -n "$DAY" ]]; then
+  log_day_commits "$DAY"
+elif [[ -n "$DAYRANGE" ]]; then
+  log_day_range_commits "$DAYRANGE"
+else
+  if confirm_all_commits; then
+    log_all_commits
+  else
+    warn "Operation cancelled by user"
+  fi
+fi
+
