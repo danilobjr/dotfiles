@@ -21,6 +21,21 @@ if ! git rev-parse --git-dir > /dev/null 2>&1; then
   exit 1
 fi
 
+# --- Ensure output folder exists ---
+ensure_output_dir() {
+  if [[ ! -d "$OUTPUT_DIR" ]]; then
+    warn "Output folder '$OUTPUT_DIR' does not exist."
+    read -p "Do you want to create it? (y/N): " ans
+    if [[ "$ans" == "y" || "$ans" == "Y" ]]; then
+      mkdir -p "$OUTPUT_DIR"
+      success "Created output folder: $OUTPUT_DIR"
+    else
+      error "Log file not created because output folder does not exist"
+      exit 1
+    fi
+  fi
+}
+
 show_help() {
   cat <<EOF
 log-commits — Generate commit logs with flexible filters
@@ -64,12 +79,16 @@ confirm_all_commits() {
 }
 
 log_all_commits() {
+  ensure_output_dir
+
   FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT).txt"
   git log -p --stat > "$FILE"
   success "Log file created: $FILE"
 }
 
 log_range_commits() {
+  ensure_output_dir
+
   RANGE=$1
   FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT).txt"
   git log "$RANGE" -p --stat > "$FILE"
@@ -77,6 +96,8 @@ log_range_commits() {
 }
 
 log_day_commits() {
+  ensure_output_dir
+
   DAY=$1
   FILE="$OUTPUT_DIR/commits-log-$(date +$DATE_FMT)-day${DAY}.txt"
   COMMITS=$(git log --since="$(date +%Y-%m)-${DAY} 00:00" --until="$(date +%Y-%m)-${DAY} 23:59" --pretty=format:"%H")
@@ -89,6 +110,8 @@ log_day_commits() {
 }
 
 log_day_range_commits() {
+  ensure_output_dir
+
   RANGE=$1
   START=$(echo "$RANGE" | cut -d. -f1)
   END=$(echo "$RANGE" | cut -d. -f3)
