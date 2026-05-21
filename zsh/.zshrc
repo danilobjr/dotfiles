@@ -197,8 +197,12 @@ alias dn-run='dotnet run --urls=http://localhost:9000 --project' # example 'dn-r
 
 # git
 alias gs='git st' # status
+alias gc='git c' # commit
 alias gcm='git cm' # commit -m
 alias gcam='git commit -a -m'
+alias gd='git d' # diff
+alias gdc='git dc' # diff --cached
+alias gds='git ds' # diff --staged
 alias gstashsup='git stash show -u -p'
 alias ga='git a' # add
 alias gap='git ap'
@@ -215,11 +219,11 @@ alias gcl='git cl' # clone
 alias gm='git m' # merge
 alias gr='git r' # rebase
 alias grc='git rc' # rebase --continue
+alias gfo='git fetch origin'
 alias gfp='git fetch -p'
 alias glast='git last'
 alias ghist='git hist'
 alias gparent='git show-branch | sed "s/].*//" | grep "\*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/^.*\[//"'
-alias gfo='git fetch origin'
 alias gruop='git remote update origin --prune'
 
 # lazygit
