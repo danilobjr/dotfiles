@@ -1,36 +1,41 @@
 #!/bin/sh
 
-cat > .prettierrc.mjs<< EOL
-/**
- * @see https://prettier.io/docs/configuration
- * @type {import("prettier").Config}
- */
-const config = {
-  editorconfig: true,
-  semi: false,
-  singleQuote: true,
-  tailwindFunctions: ['cva'],
-  // prettier-plugin-tailwindcss must be loaded last in certain conditions. See https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file#compatibility-with-other-prettier-plugins
-  plugins: [
-    '@trivago/prettier-plugin-sort-imports',
-    'prettier-plugin-tailwindcss',
+cat > .prettierrc<< EOL
+{
+  "editorconfig": true,
+  "semi": false,
+  "singleQuote": true,
+
+  "importOrderTypeScriptVersion": "5.8.3",
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "^(react/(.*)$)|^(react$)",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@/styles/(.*)$",
+    "",
+    "^@/config/(.*)$",
+    "^@/pages/(.*)$",
+    "^@/components/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/services/(.*)$",
+    "^@/models/(.*)$",
+    "^@/constants/(.*)$",
+    "^@/utils/(.*)$",
+    "",
+    "^[./]"
   ],
-  importOrderSpecifiers: true,
-  importOrder: [
-    '^node:(.*)$',
-    '^react$',
-    '^react(.*)$',
-    '<THIRD_PARTY_MODULES>',
-    '^@/pages/(.*)$',
-    '^@/config/(.*)$',
-    '^@/utils/(.*)$',
-    '^@/assets/(.*)$',
-    '^[./]',
-  ],
-  tailwindStylesheet: './path/to/global.css',
+
+  "tailwindStylesheet": "./src/styles/index.css",
+  "tailwindPreserveWhitespace": true,
+  "tailwindFunctions": ["cva", "tw"],
+
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ]
 }
 
-export default config
 EOL
 
 cat > .prettierignore<< EOL
@@ -38,4 +43,5 @@ node_modules
 package-lock.json
 pnpm-lock.yaml
 public
+
 EOL
