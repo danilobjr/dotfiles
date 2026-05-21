@@ -62,9 +62,9 @@
     "key": "f4",
     "command": "workbench.action.toggleSidebarVisibility"
   },
-  // ========================
-  // VIM - Remove keybindings
-  // ========================
+  // =====
+  // VIM
+  // =====
   {
     "key": "k",
     "command": "-list.focusUp",
