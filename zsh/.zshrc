@@ -31,6 +31,7 @@ export PATH=$PATH:/Users/danilo/Library/Python/3.8/bin
 export PATH=$PATH:/Users/danilo/.cargo/bin
 export PATH=$PATH:/Users/danilo/.local/bin
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export GITNEXUS_SKIP_OPTIONAL_GRAMMARS=1
 #export ANDROID_SDK_ROOT="fd --type f --hidden --exclude .git"
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 #export ANDROID_HOME=~/Android/Sdk
