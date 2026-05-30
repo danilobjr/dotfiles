@@ -49,6 +49,26 @@
   "terminal.integrated.profiles.windows": {
     "path": { "path": "C:\\Windows\\System32\\wsl.exe" },
   },
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "args": ["-l"],
+      "icon": "terminal-bash",
+    },
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l"],
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux",
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell",
+    },
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
   "todo-tree.tree.showScanModeButton": false,
   "vim.smartRelativeLine": true,
   "vim.leader": "<space>",
