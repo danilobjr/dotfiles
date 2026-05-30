@@ -9,7 +9,7 @@ no_color="\033[0m"
 dotfiles="$HOME/.dotfiles"
 tmp="/tmp/.dotfiles"
 config="$HOME/.config"
-vscode_user="$config/Code/User"
+vscode_user="$HOME/Library/Application Support/Code/User"
 modprobeConfigFile="/etc/modprobe.d/default.conf"
 fontsFolder="$HOME/.local/share/fonts"
 fontFiles=${tmp}/Font-Awesome-5.2.0/web-fonts-with-css/webfonts/*.ttf
@@ -257,7 +257,7 @@ cmd ln -s $DOTFILES/zsh/powerlevel10k/.p10k.zsh $HOME/.p10k.zsh
 # cmd ln -s $dotfiles/neofetch/config $HOME/.config/neofetch/config;
 # echoHighlight "Created at ~/.config/neofetch/config"
 
-# vscode
+# vscode - MAYBE NOT NEEDED BECAUSE BECAUSE OF SETTINGS SYNC
 # echoSectionTitle "Installing Visual Studio Code extensions";
 # cmd readarray vscode_extensions < $dotfiles/vscode/extensions;
 
@@ -269,7 +269,10 @@ cmd ln -s $DOTFILES/zsh/powerlevel10k/.p10k.zsh $HOME/.p10k.zsh
 # cmd ln -s $dotfiles/vscode/keybindings.json $vscode_user/keybindings.json;
 # cmd ln -s $dotfiles/vscode/settings.json $vscode_user/settings.json;
 # cmd rm -rf $vscode_user/snippets;
-cmd ln -sf $DOTFILES/vscode/snippets $HOME/Library/Application\ Support/Code/User/snippets
+
+# cmd ln -sf $DOTFILES/vscode/snippets $vscode_user/snippets
+# cmd rm -rf $vscode_user/tasks.json 
+# cmd ln -sf $DOTFILES/vscode/tasks.json $HOME/Library/Application\ Support/Code/User/tasks.json
 
 # karabiner
 cmd ln -sf $DOTFILES/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
