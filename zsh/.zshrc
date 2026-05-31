@@ -257,6 +257,8 @@ alias mwh='missing-work-hours'
 # vim
 alias v="$EDITOR"
 
+# vs code
+alias code-start="$DOTFILES/scripts/vscode-start"
 
 # =============================================================================
 # === SCRIPTS
