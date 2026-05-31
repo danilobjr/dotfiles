@@ -130,6 +130,10 @@
       "commands": ["editor.foldAll"],
     },
     {
+      "before": ["<leader>", "f", "u", "a"],
+      "commands": ["editor.unfoldAll"],
+    },
+    {
       "before": ["<leader>", "f", "1"],
       "commands": ["editor.foldLevel1"],
     },
