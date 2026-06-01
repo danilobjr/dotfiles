@@ -1,0 +1,111 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
+INPUT_FILE=""
+OUTPUT_FILE=""
+
+usage() {
+    cat <<EOF
+Usage: $SCRIPT_NAME [OPTIONS] [INPUT_FILE] [OUTPUT_FILE]
+
+Optimize PNG images using pngquant with quality 75-90 and speed 1.
+
+Options:
+    -i, --input FILE    Input PNG file (required)
+    -o, --output FILE   Output PNG file (default: input_1.png, input_2.png, ...)
+    -h                  Display this help message
+
+Examples:
+    $SCRIPT_NAME input.png output.png
+    $SCRIPT_NAME -i input.png -o output.png
+    $SCRIPT_NAME input.png
+    $SCRIPT_NAME -i input.png
+EOF
+    exit "${1:-0}"
+}
+
+log_error() { printf "[ERROR] %s\n" "$*" >&2; }
+
+generate_output_name() {
+    local -r file="$1"
+    local dir base name ext counter candidate
+
+    dir="$(dirname -- "$file")"
+    base="$(basename -- "$file")"
+
+    if [[ "$base" == *.* ]]; then
+        ext=".${base##*.}"
+        name="${base%.*}"
+    else
+        name="$base"
+        ext=""
+    fi
+
+    counter=1
+    while :; do
+        candidate="${dir}/${name}_${counter}${ext}"
+        [[ -f "$candidate" ]] || break
+        ((counter++))
+    done
+
+    printf "%s" "$candidate"
+}
+
+validate_input() {
+    local -r file="$1"
+    [[ -f "$file" ]] || { log_error "Input file not found: $file"; return 1; }
+    [[ -r "$file" ]] || { log_error "Input file not readable: $file"; return 1; }
+    return 0
+}
+
+check_deps() {
+    command -v pngquant &>/dev/null || {
+        log_error "pngquant not found. Install with: brew install pngquant"
+        exit 1
+    }
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -i|--input)
+            INPUT_FILE="$2"
+            shift 2
+            ;;
+        -o|--output)
+            OUTPUT_FILE="$2"
+            shift 2
+            ;;
+        -h)
+            usage 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -*)
+            log_error "Unknown option: $1"
+            usage 1
+            ;;
+        *)
+            POSITIONAL+=("$1")
+            shift
+            ;;
+    esac
+done
+
+[[ -z "$INPUT_FILE" && ${#POSITIONAL[@]} -ge 1 ]] && INPUT_FILE="${POSITIONAL[0]}"
+[[ -z "$OUTPUT_FILE" && ${#POSITIONAL[@]} -ge 2 ]] && OUTPUT_FILE="${POSITIONAL[1]}"
+
+[[ -n "$INPUT_FILE" ]] || { log_error "Input file is required"; usage 1; }
+
+check_deps
+validate_input "$INPUT_FILE"
+
+if [[ -z "$OUTPUT_FILE" ]]; then
+    OUTPUT_FILE="$(generate_output_name "$INPUT_FILE")"
+    printf "Output file: %s\n" "$OUTPUT_FILE" >&2
+fi
+
+pngquant --quality=75-90 --speed 1 --output "$OUTPUT_FILE" "$INPUT_FILE"

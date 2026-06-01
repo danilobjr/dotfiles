@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+show_help() {
+cat << EOF
+PNG Optimizer
+
+Optimize a PNG image using pngquant.
+
+USAGE
+  png-optimizer input.png [output.png]
+
+  png-optimizer -i input.png [-o output.png]
+
+FLAGS
+  -i, --input
+      Input PNG file.
+
+  -o, --output
+      Output file.
+      If omitted, creates:
+        image_1.png
+        image_2.png
+        image_3.png
+      ...using the first available filename.
+
+  -h
+      Display this help message.
+
+EXAMPLES
+  png-optimizer input.png
+
+  png-optimizer input.png output.png
+
+  png-optimizer -i input.png
+
+  png-optimizer -i input.png -o optimized.png
+EOF
+}
+
+require_pngquant() {
+    command -v pngquant >/dev/null 2>&1 || {
+        echo "Error: pngquant is not installed." >&2
+        exit 1
+    }
+}
+
+generate_output_name() {
+    local input="$1"
+
+    local dir
+    dir="$(dirname "$input")"
+
+    local filename
+    filename="$(basename "$input")"
+
+    local base="${filename%.*}"
+    local ext="${filename##*.}"
+
+    local n=1
+    local candidate
+
+    while true; do
+        candidate="${dir}/${base}_${n}.${ext}"
+
+        if [[ ! -e "$candidate" ]]; then
+            echo "$candidate"
+            return
+        fi
+
+        ((n++))
+    done
+}
+
+INPUT=""
+OUTPUT=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -i|--input)
+            [[ $# -lt 2 ]] && {
+                echo "Error: missing value for $1" >&2
+                exit 1
+            }
+            INPUT="$2"
+            shift 2
+            ;;
+
+        -o|--output)
+            [[ $# -lt 2 ]] && {
+                echo "Error: missing value for $1" >&2
+                exit 1
+            }
+            OUTPUT="$2"
+            shift 2
+            ;;
+
+        -h)
+            show_help
+            exit 0
+            ;;
+
+        -*)
+            echo "Error: unknown option '$1'" >&2
+            exit 1
+            ;;
+
+        *)
+            if [[ -z "$INPUT" ]]; then
+                INPUT="$1"
+            elif [[ -z "$OUTPUT" ]]; then
+                OUTPUT="$1"
+            else
+                echo "Error: only one input file is allowed." >&2
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
+
+[[ -z "$INPUT" ]] && {
+    echo "Error: input file is required." >&2
+    echo "Use -h for help."
+    exit 1
+}
+
+[[ ! -f "$INPUT" ]] && {
+    echo "Error: input file not found: $INPUT" >&2
+    exit 1
+}
+
+require_pngquant
+
+if [[ -z "$OUTPUT" ]]; then
+    OUTPUT="$(generate_output_name "$INPUT")"
+fi
+
+pngquant \
+    --quality=75-90 \
+    --speed 1 \
+    --output "$OUTPUT" \
+    --force \
+    "$INPUT"
+
+echo "✓ Optimized PNG created:"
+echo "  $OUTPUT"
